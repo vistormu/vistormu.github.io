@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+	<title>vistormu</title>
+	<link rel="stylesheet" href="./../style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+      <a href="../index.html">Vistor's Blog</a>
+  </div>
+  <nav>
+    <a href="../about.html" class="nav-link">about</a>
+    <a id="modeToggle">
+        <img id="themeIcon" src="../assets/on.svg" alt="light mode">
+    </a>
+  </nav>
+</header>
+
+<div class="content-wrapper">
+
+<h1>
+	Transformers. A Step by Step Explanation.
+</h1>
+
+<hr>
+
+<div class="subtitle">Published on <mark>sep 28th 2023</mark>. Last edit on <mark>sep 28th 2023</mark>.</div>
+
+<p>
+	In this blog post I want to cover all the concepts behind transformers. As my main research topic as of right now, my main idea is to recycle what I write here for my thesis. For that reason, in every section there is a "show detailed explanation" button that changes the text in a more academic manner.
+</p>
+<p>
+	There are lots of blog posts explaining transformers out there on the internet. My intention is to explain the topic as a researcher from a more technical point of view, focusing on implementations details, matrix shapes, equations, paper references...
+</p>
+<p>
+	If you are looking for a more simple explanation, I recommend you to check out the following blog posts:
+</p>
+<ul>
+	<li><a href="https://towardsdatascience.com/illustrated-guide-to-transformers-step-by-step-explanation-f74876522bc0">Illustrated Guide to Transformers - Step by Step Explanation</a></li>
+	<li><a href="https://neptune.ai/blog/comprehensive-guide-to-transformers">Comprehensive Guide to Transformers</a></li>
+	<li><a href="https://www.turing.com/kb/brief-introduction-to-transformers-and-their-power">Understanding Transformer Neural Network Model in Deep Learning and NLP</a></li>
+	<li><a href="https://towardsdatascience.com/transformers-141e32e69591">How Transformers Work</a></li>
+	<li><a href="http://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer</a></li>
+</ul>
+
+<div style="height: 20px;"></div>
+
+<h2>
+	Introduction
+</h2>
+
+<p>
+	As its name indicates, transformers have transformed the field of natural language processing (NLP) in the past few years. The transformer architecture has become the de facto standard for NLP tasks, setting new performance benchmarks on lots of NLP tasks.
+</p>
+<p>
+	The following sections will cover the main concepts behind transformers, from input to output in the same order as data is processed. We will take as an example from now on the following input sentence:
+</p>
+<div class="code-container">
+  <pre>The quick brown fox jumps over the lazy dog.</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+</div>
+<div style="height: 60px;"></div>
+<div class="divider" style="height: 20px;"></div>
+<script src="./../scripts/scroll.js"></script>
+<script src="./../scripts/themeToggle.js"></script>
+<script src="./../scripts/copyCode.js"></script>
+
+</body>
+</html>

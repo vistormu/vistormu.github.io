@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+	<title>vistormu</title>
+	<link rel="stylesheet" href="./../style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+      <a href="../index.html">Vistor's Blog</a>
+  </div>
+  <nav>
+    <a href="../about.html" class="nav-link">about</a>
+    <a id="modeToggle">
+        <img id="themeIcon" src="../assets/on.svg" alt="light mode">
+    </a>
+  </nav>
+</header>
+
+<div class="content-wrapper">
+
+<h1>
+	Univariate Time Series Forecasting with GluonTS
+</h1>
+
+<hr>
+
+<div class="subtitle">Published on <mark>oct 1st 2023</mark>. Last edit on <mark>oct 11th 2023</mark>.</div>
+
+<div style="height: 20px;"></div>
+
+<div class="divider" ></div>
+<div class="spacer"></div>
+
+<p>
+	GluonTS is an open-source probabilistic time series forecasting framework developed by Amazon built on top of the MXNet framework and PyTorch. GluonTS provides all the necessary components and tools to construct custom forecasting models, evaluate their performance, and deploy them easily.
+</p>
+<p>
+	I found tons of other libraries that offer similar functionality, but I decided to use GluonTS because it gave the structure that I wanted: "give me a dataset and a model and I will train it". Here is the list (ordered by number of stars in GitHub) of the other libraries if you want to take a look: 
+</p>
+<ul>
+	<li><a href="https://github.com/facebook/prophet">facebook/prophet</a></li>
+	<li><a href="https://github.com/unit8co/darts">unit8co/darts</a></li>
+	<li><a href="https://github.com/timeseriesAI/tsai/tree/main">timeseriesAI/tsai</a></li>
+	<li><a href="https://github.com/jdb78/pytorch-forecasting">jdb78/pytorch-forecasting</a></li>
+	<li><a href="https://github.com/ourownstory/neural_prophet">ourownstory/neural_prophet</a></li>
+	<li><a href="https://github.com/Nixtla/statsforecast">Nitxla/statsforecast</a></li>
+</ul>
+
+<p>
+	There are two official tutorials of GluonTS: <a href="https://ts.gluon.ai/stable/tutorials/forecasting/quick_start_tutorial.html">a quick start tutorial</a> and an <a href="https://ts.gluon.ai/stable/tutorials/forecasting/extended_tutorial.html">extended tutorial</a>. I found that the two tutorials diverged a bit on what I wanted to do. In this blog post I will cover how to use GluonTS to load a custom dataset from a <code>csv</code> and train a pre-packaged model for time series forecasting of signals.
+</p>
+<div class="divider" ></div>
+<div class="spacer"></div>
+
+<h2>
+	Table of Contents
+</h2>
+
+<ul>
+	<li><a href="#catching-up-with-the-basics">Catching up with the basics</a></li>
+	<li><a href="#installing-the-necessary-packages">Installing the necessary packages</a></li>
+	<li><a href="#creating-a-custom-dataset">Creating a custom dataset</a></li>
+	<li><a href="#loading-the-dataset-into-a-gluonts-format">Loading the dataset into a GluonTS format</a></li>
+	<li><a href="#training-a-model">Training a model</a></li>
+	<li><a href="#evaluating-the-model">Evaluating the model</a></li>
+	<li><a href="#results">Results</a></li>
+	<li><a href="#full-code">Full code</a></li>
+</ul>
+
+<div style="height: 20px;"></div>
+
+<div class="divider" ></div>
+<div class="spacer"></div>
+
+<div id="catching-up-with-the-basics"></div>
+
+<h2>
+	Catching up with the basics
+</h2>
+
+<p>
+	Before we start, let's catch up with the basics of time series forecasting. The main task of time series forecasting is, given a sequence of values, predict the future values of the time series. You could predict the future values given only its past values (univariate) or given the past values of multiple time series (multivariate). In this blog post I will only cover univariate time series forecasting.
+</p>
+<div style="height: 20px;"></div>
+
+<div class="image-wrapper">
+<div style="text-align: center;"><img src="./assets/time_series.png" width="503.99999999999994"></div>
+
+</div>
+<div class="caption">A generic time series (blue) with the selected context length (green) and prediction length (red).</div>
+
+<div style="height: 20px;"></div>
+
+<p>
+	In the figure above we can see a time series, where the time <code>T</code> represents the present. The model will be given a window of past values (the context) and will predict another window of future values (the prediction).
+</p>
+<div style="height: 20px;"></div>
+
+<div class="divider" ></div>
+<div class="spacer"></div>
+
+<div id="installing-the-necessary-packages"></div>
+
+<h2>
+	Installing the necessary packages
+</h2>
+
+<p>
+	The first step is to install the necessary packages. I highly recommend to install the packages using a virtual environment like Conda. You can follow the necessary steps by reading <a href="./conda.html">this blog post</a>.
+</p>
+<p>
+	Create a <code>requirements.txt</code> on the root of your project and add the following lines:
+</p>
+<div class="file">./requirements.txt</div>
+
+<div class="code-container">
+  <pre>numpy <br>pandas <br>matplotlib <br>gluonts[torch] <br>lightning[extra] <br>orjson</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<p>
+	Then, install all the packages with the following command:
+</p>
+<div class="file">terminal</div>
+
+<div class="code-container">
+  <pre>pip install -r requirements.txt</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<div style="height: 20px;"></div>
+
+<div class="divider" ></div>
+<div class="spacer"></div>
+
+<div id="creating-a-custom-dataset"></div>
+
+<h2>
+	Creating a custom dataset
+</h2>
+
+<p>
+	In this tutorial we will load the data from a <code>csv</code> file as it is the most common use case. Also, instead of searching for a dataset online, we will create a custom one as it will me more didactic.
+</p>
+<p>
+	Our custom dataset will be a set of 5 sine waves with different amplitudes and frequencies, as shown in the figure below. Four of them will be used for training the model and the last one for testing.
+</p>
+<div style="height: 20px;"></div>
+
+<div class="image-wrapper">
+<div style="text-align: center;"><img src="./assets/sin_wave_dataset.png" width="503.99999999999994"></div>
+
+</div>
+<div class="caption">A set of 5 sine waves with different amplitudes and frequencies.</div>
+
+<div style="height: 20px;"></div>
+
+<p>
+	Let's jump to coding. Create a <code>data</code> folder and a <code>create_dataset.py</code> file and let's create all the sine waves. We will use, of course, <code>numpy</code> and <code>pandas</code>.
+</p>
+<p>
+	In general, for time series forecasting it is a good idea to have as less data points as possible. As we are predicting just simply sine waves, <code>128</code> points per signal will be enough.
+</p>
+<div class="file">./create_dataset.py</div>
+
+<div class="code-container">
+  <pre>import numpy as np <br>import pandas as pd <br><br><br>def sin_wave(t: np.ndarray, amp: float, freq: float) -> np.ndarray: <br>    return amp * np.sin(2 * np.pi * freq * t) <br><br><br>signal_length: int = 128 <br>t: np.ndarray = np.arange(signal_length) <br><br>amps: list[float] = [0.5, 1.0, 2.0, 2.5, 1.5] <br>freqs: list[float] = [0.01, 0.02, 0.04, 0.05, 0.03] <br><br>for i, (amp, freq) in enumerate(zip(amps, freqs)): <br>    signal: np.ndarray = sin_wave(t, amp, freq) <br>    pd.DataFrame(signal).to_csv(f"data/sin_wave_{i}.csv", <br>                                index=False, header=False)</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<p>
+	Running the script, we should have in our <code>./data</code> folder 5 <code>csv</code> files with names <code>sin_wave_i.csv</code>, with <code>i</code> ranging from 0 to 4. If everything is okay, the first values of the first files should look like this:
+</p>
+<div class="file">./data/sin_wave_0.csv</div>
+
+<div class="code-container">
+  <pre>0.0 <br>0.03139525976465669 <br>0.06266661678215213 <br>0.09369065729286231 <br>0.1243449435824274 <br>0.1545084971874737 <br>...</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<div style="height: 20px;"></div>
+
+<div class="divider" ></div>
+<div class="spacer"></div>
+
+<div id="loading-the-dataset-into-a-gluonts-format"></div>
+
+<h2>
+	Loading the dataset into a GluonTS format
+</h2>
+
+<p>
+	Once our dataset is created, the next step is to load the <code>csv</code> files to the main script and separate it into training and testing data.
+</p>
+<p>
+	Let's create a <code>main.py</code> file and load the dataset with Pandas using a cool list comprehension.
+</p>
+<b>Note:</b> I found out that if you dont use <code>def main()</code> and <code>if __name__ == "__main__"</code>, the script will not work while using GPU. I doesn't make sense, but it implied days of debugging.
+<div class="file">./main.py</div>
+
+<div class="code-container">
+  <pre>import numpy as np <br>import pandas as pd <br><br><br>def main() -> None: <br>    data_list: list[np.ndarray] = [ <br>        pd.read_csv(f"data/sin_wave_{i}.csv", <br>                    header=None).to_numpy().flatten() <br>        for i in range(5) <br>    ]</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<p>
+	Let's divide our dataset to have a training and a test set, four and one time series respectively. Note that <code>target_test</code>'s shape is (1, 128) as it is a good practice to have a list of numpy arrays. 
+</p>
+<div class="file">./main.py</div>
+
+<div class="code-container">
+  <pre>... <br><br>target_train: list[np.ndarray] = data_list[:-1] <br>target_test: list[np.ndarray] = data_list[-1:] <br></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<p>
+	Once we have the training data and test data, we need to construct two GluonTS datasets. We will use <code>ListDataset</code> as our way of storing the data as it is very straightforward to understand.
+</p>
+<code>ListDataset</code> has two mandatory arguments: a list of dictionaries and a frequency. Each dictionary represents a time series and must contain at least these two keys:
+<ul>
+	<li>a <code>target</code> key, which is the time series itself, </li>
+	<li>and a <code>start</code> key, which is the starting date of the time series.</li>
+</ul>
+
+<p>
+	In our case (and I think in general for signal analysis), the <code>start</code> key and the <code>frequency</code> variable are not important at all. That's why I set the start of the time series to <code>"01-01-2023"</code> and a frequency of <code>"D"</code> (which stands for "day"), for example.
+</p>
+<div class="file">./main.py</div>
+
+<div class="code-container">
+  <pre>from gluonts.dataset.common import ListDataset <br><br>... <br><br>freq = "D" <br>train_ds = ListDataset([ <br>    {"target": t, "start": "01-01-2023"} <br>    for t in target_train <br>], freq=freq) <br>test_ds = ListDataset([ <br>    {"target": t, "start": "01-01-2023"} <br>    for t in target_test <br>], freq=freq)</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<div style="height: 20px;"></div>
+
+<div class="divider" ></div>
+<div class="spacer"></div>
+
+<div id="training-a-model"></div>
+
+<h2>
+	Training a model
+</h2>
+
+<p>
+	Now that we have our dataset loaded into a GluonTS format, we can train a model. GluonTS offers a variety of models, but we will use the <code>DeepAREstimator</code> model, which is a deep learning model based on the <code>RNN</code> architecture. We will use the PyTorch version of the model, but there is also a MXNet version too. If you are using a MXNet model, note that it is a bit different as <code>trainer_kwargs</code> is substituted by a <code>Trainer</code> class.
+</p>
+<p>
+	We will also use a prediction length and a context length twice the size of the prediction length. 
+</p>
+<p>
+	Once the estimator is defined, we can train it with the training dataset. Using the <code>train</code> method for the estimator starts the training and returns a predictor that will be used to make the forecasts.
+</p>
+<div class="file">./main.py</div>
+
+<div class="code-container">
+  <pre>from gluonts.torch.model.deepar import DeepAREstimator <br><br>... <br><br>prediction_length = 12 <br>context_length = prediction_length * 2 <br><br>estimator = DeepAREstimator( <br>    freq=freq, <br>    prediction_length=prediction_length, <br>    context_length=context_length, <br>    trainer_kwargs={"max_epochs": 10}, <br>) <br><br>predictor = estimator.train(train_ds)</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<div style="height: 20px;"></div>
+
+<div class="divider" ></div>
+<div class="spacer"></div>
+
+<div id="evaluating-the-model"></div>
+
+<h2>
+	Evaluating the model
+</h2>
+
+<p>
+	With the model trained we can proceed to evaluate it. GluonTS offers a function named <code>make_evaluation_predictions</code> that will subtract the <code>prediction_length</code> to the dataset and will run <code>predictor.predict()</code> for us. It takes as arguments the predictor and the test dataset, and returns two iterators: the first one yielding the forecasts and the second one yielding the corresponding ground truth series.
+</p>
+<div class="file">./main.py</div>
+
+<div class="code-container">
+  <pre>from gluonts.evaluation import make_evaluation_predictions <br><br>... <br><br>forecast_it, time_series_it = make_evaluation_predictions( <br>    dataset=test_ds, <br>    predictor=predictor, <br>)</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<p>
+	Now, the next part is a bit finicky, as we need to convert the iterators to lists to convert them back into iterators. Just don't ask why, but I think it has to do whit the function itself, that modifies the value of the objects passed. The list iterators will be used for evaluating the models, and the lists for plotting the results.
+</p>
+<p>
+	For the evaluation, GluonTS offers a <code>Evaluator</code> class. It offers a call method that takes as arguments an iterator containing the true target and an iterator of the forecasts. It returns a dictionary of aggregated metrics and a <code>pd.DataFrame</code> containing metrics per time series.
+</p>
+<div class="file">./main.py</div>
+
+<div class="code-container">
+  <pre>from gluonts.evaluation import make_evaluation_predictions, Evaluator <br><br>... <br><br>forecasts = list(forecast_it) <br>true_time_series = list(time_series_it) <br><br>evaluator = Evaluator() <br>agg_metrics, _ = evaluator( <br>    iter(true_time_series), <br>    iter(forecasts), <br>)</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<p>
+	All the metrics can be found in the dictionary, so for example, you can se the mean square error by doing this:
+</p>
+<div class="file">./main.py</div>
+
+<div class="code-container">
+  <pre>print(agg_metrics["MSE"])</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<div style="height: 20px;"></div>
+
+<div class="divider" ></div>
+<div class="spacer"></div>
+
+<div id="results"></div>
+
+<h2>
+	Results
+</h2>
+
+<p>
+	Finally, we can plot the results using <code>matplotlib</code> and the <code>plot</code> method of the forecast. This method plots the prediction with its mean and variance at the end of the time series, so it comes quite handy.
+</p>
+<p>
+	We will iterate over the forecasts and the true time series (despite the fact that we only have one time series in the test dataset) and plot them.
+</p>
+<div class="file">./main.py</div>
+
+<div class="code-container">
+  <pre>import matplotlib.pyplot as plt <br><br>... <br><br>for forecast, time_series in zip(forecasts, true_time_series): <br>    plt.plot(time_series.to_timestamp(), label="target") <br>    forecast.plot(show_label=True, color="g") <br>    plt.legend() <br>    plt.show()</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<p>
+	The results should look like this:
+</p>
+<div style="height: 20px;"></div>
+
+<div class="image-wrapper">
+<div style="text-align: center;"><img src="./assets/result.png" width="503.99999999999994"></div>
+
+</div>
+<div class="caption">Results of the prediction of a sine wave whose amplitude and frequency have not been seen by the model. The green line represents the mean of the prediction, the light green area represents 50% of uncertainty, and the dark green area represents 90% of uncertainty.</div>
+
+<div style="height: 20px;"></div>
+
+<p>
+	Keep in mind we have trained with a very small dataset, for 10 epochs and not tuning the model's parameters; so feel free to play with the code to achieve better results!
+</p>
+<div style="height: 20px;"></div>
+
+<div class="divider" ></div>
+<div class="spacer"></div>
+
+<div id="full-code"></div>
+
+<h2>
+	Full code
+</h2>
+
+<p>
+	The full code of this blog post can be found in the <a href="https://github.com/vistormu/blog_source_code/tree/main/gluonts_univariate_forecasting">GitHub repository</a> of the blog posts.
+</p>
+</div>
+<div style="height: 60px;"></div>
+<div class="divider" style="height: 20px;"></div>
+<script src="./../scripts/scroll.js"></script>
+<script src="./../scripts/themeToggle.js"></script>
+<script src="./../scripts/copyCode.js"></script>
+
+</body>
+</html>

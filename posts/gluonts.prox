@@ -1,0 +1,395 @@
+@title{vistormu}
+@style{./../style.css}
+
+@header
+
+@h1
+Univariate Time Series Forecasting with GluonTS
+
+@line
+
+@subtitle
+Published on @mark{oct 1st 2023}. Last edit on @mark{oct 11th 2023}.
+
+@spacer
+
+@divider
+
+GluonTS is an open-source probabilistic time series forecasting framework developed by Amazon built on top of the MXNet framework and PyTorch. GluonTS provides all the necessary components and tools to construct custom forecasting models, evaluate their performance, and deploy them easily.
+
+I found tons of other libraries that offer similar functionality, but I decided to use GluonTS because it gave the structure that I wanted: "give me a dataset and a model and I will train it". Here is the list (ordered by number of stars in GitHub) of the other libraries if you want to take a look: 
+
+@list{
+@url{https://github.com/facebook/prophet}{facebook/prophet}
+}{
+@url{https://github.com/unit8co/darts}{unit8co/darts}
+}{
+@url{https://github.com/timeseriesAI/tsai/tree/main}{timeseriesAI/tsai}
+}{
+@url{https://github.com/jdb78/pytorch-forecasting}{jdb78/pytorch-forecasting}
+}{
+@url{https://github.com/ourownstory/neural_prophet}{ourownstory/neural_prophet}
+}{
+@url{https://github.com/Nixtla/statsforecast}{Nitxla/statsforecast}
+}
+
+There are two official tutorials of GluonTS: @url{https://ts.gluon.ai/stable/tutorials/forecasting/quick_start_tutorial.html}{a quick start tutorial} and an @url{https://ts.gluon.ai/stable/tutorials/forecasting/extended_tutorial.html}{extended tutorial}. I found that the two tutorials diverged a bit on what I wanted to do. In this blog post I will cover how to use GluonTS to load a custom dataset from a @code{csv} and train a pre-packaged model for time series forecasting of signals.
+
+@divider
+
+@h2
+Table of Contents
+
+@list{
+@url{\#catching-up-with-the-basics}{Catching up with the basics}
+}{
+@url{\#installing-the-necessary-packages}{Installing the necessary packages}
+}{
+@url{\#creating-a-custom-dataset}{Creating a custom dataset}
+}{
+@url{\#loading-the-dataset-into-a-gluonts-format}{Loading the dataset into a GluonTS format}
+}{
+@url{\#training-a-model}{Training a model}
+}{
+@url{\#evaluating-the-model}{Evaluating the model}
+}{
+@url{\#results}{Results}
+}{
+@url{\#full-code}{Full code}
+}
+
+@spacer
+
+@divider
+
+@toc{catching-up-with-the-basics}
+
+@h2
+Catching up with the basics
+
+Before we start, let's catch up with the basics of time series forecasting. The main task of time series forecasting is, given a sequence of values, predict the future values of the time series. You could predict the future values given only its past values (univariate) or given the past values of multiple time series (multivariate). In this blog post I will only cover univariate time series forecasting.
+
+
+@spacer
+
+<div class="image-wrapper">
+
+@center
+@image{./assets/time_series.png}{0.7}
+
+</div>
+
+@caption
+A generic time series (blue) with the selected context length (green) and prediction length (red).
+
+@spacer
+
+In the figure above we can see a time series, where the time @code{T} represents the present. The model will be given a window of past values (the context) and will predict another window of future values (the prediction).
+
+@spacer
+
+@divider
+
+@toc{installing-the-necessary-packages}
+
+@h2
+Installing the necessary packages
+
+The first step is to install the necessary packages. I highly recommend to install the packages using a virtual environment like Conda. You can follow the necessary steps by reading @url{./conda.html}{this blog post}.
+
+Create a @code{requirements.txt} on the root of your project and add the following lines:
+
+@file{./requirements.txt}
+
+@pre
+numpy <br>
+pandas <br>
+matplotlib <br>
+gluonts[torch] <br>
+lightning[extra] <br>
+orjson
+
+Then, install all the packages with the following command:
+
+@file{terminal}
+
+@pre
+pip install -r requirements.txt
+
+@spacer
+
+@divider
+
+@toc{creating-a-custom-dataset}
+
+@h2
+Creating a custom dataset
+
+In this tutorial we will load the data from a @code{csv} file as it is the most common use case. Also, instead of searching for a dataset online, we will create a custom one as it will me more didactic.
+
+Our custom dataset will be a set of 5 sine waves with different amplitudes and frequencies, as shown in the figure below. Four of them will be used for training the model and the last one for testing.
+
+@spacer
+
+<div class="image-wrapper">
+
+@center
+@image{./assets/sin_wave_dataset.png}{0.7}
+
+</div>
+
+@caption
+A set of 5 sine waves with different amplitudes and frequencies.
+
+@spacer
+
+Let's jump to coding. Create a @code{data} folder and a @code{create_dataset.py} file and let's create all the sine waves. We will use, of course, @code{numpy} and @code{pandas}.
+
+In general, for time series forecasting it is a good idea to have as less data points as possible. As we are predicting just simply sine waves, @code{128} points per signal will be enough.
+
+@file{./create_dataset.py}
+
+@pre
+import numpy as np <br>
+import pandas as pd <br>
+<br>
+<br>
+def sin_wave(t: np.ndarray, amp: float, freq: float) -> np.ndarray: <br>
+    return amp * np.sin(2 * np.pi * freq * t) <br>
+<br>
+<br>
+signal_length: int = 128 <br>
+t: np.ndarray = np.arange(signal_length) <br>
+<br>
+amps: list[float] = [0.5, 1.0, 2.0, 2.5, 1.5] <br>
+freqs: list[float] = [0.01, 0.02, 0.04, 0.05, 0.03] <br>
+<br>
+for i, (amp, freq) in enumerate(zip(amps, freqs)): <br>
+    signal: np.ndarray = sin_wave(t, amp, freq) <br>
+    pd.DataFrame(signal).to_csv(f"data/sin_wave_\{i\}.csv", <br>
+                                index=False, header=False)
+
+
+Running the script, we should have in our @code{./data} folder 5 @code{csv} files with names @code{sin_wave_i.csv}, with @code{i} ranging from 0 to 4. If everything is okay, the first values of the first files should look like this:
+
+@file{./data/sin_wave_0.csv}
+
+@pre
+0.0 <br>
+0.03139525976465669 <br>
+0.06266661678215213 <br>
+0.09369065729286231 <br>
+0.1243449435824274 <br>
+0.1545084971874737 <br>
+...
+
+@spacer
+
+@divider
+
+@toc{loading-the-dataset-into-a-gluonts-format}
+
+@h2
+Loading the dataset into a GluonTS format
+
+Once our dataset is created, the next step is to load the @code{csv} files to the main script and separate it into training and testing data.
+
+Let's create a @code{main.py} file and load the dataset with Pandas using a cool list comprehension.
+
+@bold{Note:} I found out that if you dont use @code{def main()} and @code{if __name__ == "__main__"}, the script will not work while using GPU. I doesn't make sense, but it implied days of debugging.
+
+@file{./main.py}
+
+@pre
+import numpy as np <br>
+import pandas as pd <br>
+<br>
+<br>
+def main() -> None: <br>
+    data_list: list[np.ndarray] = [ <br>
+        pd.read_csv(f"data/sin_wave_\{i\}.csv", <br>
+                    header=None).to_numpy().flatten() <br>
+        for i in range(5) <br>
+    ]
+
+Let's divide our dataset to have a training and a test set, four and one time series respectively. Note that @code{target_test}'s shape is (1, 128) as it is a good practice to have a list of numpy arrays. 
+
+@file{./main.py}
+
+@pre
+... <br>
+<br>
+target_train: list[np.ndarray] = data_list[:-1] <br>
+target_test: list[np.ndarray] = data_list[-1:] <br>
+
+Once we have the training data and test data, we need to construct two GluonTS datasets. We will use @code{ListDataset} as our way of storing the data as it is very straightforward to understand.
+
+@code{ListDataset} has two mandatory arguments: a list of dictionaries and a frequency. Each dictionary represents a time series and must contain at least these two keys:
+
+@list{
+a @code{target} key, which is the time series itself, 
+}{
+and a @code{start} key, which is the starting date of the time series.
+}
+
+In our case (and I think in general for signal analysis), the @code{start} key and the @code{frequency} variable are not important at all. That's why I set the start of the time series to @code{"01-01-2023"} and a frequency of @code{"D"} (which stands for "day"), for example.
+
+@file{./main.py}
+
+@pre
+from gluonts.dataset.common import ListDataset <br>
+<br>
+... <br>
+<br>
+freq = "D" <br>
+train_ds = ListDataset([ <br>
+    \{"target": t, "start": "01-01-2023"\} <br>
+    for t in target_train <br>
+], freq=freq) <br>
+test_ds = ListDataset([ <br>
+    \{"target": t, "start": "01-01-2023"\} <br>
+    for t in target_test <br>
+], freq=freq)
+
+@spacer
+
+@divider
+
+@toc{training-a-model}
+
+@h2
+Training a model
+
+Now that we have our dataset loaded into a GluonTS format, we can train a model. GluonTS offers a variety of models, but we will use the @code{DeepAREstimator} model, which is a deep learning model based on the @code{RNN} architecture. We will use the PyTorch version of the model, but there is also a MXNet version too. If you are using a MXNet model, note that it is a bit different as @code{trainer_kwargs} is substituted by a @code{Trainer} class.
+
+We will also use a prediction length and a context length twice the size of the prediction length. 
+
+Once the estimator is defined, we can train it with the training dataset. Using the @code{train} method for the estimator starts the training and returns a predictor that will be used to make the forecasts.
+
+@file{./main.py}
+
+@pre
+from gluonts.torch.model.deepar import DeepAREstimator <br>
+<br>
+... <br>
+<br>
+prediction_length = 12 <br>
+context_length = prediction_length * 2 <br>
+<br>
+estimator = DeepAREstimator( <br>
+    freq=freq, <br>
+    prediction_length=prediction_length, <br>
+    context_length=context_length, <br>
+    trainer_kwargs=\{"max_epochs": 10\}, <br>
+) <br>
+<br>
+predictor = estimator.train(train_ds)
+
+@spacer
+
+@divider
+
+@toc{evaluating-the-model}
+
+@h2
+Evaluating the model
+
+With the model trained we can proceed to evaluate it. GluonTS offers a function named @code{make_evaluation_predictions} that will subtract the @code{prediction_length} to the dataset and will run @code{predictor.predict()} for us. It takes as arguments the predictor and the test dataset, and returns two iterators: the first one yielding the forecasts and the second one yielding the corresponding ground truth series.
+
+
+@file{./main.py}
+
+@pre
+from gluonts.evaluation import make_evaluation_predictions <br>
+<br>
+... <br>
+<br>
+forecast_it, time_series_it = make_evaluation_predictions( <br>
+    dataset=test_ds, <br>
+    predictor=predictor, <br>
+)
+
+Now, the next part is a bit finicky, as we need to convert the iterators to lists to convert them back into iterators. Just don't ask why, but I think it has to do whit the function itself, that modifies the value of the objects passed. The list iterators will be used for evaluating the models, and the lists for plotting the results.
+
+For the evaluation, GluonTS offers a @code{Evaluator} class. It offers a call method that takes as arguments an iterator containing the true target and an iterator of the forecasts. It returns a dictionary of aggregated metrics and a @code{pd.DataFrame} containing metrics per time series.
+
+@file{./main.py}
+
+@pre
+from gluonts.evaluation import make_evaluation_predictions, Evaluator <br>
+<br>
+... <br>
+<br>
+forecasts = list(forecast_it) <br>
+true_time_series = list(time_series_it) <br>
+<br>
+evaluator = Evaluator() <br>
+agg_metrics, _ = evaluator( <br>
+    iter(true_time_series), <br>
+    iter(forecasts), <br>
+)
+
+All the metrics can be found in the dictionary, so for example, you can se the mean square error by doing this:
+
+@file{./main.py}
+
+@pre
+print(agg_metrics["MSE"])
+
+@spacer
+
+@divider
+
+@toc{results}
+
+@h2
+Results
+
+Finally, we can plot the results using @code{matplotlib} and the @code{plot} method of the forecast. This method plots the prediction with its mean and variance at the end of the time series, so it comes quite handy.
+
+We will iterate over the forecasts and the true time series (despite the fact that we only have one time series in the test dataset) and plot them.
+
+@file{./main.py}
+
+@pre
+import matplotlib.pyplot as plt <br>
+<br>
+... <br>
+<br>
+for forecast, time_series in zip(forecasts, true_time_series): <br>
+    plt.plot(time_series.to_timestamp(), label="target") <br>
+    forecast.plot(show_label=True, color="g") <br>
+    plt.legend() <br>
+    plt.show()
+
+The results should look like this:
+
+@spacer
+
+<div class="image-wrapper">
+
+@center
+@image{./assets/result.png}{0.7}
+
+</div>
+
+@caption
+Results of the prediction of a sine wave whose amplitude and frequency have not been seen by the model. The green line represents the mean of the prediction, the light green area represents 50% of uncertainty, and the dark green area represents 90% of uncertainty.
+
+@spacer
+
+Keep in mind we have trained with a very small dataset, for 10 epochs and not tuning the model's parameters; so feel free to play with the code to achieve better results!
+
+@spacer
+
+@divider
+
+@toc{full-code}
+
+@h2
+Full code
+
+The full code of this blog post can be found in the @url{https://github.com/vistormu/blog_source_code/tree/main/gluonts_univariate_forecasting}{GitHub repository} of the blog posts.
+
+@footer
+

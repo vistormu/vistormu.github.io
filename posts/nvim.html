@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+	<title>vistormu</title>
+	<link rel="stylesheet" href="./../style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+      <a href="../index.html">Vistor's Blog</a>
+  </div>
+  <nav>
+    <a href="../about.html" class="nav-link">about</a>
+    <a id="modeToggle">
+        <img id="themeIcon" src="../assets/on.svg" alt="light mode">
+    </a>
+  </nav>
+</header>
+
+<div class="content-wrapper">
+
+<h1>
+	How to Set Up Neovim from Scratch
+</h1>
+
+<hr>
+
+<div class="subtitle">Published on <mark>oct 15th 2023</mark>. Last edit on <mark>oct 15th 2023</mark>.</div>
+
+<div style="height: 20px;"></div>
+
+<p>
+	Neovim is the superior technology for text editing. You do not need IDEs or waiting for slow apps to open. Editing in the terminal is just enough. Neovim is super fast, lightweight and highly costumizable. You will learn how to adapt Neovim to your preferences, achieving high editing speeds. Moreover, once you get used to Vim Motions there will be no way back.
+</p>
+<p>
+	A very popular Neovim configuration guide is <a href="https://github.com/nvim-lua/kickstart.nvim">kickstart.nvim</a>, which is also a very good way to start the Neovim journey. Also, I highly recommend <a href="https://www.youtube.com/watch?v=w7i4amO_zaE">ThePrimeagen's video</a> on the topic, which is a thirty-minute video that covers everything you need to know. However, if you don't watch it at 0.5x speed you could die of anxiety.
+</p>
+<p>
+	If you don't feel like configuring your own Neovim, there are many pre-configured Neovim distributions out there. The most popular ones are <a href="https://github.com/NvChad/NvChad">NvChad</a> and <a href="https://github.com/LunarVim/LunarVim">LunarVim</a>. However, using these bad bois will result in learning the key-bindings of others and not yours.
+</p>
+<p>
+	This blog post is a guide on my minimal Neovim configuration which is highly based on the ThePrimeagen's video I mentioned before. I will also cover necessary installations in your system that are not mentioned in the video.
+</p>
+<p>
+	Lastly, if you are not using a Linux-based operating system this blog post is not for you. Sorry not sorry.
+</p>
+<div style="height: 20px;"></div>
+
+<div style="height: 20px;"></div>
+
+<hr>
+
+<h2>
+	Table of Contents
+</h2>
+
+<ul>
+	<li>Installing Neovim</li>
+	<li></li>
+</ul>
+
+<div style="height: 20px;"></div>
+
+<hr>
+
+<div style="height: 20px;"></div>
+
+<h2>
+	Installing Neovim
+</h2>
+
+<p>
+	The first step, of course, is to download and install Neovim. If you are using a Debian-based Linux distribution, you can install Neovim with the following command:
+</p>
+<div class="file">terminal</div>
+<div class="code-container">
+  <pre>sudo snap install --edge nvim --classic</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<p>
+	If you are using an Arch-based Linux distribution, you can install Neovim with the following command:
+</p>
+<div class="file">terminal</div>
+<div class="code-container">
+  <pre>sudo pacman -S neovim</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<p>
+	If you are using a different Linux distribution, like Fedora, you can install Neovim with the following command:
+</p>
+<div class="file">terminal</div>
+<div class="code-container">
+  <pre>sudo dnf install neovim</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<p>
+	It is very important to download a version of Neovim higher that <code>0.9.0</code>, as many plugins are not supported for lower versions.
+</p>
+<p>
+	If everything went well, you should be able to run Neovim with the following command:
+</p>
+<div class="file">terminal</div>
+<div class="code-container">
+  <pre>nvim</pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<p>
+	And you sohuld see this very, very ugly screen:
+</p>
+<div style="height: 20px;"></div>
+
+</div>
+<div style="height: 60px;"></div>
+<div class="divider" style="height: 20px;"></div>
+<script src="./../scripts/scroll.js"></script>
+<script src="./../scripts/themeToggle.js"></script>
+<script src="./../scripts/copyCode.js"></script>
+
+</body>
+</html>

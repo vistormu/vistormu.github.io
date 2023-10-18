@@ -1,0 +1,45 @@
+@title{vistormu}
+@style{./../style.css}
+
+@header
+
+@h1
+Transformers. A Step by Step Explanation.
+
+@line
+
+@subtitle
+Published on @mark{sep 28th 2023}. Last edit on @mark{sep 28th 2023}.
+
+In this blog post I want to cover all the concepts behind transformers. As my main research topic as of right now, my main idea is to recycle what I write here for my thesis. For that reason, in every section there is a "show detailed explanation" button that changes the text in a more academic manner.
+
+There are lots of blog posts explaining transformers out there on the internet. My intention is to explain the topic as a researcher from a more technical point of view, focusing on implementations details, matrix shapes, equations, paper references...
+
+If you are looking for a more simple explanation, I recommend you to check out the following blog posts:
+
+@list{
+@url{https://towardsdatascience.com/illustrated-guide-to-transformers-step-by-step-explanation-f74876522bc0}{Illustrated Guide to Transformers - Step by Step Explanation}
+}{
+@url{https://neptune.ai/blog/comprehensive-guide-to-transformers}{Comprehensive Guide to Transformers}
+}{
+@url{https://www.turing.com/kb/brief-introduction-to-transformers-and-their-power}{Understanding Transformer Neural Network Model in Deep Learning and NLP}
+}{
+@url{https://towardsdatascience.com/transformers-141e32e69591}{How Transformers Work}
+}{
+@url{http://jalammar.github.io/illustrated-transformer/}{The Illustrated Transformer}
+}
+
+@spacer
+
+@h2
+Introduction
+
+As its name indicates, transformers have transformed the field of natural language processing (NLP) in the past few years. The transformer architecture has become the de facto standard for NLP tasks, setting new performance benchmarks on lots of NLP tasks.
+
+The following sections will cover the main concepts behind transformers, from input to output in the same order as data is processed. We will take as an example from now on the following input sentence:
+
+@pre
+The quick brown fox jumps over the lazy dog.
+
+@footer
+

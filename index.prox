@@ -1,0 +1,50 @@
+@style{./style.css}
+@script{./scripts/themeToggle.js}
+
+@header
+
+Hello! I am Vistor, a PhD Student researching in Machine Learning applications to Robotics. I am currently working at the RoboticsLab research group at the 
+Carlos III University of Madrid (UC3M).
+
+I have built this website from scratch using HTML/CSS, JavaScript and @url{github.com/vistormu/proxima}{Proxima}, my own wrapper of HTML to make the website code more readible and maintainable. I am just proud, okay?
+
+@divider
+
+@uline{model prediction} python tutorials
+
+@spacer
+
+@h1
+Model Prediction and Identification
+
+<div class="card-row">
+
+@card{
+Univariate Time Series Forecasting with GluonTS
+}{
+Learn how to omake predictions of a single time series with GluonTS, a Deep Learning library for Python.
+}{
+oct 1st 2023
+}{
+./posts/gluonts.html
+}
+
+</div>
+
+@h1
+Python Tutorials
+
+<div class="card-row">
+
+@card{
+How To Create a Python Virtual Environment with Conda
+}{
+Learn how to create a Python Virtual Environment with Conda, a package manager for Python.
+}{
+oct 11th 2023
+}{
+./posts/conda.html
+}
+
+@footer
+

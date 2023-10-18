@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+
+:root {
+    --primary-color: #2f2f2f;
+    --secondary-color: #fefefa;
+    --accent-color: #cf7171;
+    --background-color-dark: #1e1e1e;
+    --background-color-light: #f9f9fb;
+    --gray-dark: #fefefa;
+    --gray-light: #888888;
+    --code-color-light: #ececec;
+    --code-color-dark: #2f2f2f;
+    --max-width: 840px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============= */
+/* Global Styles */
+/* ============= */
+html {
+    scroll-behavior: smooth;
+}
+
+body { 
+    font-family: Ubuntu Mono, monospace;
+    font-size: 16px;
+    background-color: var(--background-color-light);
+    color: var(--primary-color);
+}
+body.dark-mode {
+    background-color: var(--background-color-dark);
+    color: var(--secondary-color);
+}
+
+p {
+    margin: 1rem 0;
+    text-indent: 1rem;
+    font-size: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+    margin: 2rem 0 1rem 0;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-color);
+}
+a:hover {
+    text-decoration: underline;
+}
+
+code {
+    background-color: var(--code-color-light);
+    padding: 1px;
+    border-radius: 4px;
+}
+body.dark-mode code {
+    background-color: var(--code-color-dark);
+}
+
+mark {
+    background-color: var(--code-color-light);
+}
+body.dark-mode mark {
+    background-color: var(--code-color-dark);
+    color: var(--secondary-color);
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    margin: -10px 0 10px 0;
+    background-color: #e0e0e0;
+}
+
+ul {
+    margin: 0 0 0 2rem;
+}
+
+/* ============ */
+/* Main content */
+/* ============ */
+.content-wrapper {
+    padding: 0 20px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  padding: 10px 40px;
+  background-color: rgba(245, 245, 245, 0.7);
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.1);
+  z-index: 1;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body.dark-mode .header {
+    background-color: rgba(31, 31, 31, 0.7);
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.7);
+}
+.header .logo {
+    font-size: 24px;
+    font-weight: 700;
+}
+.header a {
+    color: var(--primary-color);
+}
+body.dark-mode .header a {
+    color: var(--secondary-color);
+}
+.toggle-style {
+  cursor: pointer;
+}
+#modeToggle {
+    cursor: pointer;
+}
+.header nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.header nav a:last-child {
+  margin-right: 0;
+}
+.header.shrink {
+  padding: 5px 20px;
+}
+
+/* =============== */
+/* Main components */
+/* =============== */
+.divider {
+    position: absolute;
+    background-color: var(--secondary-color);
+    left: 0;
+    right: 0;
+    height: 10px;
+    z-index: 1;
+}
+body.dark-mode .divider {
+    background-color: var(--primary-color);
+}
+
+.spacer {
+    height: 20px;
+}
+
+/* ===== */
+/* Cards */
+/* ===== */
+.card-row {
+      display: flex;
+      overflow-x: auto;
+      gap: 8px;
+      padding-bottom: 20px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+}
+.card-row::-webkit-scrollbar {
+      display: none;
+}
+.card {
+    position: relative;
+    flex: 0 0 auto;
+    width: 40%;
+    height: 225px;
+    background-color: var(--secondary-color);
+    border-radius: 20px;
+    box-shadow: 1px 1px 6px 0 rgba(0,0,0,0.1);
+    padding: 20px;
+}
+.card:hover {
+    box-shadow: 1px 1px 6px 0 rgba(0,0,0,0.3);
+}
+body.dark-mode .card {
+    background-color: var(--primary-color);
+    box-shadow: 1px 1px 6px 0 rgba(0,0,0,0.7);
+}
+body.dark-mode .card:hover {
+    box-shadow: 1px 1px 6px 0 rgba(0,0,0,0.9);
+}
+.card-header {
+    padding-bottom: 10px;
+    font-size: 1.5rem;
+}
+.card-description {
+    padding-bottom: 10px;
+    color: var(--gray-light);
+}
+body.dark-mode .card-description {
+    color: var(--gray-dark);
+}
+.card-button {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    padding: 7px 10px;
+    background-color: var(--accent-color);
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+.card-button a {
+    color: var(--secondary-color);
+}
+.card-button a:hover {
+    text-decoration: none;
+}
+.card-button:hover {
+    background-color: #b34f4f;
+}
+.card-date {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 10px;
+}
+
+/* ==== */
+/* Code */
+/* ==== */
+pre {
+    margin: 0 12px 24px 12px;
+    padding: 12px 24px;
+    background-color: var(--code-color-light);
+    border-radius: 4px;
+    overflow-x: auto;
+}
+body.dark-mode pre {
+    background-color: var(--code-color-dark);
+}
+.file {
+    margin: 18px 0 0 0;
+    font-size: 12px;
+    text-indent: 12px; 
+}
+.code-container {
+    position: relative;
+}
+.copy-btn {
+    position: absolute;
+    font-size: 12px;
+    right: 12px;
+    top: -14px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    text-decoration: none;
+    color: #6492B7;
+    border: none;
+    background-color: none;
+}
+
+/* ====== */
+/* Images */
+/* ====== */
+.image-wrapper {
+    margin: 0 12px 12px 12px;
+    padding: 6px 24px;
+    background-color: var(--code-color-light);
+    border-radius: 4px;
+    overflow-x: auto;
+}
+body.dark-mode .image-wrapper {
+    background-color: var(--code-color-dark);
+}
+.caption {
+    text-align: center;
+    font-size: 12px;
+}
+
+.subtitle {
+    font-size: 14px;
+}
+
+/* ===== */
+/* Entry */
+/* ===== */
+.entry {
+    margin: 0 0 12px 0;
+}
+.entry .entry-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    padding-left: 3ch;
+    text-indent: -3ch;
+}
+.entry .entry-title::before {
+    content: ">> ";
+}
+.entry .entry-content{
+    padding-left: 3.5ch;
+    text-indent: -3ch;
+}
+.entry .entry-content::before {
+    content: "\00A0\00A0";
+}
+
+/* ============ */
+/* Mobile stuff */
+/* ============ */
+@media screen and (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
+    .header {
+        padding: 10px 20px;
+    }
+}
