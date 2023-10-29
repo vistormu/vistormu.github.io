@@ -6,7 +6,7 @@
 Hello! I am Vistor, a PhD Student researching in Machine Learning applications to Robotics. I am currently working at the RoboticsLab research group at the 
 Carlos III University of Madrid (UC3M).
 
-I have built this website from scratch using HTML/CSS, JavaScript and @url{github.com/vistormu/proxima}{Proxima}, my own wrapper of HTML to make the website code more readible and maintainable. I am just proud, okay?
+I have built this website from scratch using HTML/CSS, JavaScript and @url{https://github.com/vistormu/proxima}{Proxima}, my own wrapper of HTML to make the website code more readible and maintainable. I am just proud, okay?
 
 @divider
 
@@ -22,12 +22,22 @@ Model Prediction and Identification
 @card{
 Univariate Time Series Forecasting with GluonTS
 }{
-Learn how to omake predictions of a single time series with GluonTS, a Deep Learning library for Python.
+Learn how to make predictions of a single time series with GluonTS, a Deep Learning library for Python.
 }{
 oct 1st 2023
 }{
 ./posts/gluonts.html
 }
+
+#@card{
+#Model Prediction with GluonTS
+#}{
+#Learn how to predict the output of a model given its past inputs and outputs with GluonTS, a Deep Learning library for Python.
+#}{
+#oct 21st 2023
+#}{
+#./posts/model-prediction.html
+#}
 
 </div>
 
@@ -39,12 +49,41 @@ Python Tutorials
 @card{
 How To Create a Python Virtual Environment with Conda
 }{
-Learn how to create a Python Virtual Environment with Conda, a package manager for Python.
+Learn how to create a Python Virtual Environment with Conda to manage your Python version and libraries.
 }{
 oct 11th 2023
 }{
 ./posts/conda.html
 }
+
+</div>
+
+@h1
+NeoVim
+
+<div class="card-row">
+
+@card{
+Why NeoVim
+}{
+Why use NeoVim instead of basically any other thing?
+}{
+oct 29th 2023
+}{
+./posts/why-neovim.html
+}
+
+#@card{
+#How to Setup NeoVim from Scratch
+#}{
+#Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
+#}{
+#oct 11th 2023
+#}{
+#./posts/neovim-config.html
+#}
+
+</div>
 
 @footer
 

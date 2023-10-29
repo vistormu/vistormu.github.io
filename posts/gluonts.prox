@@ -1,4 +1,4 @@
-@title{vistormu}
+@title{Vistor's Blog: Univariate TSF}
 @style{./../style.css}
 
 @header
@@ -69,9 +69,6 @@ Catching up with the basics
 
 Before we start, let's catch up with the basics of time series forecasting. The main task of time series forecasting is, given a sequence of values, predict the future values of the time series. You could predict the future values given only its past values (univariate) or given the past values of multiple time series (multivariate). In this blog post I will only cover univariate time series forecasting.
 
-
-@spacer
-
 <div class="image-wrapper">
 
 @center
@@ -128,8 +125,6 @@ Creating a custom dataset
 In this tutorial we will load the data from a @code{csv} file as it is the most common use case. Also, instead of searching for a dataset online, we will create a custom one as it will me more didactic.
 
 Our custom dataset will be a set of 5 sine waves with different amplitudes and frequencies, as shown in the figure below. Four of them will be used for training the model and the last one for testing.
-
-@spacer
 
 <div class="image-wrapper">
 
@@ -363,8 +358,6 @@ for forecast, time_series in zip(forecasts, true_time_series): <br>
     plt.show()
 
 The results should look like this:
-
-@spacer
 
 <div class="image-wrapper">
 

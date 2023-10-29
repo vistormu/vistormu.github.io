@@ -1,21 +1,21 @@
-@title{Vistor's Blog:}
+@title{Vistor's BLog: Model Prediction}
 @style{./../style.css}
 
 @header
 
 @h1
-Title
+Model Prediction With GluonTS
 
 @line
 
 @subtitle
-Published on @mark{oct 11th 2023}. Last edit on @mark{oct 11th 2023}.
+Published on @mark{oct 21st 2023}. Last edit on @mark{oct 21st 2023}.
 
 @spacer
 
 @divider
 
-Introduction
+
 
 @divider
 

@@ -192,10 +192,10 @@ body.dark-mode .divider {
 }
 body.dark-mode .card {
     background-color: var(--primary-color);
-    box-shadow: 1px 1px 6px 0 rgba(0,0,0,0.7);
+    box-shadow: 1px 1px 6px 0 rgba(0,0,0,0.5);
 }
 body.dark-mode .card:hover {
-    box-shadow: 1px 1px 6px 0 rgba(0,0,0,0.9);
+    box-shadow: 1px 1px 6px 0 rgba(0,0,0,1);
 }
 .card-header {
     padding-bottom: 10px;
@@ -242,6 +242,11 @@ pre {
     background-color: var(--code-color-light);
     border-radius: 4px;
     overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+pre::-webkit-scrollbar {
+      display: none;
 }
 body.dark-mode pre {
     background-color: var(--code-color-dark);
@@ -279,6 +284,11 @@ body.dark-mode pre {
     background-color: var(--code-color-light);
     border-radius: 4px;
     overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.image-wrapper::-webkit-scrollbar {
+      display: none;
 }
 body.dark-mode .image-wrapper {
     background-color: var(--code-color-dark);
@@ -321,7 +331,7 @@ body.dark-mode .image-wrapper {
 /* ============ */
 @media screen and (max-width: 768px) {
     .card {
-        width: 100%;
+        width: 90%;
     }
     .header {
         padding: 10px 20px;
