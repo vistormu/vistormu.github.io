@@ -1,7 +1,7 @@
 @title{Vistor's Blog: Why NeoVim}
 @style{./../style.css}
 
-@header
+@post-header
 
 @h1
 Why NeoVim
@@ -9,19 +9,23 @@ Why NeoVim
 @line
 
 @subtitle
-Published on @mark{oct 29th 2023}. Last edit on @mark{oct 29th 2023}.
+Published on @mark{oct 29th 2023}. Last edit on @mark{nov 5th 2023}.
 
 @spacer
 
 @divider
 
-If you have programmed for a while, you have probably heard of Vim. Legend has it that Vim is the most powerful text editor in the world, and that it is so powerful that it can be used to write code without ever touching the mouse. Vim probably is the technology with more prophets around the world, including that guy at work that has a custom keyboard with the Dvorak layout.
+You have probably heard of Vim.
 
-Vim is installed on virtually every Linux distribution, and it is the default editor for Git. But Vim is not perfect, it is very old, and it lacks many features that are necessary for modern programming. NeoVim is an extension of Vim that added many necessary features like a terminal, a plugin manager, and a better configuration system.
+Once, there was an study that related the drop on IQ of programmers with the use of the mouse since it was introduced back in the 1960s. Legend has it that a group of elite programmers embarked on the journey of creating the perfect text editor. This text editor was called Vim, and it was so powerful that it could be used to write code without ever touching the mouse. In this way, the balance between regular users and cretins was again restored.
 
-But... why would you use NeoVim? You already probably have an IDE like VSCode, and Neovim has a very weird set of key-bindings, and the learning curve is very steep, and it runs in the terminal... Everyone is afraid of the terminal...
+Since then, Vim has been adepting programmers to its cult, being nowadays the technology with more active prophets around the world. My guess is that you have probably encountered one: that guy at work with a custom mechanical keyboard with the Dvorak layout.
 
-In this article I will explain the main advantages of using NeoVim and if it suits you or not. In advance, and although it hurts me a little bit, NeoVim is not for everyone.
+And you are still most certainly wondering why would anyone use Vim.
+
+But, really... why would anyone use Vim? You already have VSCode, with your 50 to 100 extensions that make your life easier. Vim, on the other hand has a very weird set of key-bindings, and the learning curve is very steep, and it runs in the terminal... Everyone is afraid of the terminal...
+
+In this article I will explain the main advantages of using Vim, or I should say NeoVim, and if it suits you or not. In advance, and although it hurts me a little bit, NeoVim is not for everyone.
 
 @divider
 
@@ -38,8 +42,6 @@ Table of Contents
 
 @divider
 
-@toc{the-main-advantages-of-neovim}
-
 @h2
 The Main Advantages of NeoVim
 
@@ -50,7 +52,7 @@ Using NeoVim has many advantages. I very much like how fas and lightweight it is
 @h3
 Vim motions
 
-While only regular text editors let you edit text and nothing more, Vim has several "editing" modes:
+Vim is a modal editor. This means that it has different modes in which you can edit text, and not only one like the rest of the text editors.
 
 @list{
 Normal mode. This is the default mode in which you can move the cursor around the file. From this mode you can access the three following ones.
@@ -62,9 +64,9 @@ Visual mode. In this mode you can select text.
 Command mode. In this mode you can execute commands.
 }
 
-Now, Vim motions are the key-bindings that let you move around the cursor in normal mode and select text in visual mode. Vim motions are the main reason why Vim-lovers love Vim so much. Every imaginable thing that you can do editing text has its ow key binding: move up, down, left, move one word to the left... select a word, select text until a character... copy, paste, delete... navigate to a specific line, move lines up, down, to the end of the file, to the end of a line... find concurrences, change all concurrences... Everything is possible, and if the key-binding is too long, just create a remap and make it your own.
+Vim motions are the key-bindings that let you move around the cursor in normal mode and select text in visual mode. Vim motions are the main reason why Vim-lovers love Vim so much. Every imaginable thing that you can do editing text has its ow key binding: move up, down, left, move one word to the left... select a word, select text until a character... copy, paste, delete... navigate to a specific line, move lines up, down, to the end of the file, to the end of a line... find concurrences, change all concurrences... Everything is possible, and if the key-binding is too long, just create a remap and make it your own. And don't let me start with macros...
 
-At the begginning it might be overwhelming, but now that I got used to it, I cannot concieve editing text without these motions.
+Vim's key-bindings are just another level of editing text. At the begginning it might be overwhelming, but now that I got used to it, I cannot concieve editing text without these motions.
 
 @spacer
 
@@ -78,8 +80,6 @@ In order to have a good NeoVim setup you have to install a plugin manager, then 
 This is not trivial for most of the people, but if you have that curiosity about learning how things work behind the curtain, I assure you will learn a lot about how the tools around programming languages work. That curiosity will make you stand out, for sure.
 
 @divider
-
-@toc{is-neovim-for-you}
 
 @h2
 Is NeoVim for you
@@ -120,5 +120,4 @@ I your answer is Yes/Yes, welcome to the club. And remember, the first rule of t
 
 #</div>
 
-@footer
-
+@post-footer

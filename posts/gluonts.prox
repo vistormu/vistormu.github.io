@@ -1,7 +1,7 @@
 @title{Vistor's Blog: Univariate TSF}
 @style{./../style.css}
 
-@header
+@post-header
 
 @h1
 Univariate Time Series Forecasting with GluonTS
@@ -62,8 +62,6 @@ Table of Contents
 
 @divider
 
-@toc{catching-up-with-the-basics}
-
 @h2
 Catching up with the basics
 
@@ -86,8 +84,6 @@ In the figure above we can see a time series, where the time @code{T} represents
 @spacer
 
 @divider
-
-@toc{installing-the-necessary-packages}
 
 @h2
 Installing the necessary packages
@@ -116,8 +112,6 @@ pip install -r requirements.txt
 @spacer
 
 @divider
-
-@toc{creating-a-custom-dataset}
 
 @h2
 Creating a custom dataset
@@ -181,8 +175,6 @@ Running the script, we should have in our @code{./data} folder 5 @code{csv} file
 @spacer
 
 @divider
-
-@toc{loading-the-dataset-into-a-gluonts-format}
 
 @h2
 Loading the dataset into a GluonTS format
@@ -250,8 +242,6 @@ test_ds = ListDataset([ <br>
 
 @divider
 
-@toc{training-a-model}
-
 @h2
 Training a model
 
@@ -283,8 +273,6 @@ predictor = estimator.train(train_ds)
 @spacer
 
 @divider
-
-@toc{evaluating-the-model}
 
 @h2
 Evaluating the model
@@ -335,8 +323,6 @@ print(agg_metrics["MSE"])
 
 @divider
 
-@toc{results}
-
 @h2
 Results
 
@@ -377,12 +363,9 @@ Keep in mind we have trained with a very small dataset, for 10 epochs and not tu
 
 @divider
 
-@toc{full-code}
-
 @h2
 Full code
 
 The full code of this blog post can be found in the @url{https://github.com/vistormu/blog_source_code/tree/main/gluonts_univariate_forecasting}{GitHub repository} of the blog posts.
 
-@footer
-
+@post-footer

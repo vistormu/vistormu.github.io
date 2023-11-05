@@ -1,10 +1,10 @@
 @title{Vistor's Blog: Conda}
 @style{./../style.css}
 
-@header
+@post-header
 
 @h1
-How to Cleanly Use a Python Environment with Conda
+How to Create a Python Virtual Environment with Conda
 
 @line
 
@@ -37,8 +37,6 @@ Table of Contents
 @spacer
 
 @divider
-
-@toc{installing-conda}
 
 @h2
 Installing Conda
@@ -112,8 +110,6 @@ conda config --set auto_activate_base false
 
 @divider
 
-@toc{creating-a-virtual-environment}
-
 @h2
 Creating a Virtual Environment
 
@@ -140,8 +136,6 @@ You should see that your environment has been activated in the shell as it will 
 @spacer
 
 @divider
-
-@toc{installing-packages}
 
 @h2
 Installing Packages
@@ -177,5 +171,4 @@ numpy==1.21.2<br>
 pandas==1.3.3<br>
 matplotlib==3.4.3<br>
 
-@footer
-
+@post-footer

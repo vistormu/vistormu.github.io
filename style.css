@@ -8,7 +8,7 @@
     --background-color-light: #f9f9fb;
     --gray-dark: #fefefa;
     --gray-light: #888888;
-    --code-color-light: #ececec;
+    --code-color-light: #ffffff;
     --code-color-dark: #2f2f2f;
     --max-width: 840px;
 }
@@ -153,7 +153,6 @@ body.dark-mode .header a {
     left: 0;
     right: 0;
     height: 10px;
-    z-index: 1;
 }
 body.dark-mode .divider {
     background-color: var(--primary-color);
