@@ -232,7 +232,7 @@ body.dark-mode .card-description {
 pre {
     margin: 0 12px 24px 12px;
     padding: 12px 24px;
-    background-color: var(--code-color-light) !important;
+    background-color: var(--code-color-light);
     border-radius: 20px;
     overflow-x: auto;
     scrollbar-width: none;
@@ -240,6 +240,7 @@ pre {
 }
 code {
     background-color: var(--code-color-light) !important;
+    font-size: 0.9rem !important;
 }
 pre::-webkit-scrollbar, code::-webkit-scrollbar {
       display: none;
