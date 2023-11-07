@@ -8,6 +8,9 @@
 </head>
 <body>
 
+<link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
 <header class="header">
   <div class="logo">
       <a href="../index.html">Vistor's Blog</a>
@@ -77,7 +80,7 @@
 </p>
 <div class="file">terminal</div>
 <div class="code-container">
-  <pre>sudo snap install --edge nvim --classic</pre>
+  <pre><code class="language-python">sudo snap install --edge nvim --classic</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
@@ -86,7 +89,7 @@
 </p>
 <div class="file">terminal</div>
 <div class="code-container">
-  <pre>sudo pacman -S neovim</pre>
+  <pre><code class="language-python">sudo pacman -S neovim</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
@@ -95,19 +98,19 @@
 </p>
 <div class="file">terminal</div>
 <div class="code-container">
-  <pre>sudo dnf install neovim</pre>
+  <pre><code class="language-python">sudo dnf install neovim</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <p>
-	It is very important to download a version of Neovim higher that <code>0.9.0</code>, as many plugins are not supported for lower versions.
+	It is very important to download a version of Neovim higher that <mark>0.9.0</mark>, as many plugins are not supported for lower versions.
 </p>
 <p>
 	If everything went well, you should be able to run Neovim with the following command:
 </p>
 <div class="file">terminal</div>
 <div class="code-container">
-  <pre>nvim</pre>
+  <pre><code class="language-python">nvim</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
@@ -122,6 +125,7 @@
 <script src="./../scripts/scroll.js"></script>
 <script src="./../scripts/themeToggle.js"></script>
 <script src="./../scripts/copyCode.js"></script>
+<script> hljs.highlightAll(); </script>
 
 </body>
 </html>

@@ -43,7 +43,7 @@ Installing Conda
 
 Conda is the most important virtual environment manager for Python. In particular, we will use @url{https://docs.conda.io/en/latest/miniconda.html}{Miniconda}, a minimal installation of Conda that works only in the command line. To install it, follow the following steps.
 
-1. Create a directory in the home folder called @code{miniconda3}:
+1. Create a directory in the home folder called @mark{miniconda3}:
 
 @file{terminal}
 
@@ -52,7 +52,7 @@ mkdir -p ~/miniconda3
 
 2. Download the installer from the official repository. Download the version for your operating system and architecture.
 
-If you are using a @code{x86_64} architecture, run:
+If you are using a @mark{x86_64} architecture, run:
 
 @file{terminal}
 
@@ -60,7 +60,7 @@ If you are using a @code{x86_64} architecture, run:
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \\<br>
 -O ~/miniconda3/miniconda.sh
 
-If you are using an @code{arm64} architecture, run:
+If you are using an @mark{arm64} architecture, run:
 
 @file{terminal}
 
@@ -68,7 +68,7 @@ If you are using an @code{arm64} architecture, run:
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh \\<br>
 -O ~/miniconda3/miniconda.sh
 
-3. Run the installer with your shell (@code{bash} or @code{zsh} usually):
+3. Run the installer with your shell (@mark{bash} or @mark{zsh} usually):
 
 @file{terminal}
 
@@ -82,7 +82,7 @@ bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 @pre
 rm -rf ~/miniconda3/miniconda.sh
 
-5. Initialize Miniconda in your shell (@code{bash} or @code{zsh} again):
+5. Initialize Miniconda in your shell (@mark{bash} or @mark{zsh} again):
 
 @file{terminal}
 
@@ -99,7 +99,7 @@ conda --version
 
 If everything went well, you should see the version of Conda installed.
 
-Also, you can check that now there is a @code{(base)} in your shell. This means that you are in the base environment of Conda, which is the default environment that is created. Conda auto activates it every time you open a terminal, which is quite annoying. Disable that feature running this command:
+Also, you can check that now there is a @mark{(base)} in your shell. This means that you are in the base environment of Conda, which is the default environment that is created. Conda auto activates it every time you open a terminal, which is quite annoying. Disable that feature running this command:
 
 @file{terminal}
 
@@ -113,16 +113,16 @@ conda config --set auto_activate_base false
 @h2
 Creating a Virtual Environment
 
-Now that Conda is installed, we can create a virtual environment for our project. This is done with the @code{conda create} command. It is very important to specify also a Python version as it will install the @code{pip} package manager along with other useful things. I highly encourage installing a version of Python higher than @code{10.x.x} as it offers very good type hinting.
+Now that Conda is installed, we can create a virtual environment for our project. This is done with the @mark{conda create} command. It is very important to specify also a Python version as it will install the @mark{pip} package manager along with other useful things. I highly encourage installing a version of Python higher than @mark{10.x.x} as it offers very good type hinting.
 
-For example, to create an environment called @code{myenv} with Python 3.11.5, run:
+For example, to create an environment called @mark{myenv} with Python 3.11.5, run:
 
 @file{terminal}
 
 @pre
 conda create -n myenv python=3.11.5
 
-You will be asked to confirm the installation. Type @code{y} and press @code{Enter}.
+You will be asked to confirm the installation. Type @mark{y} and press @mark{Enter}.
 
 After the installation, you can activate the environment with:
 
@@ -131,7 +131,7 @@ After the installation, you can activate the environment with:
 @pre
 conda activate myenv
 
-You should see that your environment has been activated in the shell as it will appear @code{(myenv)} at the left.
+You should see that your environment has been activated in the shell as it will appear @mark{(myenv)} at the left.
 
 @spacer
 
@@ -140,9 +140,9 @@ You should see that your environment has been activated in the shell as it will 
 @h2
 Installing Packages
 
-Now that we have a virtual environment, we can install packages with @code{pip}. But before installing anything, it is very important to track manually the dependencies of your project. You could install all the packages you need directly, but then it will be very difficult to trace them back: packages depend on other packages, and these packages on a lot more... This results in your environment having lots of different packages and not knowing the ones that you firstly installed.
+Now that we have a virtual environment, we can install packages with @mark{pip}. But before installing anything, it is very important to track manually the dependencies of your project. You could install all the packages you need directly, but then it will be very difficult to trace them back: packages depend on other packages, and these packages on a lot more... This results in your environment having lots of different packages and not knowing the ones that you firstly installed.
 
-The cleanest way of installing packages is to create a @code{requirements.txt} in the directory of your project and add there the packages that you will use:
+The cleanest way of installing packages is to create a @mark{requirements.txt} in the directory of your project and add there the packages that you will use:
 
 @file{requirements.txt}
 
@@ -158,11 +158,11 @@ For installing them, just use
 @pre
 pip install -r requirements.txt
 
-If you want to add more packages, add them into the @code{requirements.txt} file and repeat the @code{pip} installation.
+If you want to add more packages, add them into the @mark{requirements.txt} file and repeat the @mark{pip} installation.
 
 It can also be helpful to freeze the version of each package, as it will be easier to reproduce the environment in another computer. I personally don't do this, but more than one time an update of a package made my code to have errors.
 
-To do this, just write the version of each package in the @code{requirements.txt} file:
+To do this, just write the version of each package in the @mark{requirements.txt} file:
 
 @file{requirements.txt}
 

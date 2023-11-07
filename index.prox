@@ -50,6 +50,26 @@ oct 11th 2023
 ./posts/conda.html
 }
 
+@card{
+How To Write Readable Code in Python
+}{
+Learn how to write readable code in Python to make it more maintainable and understandable.
+}{
+nov 6th 2023
+}{
+./posts/readable-code.html
+}
+
+@card{
+How To Document Your Python Code with Docstrings
+}{
+Learn how to document your Python code with Docstrings to enhance your APIs.
+}{
+nov 6th 2023
+}{
+./posts/docstrings.html
+}
+
 </div>
 
 @h1

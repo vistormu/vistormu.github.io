@@ -64,7 +64,7 @@ If you are using a different Linux distribution, like Fedora, you can install Ne
 @pre
 sudo dnf install neovim
 
-It is very important to download a version of Neovim higher that @code{0.9.0}, as many plugins are not supported for lower versions.
+It is very important to download a version of Neovim higher that @mark{0.9.0}, as many plugins are not supported for lower versions.
 
 If everything went well, you should be able to run Neovim with the following command:
 
