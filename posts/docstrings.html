@@ -12,15 +12,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
 
 <header class="header">
-  <div class="logo">
-      <a href="../index.html">Vistor's Blog</a>
-  </div>
-  <nav>
-    <a href="../about.html" class="nav-link">about</a>
-    <a id="modeToggle">
-        <img id="themeIcon" src="../assets/on.svg" alt="light mode">
-    </a>
-  </nav>
+    <div class="header-content">
+        <div class="logo">
+            <a href="../index.html">Vistor's Blog</a>
+        </div>
+        <nav>
+            <a href="../about.html" class="nav-link">about</a>
+        </nav>
+    </div>
 </header>
 
 <div class="content-wrapper">
@@ -29,23 +28,21 @@
 	How To Document Your Python Code with Docstrings
 </h1>
 
-<hr>
-
-<div class="subtitle">Published on <mark>nov 6th 2023</mark>. Last edit on <mark>nov 6th 2023</mark>.</div>
+<div style="text-align: center;"><div class="subtitle">Published on <mark>nov 6th 2023</mark>. Last edit on <mark>nov 6th 2023</mark></div>
+</div>
 
 <div style="height: 20px;"></div>
 
-<div class="divider" ></div>
-<div class="spacer"></div>
+<div class="image-container">
+    <p>
+    Documenting your code is an important part of the development process. It helps you and others understand what your code does and how to use it. In this post, you will learn how to document your Python code with docstrings.<br><br>I recommend you to read my previous blog post about the topic <a href="./readable-code.html">How To Write Readable Code in Python</a> before you continue with this post.
+    </p>
+    <div class="image-wrapper-button">
+        <a href="#installing-conda">Read</a>
+    </div>
+</div>
 
-<p>
-	Documenting your code is an important part of the development process. It helps you and others understand what your code does and how to use it. In this post, you will learn how to document your Python code with docstrings.
-</p>
-<p>
-	I recommend you to read my previous blog post about the topic <a href="./readable-code.html">How To Write Readable Code in Python</a> before you continue with this post.
-</p>
-<div class="divider" ></div>
-<div class="spacer"></div>
+<div style="height: 20px;"></div>
 
 <h2 id="table-of-contents">
 	Table of Contents
@@ -186,7 +183,6 @@
 <div style="height: 60px;"></div>
 <div class="divider" style="height: 20px;"></div>
 <script src="./../scripts/scroll.js"></script>
-<script src="./../scripts/themeToggle.js"></script>
 <script src="./../scripts/copyCode.js"></script>
 <script> hljs.highlightAll(); </script>
 

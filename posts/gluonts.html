@@ -12,15 +12,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
 
 <header class="header">
-  <div class="logo">
-      <a href="../index.html">Vistor's Blog</a>
-  </div>
-  <nav>
-    <a href="../about.html" class="nav-link">about</a>
-    <a id="modeToggle">
-        <img id="themeIcon" src="../assets/on.svg" alt="light mode">
-    </a>
-  </nav>
+    <div class="header-content">
+        <div class="logo">
+            <a href="../index.html">Vistor's Blog</a>
+        </div>
+        <nav>
+            <a href="../about.html" class="nav-link">about</a>
+        </nav>
+    </div>
 </header>
 
 <div class="content-wrapper">
@@ -29,35 +28,21 @@
 	Univariate Time Series Forecasting with GluonTS
 </h1>
 
-<hr>
-
-<div class="subtitle">Published on <mark>oct 1st 2023</mark>. Last edit on <mark>oct 11th 2023</mark>.</div>
+<div style="text-align: center;"><div class="subtitle"> Published on <mark>oct 1st 2023</mark>. Last edit on <mark>oct 11th 2023</mark></div>
+</div>
 
 <div style="height: 20px;"></div>
 
-<div class="divider" ></div>
-<div class="spacer"></div>
+<div class="image-container">
+    <p>
+    GluonTS is an open-source probabilistic time series forecasting framework developed by Amazon built on top of the MXNet framework and PyTorch. GluonTS provides all the necessary components and tools to construct custom forecasting models, evaluate their performance, and deploy them easily.<br><br>I found tons of other libraries that offer similar functionality, but I decided to use GluonTS because it gave the structure that I wanted: "give me a dataset and a model and I will train it".<br><br>There are two official tutorials of GluonTS: <a href="https://ts.gluon.ai/stable/tutorials/forecasting/quick_start_tutorial.html">a quick start tutorial</a> and an <a href="https://ts.gluon.ai/stable/tutorials/forecasting/extended_tutorial.html">extended tutorial</a>. I found that the two tutorials diverged a bit on what I wanted to do. In this blog post I will cover how to use GluonTS to load a custom dataset from a <mark>csv</mark> and train a pre-packaged model for time series forecasting of signals.
+    </p>
+    <div class="image-wrapper-button">
+        <a href="#catching-up-with-the-basics">Read</a>
+    </div>
+</div>
 
-<p>
-	GluonTS is an open-source probabilistic time series forecasting framework developed by Amazon built on top of the MXNet framework and PyTorch. GluonTS provides all the necessary components and tools to construct custom forecasting models, evaluate their performance, and deploy them easily.
-</p>
-<p>
-	I found tons of other libraries that offer similar functionality, but I decided to use GluonTS because it gave the structure that I wanted: "give me a dataset and a model and I will train it". Here is the list (ordered by number of stars in GitHub) of the other libraries if you want to take a look: 
-</p>
-<ul>
-	<li><a href="https://github.com/facebook/prophet">facebook/prophet</a></li>
-	<li><a href="https://github.com/unit8co/darts">unit8co/darts</a></li>
-	<li><a href="https://github.com/timeseriesAI/tsai/tree/main">timeseriesAI/tsai</a></li>
-	<li><a href="https://github.com/jdb78/pytorch-forecasting">jdb78/pytorch-forecasting</a></li>
-	<li><a href="https://github.com/ourownstory/neural_prophet">ourownstory/neural_prophet</a></li>
-	<li><a href="https://github.com/Nixtla/statsforecast">Nitxla/statsforecast</a></li>
-</ul>
-
-<p>
-	There are two official tutorials of GluonTS: <a href="https://ts.gluon.ai/stable/tutorials/forecasting/quick_start_tutorial.html">a quick start tutorial</a> and an <a href="https://ts.gluon.ai/stable/tutorials/forecasting/extended_tutorial.html">extended tutorial</a>. I found that the two tutorials diverged a bit on what I wanted to do. In this blog post I will cover how to use GluonTS to load a custom dataset from a <mark>csv</mark> and train a pre-packaged model for time series forecasting of signals.
-</p>
-<div class="divider" ></div>
-<div class="spacer"></div>
+<div style="height: 20px;"></div>
 
 <h2 id="table-of-contents">
 	Table of Contents
@@ -346,7 +331,6 @@
 <div style="height: 60px;"></div>
 <div class="divider" style="height: 20px;"></div>
 <script src="./../scripts/scroll.js"></script>
-<script src="./../scripts/themeToggle.js"></script>
 <script src="./../scripts/copyCode.js"></script>
 <script> hljs.highlightAll(); </script>
 

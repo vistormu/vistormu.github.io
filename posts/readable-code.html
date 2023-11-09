@@ -12,15 +12,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
 
 <header class="header">
-  <div class="logo">
-      <a href="../index.html">Vistor's Blog</a>
-  </div>
-  <nav>
-    <a href="../about.html" class="nav-link">about</a>
-    <a id="modeToggle">
-        <img id="themeIcon" src="../assets/on.svg" alt="light mode">
-    </a>
-  </nav>
+    <div class="header-content">
+        <div class="logo">
+            <a href="../index.html">Vistor's Blog</a>
+        </div>
+        <nav>
+            <a href="../about.html" class="nav-link">about</a>
+        </nav>
+    </div>
 </header>
 
 <div class="content-wrapper">
@@ -29,20 +28,21 @@
 	How To Write Readable Code in Python
 </h1>
 
-<hr>
-
-<div class="subtitle">Published on <mark>nov 6th 2023</mark>. Last edit on <mark>nov 6th 2023</mark>.</div>
+<div style="text-align: center;"><div class="subtitle">Published on <mark>nov 6th 2023</mark>. Last edit on <mark>nov 6th 2023</mark></div>
+</div>
 
 <div style="height: 20px;"></div>
 
-<div class="divider" ></div>
-<div class="spacer"></div>
+<div class="image-container">
+    <p>
+    Have you ever returned to a project you haven't worked on in a while and had no idea what you were doing? Or maybe you've been working on a project with a team and you have no idea what your teammates code does? If you have, then you know how important it is to write readable code.
+    </p>
+    <div class="image-wrapper-button">
+        <a href="#example-code">Read</a>
+    </div>
+</div>
 
-<p>
-	Have you ever returned to a project you haven't worked on in a while and had no idea what you were doing? Or maybe you've been working on a project with a team and you have no idea what your teammates code does? If you have, then you know how important it is to write readable code.
-</p>
-<div class="divider" ></div>
-<div class="spacer"></div>
+<div style="height: 20px;"></div>
 
 <h2 id="table-of-contents">
 	Table of Contents
@@ -177,7 +177,7 @@
 <div style="height: 20px;"></div>
 
 <div class="code-container">
-  <pre><code class="language-python">class Cylinder:<br>    def __init__(self, radius: float, height: float) -> None:<br>        self.radius: float = radius<br>        self.height: float = height<br><br>    def volume(self) -> float:<br>        # np.power is faster than ** n<br>        return np.pi*np.power(self.radius, 2)*self.height<br><br>    def area(self) -> float:<br>        lateral_area: float = 2*np.pi*self.radius*self.height<br>        base_area: float = 2*np.pi*np.power(self.radius, 2)<br>        return lateral_area + base_area</code></pre>
+  <pre><code class="language-python">class Cylinder:<br>    def __init__(self, radius: float, height: float) -> None:<br>        self.radius: float = radius<br>        self.height: float = height<br><br>    def volume(self) -> float:<br>        # np.power is faster than ** <br>        return np.pi*np.power(self.radius, 2)*self.height<br><br>    def area(self) -> float:<br>        lateral_area: float = 2*np.pi*self.radius*self.height<br>        base_area: float = 2*np.pi*np.power(self.radius, 2)<br>        return lateral_area + base_area</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
@@ -254,7 +254,6 @@
 <div style="height: 60px;"></div>
 <div class="divider" style="height: 20px;"></div>
 <script src="./../scripts/scroll.js"></script>
-<script src="./../scripts/themeToggle.js"></script>
 <script src="./../scripts/copyCode.js"></script>
 <script> hljs.highlightAll(); </script>
 

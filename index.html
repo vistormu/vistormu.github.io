@@ -4,36 +4,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
 	<link rel="stylesheet" href="./style.css">
-	<script src="./scripts/themeToggle.js"></script>
 </head>
 <body>
 
 <header class="header">
-  <div class="logo">
-      <a href="./index.html">Vistor's Blog</a>
-  </div>
-  <nav>
-    <a href="./about.html" class="nav-link">about</a>
-    <a id="modeToggle">
-        <img id="themeIcon" src="./assets/on.svg" alt="light mode">
-    </a>
-  </nav>
+    <div class="header-content"> 
+    <div class="logo">
+        <a href="./index.html">Vistor's Blog</a>
+    </div>
+    <nav>
+        <a href="./about.html" class="nav-link">about</a>
+    </nav>
+    </div>
 </header>
 
 <div class="content-wrapper">
 
-<p>
-	Hello! I am Vistor, a PhD Student researching in Machine Learning applications to Robotics. In this webpage you will find blog posts about various topics like tutorials, personal opinions... I hope you find it useful.
-</p>
-<p>
-	I have built this website from scratch using HTML/CSS, JavaScript and <a href="https://github.com/vistormu/proxima">Proxima</a>, my own wrapper of HTML to make the website code more readible and maintainable. I am just proud, okay?
-</p>
-<div class="divider" ></div>
-<div class="spacer"></div>
-
-<h1 id="model-prediction-and-identification">
-	Model Prediction and Identification
+<h1 id="welcome-to-vistor's-blog!">
+	Welcome to Vistor's Blog!
 </h1>
+
+<div class="image-container">
+    <p>
+    Hello! I am Vistor, a PhD Student researching in Machine Learning applications to Robotics. In this webpage you will find blog posts about various topics like tutorials, personal opinions... I hope you find it useful.<br><br>I have built this website from scratch using HTML/CSS, JavaScript and <a href="https://github.com/vistormu/proxima">Proxima</a>, my own wrapper of HTML to make the website code more readible and maintainable. I am just proud, okay?
+    </p>
+    <div class="image-wrapper-button">
+        <a href="#model-prediction-and-identification">Go to posts</a>
+    </div>
+</div>
+
+<div style="height: 20px;"></div>
+
+<h2 id="model-prediction-and-identification">
+	Model Prediction and Identification
+</h2>
 
 <div class="card-row">
 <div class="card">
@@ -46,9 +50,9 @@
 </div>
 
 </div>
-<h1 id="python-tutorials">
+<h2 id="python-tutorials">
 	Python Tutorials
-</h1>
+</h2>
 
 <div class="card-row">
 <div class="card">
@@ -79,9 +83,9 @@
 </div>
 
 </div>
-<h1 id="neovim">
+<h2 id="neovim">
 	NeoVim
-</h1>
+</h2>
 
 <div class="card-row">
 <div class="card">
@@ -98,7 +102,6 @@
 <div style="height: 60px;"></div>
 <div class="divider" style="height: 20px;"></div>
 <script src="./scripts/scroll.js"></script>
-<script src="./scripts/themeToggle.js"></script>
 <script src="./scripts/copyCode.js"></script>
 
 </body>

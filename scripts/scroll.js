@@ -1,6 +1,14 @@
 // script.js
 window.addEventListener('scroll', function() {
-    var headers = document.querySelectorAll('.header');
+    // var headerContent = document.querySelectorAll('.header-content');
+    
+    // if (window.pageYOffset > 0) {
+    //     headerContent.classList.add('shrink');
+    // } else {
+    //     headerContent.classList.remove('shrink');
+    // }
+    headers = document.querySelectorAll('.header-content');
+
     headers.forEach(function(header) {
         if (window.pageYOffset > 0) {
             header.classList.add('shrink');

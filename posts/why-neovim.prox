@@ -6,41 +6,30 @@
 @h1
 Why NeoVim
 
-@line
-
-@subtitle
-Published on @mark{oct 29th 2023}. Last edit on @mark{nov 5th 2023}.
+@center
+@subtitle{Published on @mark{oct 29th 2023}. Last edit on @mark{nov 5th 2023}}
 
 @spacer
 
-@divider
-
+@landing-presentation{
 You have probably heard of Vim.
-
+<br><br>
 Once, there was an study that related the drop on IQ of programmers with the use of the mouse since it was introduced back in the 1960s. Legend has it that a group of elite programmers embarked on the journey of creating the perfect text editor. This text editor was called Vim, and it was so powerful that it could be used to write code without ever touching the mouse. In this way, the balance between regular users and cretins was again restored.
-
+<br><br>
 Since then, Vim has been adepting programmers to its cult, being nowadays the technology with more active prophets around the world. My guess is that you have probably encountered one: that guy at work with a custom mechanical keyboard with the Dvorak layout.
-
+<br><br>
 And you are still most certainly wondering why would anyone use Vim.
-
+<br><br>
 But, really... why would anyone use Vim? You already have VSCode, with your 50 to 100 extensions that make your life easier. Vim, on the other hand has a very weird set of key-bindings, and the learning curve is very steep, and it runs in the terminal... Everyone is afraid of the terminal...
-
+<br><br>
 In this article I will explain the main advantages of using Vim, or I should say NeoVim, and if it suits you or not. In advance, and although it hurts me a little bit, NeoVim is not for everyone.
-
-@divider
-
-@h2
-Table of Contents
-
-@list{
-@url{\#the-main-advantages-of-neovim}{The Main Advantages of NeoVim}
 }{
-@url{\#is-neovim-for-you}{Is NeoVim for you}
+\#the-main-advantages-of-neovim
+}{
+Read
 }
 
 @spacer
-
-@divider
 
 @h2
 The Main Advantages of NeoVim

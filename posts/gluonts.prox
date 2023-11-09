@@ -3,39 +3,26 @@
 
 @post-header
 
-@h1
-Univariate Time Series Forecasting with GluonTS
+@h1{Univariate Time Series Forecasting with GluonTS}
 
-@line
-
-@subtitle
-Published on @mark{oct 1st 2023}. Last edit on @mark{oct 11th 2023}.
+@center
+@subtitle{ Published on @mark{oct 1st 2023}. Last edit on @mark{oct 11th 2023}}
 
 @spacer
 
-@divider
-
+@landing-presentation{
 GluonTS is an open-source probabilistic time series forecasting framework developed by Amazon built on top of the MXNet framework and PyTorch. GluonTS provides all the necessary components and tools to construct custom forecasting models, evaluate their performance, and deploy them easily.
-
-I found tons of other libraries that offer similar functionality, but I decided to use GluonTS because it gave the structure that I wanted: "give me a dataset and a model and I will train it". Here is the list (ordered by number of stars in GitHub) of the other libraries if you want to take a look: 
-
-@list{
-@url{https://github.com/facebook/prophet}{facebook/prophet}
+<br><br>
+I found tons of other libraries that offer similar functionality, but I decided to use GluonTS because it gave the structure that I wanted: "give me a dataset and a model and I will train it".
+<br><br>
+There are two official tutorials of GluonTS: @url{https://ts.gluon.ai/stable/tutorials/forecasting/quick_start_tutorial.html}{a quick start tutorial} and an @url{https://ts.gluon.ai/stable/tutorials/forecasting/extended_tutorial.html}{extended tutorial}. I found that the two tutorials diverged a bit on what I wanted to do. In this blog post I will cover how to use GluonTS to load a custom dataset from a @mark{csv} and train a pre-packaged model for time series forecasting of signals.
 }{
-@url{https://github.com/unit8co/darts}{unit8co/darts}
+\#catching-up-with-the-basics
 }{
-@url{https://github.com/timeseriesAI/tsai/tree/main}{timeseriesAI/tsai}
-}{
-@url{https://github.com/jdb78/pytorch-forecasting}{jdb78/pytorch-forecasting}
-}{
-@url{https://github.com/ourownstory/neural_prophet}{ourownstory/neural_prophet}
-}{
-@url{https://github.com/Nixtla/statsforecast}{Nitxla/statsforecast}
+Read
 }
 
-There are two official tutorials of GluonTS: @url{https://ts.gluon.ai/stable/tutorials/forecasting/quick_start_tutorial.html}{a quick start tutorial} and an @url{https://ts.gluon.ai/stable/tutorials/forecasting/extended_tutorial.html}{extended tutorial}. I found that the two tutorials diverged a bit on what I wanted to do. In this blog post I will cover how to use GluonTS to load a custom dataset from a @mark{csv} and train a pre-packaged model for time series forecasting of signals.
-
-@divider
+@spacer
 
 @h2
 Table of Contents

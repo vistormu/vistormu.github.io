@@ -1,15 +1,23 @@
 @style{./style.css}
-@script{./scripts/themeToggle.js}
 
 @header
 
+@h1{Welcome to Vistor's Blog!}
+
+@landing-presentation{
 Hello! I am Vistor, a PhD Student researching in Machine Learning applications to Robotics. In this webpage you will find blog posts about various topics like tutorials, personal opinions... I hope you find it useful.
-
+<br><br>
 I have built this website from scratch using HTML/CSS, JavaScript and @url{https://github.com/vistormu/proxima}{Proxima}, my own wrapper of HTML to make the website code more readible and maintainable. I am just proud, okay?
+}{
+\#model-prediction-and-identification
+}{
+Go to posts
+}
 
-@divider
+@spacer
 
-@h1{Model Prediction and Identification}
+@h2
+Model Prediction and Identification
 
 <div class="card-row">
 
@@ -35,7 +43,7 @@ oct 1st 2023
 
 </div>
 
-@h1
+@h2
 Python Tutorials
 
 <div class="card-row">
@@ -72,7 +80,7 @@ nov 6th 2023
 
 </div>
 
-@h1
+@h2
 NeoVim
 
 <div class="card-row">

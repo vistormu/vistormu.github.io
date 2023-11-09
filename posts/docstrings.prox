@@ -6,20 +6,22 @@
 @h1
 How To Document Your Python Code with Docstrings
 
-@line
-
-@subtitle
-Published on @mark{nov 6th 2023}. Last edit on @mark{nov 6th 2023}.
+@center
+@subtitle{Published on @mark{nov 6th 2023}. Last edit on @mark{nov 6th 2023}}
 
 @spacer
 
-@divider
-
+@landing-presentation{
 Documenting your code is an important part of the development process. It helps you and others understand what your code does and how to use it. In this post, you will learn how to document your Python code with docstrings.
-
+<br><br>
 I recommend you to read my previous blog post about the topic @url{./readable-code.html}{How To Write Readable Code in Python} before you continue with this post.
+}{
+\#installing-conda
+}{
+Read
+}
 
-@divider
+@spacer
 
 @h2
 Table of Contents
