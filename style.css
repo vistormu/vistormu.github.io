@@ -5,6 +5,7 @@
     --secondary: #dfdfdf;
     --accent: #924242;
     --glow: #b34f4f80;
+    --highlight: #E3A024;
     --background: #101213;
     --max-width: 840px;
     --static6: rgba(255, 255, 255, 0.15);
@@ -73,6 +74,15 @@ hr {
 
 ul {
     margin: 0 0 0 2rem;
+}
+
+.highlight {
+    background-color: var(--highlight);
+    color: var(--primary);
+    padding: 1px 3px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 700;
 }
 
 /* ============ */
@@ -240,6 +250,9 @@ ul {
     font-size: 0.8rem;
     font-weight: 700;
 }
+.cscard-button {
+    display: none;
+}
 .card-button a {
     color: var(--secondary);
 }
@@ -347,11 +360,35 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
     content: "\00A0\00A0";
 }
 
+/* ========== */
+/* Top Button */
+/* ========== */
+#myBtn {
+    display: none;
+    position: fixed;
+    right: 30px;
+    bottom: 20px;
+    z-index: 1;
+    border: none;
+    outline: none;
+    background-color: var(--primary);
+    color: var(--secondary);
+    cursor: pointer;
+    padding: 0 16px;
+    border-radius: 30px;
+    font-size: 50px;
+    font-weight: 700;
+}
+#myBtn:hover {
+    background-color: var(--glow);
+}
+
 /* ============ */
 /* Mobile stuff */
 /* ============ */
 @media screen and (max-width: 768px) {
     .card {
         width: 80%;
+        height: 275px;
     }
 }

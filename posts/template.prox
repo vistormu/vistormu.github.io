@@ -6,34 +6,52 @@
 @h1
 Title
 
-@line
-
-@subtitle
-Published on @mark{oct 11th 2023}. Last edit on @mark{oct 11th 2023}.
+@center
+@subtitle{Published on @mark{oct 29th 2023}. Last edit on @mark{nov 5th 2023}}
 
 @spacer
 
-@divider
-
-Introduction
-
-@divider
-
-@h2
-Table of Contents
-
-@list{
+@landing-presentation{
+Text
 }{
+\#button-link
 }{
+Read
 }
 
 @spacer
+
+@h2
+Section
+
+Section text.
 
 @divider
 
 @h2
 Section
 
-Content
+Section text.
+
+
+@divider
+
+@h2
+Suggested Posts
+
+
+<div class="card-row">
+
+@card{
+How to Setup NeoVim from Scratch
+}{
+Learn how to setup NeoVim from scratch, with a custom configuration and plugin.
+}{
+oct 11th 2023
+}{
+./neovim-config.html
+}
+
+</div>
 
 @post-footer

@@ -1,0 +1,238 @@
+@title{Vistor's Blog: Guidelines}
+@style{./../style.css}
+
+@post-header
+
+@h1
+Final Project Guidelines
+
+@center
+@subtitle{Published on @mark{oct 29th 2023}. Last edit on @mark{nov 5th 2023}}
+
+@spacer
+
+@landing-presentation{
+In this post I will talk about the guidelines for the final project.
+<br><br>
+The text is divided in such a way that the information appears chronologically, that is to say, the doubts will be solved as you progress through the project.
+}{
+\#button-link
+}{
+Read
+}
+
+@spacer
+
+@h2
+Table of Contents
+
+@list{
+
+}{
+
+}{
+
+}
+
+@spacer
+
+@divider
+
+@h2
+Preliminar Considerations
+
+@spacer
+
+@h3
+What is a Final Project?
+
+A final project is a project that is carried out at the end of the last year of the studies, in which the student must @highlight{demonstrate the knowledge} acquired during its formation.
+
+The student will have to choose a topic, study it and develop it in a practical way. Moreover, the student will have to @highlight{write a report} and @highlight{present} the project to a court.
+
+During this project, the student will @highlight{work in a laboratory}, where she/he will experience a professional working environment. In the laboratory there are colleagues and supervisors working as a team, and the student will have to learn how to use the tools and equipment in addition to learn how to collaborate.
+
+@spacer
+
+@h3
+What to Expect from the Student
+
+The final project is carried out in a professional environment, so the student will learn how to work in it. The student must be able to work @highlight{independently}, but also as a team. She/he must be able to solve problems and be creative. The student must be able to communicate with the supervisor, and must be able to present the project in a clear and concise way.
+
+@spacer
+
+@h3
+Evaluation Criteria
+
+The final project is evaluated by a court, which will evaluate the project and the presentation. The court will evaluate the following aspects:
+
+@list{
+}{
+}{
+}{
+}
+
+Moreover, the supervisor will evaluate the student's work in the laboratory filling a form which will be later delivered to the court. This form contains information such as:
+
+@list{
+}{
+}{
+}{
+}
+
+The supervisor's evaluation will have a big impact on the decision of the court.
+
+@divider
+
+@h2
+Development of the Project
+
+@spacer
+
+@h3
+Reading Previous Projects
+
+Section text.
+
+@spacer
+
+@h3
+Working in the Laboratory
+
+Section text.
+
+@spacer
+
+@h3
+Communication with the Supervisor
+
+The supervisor will guide you through the project and will help you to solve the problems that may arise. However, you need to have into consideration that the supervisors have heavy workload and cannot guide you into every step. So, if a problem arises, go through the following steps:
+
+1. Ask ChatGPT.
+
+2. If step 1 fails, search on Google.
+
+3. If step 2 fails, go back to step 1 several times.
+
+4. If step 3 fails, now you can ask your supervisor.
+
+@divider
+
+@h2
+Testing and Reporting of Results
+
+@spacer
+
+@h3
+Number of Tests and Significance
+
+Section text.
+
+@spacer
+
+@h3
+Graphs and Tables
+
+Section text.
+
+@divider
+
+@h2
+Writing the Report
+
+@spacer
+
+@h3
+Use of LaTeX
+
+It is highly recommended to use LaTeX to write the report. LaTeX is a typesetting system that allows the user to focus on the content of the document rather than on the format. LaTeX is widely used in the scientific community, and it is the standard for writing scientific documents.
+
+A good way to start using LaTeX is to use an online editor such as @url{https://www.overleaf.com}{Overleaf}. Overleaf is a collaborative online LaTeX editor that allows the user to write LaTeX documents without having to install any software. Overleaf also has a very good documentation, which can be found @url{https://www.overleaf.com/learn}{here}.
+
+The advantages of using LaTeX are:
+
+@list{
+You can focus on the content of the document rather than on the format. The PDF is automatically generated from the LaTeX source code.
+}{
+You can write mathematical formulas easily. Moreover, the LaTeX syntax for formulas is very standarized, being almost the only one used.
+}{
+The references are handled automatically and they are very easy to use.
+}{
+The output document looks very professional.
+}{
+The output document is always consistent, meaning that the same content will always generate the same output.
+}{
+The positioning of the images and tables are extremely easy to handle. Re-positioning an image in LaTeX will not result in weird outputs.
+}
+
+@spacer
+
+@spacer
+
+@h3
+Structure of the Report
+
+Section text.
+
+@spacer
+
+@h3
+Graphical Material
+
+Section text.
+
+@spacer
+
+@h3
+References
+
+Section text.
+
+@spacer
+
+@h3
+Supervisor's Feedback
+
+Section text.
+
+@divider
+
+@h2
+Presentation of the Project
+
+@spacer
+
+@h3
+Presentation Design
+
+Section text.
+
+@spacer
+
+@h3
+Presentation Structure
+
+Section text.
+
+@spacer
+
+@h3
+Court's Attentiveness
+
+Section text.
+
+@spacer
+
+@h3
+Court's Questions
+
+Section text.
+
+@spacer
+
+@h3
+Presentation Test
+
+Section text.
+
+@post-footer

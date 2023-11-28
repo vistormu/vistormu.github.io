@@ -22,39 +22,37 @@
     </div>
 </header>
 
+<button onclick="topFunction()" id="myBtn" title="Go to top">&#8593</button>
+
 <div class="content-wrapper">
 
 <h1 id="title">
 	Title
 </h1>
 
-<hr>
-
-<div class="subtitle">Published on <mark>oct 11th 2023</mark>. Last edit on <mark>oct 11th 2023</mark>.</div>
+<div style="text-align: center;"><div class="subtitle">Published on <mark>oct 29th 2023</mark>. Last edit on <mark>nov 5th 2023</mark></div>
+</div>
 
 <div style="height: 20px;"></div>
 
-<div class="divider" ></div>
-<div class="spacer"></div>
+<div class="image-container">
+    <p>
+    Text
+    </p>
+    <div class="image-wrapper-button">
+        <a href="#button-link">Read</a>
+    </div>
+</div>
 
-<p>
-	Introduction
-</p>
-<div class="divider" ></div>
-<div class="spacer"></div>
+<div style="height: 20px;"></div>
 
-<h2 id="table-of-contents">
-	Table of Contents
+<h2 id="section">
+	Section
 </h2>
 
-<ul>
-	<li></li>
-	<li></li>
-	<li></li>
-</ul>
-
-<div style="height: 20px;"></div>
-
+<p>
+	Section text.
+</p>
 <div class="divider" ></div>
 <div class="spacer"></div>
 
@@ -63,14 +61,33 @@
 </h2>
 
 <p>
-	Content
+	Section text.
 </p>
+<div class="divider" ></div>
+<div class="spacer"></div>
+
+<h2 id="suggested-posts">
+	Suggested Posts
+</h2>
+
+<div class="card-row">
+<div class="card">
+    <div class="card-header">How to Setup NeoVim from Scratch</div>
+    <div class="card-description">Learn how to setup NeoVim from scratch, with a custom configuration and plugin.</div>
+    <div class="card-date">oct 11th 2023</div>
+    <div class="card-button">
+        <a href="./neovim-config.html">Read More</a>
+    </div>
+</div>
+
+</div>
 </div>
 <div style="height: 60px;"></div>
 <div class="divider" style="height: 20px;"></div>
 <script src="./../scripts/scroll.js"></script>
 <script src="./../scripts/copyCode.js"></script>
 <script> hljs.highlightAll(); </script>
+<script src="../scripts/topFunction.js"></script>
 
 </body>
 </html>

@@ -14,37 +14,13 @@ I have built this website from scratch using HTML/CSS, JavaScript and @url{https
 Go to posts
 }
 
-@spacer
+@spacer @spacer @spacer
 
-@h2
-Model Prediction and Identification
-
-<div class="card-row">
-
-@card{
-Univariate Time Series Forecasting with GluonTS
-}{
-Learn how to make predictions of a single time series with GluonTS, a Deep Learning library for Python.
-}{
-oct 1st 2023
-}{
-./posts/gluonts.html
-}
-
-#@card{
-#Model Prediction with GluonTS
-#}{
-#Learn how to predict the output of a model given its past inputs and outputs with GluonTS, a Deep Learning library for Python.
-#}{
-#oct 21st 2023
-#}{
-#./posts/model-prediction.html
-#}
-
-</div>
-
-@h2
+@h1
 Python Tutorials
+
+@h2
+For Beginners
 
 <div class="card-row">
 
@@ -68,12 +44,12 @@ nov 6th 2023
 ./posts/readable-code.html
 }
 
-@card{
+@cscard{
 How To Document Your Python Code with Docstrings
 }{
 Learn how to document your Python code with Docstrings to enhance your APIs.
 }{
-nov 6th 2023
+comming soon
 }{
 ./posts/docstrings.html
 }
@@ -81,6 +57,97 @@ nov 6th 2023
 </div>
 
 @h2
+Advanced
+
+<div class="card-row">
+
+@cscard{
+How to Structure a Python Project
+}{
+Learn how to structure a Python project to make it more maintainable and understandable.
+}{
+comming soon
+}{
+}
+
+@cscard{
+How to Upload a Python Package to PyPI
+}{
+Learn how to upload a Python package to PyPI to make it available for everyone.
+}{
+comming soon
+}{
+}
+
+@cscard{
+How to Generate Documentation for a Python Project
+}{
+Learn how to generate documentation for a Python project to make it more understandable.
+}{
+comming soon
+}{
+}
+
+</div>
+
+@spacer @spacer @spacer
+
+@h1
+LaTeX Tutorials
+
+<div class="card-row">
+
+@cscard{
+How to Install LaTex on your Machine
+}{
+Learn how to install LaTeX on your machine to write beautiful documents.
+}{
+comming soon
+}{
+}
+
+@cscard{
+How to Use BibTeX to Manage your References
+}{
+Learn how to use BibTeX to manage your references and citations.
+}{
+comming soon
+}{
+}
+
+@cscard{
+How to Structure a LaTeX Project
+}{
+Learn how to structure a LaTeX project to make it more maintainable and understandable.
+}{
+comming soon
+}{
+}
+
+</div>
+
+@spacer @spacer @spacer
+
+@h1
+System Engineering
+
+<div class="card-row">
+
+@card{
+Univariate Time Series Forecasting with GluonTS
+}{
+Learn how to make predictions of a single time series with GluonTS, a Deep Learning library for Python.
+}{
+oct 1st 2023
+}{
+./posts/gluonts.html
+}
+
+</div>
+
+@spacer @spacer @spacer
+
+@h1
 NeoVim
 
 <div class="card-row">
@@ -95,16 +162,43 @@ oct 29th 2023
 ./posts/why-neovim.html
 }
 
-#@card{
-#How to Setup NeoVim from Scratch
-#}{
-#Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
-#}{
-#oct 11th 2023
-#}{
-#./posts/neovim-config.html
-#}
+@cscard{
+How to Setup NeoVim from Scratch
+}{
+Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
+}{
+comming soon
+}{
+./posts/neovim-config.html
+}
+
+@cscard{
+Vim Motions
+}{
+Learn how to use Vim motions to navigate through your code.
+}{
+comming soon
+}{
+./posts/vim-motions.html
+}
 
 </div>
+
+@spacer @spacer @spacer
+
+@h1
+Other
+
+<div class="card-row">
+
+@cscard{
+Final Project Guidelines
+}{
+Guidelines for the Final Project at the UC3M.
+}{
+commin soon
+}{
+./posts/guidelines.html
+}
 
 @footer
