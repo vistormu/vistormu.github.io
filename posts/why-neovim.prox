@@ -31,14 +31,10 @@ But, really... why would anyone use Vim? You already have VSCode, with your 50 t
 
 In this article I will explain the main advantages of using Vim, or I should say NeoVim, and if it suits you or not. In advance, and although it hurts me a little bit, NeoVim is not for everyone.
 
-@spacer
-
 @h2
 The Main Advantages of NeoVim
 
 Using NeoVim has many advantages. I very much like how fas and lightweight it is. I really enjoy using the terminal. I love my highly-customazible minimalistic NeoVim setup. However, in my opinion I think there are two main advantages.
-
-@spacer
 
 @h3
 Vim motions
@@ -59,8 +55,6 @@ Vim motions are the key-bindings that let you move around the cursor in normal m
 
 Vim's key-bindings are just another level of editing text. At the begginning it might be overwhelming, but now that I got used to it, I cannot concieve editing text without these motions.
 
-@spacer
-
 @h3
 Close to the "metal"
 
@@ -69,8 +63,6 @@ NeoVim is not a plug-and-play editor. You can always copy-paste some config file
 In order to have a good NeoVim setup you have to install a plugin manager, then install the syntax highlighter, the auto-completion, the theme, the file finder... Moreover, to build and run your applications you will need to use the terminal.
 
 This is not trivial for most of the people, but if you have that curiosity about learning how things work behind the curtain, I assure you will learn a lot about how the tools around programming languages work. That curiosity will make you stand out, for sure.
-
-@divider
 
 @h2
 Is NeoVim for you
@@ -91,7 +83,6 @@ If your answer is No/Yes, you probably are an Emacs enthusiast, and I don't know
 
 I your answer is Yes/Yes, welcome to the club. And remember, the first rule of the NeoVim Club is to always talk about NeoVim.
 
-#@divider
 
 #@h2
 #Suggested Posts

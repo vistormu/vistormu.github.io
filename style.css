@@ -4,8 +4,8 @@
     --black: #000000;
     --white: #E2DAD2;
     --red: #DB5475;
-    --green: #B9C18E;
-    --blue: #99A7B4;
+    --green: #98A16A;
+    --blue: #528297;
     --orange: #EE9589;
     --yellow: #F3DF89;
     --violet: #7E7F9B;
@@ -14,7 +14,7 @@
     --glow: #DB547580;
     --highlight: #392C5E;
     --background: #0F2938;
-    --button: #614D9A;
+    --dark-violet: #614D9A;
 
     --max-width: 840px;
 }
@@ -35,7 +35,7 @@ html {
 
 body { 
     font-family: Ubuntu Mono, monospace;
-    font-size: 16px;
+    font-size: 18px;
     background-color: var(--black);
     color: var(--white);
 }
@@ -43,29 +43,30 @@ body {
 p {
     margin: 1rem 0;
     text-indent: 0;
-    font-size: 1rem;
 }
 
 h1 {
     font-size: 2rem;
     margin: 2rem 0 1rem 0;
     text-align: center;
+    color: var(--dark-violet);
 }
 
 h2 {
-    font-size: 1.5rem;
-    margin: 1rem 0;
+    font-size: 1.75rem;
+    margin: 4rem 0 1rem 0;
     color: var(--red);
 }
 
 h3 {
     font-size: 1.2rem;
+    margin-top: 2rem;
     color: var(--green);
 }
 
 a {
     text-decoration: none;
-    color: var(--green);
+    color: var(--blue);
 }
 a:hover {
     text-decoration: underline;
@@ -118,10 +119,8 @@ ul {
 .header {
     position: sticky;
     top: 0;
-    background-color: var(-black);
+    background-color: var(--black);
     z-index: 1;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 0 10px 0 #000000;
 }
 .header .logo {
     font-size: 24px;
@@ -129,7 +128,7 @@ ul {
     padding-left: auto;
 }
 .header a {
-    color: var(--white);
+    color: var(--green);
 }
 .toggle-style {
   cursor: pointer;
@@ -141,6 +140,9 @@ ul {
   display: flex;
   align-items: center;
   gap: 20px;
+}
+.header nav a {
+  color: var(--white);
 }
 .header nav a:last-child {
   margin-right: 0;

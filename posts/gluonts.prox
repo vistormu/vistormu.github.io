@@ -22,10 +22,6 @@ I found tons of other libraries that offer similar functionality, but I decided 
 
 There are two official tutorials of GluonTS: @url{https://ts.gluon.ai/stable/tutorials/forecasting/quick_start_tutorial.html}{a quick start tutorial} and an @url{https://ts.gluon.ai/stable/tutorials/forecasting/extended_tutorial.html}{extended tutorial}. I found that the two tutorials diverged a bit on what I wanted to do. In this blog post I will cover how to use GluonTS to load a custom dataset from a @mark{csv} and train a pre-packaged model for time series forecasting of signals.
 
-@spacer
-
-@divider
-
 @h2
 Table of Contents
 
@@ -47,10 +43,6 @@ Table of Contents
 @url{\#full-code}{Full code}
 }
 
-@spacer
-
-@divider
-
 @h2
 Catching up with the basics
 
@@ -69,10 +61,6 @@ A generic time series (blue) with the selected context length (green) and predic
 @spacer
 
 In the figure above we can see a time series, where the time @mark{T} represents the present. The model will be given a window of past values (the context) and will predict another window of future values (the prediction).
-
-@spacer
-
-@divider
 
 @h2
 Installing the necessary packages
@@ -97,10 +85,6 @@ Then, install all the packages with the following command:
 
 @pre
 pip install -r requirements.txt
-
-@spacer
-
-@divider
 
 @h2
 Creating a custom dataset
@@ -160,10 +144,6 @@ Running the script, we should have in our @mark{./data} folder 5 @mark{csv} file
 0.1243449435824274 <br>
 0.1545084971874737 <br>
 ...
-
-@spacer
-
-@divider
 
 @h2
 Loading the dataset into a GluonTS format
@@ -227,10 +207,6 @@ test_ds = ListDataset([ <br>
     for t in target_test <br>
 ], freq=freq)
 
-@spacer
-
-@divider
-
 @h2
 Training a model
 
@@ -258,10 +234,6 @@ estimator = DeepAREstimator( <br>
 ) <br>
 <br>
 predictor = estimator.train(train_ds)
-
-@spacer
-
-@divider
 
 @h2
 Evaluating the model
@@ -308,10 +280,6 @@ All the metrics can be found in the dictionary, so for example, you can se the m
 @pre
 print(agg_metrics["MSE"])
 
-@spacer
-
-@divider
-
 @h2
 Results
 
@@ -347,10 +315,6 @@ Results of the prediction of a sine wave whose amplitude and frequency have not 
 @spacer
 
 Keep in mind we have trained with a very small dataset, for 10 epochs and not tuning the model's parameters; so feel free to play with the code to achieve better results!
-
-@spacer
-
-@divider
 
 @h2
 Full code

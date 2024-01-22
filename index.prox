@@ -14,9 +14,7 @@ Hello! I am Vistor, a PhD Student researching in Machine Learning applications t
 @rectangle{violet}{200}{right}{48}
 @spacer @rectangle{orange}{75}{right}{150}
 
-@spacer @spacer @spacer
-
-@section
+@h2
 PYTHON TUTORIALS
 
 <div class="card-row">
@@ -84,9 +82,7 @@ coming soon
 
 </div>
 
-@spacer @spacer @spacer
-
-@section
+@h2
 LATEX TUTORIALS
 
 <div class="card-row">
@@ -120,9 +116,7 @@ coming soon
 
 </div>
 
-@spacer @spacer @spacer
-
-@section
+@h2
 SYSTEMS ENGINEERING TUTORIALS
 
 <div class="card-row">
@@ -139,9 +133,7 @@ oct 1st 2023
 
 </div>
 
-@spacer @spacer @spacer
-
-@section
+@h2
 NEOVIM
 
 <div class="card-row">

@@ -23,10 +23,6 @@ In this blog post I will cover how to download and set up a Conda environment fo
 
 Also, I will assume that you are using a Linux distribution. If you are using Windows, I recommend installing the Windows Subsystem for Linux (WSL) and following the instructions as if you were using Linux.
 
-@spacer
-
-@divider
-
 @h2
 Table of Contents
 
@@ -37,10 +33,6 @@ Table of Contents
 }{
 @url{\#installing-packages}{Installing Packages}
 }
-
-@spacer
-
-@divider
 
 @h2
 Installing Conda
@@ -110,10 +102,6 @@ Also, you can check that now there is a @mark{(base)} in your shell. This means 
 @pre
 conda config --set auto_activate_base false
 
-@spacer
-
-@divider
-
 @h2
 Creating a Virtual Environment
 
@@ -136,10 +124,6 @@ After the installation, you can activate the environment with:
 conda activate myenv
 
 You should see that your environment has been activated in the shell as it will appear @mark{(myenv)} at the left.
-
-@spacer
-
-@divider
 
 @h2
 Installing Packages

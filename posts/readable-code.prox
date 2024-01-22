@@ -19,10 +19,6 @@ How To Write Readable Code in Python
 
 Have you ever returned to a project you haven't worked on in a while and had no idea what you were doing? Or maybe you've been working on a project with a team and you have no idea what your teammates code does? If you have, then you know how important it is to write readable code.
 
-@spacer
-
-@divider
-
 @h2
 Table of Contents
 
@@ -44,10 +40,6 @@ Table of Contents
 @url{\#recommended-posts}{Recommended posts}
 }
 
-@spacer
-
-@divider
-
 @h2
 Example Code
 
@@ -68,7 +60,7 @@ class Foo:<br>
         return 2*np.pi*self.a*self.b + 2*np.pi*np.power(self.a, 2)
 
 
-@divider
+
 
 @h2
 Use descriptive variable names
@@ -105,7 +97,7 @@ class Cylinder:<br>
     def area(self):<br>
         return 2*np.pi*self.radius*self.height + 2*np.pi*np.power(self.radius, 2)
 
-@divider
+
 
 @h2
 Write Procedural Code
@@ -132,7 +124,7 @@ class Cylinder:<br>
         base_area = 2*np.pi*np.power(self.radius, 2)<br>
         return lateral_area + base_area
 
-@divider
+
 
 @h2
 Use Type Hints
@@ -161,7 +153,7 @@ class Cylinder:<br>
         base_area: float = 2*np.pi*np.power(self.radius, 2)<br>
         return lateral_area + base_area
 
-@divider
+
 
 @h2
 Avoid Using Comments
@@ -189,7 +181,7 @@ class Cylinder:<br>
         base_area: float = 2*np.pi*np.power(self.radius, 2)<br>
         return lateral_area + base_area
 
-@divider
+
 
 @h2
 Use Docstrings
@@ -246,7 +238,7 @@ class Cylinder:<br>
         base_area: float = 2*np.pi*np.power(self.radius, 2)<br>
         return lateral_area + base_area
 
-@divider
+
 
 @h2
 Wrapping Up
@@ -255,7 +247,7 @@ Writing readable code is a skill that takes time to master. It is not easy to wr
 
 Thanks for reading!
 
-@divider
+
 
 @h2
 Recommended Posts

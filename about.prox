@@ -7,110 +7,83 @@
 @rectangle{red}{200}{left}{100}
 @vsp{5} @rectangle{green}{100}{left}{48}
 
-@h1{About Me}
+@h1{Researcher}
 
 Hello! I am Víctor Muñoz!
 
 I was born in Málaga, Spain in 1998. I obtained a degree in Industrial Technology Engineering from the University of Málaga, Spain in 2021. During my academic career, I was granted two opportunities to study in South Korea, enriching my engineering education. Following my undergraduate studies, I pursued a Master's Degree in Robotics and Automation at the Carlos III University of Madrid, completing it in 2023.
 
-In 2021, I worked as a researcher at the University of Málaga, focusing on the development of mechanical ventilators. I then transitioned to working at the RoboticsLab research group at the University Carlos III of Madrid in 2022, where I currently pursue the Ph.D. degree and research about applying Machine Learning methods in robotics.
+In 2021, I worked as a researcher at the University of Málaga, focusing on the development of mechanical ventilators. I then transitioned to working at the RoboticsLab research group at the University Carlos III of Madrid in 2022, where I currently pursue the Ph.D. degree and research about applying Machine Learning methods in soft robotics.
 
 @rectangle{violet}{200}{right}{48}
 @spacer @rectangle{orange}{75}{right}{150}
 
-@spacer @spacer @spacer
-
-@rectangle{red}{200}{left}{100}
-@vsp{5} @rectangle{green}{100}{left}{48}
-
-@h1{About This Webpage}
-
-This webpage is built using a custom static site generator written in Go, named @url{https://github.com/vistormu/proxima}{Proxima}. Proxima functions as a transpiler to plain HTML, and it makes building static sites very clean and simple. I am very proud of my work and I wanted to share it with you.
-
-@rectangle{violet}{200}{right}{48}
-@spacer @rectangle{orange}{75}{right}{150}
-
-@spacer @spacer @spacer
-
-@rectangle{red}{200}{left}{100}
-@vsp{5} @rectangle{green}{100}{left}{48}
-
-@h1
-Publications
-
-Here is some of my reaserch work in Robotics!
-
-@rectangle{violet}{200}{right}{48}
-@spacer @rectangle{orange}{75}{right}{150}
-
-@h3
+@h2
 Journal articles
 
 @entry{
-FARM: a complete adaptation of the FABRIK algorithm for the Inverse Kinematics of robotic manipulators (2023). Under review.
+Design of a soft sensor based on silver-coated polyamide threads and stress-strain modeling via Gaussian processes
 }{
-@mark{V. Muñoz}, S. Garrido, R. Barber, L. Moreno. IEEE Access.
+C. Ballester, @mark{V. Muñoz}, D. Blanco
+}{
+Q1
+}{
+https://doi.org/10.1016/j.sna.2024.115058
 }
 
-@h3
+@h2
 Conference papers
 
-@entry{
 Estimación de carga sobre un actuador SMA para rehabilitación (2023)
-}{
 C. Ballester, @mark{V. Muñoz}, D. Blanco. XLIV Jornadas de Automática 2023. 
-}
 
-@entry{
 An introduction to Apprenticeship Learning by teaching an agent how to play a video game (2023)
-}{
 @mark{V. Muñoz}, A. Prados, R. Barber. 17th International Technology, Education and Development Conference. DOI: 10.21125/inted.2023.1264
-}
 
-@entry{
 Diseño de un controlador proporcional para un ventilador mecánico (2022)
-}{
 @mark{V. Muñoz}, M. Rollón, V. F. Muñoz. Jornadas de Robótica, Educación en Automática y Bioingeniería 2022. ISBN 978-84-09-41095-8.
-}
 
-@entry{
 Creación del ventilador mecánico Andalucía Respira (2021)
-}{
 V. F. Muñoz, C. Pérez,  I. Díaz,  @mark{V. Muñoz}, M. Rollón, M. Mengual, A. Santiago. XII Simposio CEA de bioingeniería. ISBN: 978-84-09-26469-8.
-}
 
-@spacer
+@vsp{60}
 
-@h1
+@rectangle{yellow}{300}{left}{48}
+@vsp{7} @rectangle{white}{75}{left}{120}
+
+@h1{Programmer}
+
+I am also a passionate programmer. At my work I use Python and I have created verious libraries to boost my workflow. In my free time I like learning new languages, and Go has been my favourite one by far. This webpage is built using a custom static site generator written in Go, named @url{https://github.com/vistormu/proxima}{Proxima}. Proxima functions as a transpiler to plain HTML, and it makes building static sites very clean and simple. I am very proud of my work and I wanted to share it with you.
+
+@rectangle{green}{55}{right}{55}
+@vsp{5} @rectangle{blue}{175}{right}{100}
+
+@h2
 Projects
 
-@line
+@url{https://github.com/vistormu/proxima}{Proxima}
 
-@entry{
+Proxima is a markup language written in pure Go that aims to offer a more beautiful and clearer syntax than HTML. It is intended to be used for creating simple webpages with vanilla HTML, CSS and JS; for blog posts, simple documents...
+
+@url{https://github.com/vistormu/catasta}{Catasta}
+
+
+
+@h2
+Side projects
+
 @url{https://gituhub.com/vistormu/kimchilang}{Kimchilang}
-}{
-Kimchi is a general-purpose programming language that aims to have a simple, consistent and coherent syntax.
 
-@break
+Kimchi is a general-purpose programming language that aims to have a simple, consistent and coherent syntax.
 
 Kimchi was part of a personal project to learn about programming language design and implementation. It is written in Go and it is based on the book <a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> by Thorsten Ball. 
 
-@break
-
 I am very happy with what I have learned, about Go and how to implement an interpreted language. It's mediocre, but it's mine and I love it. I do not plan to implement complex things or fix some bugs.
-}
 
-@entry{
-@url{https://github.com/vistormu/proxima}{Proxima}
-}{
-Proxima is a markup language written in pure Go that aims to offer a more beautiful and clearer syntax than HTML. It is intended to be used for creating simple webpages with vanilla HTML, CSS and JS; for blog posts, simple documents...
-}
-
-@entry{
 @url{https://github.com/vistormu/decision_maker}{Decision Maker}
-}{
+
 Have you ever felt like you don't want to decide between a series of options? Decision Maker helps your indecision by running a board game!
-}
+
 
 @footer
 

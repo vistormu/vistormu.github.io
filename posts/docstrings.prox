@@ -27,7 +27,7 @@ Table of Contents
 
 @spacer
 
-@divider
+
 
 @h2
 What is a Docstring?
@@ -38,7 +38,7 @@ There are various styles of docstrings. The most common one is the @mark{Google}
 
 The other one is the @mark{Numpy} style. It is used by the Numpy library and other scientific Python libraries.
 
-@divider
+
 
 @h2
 Documenting Functions
@@ -137,7 +137,7 @@ def function_name(param1: int, param2: str) -> bool:<br>
         raise ValueError(f'\{param2\} is not a valid param2')<br>
     return True<br>
 
-@divider
+
 
 @h2
 Documenting Classes
@@ -154,21 +154,21 @@ The methods of the class.
 
 Each method should be documented as a function.
 
-@divider
+
 
 @h2
 Documenting Modules
 
 Hello
 
-@divider
+
 
 @h2
 Wrapping Up
 
 Hello
 
-@divider
+
 
 @h2
 Recommended Posts
