@@ -1,14 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
 
 :root {
-    --primary: #181a1d;
-    --secondary: #dfdfdf;
-    --accent: #924242;
-    --glow: #b34f4f80;
-    --highlight: #E3A024;
-    --background: #101213;
+    --black: #000000;
+    --white: #E2DAD2;
+    --red: #DB5475;
+    --green: #B9C18E;
+    --blue: #99A7B4;
+    --orange: #EE9589;
+    --yellow: #F3DF89;
+    --violet: #7E7F9B;
+    --pink: #DC869F;
+
+    --glow: #DB547580;
+    --highlight: #392C5E;
+    --background: #0F2938;
+    --button: #614D9A;
+
     --max-width: 840px;
-    --static6: rgba(255, 255, 255, 0.15);
 }
 
 * {
@@ -28,13 +36,13 @@ html {
 body { 
     font-family: Ubuntu Mono, monospace;
     font-size: 16px;
-    background-color: var(--background);
-    color: var(--secondary);
+    background-color: var(--black);
+    color: var(--white);
 }
 
 p {
     margin: 1rem 0;
-    text-indent: 1rem;
+    text-indent: 0;
     font-size: 1rem;
 }
 
@@ -47,22 +55,28 @@ h1 {
 h2 {
     font-size: 1.5rem;
     margin: 1rem 0;
+    color: var(--red);
+}
+
+h3 {
+    font-size: 1.2rem;
+    color: var(--green);
 }
 
 a {
     text-decoration: none;
-    color: var(--accent);
+    color: var(--green);
 }
 a:hover {
     text-decoration: underline;
 }
 
 mark {
-    background-color: var(--primary);
-    color: var(--secondary);
-    padding: 2px 5px;
-    border-radius: 5px;
+    background-color: var(--highlight);
+    color: var(--white);
+    padding: 1px 2px;
     font-size: 0.8rem;
+    font-weight: 500;
 }
 
 hr {
@@ -78,7 +92,7 @@ ul {
 
 .highlight {
     background-color: var(--highlight);
-    color: var(--primary);
+    color: var(--white);
     padding: 1px 3px;
     border-radius: 5px;
     font-size: 0.8rem;
@@ -92,7 +106,6 @@ ul {
     padding: 0 20px;
     max-width: var(--max-width);
     margin: 0 auto;
-    font-size: 16px;
 }
 .header-content {
     display: flex;
@@ -105,7 +118,7 @@ ul {
 .header {
     position: sticky;
     top: 0;
-    background-color: #10121380;
+    background-color: var(-black);
     z-index: 1;
     backdrop-filter: blur(5px);
     box-shadow: 0 0 10px 0 #000000;
@@ -116,7 +129,7 @@ ul {
     padding-left: auto;
 }
 .header a {
-    color: var(--secondary);
+    color: var(--white);
 }
 .toggle-style {
   cursor: pointer;
@@ -143,12 +156,12 @@ ul {
     display: inline-block;
     position: relative;
     border-radius: 20px;
-    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuZGV2L3N2Z2pzIiB2aWV3Qm94PSIwIDAgNzAwIDcwMCIgd2lkdGg9IjcwMCIgaGVpZ2h0PSI3MDAiIG9wYWNpdHk9IjAuMzUiPjxkZWZzPjxmaWx0ZXIgaWQ9Im5ubm9pc2UtZmlsdGVyIiB4PSItMjAlIiB5PSItMjAlIiB3aWR0aD0iMTQwJSIgaGVpZ2h0PSIxNDAlIiBmaWx0ZXJVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIHByaW1pdGl2ZVVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJsaW5lYXJSR0IiPgoJPGZlVHVyYnVsZW5jZSB0eXBlPSJ0dXJidWxlbmNlIiBiYXNlRnJlcXVlbmN5PSIwLjEzOCIgbnVtT2N0YXZlcz0iNCIgc2VlZD0iMTUiIHN0aXRjaFRpbGVzPSJzdGl0Y2giIHg9IjAlIiB5PSIwJSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcmVzdWx0PSJ0dXJidWxlbmNlIj48L2ZlVHVyYnVsZW5jZT4KCTxmZVNwZWN1bGFyTGlnaHRpbmcgc3VyZmFjZVNjYWxlPSIxMyIgc3BlY3VsYXJDb25zdGFudD0iMC45IiBzcGVjdWxhckV4cG9uZW50PSIyMCIgbGlnaHRpbmctY29sb3I9IiNmZmZmZmYiIHg9IjAlIiB5PSIwJSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgaW49InR1cmJ1bGVuY2UiIHJlc3VsdD0ic3BlY3VsYXJMaWdodGluZyI+CiAgICAJCTxmZURpc3RhbnRMaWdodCBhemltdXRoPSIzIiBlbGV2YXRpb249IjExIj48L2ZlRGlzdGFudExpZ2h0PgogIAk8L2ZlU3BlY3VsYXJMaWdodGluZz4KICAKPC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iNzAwIiBmaWxsPSJ0cmFuc3BhcmVudCI+PC9yZWN0PjxyZWN0IHdpZHRoPSI3MDAiIGhlaWdodD0iNzAwIiBmaWxsPSIjZmZmZmZmIiBmaWx0ZXI9InVybCgjbm5ub2lzZS1maWx0ZXIpIj48L3JlY3Q+PC9zdmc+),linear-gradient(-30deg,var(--static6),var(--primary)),linear-gradient(15deg,var(--accent),var(--glow) 80%);
+    background-color: var(--highlight);
     background-size: cover;
     background-position: center;
 }
 .image-container a{
-    color: var(--background);
+    color: var(--black);
 }
 .image-container p {
     padding: 20px;
@@ -160,13 +173,13 @@ ul {
     bottom: 15px;
     left: 15px;
     padding: 7px 10px;
-    background-color: var(--background);
+    background-color: var(--black);
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 700;
 }
 .image-wrapper-button a {
-    color: var(--secondary);
+    color: var(--white);
 }
 .image-wrapper-button a:hover {
     text-decoration: none;
@@ -180,7 +193,7 @@ ul {
 /* =============== */
 .divider {
     position: absolute;
-    background-color: var(--primary);
+    background-color: var(--orange);
     left: 0;
     right: 0;
     height: 5px;
@@ -188,6 +201,11 @@ ul {
 
 .spacer {
     height: 20px;
+}
+
+.rectangle {
+    position: absolute;
+    height: 10px;
 }
 
 /* ===== */
@@ -208,9 +226,8 @@ ul {
     position: relative;
     flex: 0 0 auto;
     width: 40%;
+    border: 2px solid var(--white);
     height: 225px;
-    background-color: var(--primary);
-    border-radius: 20px;
     padding: 20px;
     margin: 18px 0 18px 18px;
 }
@@ -238,29 +255,7 @@ ul {
 }
 .card-description {
     padding-bottom: 10px;
-    color: var(--secondary);
-}
-.card-button {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    padding: 7px 10px;
-    background-color: var(--accent);
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-}
-.cscard-button {
-    display: none;
-}
-.card-button a {
-    color: var(--secondary);
-}
-.card-button a:hover {
-    text-decoration: none;
-}
-.card-button:hover {
-    background-color: var(--glow);
+    color: var(--white);
 }
 .card-date {
     position: absolute;
@@ -268,27 +263,82 @@ ul {
     left: 10px;
     padding: 10px;
 }
+.cscard-button {
+    display: none;
+}
+
+.card-button-container {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+.card-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 5px;
+    width: 80px;
+    height: 30px;
+
+    background-color: var(--red);
+
+    color: var(--black);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+.card-button:hover {
+    text-decoration: none;
+}
+.icon-container {
+    position: relative;
+}
+.black-square {
+    background-color: var(--black);
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    bottom: -12px;
+    right: -2px;
+    transition: transform 0.5s ease;
+    transform-origin: right;
+}
+.circle {
+    background-color: var(--red);
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    bottom: -6px;
+    right: 4px;
+}
+.card-button:hover .icon-container .black-square {
+  transform: scaleX(0); /* Shrinks the square to zero width */
+}
 
 /* ==== */
 /* Code */
 /* ==== */
 pre {
     margin: 0 12px 24px 12px;
-    padding: 12px 24px;
-    background-color: var(--primary);
-    border-radius: 20px;
+    padding: 12px 24px 6px 24px;
+
+    border: 1px solid var(--white);
+
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
+pre::-webkit-scrollbar, code::-webkit-scrollbar {
+    display: none;
+}
 code {
-    background-color: var(--primary) !important;
+    background-color: var(--black) !important;
     font-size: 0.9rem !important;
 }
-pre::-webkit-scrollbar, code::-webkit-scrollbar {
-      display: none;
-}
 .file {
+    color: var(--highlight)
     margin: 18px 0 0 0;
     font-size: 12px;
     text-indent: 12px; 
@@ -298,17 +348,19 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
 }
 .copy-btn {
     position: absolute;
-    font-size: 12px;
     right: 12px;
-    top: -14px;
+    top: -16px;
     margin: 0;
     padding: 0;
-    cursor: pointer;
+
     background: none;
     outline: none;
     text-decoration: none;
-    color: #6492B7;
     border: none;
+    cursor: pointer;
+
+    font-size: 12px;
+    color: var(--pink);
     background-color: none;
 }
 
@@ -318,9 +370,8 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
 .image-wrapper {
     margin: 0 12px 12px 12px;
     padding: 6px 24px;
-    background-color: var(--primary);
-    border-radius: 20px;
     overflow-x: auto;
+    border: 1px solid var(--white);
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -358,29 +409,6 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
 }
 .entry .entry-content::before {
     content: "\00A0\00A0";
-}
-
-/* ========== */
-/* Top Button */
-/* ========== */
-#myBtn {
-    display: none;
-    position: fixed;
-    right: 30px;
-    bottom: 20px;
-    z-index: 1;
-    border: none;
-    outline: none;
-    background-color: var(--primary);
-    color: var(--secondary);
-    cursor: pointer;
-    padding: 0 16px;
-    border-radius: 30px;
-    font-size: 50px;
-    font-weight: 700;
-}
-#myBtn:hover {
-    background-color: var(--glow);
 }
 
 /* ============ */

@@ -2,10 +2,12 @@
 
 @header
 
-@h1
-About Me
+@spacer
 
-@line
+@rectangle{red}{200}{left}{100}
+@vsp{5} @rectangle{green}{100}{left}{48}
+
+@h1{About Me}
 
 Hello! I am Víctor Muñoz!
 
@@ -13,12 +15,33 @@ I was born in Málaga, Spain in 1998. I obtained a degree in Industrial Technolo
 
 In 2021, I worked as a researcher at the University of Málaga, focusing on the development of mechanical ventilators. I then transitioned to working at the RoboticsLab research group at the University Carlos III of Madrid in 2022, where I currently pursue the Ph.D. degree and research about applying Machine Learning methods in robotics.
 
-@spacer
+@rectangle{violet}{200}{right}{48}
+@spacer @rectangle{orange}{75}{right}{150}
+
+@spacer @spacer @spacer
+
+@rectangle{red}{200}{left}{100}
+@vsp{5} @rectangle{green}{100}{left}{48}
+
+@h1{About This Webpage}
+
+This webpage is built using a custom static site generator written in Go, named @url{https://github.com/vistormu/proxima}{Proxima}. Proxima functions as a transpiler to plain HTML, and it makes building static sites very clean and simple. I am very proud of my work and I wanted to share it with you.
+
+@rectangle{violet}{200}{right}{48}
+@spacer @rectangle{orange}{75}{right}{150}
+
+@spacer @spacer @spacer
+
+@rectangle{red}{200}{left}{100}
+@vsp{5} @rectangle{green}{100}{left}{48}
 
 @h1
 Publications
 
-@line
+Here is some of my reaserch work in Robotics!
+
+@rectangle{violet}{200}{right}{48}
+@spacer @rectangle{orange}{75}{right}{150}
 
 @h3
 Journal articles

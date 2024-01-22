@@ -3,27 +3,29 @@
 
 @post-header
 
+@vsp{10} @rectangle{red}{200}{left}{100}
+@vsp{2} @rectangle{green}{100}{left}{48}
+
 @h1
 How to Create a Python Virtual Environment with Conda
 
 @center
 @subtitle{Published on @mark{oct 11th 2023}. Last edit on @mark{oct 11th 2023}}
 
+@vsp{10} @rectangle{violet}{200}{right}{48}
+@vsp{5} @rectangle{orange}{75}{right}{150}
+
 @spacer
 
-@landing-presentation{
 It is very important to be organized when working on a project. This is especially true when working with Python, as it is very easy to get lost in the dependencies and versions of the libraries. Not setting up a virtual environment means overriding dependencies every time you install a new library, more often than not resulting in a code not working.
-<br><br>
+
 In this blog post I will cover how to download and set up a Conda environment for your Python projects. I will also cover how to manage the dependencies once the virtual environment is running.
-<br><br>
+
 Also, I will assume that you are using a Linux distribution. If you are using Windows, I recommend installing the Windows Subsystem for Linux (WSL) and following the instructions as if you were using Linux.
-}{
-\#installing-conda
-}{
-Read
-}
 
 @spacer
+
+@divider
 
 @h2
 Table of Contents

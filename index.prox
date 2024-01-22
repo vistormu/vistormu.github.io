@@ -2,25 +2,22 @@
 
 @header
 
+@spacer
+
+@rectangle{red}{200}{left}{100}
+@vsp{5} @rectangle{green}{100}{left}{48}
+
 @h1{Welcome to Vistor's Blog!}
 
-@landing-presentation{
 Hello! I am Vistor, a PhD Student researching in Machine Learning applications to Robotics. In this webpage you will find blog posts about various topics like tutorials, personal opinions... I hope you find it useful.
-<br><br>
-I have built this website from scratch using HTML/CSS, JavaScript and @url{https://github.com/vistormu/proxima}{Proxima}, my own wrapper of HTML to make the website code more readible and maintainable. I am just proud, okay?
-}{
-\#model-prediction-and-identification
-}{
-Go to posts
-}
+
+@rectangle{violet}{200}{right}{48}
+@spacer @rectangle{orange}{75}{right}{150}
 
 @spacer @spacer @spacer
 
-@h1
-Python Tutorials
-
-@h2
-For Beginners
+@section
+PYTHON TUTORIALS
 
 <div class="card-row">
 
@@ -49,15 +46,12 @@ How To Document Your Python Code with Docstrings
 }{
 Learn how to document your Python code with Docstrings to enhance your APIs.
 }{
-comming soon
+coming soon
 }{
 ./posts/docstrings.html
 }
 
 </div>
-
-@h2
-Advanced
 
 <div class="card-row">
 
@@ -66,7 +60,7 @@ How to Structure a Python Project
 }{
 Learn how to structure a Python project to make it more maintainable and understandable.
 }{
-comming soon
+coming soon
 }{
 }
 
@@ -75,7 +69,7 @@ How to Upload a Python Package to PyPI
 }{
 Learn how to upload a Python package to PyPI to make it available for everyone.
 }{
-comming soon
+coming soon
 }{
 }
 
@@ -84,7 +78,7 @@ How to Generate Documentation for a Python Project
 }{
 Learn how to generate documentation for a Python project to make it more understandable.
 }{
-comming soon
+coming soon
 }{
 }
 
@@ -92,8 +86,8 @@ comming soon
 
 @spacer @spacer @spacer
 
-@h1
-LaTeX Tutorials
+@section
+LATEX TUTORIALS
 
 <div class="card-row">
 
@@ -102,7 +96,7 @@ How to Install LaTex on your Machine
 }{
 Learn how to install LaTeX on your machine to write beautiful documents.
 }{
-comming soon
+coming soon
 }{
 }
 
@@ -111,7 +105,7 @@ How to Use BibTeX to Manage your References
 }{
 Learn how to use BibTeX to manage your references and citations.
 }{
-comming soon
+coming soon
 }{
 }
 
@@ -120,7 +114,7 @@ How to Structure a LaTeX Project
 }{
 Learn how to structure a LaTeX project to make it more maintainable and understandable.
 }{
-comming soon
+coming soon
 }{
 }
 
@@ -128,8 +122,8 @@ comming soon
 
 @spacer @spacer @spacer
 
-@h1
-System Engineering
+@section
+SYSTEMS ENGINEERING TUTORIALS
 
 <div class="card-row">
 
@@ -147,8 +141,8 @@ oct 1st 2023
 
 @spacer @spacer @spacer
 
-@h1
-NeoVim
+@section
+NEOVIM
 
 <div class="card-row">
 
@@ -167,7 +161,7 @@ How to Setup NeoVim from Scratch
 }{
 Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
 }{
-comming soon
+coming soon
 }{
 ./posts/neovim-config.html
 }
@@ -177,7 +171,7 @@ Vim Motions
 }{
 Learn how to use Vim motions to navigate through your code.
 }{
-comming soon
+coming soon
 }{
 ./posts/vim-motions.html
 }
@@ -185,20 +179,5 @@ comming soon
 </div>
 
 @spacer @spacer @spacer
-
-@h1
-Other
-
-<div class="card-row">
-
-@cscard{
-Final Project Guidelines
-}{
-Guidelines for the Final Project at the UC3M.
-}{
-commin soon
-}{
-./posts/guidelines.html
-}
 
 @footer

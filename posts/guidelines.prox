@@ -11,15 +11,9 @@ Final Project Guidelines
 
 @spacer
 
-@landing-presentation{
 In this post I will talk about the guidelines for the final project.
-<br><br>
+
 The text is divided in such a way that the information appears chronologically, that is to say, the doubts will be solved as you progress through the project.
-}{
-\#button-link
-}{
-Read
-}
 
 @spacer
 
@@ -27,11 +21,15 @@ Read
 Table of Contents
 
 @list{
-
+@url{\#preliminar-considerations}{Preliminar Considerations}
 }{
-
+@url{\#development-of-the-project}{Development of the Project}
 }{
-
+@url{\#testing-and-reporting-of-results}{Testing and Reporting of Results}
+}{
+@url{\#writing-the-report}{Writing the Report}
+}{
+@url{\#presentation-of-the-project}{Presentation of the Project}
 }
 
 @spacer
@@ -172,28 +170,110 @@ The positioning of the images and tables are extremely easy to handle. Re-positi
 @h3
 Structure of the Report
 
-Section text.
+The specific structure of the report will depend on the degree you are coursing, but I will cover the general structure and notions that are common to every scientific project.
+
+The report is composed of three different parts: the prebody, the body and the postbody.
+
+The prebody is the part of the document that is written before the actual content of the project. It should serve as guide through the document. The prebody should contain
+
+@list{
+The cover page, with the title of the project, the author, the date, etc.
+}{
+The table of contents.
+}{
+The list of figures.
+}{
+The list of tables.
+}{
+The list of abbreviations (optional).
+}{
+The list of algorithms (if any).
+}
+
+The body should be divided into multiple chapters, ranging from 5 to even 10 chapters, depending on the multidisciplinarity of the project.
+
+The first chapter should always be the @highlight{Introduction}. In this chapter the following sections must be covered:
+
+@list{
+A brief introduction to the topic of the project covering the field of research: historical importance, recent advancements...
+}{
+The origin of the project, covering the context in which the project was born, the relevance of your applications on that project, motivation of the deleloped work...
+}{
+The objectives of the project, covering the general objectives and the specific objectives.
+}{
+The structure of the document, covering the structure of the body and the postbody.
+}
+
+The last chapter should always be the @highlight{Conclusions and Future Lines of Research}, where the two topics should be covered:
+
+@list{
+The conclusions of the project, covering the results obtained and the objectives achieved, which should be the same as in the Introduction chapter.
+}{
+The future lines of research, covering the possible improvements of the project and the possible applications of the project.
+}
+
+The rest of the in-between chapters should depend on the project, but they should be ordered in a logical way. Usually, the rest of the chapters are ordered in the following manner:
+
+@list{
+A theoretical chapter, covering the theoretical background of the project. In this chapter the mathematical and engineering background should be covered, presenting important formulas and notation that will be useful to know for reading the project.
+}{
+The state-of-the-art chapter, usually named "Background" or "Related Work". In this chapter the previous work on the topic should be covered, presenting the most relevant papers and projects. This is the chapter where most of the references must be contained.
+}{
+The methodology chapters, covering the development and work done in the project. This is the chapter where the most technical information must be contained. Also, there should be as many chapters as considered.
+}{
+The experiments and results chapter, covering the results obtained in the project. This is the chapter where the most graphical information must be contained, and also the implementation details, covering repeatability...
+}
+
+Every chapter should be divided into sections, being the first one an introduction to the section and the last one the conclusions of the chapter.
+
+@spacer
+
+@h3
+Tips and Tricks
+
+The Introduction and the Conclusions chapters are written at the end of the project, when the rest of the chapters are already written. This is because the Introduction and the Conclusions chapters must be consistent with the rest of the document.
+
+The report is not a diary, so it should not be written in chronological order, nor failed attempts. It is a report of scientific interest, so it should guide through the technological aspect only.
+
+The report should not include any form of first person, such as "I", "we", "our", etc. The report should be written in a impersonal form. In ENglish, the only way of doing this is using the passive form or starting every subject with a noun. In other languages such as in Spanish, the impersonal "se" is preferred.
+
+The implementation details are not important other than in the Experiment chapter. Do not mention any programming language, software, etc. other than in the Experiment chapter.
+
 
 @spacer
 
 @h3
 Graphical Material
 
-Section text.
+Every figure in the document must be relevant and must be referenced in the text. The figures must be of high quality, and must be in vectorial format. The figures must be centered and must have a caption. The caption must be placed below the figure, and must be centered. The caption must be written in a way that the figure can be understood without reading the text.
+
+Every figure should also contain its origin. In the case of being a figure from a paper, the reference of the paper should be included. In the case of being a figure generated by the student, it should indicate it.
+
+I highly recommend using @url{https://www.figma.com}{Figma} to generate the figures. Figma is a vectorial design tool that allows the user to create high quality figures in a very easy way. Figma also has a very good documentation, which can be found @url{https://www.figma.com/resources/learn-design/}{here}.
+
+If you use Figma, export the figures as PDFs. LaTeX will let you include them as figures, and they will not be pixelated (infinite zoom unlocked). 
 
 @spacer
 
 @h3
 References
 
-Section text.
+It is very important to cite the papers and books that have been used in the project. The references must be cited in the text, and must be included in the bibliography.
+
+One of the advantages of LaTeX is that the references are handled automatically. If you don't use it, be prepared for the worst.
+
+I wrote @url{./bibtex.html}{a tutorial} on how to use BibTeX, which is the standard for managing references in LaTeX. Feel free to read it.
 
 @spacer
 
 @h3
 Supervisor's Feedback
 
-Section text.
+The supervisor will give you feedback on the report. The report should be delivered in PDF format and the supervisor will highlight the parts that should be changed. The drafts should be sent per chapter so that the corrections do not stack at the end.
+
+You should send the draft once you think it is finished, meaning that there should not be placeholders or unfinished parts. The document needs coherence to be corrected.
+
+You should deliver the complete draft of the report at least one month before the deadline. This will give you enough time to correct the report and to write the final version. Moreover, the deadlines are usually placed after holidays, and the supervisor would probably like to enjoy them.
 
 @divider
 

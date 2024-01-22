@@ -3,23 +3,25 @@
 
 @post-header
 
+@vsp{10} @rectangle{red}{200}{left}{100}
+@vsp{2} @rectangle{green}{100}{left}{48}
+
 @h1
 How To Write Readable Code in Python
 
 @center
 @subtitle{Published on @mark{nov 6th 2023}. Last edit on @mark{nov 6th 2023}}
 
+@vsp{10} @rectangle{violet}{200}{right}{48}
+@vsp{5} @rectangle{orange}{75}{right}{150}
+
 @spacer
 
-@landing-presentation{
 Have you ever returned to a project you haven't worked on in a while and had no idea what you were doing? Or maybe you've been working on a project with a team and you have no idea what your teammates code does? If you have, then you know how important it is to write readable code.
-}{
-\#example-code
-}{
-Read
-}
 
 @spacer
+
+@divider
 
 @h2
 Table of Contents
