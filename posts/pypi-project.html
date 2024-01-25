@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+	<title>Vistor's Blog: PyPi Project</title>
+	<link rel="stylesheet" href="./../style.css">
+</head>
+<body>
+
+<link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+<header class="header">
+    <div class="header-content">
+        <div class="logo">
+            <a href="../index.html">Vistor's Blog</a>
+        </div>
+        <nav>
+            <a href="../about.html" class="nav-link">about</a>
+        </nav>
+    </div>
+</header>
+
+<div class="content-wrapper">
+
+<div style="height: 10px;"></div>
+ <div style="position: relative; height: 10px; width: 100%;">
+<div class="rectangle" style="background-color: var(--red); width: 200px; left:100px;"></div>
+</div>
+<div style="height: 2px;"></div>
+ <div style="position: relative; height: 10px; width: 100%;">
+<div class="rectangle" style="background-color: var(--green); width: 100px; left:48px;"></div>
+</div>
+
+<h1 id="how-to-upload-a-python-package-to-pypi">
+	How to Upload a Python Package to PyPi
+</h1>
+
+<div style="text-align: center;"><div class="subtitle">Published on <mark>jan 23rd 2024</mark>. Last edit on <mark>jan 23rd 2024</mark></div>
+</div>
+
+<p>
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget ultricies ultrices, nunc nunc aliquam nunc, nec aliquam nunc nunc nec nunc. Donec euismod, nisl eget ultricies ultrices, nunc nunc aliquam nunc, nec aliquam nunc nunc nec nunc. Donec euismod, nisl eget ultricies ultrices, nunc nunc aliquam nunc, nec aliquam nunc nunc nec nunc. Donec euismod, nisl eget ultricies ultrices, nunc nunc aliquam nunc, nec aliquam nunc nunc nec nunc.
+</p>
+<div style="height: 10px;"></div>
+ <div style="position: relative; height: 10px; width: 100%;">
+<div class="rectangle" style="background-color: var(--violet); width: 200px; right:48px;"></div>
+</div>
+<div style="height: 5px;"></div>
+ <div style="position: relative; height: 10px; width: 100%;">
+<div class="rectangle" style="background-color: var(--orange); width: 75px; right:150px;"></div>
+</div>
+
+<h2 id="table-of-contents">
+	Table of Contents
+</h2>
+
+<ul>
+	<li>One</li>
+	<li>Two</li>
+	<li>Three</li>
+</ul>
+
+<h2 id="project-structure">
+	Project Structure
+</h2>
+
+<p>
+	We will learn how to upload our project named "chorizo" to PyPi.
+</p>
+<div class="code-container">
+  <pre><code>chorizo<br>|-- chorizo<br>|   |-- __init__.py<br>|<br>|-- LICENSE<br>|-- pyproject.toml<br>|-- README.md<br>|-- requirements.txt<br></code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<h2 id="necessary-files">
+	Necessary Files
+</h2>
+
+<h3 id="license">
+	LICENSE
+</h3>
+
+<p>
+	Check <a href="https://choosealicense.com/">https://choosealicense.com/</a> for more information.
+</p>
+<p>
+	I usually use the MIT license.
+</p>
+<div class="file">LICENSE</div>
+
+<div class="code-container">
+  <pre><code>MIT License<br><br>Copyright (c) [year] [fullname]<br><br>Permission is hereby granted, free of charge, to any person obtaining a copyof this software and associated documentation files (the "Software"), to dealin the Software without restriction, including without limitation the rightsto use, copy, modify, merge, publish, distribute, sublicense, and/or sellcopies of the Software, and to permit persons to whom the Software isfurnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice shall be included in allcopies or substantial portions of the Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS ORIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THEAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THESOFTWARE.</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<h3 id="readme.md">
+	README.md
+</h3>
+
+<div class="file">README.md</div>
+
+<div class="code-container">
+  <pre><code># chorizo<br><br>An example project named chorizo.</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<p>
+	This file is used to describe your project.
+</p>
+<h3 id="pyproject.toml">
+	pyproject.toml
+</h3>
+
+<p>
+	We will use hatchling to build our project.
+</p>
+<div class="file">pyproject.toml</div>
+
+<div class="code-container">
+  <pre><code>[build-system]<br>requires = ["hatchling"]<br>build-backend = "hatchling.build"<br><br>[project]<br>name = "chorizo"<br>version = "0.0.1"<br>authors = [<br>  { name="Example Author", email="author@example.com" },<br>]<br>description = "An example project named chorizo."<br>readme = "README.md"<br>requires-python = ">=3.10"<br>classifiers = [<br>    "Programming Language :: Python :: 3",<br>    "License :: OSI Approved :: MIT License",<br>    "Operating System :: OS Independent",<br>]<br>dependencies = [<br>    "numpy",<br>]<br><br>[project.urls]<br>Homepage = "https://github.com/user/chorizo"<br>Issues = "https://github.com/user/chorizo/issues"<br></code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<p>
+	If you have multiple top-level directories, you need to specify which one contains the code.
+</p>
+<div class="file">pyproject.toml</div>
+
+<div class="code-container">
+  <pre><code>[tool.hatch.build.targets.wheel]<br>packages = ["chorizo"]</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<h3 id="requirements.txt">
+	requirements.txt
+</h3>
+
+<p>
+	It is also a good practice leaving a requirements.txt file with the dependencies of your project so it can be built easily from source.
+</p>
+<h3 id=".gitignore">
+	.gitignore
+</h3>
+
+<p>
+	As a bonus tip, you can add a .gitignore file to your project to avoid uploading unnecessary files to GitHub.
+</p>
+<div class="file">.gitignore</div>
+
+<div class="code-container">
+  <pre><code>**/__pycache__<br>/dist<br>/build<br>*.egg-info<br></code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<h2 id="build-the-project">
+	Build the Project
+</h2>
+
+<h3 id="required-packages">
+	Required Packages
+</h3>
+
+<p>
+	Text
+</p>
+<div class="file">terminal</div>
+
+<div class="code-container">
+  <pre><code>pip install build twine</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<h3 id="building-the-project">
+	Building the project
+</h3>
+
+<div class="file">terminal</div>
+
+<div class="code-container">
+  <pre><code>python -m build</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<h2 id="upload-the-project">
+	Upload the Project
+</h2>
+
+<h3 id="upload-to-testpypi">
+	Upload to TestPyPi
+</h3>
+
+<p>
+	It is a good idea to upload first to the test server to check if everything is working as expected. Once you upload a realease, it cannot be deleted, so you ned to be careful.
+</p>
+<p>
+	Also, the TestPyPi server is not the same as the PyPi server, so you need to create an account there too. To register an account, go to <a href="https://test.pypi.org/account/register/">https://test.pypi.org/account/register/</a>.
+</p>
+<p>
+	Now you need a token to upload your project. To get a token, go to <a href="https://test.pypi.org/manage/account/#api-tokens">https://test.pypi.org/manage/account/#api-tokens</a> and click on "Add API token". You will need to setup a Two-Factor-Autentification, which is a bit annoying, but follow the steps.
+</p>
+<p>
+	Finally, you can upload your project to the test server.
+</p>
+<div class="file">terminal</div>
+
+<div class="code-container">
+  <pre><code>python -m twine upload --repository testpypi dist/*</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<h3 id="download-and-test">
+	Download and Test
+</h3>
+
+<p>
+	You can download your project from the test server with pip.
+</p>
+<div class="file">terminal</div>
+
+<div class="code-container">
+  <pre><code>pip install --index-url https://test.pypi.org/simple/ --no-deps chorizo</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<h3 id="upload-to-pypi">
+	Upload to PyPi
+</h3>
+
+<p>
+	Once you are sure that everything is working as expected, you can upload your project to the PyPi server.
+</p>
+<p>
+	You need now to register an account in <a href="https://pypi.org/account/register/">https://pypi.org/account/register/</a> and follow the same steps as before: enabling 2FA and generating a token.
+</p>
+<div class="file">terminal</div>
+
+<div class="code-container">
+  <pre><code>python -m twine upload dist/*</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+
+<h3 id="versioning">
+	Versioning
+</h3>
+
+<p>
+	Tag your project with git
+</p>
+<p>
+	Edit the description of your release in GitHub
+</p>
+<h2 id="wrapping-up">
+	Wrapping Up
+</h2>
+
+<p>
+	Section text.
+</p>
+<h2 id="suggested-posts">
+	Suggested Posts
+</h2>
+
+<div class="card-row">
+<div class="card">
+    <div class="card-header">How to Setup NeoVim from Scratch</div>
+    <div class="card-description">Learn how to setup NeoVim from scratch, with a custom configuration and plugin.</div>
+    <div class="card-date">oct 11th 2023</div>
+    <div class="card-button-container">
+        <a href="./neovim-config.html" class="card-button">
+            <span>READ</span>
+            <div class="icon-container">
+                <div class="black-square"></div>
+                <div class="circle"></div>
+            </div>
+        </a>
+    </div>
+</div>
+
+</div>
+</div>
+<div style="height: 60px;"></div>
+<div class="divider" style="height: 20px; background-color: var(--blue);"></div>
+
+<script src="./../scripts/scroll.js"></script>
+<script src="./../scripts/copyCode.js"></script>
+<script> hljs.highlightAll(); </script>
+
+</body>
+</html>
