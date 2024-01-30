@@ -410,6 +410,25 @@ code {
     content: "\00A0\00A0";
 }
 
+/* ===== */
+/* Notes */
+/* ===== */
+.note {
+    display: flex;
+    align-items: flex-start;
+}
+
+.note .icon {
+    display: flex;
+    align-items: center;
+}
+
+.note .icon img {
+    height: 1.5rem;
+    margin-right: 6px;
+    margin-top: 
+}
+
 /* ============ */
 /* Mobile stuff */
 /* ============ */

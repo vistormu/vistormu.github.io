@@ -62,13 +62,14 @@ coming soon
 }{
 }
 
-@cscard{
+@card{
 How to Upload a Python Package to PyPI
 }{
 Learn how to upload a Python package to PyPI to make it available for everyone.
 }{
-coming soon
+jan 30th 2024
 }{
+./posts/pypi-project.html
 }
 
 @cscard{
