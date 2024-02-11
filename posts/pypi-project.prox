@@ -1,10 +1,10 @@
 @title{Vistor's Blog: PyPi Project}
 @style{./../style.css}
 
-@post-header
+@header
 
-@vsp{10} @rectangle{orange}{170}{left}{75}
-@vsp{2} @rectangle{blue}{50}{left}{48}
+@vsp{10} @rectangle{left}
+@vsp{2} @rectangle{left}
 
 @h1
 How to Upload a Python Package to PyPi
@@ -14,24 +14,25 @@ How to Upload a Python Package to PyPi
 
 If you're frequently programming in Python and have developed custom tools that are useful across multiple projects, it's a smart move to consider publishing them on PyPI. This blog post will show you how to do that. We'll also cover how to manage your release versions and keep a tidy changelog.
 
-@vsp{10} @rectangle{violet}{20}{right}{148}
-@vsp{5} @rectangle{yellow}{175}{right}{50}
+@vsp{10} @rectangle{right}
+@vsp{5} @rectangle{right}
 
 @h2
 Table of Contents
 
-@list{
-@url{\#project-structure}{Project Structure}
+@toc{
+Project Structure
 }{
-@url{\#necessary-files}{Necessary Files}
+Necessary Files
 }{
-@url{\#build-the-project}{Build the Project}
+Build the Project
 }{
-@url{\#upload-the-project}{Upload the Project}
+Upload the Project}{
+Versioning
 }{
-@url{\#wrapping-up}{Wrapping Up}
+Wrapping Up
 }{
-@url{\#references}{References}
+References
 }
 
 @h2
@@ -44,13 +45,13 @@ There are two types of valid project structures:
 @h3
 src-layout
 
-The project should contain a @code{src} directory under the project root and all modules and packages meant for distribution are placed inside this directory.
+The project should contain a @mark{src} directory under the project root and all modules and packages meant for distribution are placed inside this directory.
 
 @pre
-chorizo<br>
-|-- src<br>
-|   |-- chorizo<br>
-|   |   |-- __init__.py<br>
+chorizo
+|-- src
+|   |-- chorizo
+|   |   |-- __init__.py
 
 
 @h3
@@ -59,11 +60,11 @@ flat-layout
 The package directory is the project root itself.
 
 @pre
-chorizo<br>
-|-- chorizo<br>
-|   |-- __init__.py<br>
+chorizo
+|-- chorizo
+|   |-- __init__.py
 
-In this project we will use the latter, because it is simpler, cleaner, and easier to explore in GitHub. And because I just hate naming something @code{src} whe I have a cool name like "chorizo".
+In this project we will use the latter, because it is simpler, cleaner, and easier to explore in GitHub. And because I just hate naming something @mark{src} whe I have a cool name like "chorizo".
 
 @h2
 Necessary Files
@@ -71,14 +72,14 @@ Necessary Files
 For a project to be uploaded to PyPi, it needs to have a few files in the root directory.
 
 @pre
-chorizo<br>
-|-- chorizo<br>
-|   |-- __init__.py<br>
-|<br>
-|-- LICENSE<br>
-|-- pyproject.toml<br>
-|-- README.md<br>
-|-- requirements.txt<br>
+chorizo
+|-- chorizo
+|   |-- __init__.py
+|
+|-- LICENSE
+|-- pyproject.toml
+|-- README.md
+|-- requirements.txt
 
 
 @h3
@@ -86,7 +87,7 @@ LICENSE
 
 A license is a legal tool you can use to protect your intellectual property. For choosing the most suitable license for your project, check @url{https://choosealicense.com/} for more information.
 
-The most common license for open source projects is the MIT license, so we will use that one. You just need to copy the text and paste it to the @code{LICENSE} file.
+The most common license for open source projects is the MIT license, so we will use that one. You just need to copy the text and paste it to the @mark{LICENSE} file.
 
 Don't forget to change the year and the name of the author.
 
@@ -94,19 +95,19 @@ Don't forget to change the year and the name of the author.
 
 @pre
 MIT License
-<br><br>
+    
 Copyright (c) [year] [fullname]
-<br><br>
+    
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
-<br><br>
+    
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
-<br><br>
+    
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -118,79 +119,77 @@ SOFTWARE.
 @h3
 README.md
 
-A @code{README.md} file is used to describe your project. It is a good practice to include a description of your project, the installation, some examples...
+A @mark{README.md} file is used to describe your project. It is a good practice to include a description of your project, the installation, some examples...
 
 @file{README.md}
 
 @pre
 \# chorizo
-<br><br>
-An example project named chorizo.<br>
-<br>
-\#\# Installation<br>
-<br>
-```bash<br>
-pip install chorizo<br>
-```<br>
+An example project named chorizo.
+    
+\#\# Installation
+```bash
+pip install chorizo
+```
 
 @h3
 pyproject.toml
 
-The @code{pyproject.toml} file is used to configure the build process of your project. There are multiple backends available to build your project, but I am lately using @url{https://github.com/pypa/hatch}{hatchling}. The backend tool will be automatically installing when building, so use the one you like the most.
+The @mark{pyproject.toml} file is used to configure the build process of your project. There are multiple backends available to build your project, but I am lately using @url{https://github.com/pypa/hatch}{hatchling}. The backend tool will be automatically installing when building, so use the one you like the most.
 
 It is important to update the version of your package every time you upload a new release.
 
 @file{pyproject.toml}
 
 @pre
-[build-system]<br>
-requires = ["hatchling"]<br>
-build-backend = "hatchling.build"<br>
-<br>
-[project]<br>
-name = "chorizo"<br>
-version = "0.0.1"<br>
-authors = [<br>
-  \{ name="Example Author", email="author\@example.com" \},<br>
-]<br>
-description = "An example project named chorizo."<br>
-readme = "README.md"<br>
-requires-python = ">=3.10"<br>
-classifiers = [<br>
-    "Programming Language :: Python :: 3",<br>
-    "License :: OSI Approved :: MIT License",<br>
-    "Operating System :: OS Independent",<br>
-]<br>
-dependencies = [<br>
-    "numpy",<br>
-    "matplotlib",<br>
-    "pandas",<br>
-]<br>
-<br>
-[project.urls]<br>
-Homepage = "https://github.com/user/chorizo"<br>
-Issues = "https://github.com/user/chorizo/issues"<br>
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+    
+[project]
+name = "chorizo"
+version = "0.0.1"
+authors = [
+  \{ name="Example Author", email="author\@example.com" \},
+]
+description = "An example project named chorizo."
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "numpy",
+    "matplotlib",
+    "pandas",
+]
+    
+[project.urls]
+Homepage = "https://github.com/user/chorizo"
+Issues = "https://github.com/user/chorizo/issues"
 
-While uploading my projects, I ran into some problems due to having a directory named "assets" in the root. It turns out, backend tools often ignore certain directories like "examples" or "tests" at the root level, but "assets" isn't typically one of them. I struggled to resolve this with @code{setuptools}, but switching to @code{hatchling} did the trick.
+While uploading my projects, I ran into some problems due to having a directory named "assets" in the root. It turns out, backend tools often ignore certain directories like "examples" or "tests" at the root level, but "assets" isn't typically one of them. I struggled to resolve this with @mark{setuptools}, but switching to @mark{hatchling} did the trick.
 
-If this is your case, you can add the following lines to the @code{pyproject.toml} file to specify which directories to include in the build process.
+If this is your case, you can add the following lines to the @mark{pyproject.toml} file to specify which directories to include in the build process.
 
 @file{pyproject.toml}
 
 @pre
-[tool.hatch.build.targets.wheel]<br>
+[tool.hatch.build.targets.wheel]
 packages = ["chorizo"]
 
 @h3
 requirements.txt
 
-It is also a good practice leaving a @code{requirements.txt} with the dependencies in case someone wants to build from source.
+It is also a good practice leaving a @mark{requirements.txt} with the dependencies in case someone wants to build from source.
 
 @file{requirements.txt}
 
 @pre
-numpy<br>
-matplotlib<br>
+numpy
+matplotlib
 pandas
 
 @h3
@@ -201,22 +200,22 @@ As a bonus tip, you can add a .gitignore file to your project to avoid uploading
 @file{.gitignore}
 
 @pre
-**/__pycache__<br>
-/dist<br>
-/build<br>
-*.egg-info<br>
+**/__pycache__
+/dist
+/build
+*.egg-info
 
 @h2
 Build the Project
 
 Now it's time to build your project and create the files that will be uploaded to PyPi.
 
-First of, you need to install two packages: @code{build} and @code{twine}:
+First of, you need to install two packages: @mark{build} and @mark{twine}:
 
 @list{
-@code{build} is a package that will build your project, as the name suggests.
+@mark{build} is a package that will build your project, as the name suggests.
 }{
-@code{twine} is a package that will upload your project to PyPi super easily.
+@mark{twine} is a package that will upload your project to PyPi super easily.
 }
 
 @spacer
@@ -233,12 +232,12 @@ Once everything is set up, you can build your project.
 @pre
 python -m build
 
-New directories will appear in your project root: @code{dist} and @code{chorizo.egg-info}. @code{dist} contains the files that will be uploaded to PyPi, and @code{chorizo.egg-info} contains some metadata about your project.
+New directories will appear in your project root: @mark{dist} and @mark{chorizo.egg-info}. @mark{dist} contains the files that will be uploaded to PyPi, and @mark{chorizo.egg-info} contains some metadata about your project.
 
 @h2
 Upload the Project
 
-The process of uploading your project to PyPi is a bit tricky. First of all, there are two PyPi repositories: @code{TestPyPi} and @code{PyPi}. The first one is used to test your project before uploading it to the second one. They are independent servers, so you need to create an account in both.
+The process of uploading your project to PyPi is a bit tricky. First of all, there are two PyPi repositories: @mark{TestPyPi} and @mark{PyPi}. The first one is used to test your project before uploading it to the second one. They are independent servers, so you need to create an account in both.
 
 @important{Once you upload a realease, it cannot be deleted, so you need to be careful.}
 
@@ -247,7 +246,7 @@ Upload to TestPyPi
 
 It is a good idea to upload first to the test server to check if everything is working as expected. To register an account, go to @url{https://test.pypi.org/account/register/}.
 
-Now you need a token to upload your project. To get a token, go to @url{https://test.pypi.org/manage/account/#api-tokens} and click on "Add API token". You will need to setup a Two-Factor-Autentification, which is a bit annoying, but follow the steps.
+Now you need a token to upload your project. To get a token, go to @url{https://test.pypi.org/manage/account/\#api-tokens} and click on "Add API token". You will need to setup a Two-Factor-Autentification, which is a bit annoying, but follow the steps.
 
 Finally, you can upload your project to the test server.
 
@@ -265,7 +264,7 @@ You can download your project from the test server with pip.
 @pre
 pip install --index-url https://test.pypi.org/simple/ --no-deps chorizo
 
-Ypur package will be installed with no dependendies, so you need to install them manually using your @code{requierements.txt}.
+Ypur package will be installed with no dependendies, so you need to install them manually using your @mark{requierements.txt}.
 
 @file{terminal}
 
@@ -286,7 +285,7 @@ python -m twine upload dist/*
 
 Now your project can be installed with pip. 
 
-@h3
+@h2
 Versioning
 
 Now it is time to upload your project to GitHub. We will tag the project with the released version and push it to GitHub. 
@@ -294,7 +293,7 @@ Now it is time to upload your project to GitHub. We will tag the project with th
 @file{terminal}
 
 @pre
-git tag -a v0.0.1 -m "Release v0.0.1"<br>
+git tag -a v0.0.1 -m "Release v0.0.1"
 git push origin v0.0.1
 
 Then, I use the GitHub CLI to upload the realease files to GitHub. If you don't have it installed, you can do it with your package manager of choice.
@@ -302,7 +301,7 @@ Then, I use the GitHub CLI to upload the realease files to GitHub. If you don't 
 @file{terminal}
 
 @pre
-sudo apt install gh<br>
+sudo apt install gh
 sudo dnf install gh
 
 You will need to login to your GitHub account.
@@ -312,7 +311,7 @@ You will need to login to your GitHub account.
 @pre
 gh auth login
 
-And finally you can upload the release files to GitHub. In our case, the files are in the @code{dist} directory.
+And finally you can upload the release files to GitHub. In our case, the files are in the @mark{dist} directory.
 
 @file{terminal}
 
@@ -335,4 +334,4 @@ References
 @url{https://setuptools.pypa.io/en/latest/userguide/package_discovery.html}{Package Discovery}
 }
 
-@post-footer
+@footer

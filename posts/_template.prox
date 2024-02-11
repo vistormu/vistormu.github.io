@@ -1,10 +1,10 @@
 @title{Vistor's Blog:}
 @style{./../style.css}
 
-@post-header
+@header
 
-@vsp{10} @rectangle{red}{200}{left}{100}
-@vsp{2} @rectangle{green}{100}{left}{48}
+@vsp{10} @rectangle{left}
+@vsp{2} @rectangle{left}
 
 @h1
 Title
@@ -14,8 +14,8 @@ Title
 
 Text
 
-@vsp{10} @rectangle{violet}{200}{right}{48}
-@vsp{5} @rectangle{orange}{75}{right}{150}
+@vsp{10} @rectangle{right}
+@vsp{5} @rectangle{right}
 
 @spacer
 
@@ -47,4 +47,4 @@ oct 11th 2023
 
 </div>
 
-@post-footer
+@footer

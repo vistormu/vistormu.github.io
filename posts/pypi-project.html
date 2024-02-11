@@ -9,66 +9,52 @@
 <body>
 
 <link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
-
-<header class="header">
-    <div class="header-content">
-        <div class="logo">
-            <a href="../index.html">Vistor's Blog</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+    
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="./../index.html">Vistor's Blog</a>
+            </div>
+            <nav>
+                <a href="./../about.html" class="nav-link">about</a>
+            </nav>
         </div>
-        <nav>
-            <a href="../about.html" class="nav-link">about</a>
-        </nav>
-    </div>
-</header>
+    </header>
 
-<div class="content-wrapper">
-
+    <div class="content-wrapper">
 <div style="height: 10px;"></div>
- <div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--orange); width: 170px; left:75px;"></div>
-</div>
-<div style="height: 2px;"></div>
- <div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--blue); width: 50px; left:48px;"></div>
-</div>
-
+ <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--white); width: 240px; left: 80px;"></div></div><div style="height: 2px;"></div>
+ <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--green); width: 187px; left: 76px;"></div></div>
 <h1 id="how-to-upload-a-python-package-to-pypi">
 	How to Upload a Python Package to PyPi
 </h1>
-
-<div style="text-align: center;"><div class="subtitle">Published on <mark>jan 30th 2024</mark>. Last edit on <mark>jan 30th 2024</mark></div>
+<div style="text-align: center;"><div class="subtitle">Published on <mark>jan 30th 2024</mark>
+. Last edit on <mark>jan 30th 2024</mark>
+</div>
 </div>
 
 <p>
 	If you're frequently programming in Python and have developed custom tools that are useful across multiple projects, it's a smart move to consider publishing them on PyPI. This blog post will show you how to do that. We'll also cover how to manage your release versions and keep a tidy changelog.
 </p>
 <div style="height: 10px;"></div>
- <div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--violet); width: 20px; right:148px;"></div>
-</div>
-<div style="height: 5px;"></div>
- <div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--yellow); width: 175px; right:50px;"></div>
-</div>
-
+ <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--red); width: 265px; right: 55px;"></div></div><div style="height: 5px;"></div>
+ <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--white); width: 101px; right: 62px;"></div></div>
 <h2 id="table-of-contents">
 	Table of Contents
 </h2>
-
 <ul>
-	<li><a href="#project-structure">Project Structure</a></li>
-	<li><a href="#necessary-files">Necessary Files</a></li>
-	<li><a href="#build-the-project">Build the Project</a></li>
-	<li><a href="#upload-the-project">Upload the Project</a></li>
-	<li><a href="#wrapping-up">Wrapping Up</a></li>
-	<li><a href="#references">References</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#necessary-files">Necessary Files</a></li>
+<li><a href="#build-the-project">Build the Project</a></li>
+<li><a href="#upload-the-project">Upload the Project</a></li>
+<li><a href="#versioning">Versioning</a></li>
+<li><a href="#wrapping-up">Wrapping Up</a></li>
+<li><a href="#references">References</a></li>
 </ul>
-
 <h2 id="project-structure">
 	Project Structure
 </h2>
-
 <p>
 	In this tutorial, we will upload our just recently written project named "chorizo" to PyPi.
 </p>
@@ -78,51 +64,62 @@
 <h3 id="src-layout">
 	src-layout
 </h3>
-
 <p>
-	The project should contain a <code>src</code> directory under the project root and all modules and packages meant for distribution are placed inside this directory.
+	The project should contain a <mark>src</mark>
+ directory under the project root and all modules and packages meant for distribution are placed inside this directory.
 </p>
 <div class="code-container">
-  <pre><code>chorizo<br>|-- src<br>|   |-- chorizo<br>|   |   |-- __init__.py<br></code></pre>
+  <pre><code>chorizo
+|-- src
+|   |-- chorizo
+|   |   |-- __init__.py</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <h3 id="flat-layout">
 	flat-layout
 </h3>
-
 <p>
 	The package directory is the project root itself.
 </p>
 <div class="code-container">
-  <pre><code>chorizo<br>|-- chorizo<br>|   |-- __init__.py<br></code></pre>
+  <pre><code>chorizo
+|-- chorizo
+|   |-- __init__.py</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <p>
-	In this project we will use the latter, because it is simpler, cleaner, and easier to explore in GitHub. And because I just hate naming something <code>src</code> whe I have a cool name like "chorizo".
+	In this project we will use the latter, because it is simpler, cleaner, and easier to explore in GitHub. And because I just hate naming something <mark>src</mark>
+ whe I have a cool name like "chorizo".
 </p>
 <h2 id="necessary-files">
 	Necessary Files
 </h2>
-
 <p>
 	For a project to be uploaded to PyPi, it needs to have a few files in the root directory.
 </p>
 <div class="code-container">
-  <pre><code>chorizo<br>|-- chorizo<br>|   |-- __init__.py<br>|<br>|-- LICENSE<br>|-- pyproject.toml<br>|-- README.md<br>|-- requirements.txt<br></code></pre>
+  <pre><code>chorizo
+|-- chorizo
+|   |-- __init__.py
+|
+|-- LICENSE
+|-- pyproject.toml
+|-- README.md
+|-- requirements.txt</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <h3 id="license">
 	LICENSE
 </h3>
-
 <p>
 	A license is a legal tool you can use to protect your intellectual property. For choosing the most suitable license for your project, check <a href="https://choosealicense.com/">https://choosealicense.com/</a> for more information.
 </p>
 <p>
-	The most common license for open source projects is the MIT license, so we will use that one. You just need to copy the text and paste it to the <code>LICENSE</code> file.
+	The most common license for open source projects is the MIT license, so we will use that one. You just need to copy the text and paste it to the <mark>LICENSE</mark>
+ file.
 </p>
 <p>
 	Don't forget to change the year and the name of the author.
@@ -130,30 +127,56 @@
 <div class="file">LICENSE</div>
 
 <div class="code-container">
-  <pre><code>MIT License<br><br>Copyright (c) [year] [fullname]<br><br>Permission is hereby granted, free of charge, to any person obtaining a copyof this software and associated documentation files (the "Software"), to dealin the Software without restriction, including without limitation the rightsto use, copy, modify, merge, publish, distribute, sublicense, and/or sellcopies of the Software, and to permit persons to whom the Software isfurnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice shall be included in allcopies or substantial portions of the Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS ORIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THEAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHERLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THESOFTWARE.</code></pre>
+  <pre><code>MIT License
+    
+Copyright (c) [year] [fullname]
+    
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+    
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+    
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <h3 id="readme.md">
 	README.md
 </h3>
-
 <p>
-	A <code>README.md</code> file is used to describe your project. It is a good practice to include a description of your project, the installation, some examples...
+	A <mark>README.md</mark>
+ file is used to describe your project. It is a good practice to include a description of your project, the installation, some examples...
 </p>
 <div class="file">README.md</div>
 
 <div class="code-container">
-  <pre><code># chorizo<br><br>An example project named chorizo.<br><br>## Installation<br><br>```bash<br>pip install chorizo<br>```<br></code></pre>
+  <pre><code># chorizo
+An example project named chorizo.
+    
+## Installation
+```bash
+pip install chorizo
+```</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <h3 id="pyproject.toml">
 	pyproject.toml
 </h3>
-
 <p>
-	The <code>pyproject.toml</code> file is used to configure the build process of your project. There are multiple backends available to build your project, but I am lately using <a href="https://github.com/pypa/hatch">hatchling</a>. The backend tool will be automatically installing when building, so use the one you like the most.
+	The <mark>pyproject.toml</mark>
+ file is used to configure the build process of your project. There are multiple backends available to build your project, but I am lately using <a href="https://github.com/pypa/hatch">hatchling</a>. The backend tool will be automatically installing when building, so use the one you like the most.
 </p>
 <p>
 	It is important to update the version of your package every time you upload a new release.
@@ -161,66 +184,102 @@
 <div class="file">pyproject.toml</div>
 
 <div class="code-container">
-  <pre><code>[build-system]<br>requires = ["hatchling"]<br>build-backend = "hatchling.build"<br><br>[project]<br>name = "chorizo"<br>version = "0.0.1"<br>authors = [<br>  { name="Example Author", email="author@example.com" },<br>]<br>description = "An example project named chorizo."<br>readme = "README.md"<br>requires-python = ">=3.10"<br>classifiers = [<br>    "Programming Language :: Python :: 3",<br>    "License :: OSI Approved :: MIT License",<br>    "Operating System :: OS Independent",<br>]<br>dependencies = [<br>    "numpy",<br>    "matplotlib",<br>    "pandas",<br>]<br><br>[project.urls]<br>Homepage = "https://github.com/user/chorizo"<br>Issues = "https://github.com/user/chorizo/issues"<br></code></pre>
+  <pre><code>[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+    
+[project]
+name = "chorizo"
+version = "0.0.1"
+authors = [
+  { name="Example Author", email="author@example.com" },
+]
+description = "An example project named chorizo."
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "numpy",
+    "matplotlib",
+    "pandas",
+]
+    
+[project.urls]
+Homepage = "https://github.com/user/chorizo"
+Issues = "https://github.com/user/chorizo/issues"</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <p>
-	While uploading my projects, I ran into some problems due to having a directory named "assets" in the root. It turns out, backend tools often ignore certain directories like "examples" or "tests" at the root level, but "assets" isn't typically one of them. I struggled to resolve this with <code>setuptools</code>, but switching to <code>hatchling</code> did the trick.
+	While uploading my projects, I ran into some problems due to having a directory named "assets" in the root. It turns out, backend tools often ignore certain directories like "examples" or "tests" at the root level, but "assets" isn't typically one of them. I struggled to resolve this with <mark>setuptools</mark>
+, but switching to <mark>hatchling</mark>
+ did the trick.
 </p>
 <p>
-	If this is your case, you can add the following lines to the <code>pyproject.toml</code> file to specify which directories to include in the build process.
+	If this is your case, you can add the following lines to the <mark>pyproject.toml</mark>
+ file to specify which directories to include in the build process.
 </p>
 <div class="file">pyproject.toml</div>
 
 <div class="code-container">
-  <pre><code>[tool.hatch.build.targets.wheel]<br>packages = ["chorizo"]</code></pre>
+  <pre><code>[tool.hatch.build.targets.wheel]
+packages = ["chorizo"]</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <h3 id="requirements.txt">
 	requirements.txt
 </h3>
-
 <p>
-	It is also a good practice leaving a <code>requirements.txt</code> with the dependencies in case someone wants to build from source.
+	It is also a good practice leaving a <mark>requirements.txt</mark>
+ with the dependencies in case someone wants to build from source.
 </p>
 <div class="file">requirements.txt</div>
 
 <div class="code-container">
-  <pre><code>numpy<br>matplotlib<br>pandas</code></pre>
+  <pre><code>numpy
+matplotlib
+pandas</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <h3 id=".gitignore">
 	.gitignore
 </h3>
-
 <p>
 	As a bonus tip, you can add a .gitignore file to your project to avoid uploading unnecessary files to GitHub.
 </p>
 <div class="file">.gitignore</div>
 
 <div class="code-container">
-  <pre><code>**/__pycache__<br>/dist<br>/build<br>*.egg-info<br></code></pre>
+  <pre><code>**/__pycache__
+/dist
+/build
+*.egg-info</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <h2 id="build-the-project">
 	Build the Project
 </h2>
-
 <p>
 	Now it's time to build your project and create the files that will be uploaded to PyPi.
 </p>
 <p>
-	First of, you need to install two packages: <code>build</code> and <code>twine</code>:
+	First of, you need to install two packages: <mark>build</mark>
+ and <mark>twine</mark>
+:
 </p>
 <ul>
-	<li><code>build</code> is a package that will build your project, as the name suggests.</li>
-	<li><code>twine</code> is a package that will upload your project to PyPi super easily.</li>
+	<li><mark>build</mark>
+ is a package that will build your project, as the name suggests.</li>
+	<li><mark>twine</mark>
+ is a package that will upload your project to PyPi super easily.</li>
 </ul>
-
 <div style="height: 20px;"></div>
 
 <div class="file">terminal</div>
@@ -241,14 +300,19 @@
 </div>
 
 <p>
-	New directories will appear in your project root: <code>dist</code> and <code>chorizo.egg-info</code>. <code>dist</code> contains the files that will be uploaded to PyPi, and <code>chorizo.egg-info</code> contains some metadata about your project.
+	New directories will appear in your project root: <mark>dist</mark>
+ and <mark>chorizo.egg-info</mark>
+. <mark>dist</mark>
+ contains the files that will be uploaded to PyPi, and <mark>chorizo.egg-info</mark>
+ contains some metadata about your project.
 </p>
 <h2 id="upload-the-project">
 	Upload the Project
 </h2>
-
 <p>
-	The process of uploading your project to PyPi is a bit tricky. First of all, there are two PyPi repositories: <code>TestPyPi</code> and <code>PyPi</code>. The first one is used to test your project before uploading it to the second one. They are independent servers, so you need to create an account in both.
+	The process of uploading your project to PyPi is a bit tricky. First of all, there are two PyPi repositories: <mark>TestPyPi</mark>
+ and <mark>PyPi</mark>
+. The first one is used to test your project before uploading it to the second one. They are independent servers, so you need to create an account in both.
 </p>
 <div class="note">
     <div class="icon">
@@ -261,7 +325,6 @@
 <h3 id="upload-to-testpypi">
 	Upload to TestPyPi
 </h3>
-
 <p>
 	It is a good idea to upload first to the test server to check if everything is working as expected. To register an account, go to <a href="https://test.pypi.org/account/register/">https://test.pypi.org/account/register/</a>.
 </p>
@@ -281,7 +344,6 @@
 <h3 id="download-and-test">
 	Download and Test
 </h3>
-
 <p>
 	You can download your project from the test server with pip. <div class="file">terminal</div>
 
@@ -292,7 +354,8 @@
 </div>
 
 <p>
-	Ypur package will be installed with no dependendies, so you need to install them manually using your <code>requierements.txt</code>.
+	Ypur package will be installed with no dependendies, so you need to install them manually using your <mark>requierements.txt</mark>
+.
 </p>
 <div class="file">terminal</div>
 
@@ -304,7 +367,6 @@
 <h3 id="upload-to-pypi">
 	Upload to PyPi
 </h3>
-
 <p>
 	Once you are sure that everything is working as expected, you can upload your project to the PyPi server.
 </p>
@@ -321,17 +383,17 @@
 <p>
 	Now your project can be installed with pip. 
 </p>
-<h3 id="versioning">
+<h2 id="versioning">
 	Versioning
-</h3>
-
+</h2>
 <p>
 	Now it is time to upload your project to GitHub. We will tag the project with the released version and push it to GitHub. 
 </p>
 <div class="file">terminal</div>
 
 <div class="code-container">
-  <pre><code>git tag -a v0.0.1 -m "Release v0.0.1"<br>git push origin v0.0.1</code></pre>
+  <pre><code>git tag -a v0.0.1 -m "Release v0.0.1"
+git push origin v0.0.1</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
@@ -341,7 +403,8 @@
 <div class="file">terminal</div>
 
 <div class="code-container">
-  <pre><code>sudo apt install gh<br>sudo dnf install gh</code></pre>
+  <pre><code>sudo apt install gh
+sudo dnf install gh</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
@@ -356,7 +419,8 @@
 </div>
 
 <p>
-	And finally you can upload the release files to GitHub. In our case, the files are in the <code>dist</code> directory.
+	And finally you can upload the release files to GitHub. In our case, the files are in the <mark>dist</mark>
+ directory.
 </p>
 <div class="file">terminal</div>
 
@@ -371,26 +435,20 @@
 <h2 id="wrapping-up">
 	Wrapping Up
 </h2>
-
 <p>
 	Now you know how to upload your projects to PyPi. It is a bit tricky at first, but once you get used to it, it is pretty straightforward. I hope you found it useful!
 </p>
 <h2 id="references">
 	References
 </h2>
-
 <ul>
 	<li><a href="https://packaging.python.org/en/latest/tutorials/packaging-projects/">Packaging Python Projects</a></li>
 	<li><a href="https://setuptools.pypa.io/en/latest/userguide/package_discovery.html">Package Discovery</a></li>
 </ul>
-
-</div>
-<div style="height: 60px;"></div>
-<div class="divider" style="height: 20px; background-color: var(--blue);"></div>
-
-<script src="./../scripts/scroll.js"></script>
-<script src="./../scripts/copyCode.js"></script>
-<script> hljs.highlightAll(); </script>
-
+<div style="height: 120px;"></div>
+    <div class="divider" style="height: 20px; background-color: var(--yellow);"></div>
+    <script src="./../scripts/scroll.js"></script>
+    <script src="./../scripts/copyCode.js"></script>
+    <script> hljs.highlightAll(); </script>
 </body>
 </html>

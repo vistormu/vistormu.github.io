@@ -9,46 +9,34 @@
 <body>
 
 <link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
-
-<header class="header">
-    <div class="header-content">
-        <div class="logo">
-            <a href="../index.html">Vistor's Blog</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+    
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="./../index.html">Vistor's Blog</a>
+            </div>
+            <nav>
+                <a href="./../about.html" class="nav-link">about</a>
+            </nav>
         </div>
-        <nav>
-            <a href="../about.html" class="nav-link">about</a>
-        </nav>
-    </div>
-</header>
+    </header>
 
-<div class="content-wrapper">
-
+    <div class="content-wrapper">
 <div style="height: 10px;"></div>
- <div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--red); width: 200px; left:100px;"></div>
-</div>
-<div style="height: 2px;"></div>
- <div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--green); width: 100px; left:48px;"></div>
-</div>
-
+ <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--violet); width: 148px; left: 70px;"></div></div><div style="height: 2px;"></div>
+ <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--yellow); width: 204px; left: 98px;"></div></div>
 <h1 id="how-to-create-a-python-virtual-environment-with-conda">
 	How to Create a Python Virtual Environment with Conda
 </h1>
-
-<div style="text-align: center;"><div class="subtitle">Published on <mark>oct 11th 2023</mark>. Last edit on <mark>oct 11th 2023</mark></div>
+<div style="text-align: center;"><div class="subtitle">Published on <mark>oct 11th 2023</mark>
+. Last edit on <mark>oct 11th 2023</mark>
+</div>
 </div>
 
 <div style="height: 10px;"></div>
- <div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--violet); width: 200px; right:48px;"></div>
-</div>
-<div style="height: 5px;"></div>
- <div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--orange); width: 75px; right:150px;"></div>
-</div>
-
+ <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--white); width: 138px; right: 74px;"></div></div><div style="height: 5px;"></div>
+ <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--white); width: 184px; right: 89px;"></div></div>
 <div style="height: 20px;"></div>
 
 <p>
@@ -63,22 +51,20 @@
 <h2 id="table-of-contents">
 	Table of Contents
 </h2>
-
 <ul>
-	<li><a href="#installing-conda">Installing Conda</a></li>
-	<li><a href="#creating-a-virtual-environment">Creating a Virtual Environment</a></li>
-	<li><a href="#installing-packages">Installing Packages</a></li>
+<li><a href="#installing-conda">Installing Conda</a></li>
+<li><a href="#creating-a-virtual-environment">Creating a Virtual Environment</a></li>
+<li><a href="#installing-packages">Installing Packages</a></li>
 </ul>
-
 <h2 id="installing-conda">
 	Installing Conda
 </h2>
-
 <p>
 	Conda is the most important virtual environment manager for Python. In particular, we will use <a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>, a minimal installation of Conda that works only in the command line. To install it, follow the following steps.
 </p>
 <p>
-	1. Create a directory in the home folder called <mark>miniconda3</mark>:
+	1. Create a directory in the home folder called <mark>miniconda3</mark>
+:
 </p>
 <div class="file">terminal</div>
 
@@ -91,27 +77,33 @@
 	2. Download the installer from the official repository. Download the version for your operating system and architecture.
 </p>
 <p>
-	If you are using a <mark>x86_64</mark> architecture, run:
+	If you are using a <mark>x86_64</mark>
+ architecture, run:
 </p>
 <div class="file">terminal</div>
 
 <div class="code-container">
-  <pre><code>wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \<br>-O ~/miniconda3/miniconda.sh</code></pre>
+  <pre><code>wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+-O ~/miniconda3/miniconda.sh</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <p>
-	If you are using an <mark>arm64</mark> architecture, run:
+	If you are using an <mark>arm64</mark>
+ architecture, run:
 </p>
 <div class="file">terminal</div>
 
 <div class="code-container">
-  <pre><code>wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh \<br>-O ~/miniconda3/miniconda.sh</code></pre>
+  <pre><code>wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh \
+-O ~/miniconda3/miniconda.sh</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <p>
-	3. Run the installer with your shell (<mark>bash</mark> or <mark>zsh</mark> usually):
+	3. Run the installer with your shell (<mark>bash</mark>
+ or <mark>zsh</mark>
+ usually):
 </p>
 <div class="file">terminal</div>
 
@@ -131,7 +123,9 @@
 </div>
 
 <p>
-	5. Initialize Miniconda in your shell (<mark>bash</mark> or <mark>zsh</mark> again):
+	5. Initialize Miniconda in your shell (<mark>bash</mark>
+ or <mark>zsh</mark>
+ again):
 </p>
 <div class="file">terminal</div>
 
@@ -146,7 +140,8 @@
 <div class="file">terminal</div>
 
 <div class="code-container">
-  <pre><code>reset<br>conda --version</code></pre>
+  <pre><code>reset
+conda --version</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
@@ -154,7 +149,8 @@
 	If everything went well, you should see the version of Conda installed.
 </p>
 <p>
-	Also, you can check that now there is a <mark>(base)</mark> in your shell. This means that you are in the base environment of Conda, which is the default environment that is created. Conda auto activates it every time you open a terminal, which is quite annoying. Disable that feature running this command:
+	Also, you can check that now there is a <mark>(base)</mark>
+ in your shell. This means that you are in the base environment of Conda, which is the default environment that is created. Conda auto activates it every time you open a terminal, which is quite annoying. Disable that feature running this command:
 </p>
 <div class="file">terminal</div>
 
@@ -166,12 +162,15 @@
 <h2 id="creating-a-virtual-environment">
 	Creating a Virtual Environment
 </h2>
-
 <p>
-	Now that Conda is installed, we can create a virtual environment for our project. This is done with the <mark>conda create</mark> command. It is very important to specify also a Python version as it will install the <mark>pip</mark> package manager along with other useful things. I highly encourage installing a version of Python higher than <mark>10.x.x</mark> as it offers very good type hinting.
+	Now that Conda is installed, we can create a virtual environment for our project. This is done with the <mark>conda create</mark>
+ command. It is very important to specify also a Python version as it will install the <mark>pip</mark>
+ package manager along with other useful things. I highly encourage installing a version of Python higher than <mark>10.x.x</mark>
+ as it offers very good type hinting.
 </p>
 <p>
-	For example, to create an environment called <mark>myenv</mark> with Python 3.11.5, run:
+	For example, to create an environment called <mark>myenv</mark>
+ with Python 3.11.5, run:
 </p>
 <div class="file">terminal</div>
 
@@ -181,7 +180,9 @@
 </div>
 
 <p>
-	You will be asked to confirm the installation. Type <mark>y</mark> and press <mark>Enter</mark>.
+	You will be asked to confirm the installation. Type <mark>y</mark>
+ and press <mark>Enter</mark>
+.
 </p>
 <p>
 	After the installation, you can activate the environment with:
@@ -194,22 +195,26 @@
 </div>
 
 <p>
-	You should see that your environment has been activated in the shell as it will appear <mark>(myenv)</mark> at the left.
+	You should see that your environment has been activated in the shell as it will appear <mark>(myenv)</mark>
+ at the left.
 </p>
 <h2 id="installing-packages">
 	Installing Packages
 </h2>
-
 <p>
-	Now that we have a virtual environment, we can install packages with <mark>pip</mark>. But before installing anything, it is very important to track manually the dependencies of your project. You could install all the packages you need directly, but then it will be very difficult to trace them back: packages depend on other packages, and these packages on a lot more... This results in your environment having lots of different packages and not knowing the ones that you firstly installed.
+	Now that we have a virtual environment, we can install packages with <mark>pip</mark>
+. But before installing anything, it is very important to track manually the dependencies of your project. You could install all the packages you need directly, but then it will be very difficult to trace them back: packages depend on other packages, and these packages on a lot more... This results in your environment having lots of different packages and not knowing the ones that you firstly installed.
 </p>
 <p>
-	The cleanest way of installing packages is to create a <mark>requirements.txt</mark> in the directory of your project and add there the packages that you will use:
+	The cleanest way of installing packages is to create a <mark>requirements.txt</mark>
+ in the directory of your project and add there the packages that you will use:
 </p>
 <div class="file">requirements.txt</div>
 
 <div class="code-container">
-  <pre><code>numpy<br>pandas<br>matplotlib<br></code></pre>
+  <pre><code>numpy
+pandas
+matplotlib</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
@@ -224,28 +229,30 @@
 </div>
 
 <p>
-	If you want to add more packages, add them into the <mark>requirements.txt</mark> file and repeat the <mark>pip</mark> installation.
+	If you want to add more packages, add them into the <mark>requirements.txt</mark>
+ file and repeat the <mark>pip</mark>
+ installation.
 </p>
 <p>
 	It can also be helpful to freeze the version of each package, as it will be easier to reproduce the environment in another computer. I personally don't do this, but more than one time an update of a package made my code to have errors.
 </p>
 <p>
-	To do this, just write the version of each package in the <mark>requirements.txt</mark> file:
+	To do this, just write the version of each package in the <mark>requirements.txt</mark>
+ file:
 </p>
 <div class="file">requirements.txt</div>
 
 <div class="code-container">
-  <pre><code>numpy==1.21.2<br>pandas==1.3.3<br>matplotlib==3.4.3<br></code></pre>
+  <pre><code>numpy==1.21.2
+pandas==1.3.3
+matplotlib==3.4.3</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
-</div>
-<div style="height: 60px;"></div>
-<div class="divider" style="height: 20px; background-color: var(--blue);"></div>
-
-<script src="./../scripts/scroll.js"></script>
-<script src="./../scripts/copyCode.js"></script>
-<script> hljs.highlightAll(); </script>
-
+<div style="height: 120px;"></div>
+    <div class="divider" style="height: 20px; background-color: var(--green);"></div>
+    <script src="./../scripts/scroll.js"></script>
+    <script src="./../scripts/copyCode.js"></script>
+    <script> hljs.highlightAll(); </script>
 </body>
 </html>

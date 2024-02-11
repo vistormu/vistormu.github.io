@@ -9,45 +9,30 @@
 <body>
 
 <link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
-
-<header class="header">
-    <div class="header-content">
-        <div class="logo">
-            <a href="../index.html">Vistor's Blog</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+    
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="./../index.html">Vistor's Blog</a>
+            </div>
+            <nav>
+                <a href="./../about.html" class="nav-link">about</a>
+            </nav>
         </div>
-        <nav>
-            <a href="../about.html" class="nav-link">about</a>
-        </nav>
-    </div>
-</header>
+    </header>
 
-<div class="content-wrapper">
-
+    <div class="content-wrapper">
 <div style="height: 20px;"></div>
 
-<div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--red); width: 200px; left:100px;"></div>
-</div>
-<div style="height: 2px;"></div>
- <div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--green); width: 100px; left:48px;"></div>
-</div>
-
+<div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--pink); width: 204px; left: 79px;"></div></div><div style="height: 2px;"></div>
+ <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--blue); width: 86px; left: 100px;"></div></div>
 <h1 id="why-neovim">
 	Why NeoVim
 </h1>
-
-<div style="text-align: center;"><div class="subtitle">Published on <mark>oct 29th 2023</mark>. Last edit on <mark>nov 5th 2023</mark></div>
+<div style="text-align: center;"><div class="subtitle">Published on <mark>oct 29th 2023</mark>
+. Last edit on <mark>nov 5th 2023</mark>
 </div>
-
-<div style="height: 10px;"></div>
- <div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--violet); width: 200px; right:48px;"></div>
-</div>
-<div style="height: 5px;"></div>
- <div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--orange); width: 75px; right:150px;"></div>
 </div>
 
 <div style="height: 20px;"></div>
@@ -70,17 +55,18 @@
 <p>
 	In this article I will explain the main advantages of using Vim, or I should say NeoVim, and if it suits you or not. In advance, and although it hurts me a little bit, NeoVim is not for everyone.
 </p>
+<div style="height: 10px;"></div>
+ <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--red); width: 155px; right: 65px;"></div></div><div style="height: 5px;"></div>
+ <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--red); width: 123px; right: 70px;"></div></div>
 <h2 id="the-main-advantages-of-neovim">
 	The Main Advantages of NeoVim
 </h2>
-
 <p>
 	Using NeoVim has many advantages. I very much like how fas and lightweight it is. I really enjoy using the terminal. I love my highly-customazible minimalistic NeoVim setup. However, in my opinion I think there are two main advantages.
 </p>
 <h3 id="vim-motions">
 	Vim motions
 </h3>
-
 <p>
 	Vim is a modal editor. This means that it has different modes in which you can edit text, and not only one like the rest of the text editors.
 </p>
@@ -90,7 +76,6 @@
 	<li>Visual mode. In this mode you can select text.</li>
 	<li>Command mode. In this mode you can execute commands.</li>
 </ul>
-
 <p>
 	Vim motions are the key-bindings that let you move around the cursor in normal mode and select text in visual mode. Vim motions are the main reason why Vim-lovers love Vim so much. Every imaginable thing that you can do editing text has its ow key binding: move up, down, left, move one word to the left... select a word, select text until a character... copy, paste, delete... navigate to a specific line, move lines up, down, to the end of the file, to the end of a line... find concurrences, change all concurrences... Everything is possible, and if the key-binding is too long, just create a remap and make it your own. And don't let me start with macros...
 </p>
@@ -100,7 +85,6 @@
 <h3 id="close-to-the-"metal"">
 	Close to the "metal"
 </h3>
-
 <p>
 	NeoVim is not a plug-and-play editor. You can always copy-paste some config file or use a pre-configured NeoVim distribution, but that would be missing the point in my opinion.
 </p>
@@ -113,7 +97,6 @@
 <h2 id="is-neovim-for-you">
 	Is NeoVim for you
 </h2>
-
 <p>
 	To know if NeoVim is for you or not, simply ask yourself these questions:
 </p>
@@ -121,7 +104,6 @@
 	<li>Do I want to use Vim key-bindings?</li>
 	<li>Do I care about how programming languages work?</li>
 </ul>
-
 <p>
 	If your answer is No/No, it means that you are happy enough using your cursor for editing your text and that you just want to hit the green triangle to run your code. And there is nothing to be ashamed of.
 </p>
@@ -134,13 +116,10 @@
 <p>
 	I your answer is Yes/Yes, welcome to the club. And remember, the first rule of the NeoVim Club is to always talk about NeoVim.
 </p>
-</div>
-<div style="height: 60px;"></div>
-<div class="divider" style="height: 20px; background-color: var(--blue);"></div>
-
-<script src="./../scripts/scroll.js"></script>
-<script src="./../scripts/copyCode.js"></script>
-<script> hljs.highlightAll(); </script>
-
+<div style="height: 120px;"></div>
+    <div class="divider" style="height: 20px; background-color: var(--green);"></div>
+    <script src="./../scripts/scroll.js"></script>
+    <script src="./../scripts/copyCode.js"></script>
+    <script> hljs.highlightAll(); </script>
 </body>
 </html>

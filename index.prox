@@ -1,18 +1,18 @@
 @style{./style.css}
 
-@header
+@header{index}
 
 @spacer
 
-@rectangle{red}{200}{left}{100}
-@vsp{5} @rectangle{green}{100}{left}{48}
+@rectangle{left}
+@vsp{5} @rectangle{left}
 
 @h1{Welcome to Vistor's Blog!}
 
 Hello! I am Vistor, a PhD Student researching in Machine Learning applications to Robotics. In this webpage you will find blog posts about various topics like tutorials, personal opinions... I hope you find it useful.
 
-@rectangle{violet}{200}{right}{48}
-@spacer @rectangle{orange}{75}{right}{150}
+@rectangle{right}
+@spacer @rectangle{right}
 
 @h2
 PYTHON TUTORIALS
@@ -39,26 +39,23 @@ nov 6th 2023
 ./posts/readable-code.html
 }
 
-@cscard{
+@card{
 How To Document Your Python Code with Docstrings
 }{
 Learn how to document your Python code with Docstrings to enhance your APIs.
 }{
-coming soon
 }{
-./posts/docstrings.html
 }
 
 </div>
 
 <div class="card-row">
 
-@cscard{
+@card{
 How to Structure a Python Project
 }{
 Learn how to structure a Python project to make it more maintainable and understandable.
 }{
-coming soon
 }{
 }
 
@@ -72,12 +69,11 @@ jan 30th 2024
 ./posts/pypi-project.html
 }
 
-@cscard{
+@card{
 How to Generate Documentation for a Python Project
 }{
 Learn how to generate documentation for a Python project to make it more understandable.
 }{
-coming soon
 }{
 }
 
@@ -88,48 +84,28 @@ LATEX TUTORIALS
 
 <div class="card-row">
 
-@cscard{
+@card{
 How to Install LaTex on your Machine
 }{
 Learn how to install LaTeX on your machine to write beautiful documents.
 }{
-coming soon
 }{
 }
 
-@cscard{
+@card{
 How to Use BibTeX to Manage your References
 }{
 Learn how to use BibTeX to manage your references and citations.
 }{
-coming soon
 }{
 }
 
-@cscard{
+@card{
 How to Structure a LaTeX Project
 }{
 Learn how to structure a LaTeX project to make it more maintainable and understandable.
 }{
-coming soon
 }{
-}
-
-</div>
-
-@h2
-SYSTEMS ENGINEERING TUTORIALS
-
-<div class="card-row">
-
-@card{
-Univariate Time Series Forecasting with GluonTS
-}{
-Learn how to make predictions of a single time series with GluonTS, a Deep Learning library for Python.
-}{
-oct 1st 2023
-}{
-./posts/gluonts.html
 }
 
 </div>
@@ -149,28 +125,22 @@ oct 29th 2023
 ./posts/why-neovim.html
 }
 
-@cscard{
+@card{
 How to Setup NeoVim from Scratch
 }{
 Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
 }{
-coming soon
 }{
-./posts/neovim-config.html
 }
 
-@cscard{
+@card{
 Vim Motions
 }{
 Learn how to use Vim motions to navigate through your code.
 }{
-coming soon
 }{
-./posts/vim-motions.html
 }
 
 </div>
 
-@spacer @spacer @spacer
-
-@footer
+@footer{index}

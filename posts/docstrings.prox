@@ -1,7 +1,7 @@
 @title{Vistor's Blog: How To Document Your Code}
 @style{./../style.css}
 
-@post-header
+@header
 
 @h1
 How To Document Your Python Code with Docstrings
@@ -199,4 +199,4 @@ oct 11th 2023
 
 </div>
 
-@post-footer
+@footer

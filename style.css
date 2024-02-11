@@ -8,13 +8,11 @@
     --blue: #528297;
     --orange: #EE9589;
     --yellow: #F3DF89;
-    --violet: #7E7F9B;
     --pink: #DC869F;
+    --violet: #614D9A;
+    --light-blue: #99A7B4;
 
     --glow: #DB547580;
-    --highlight: #392C5E;
-    --background: #0F2938;
-    --dark-violet: #614D9A;
 
     --max-width: 840px;
 }
@@ -49,7 +47,7 @@ h1 {
     font-size: 2rem;
     margin: 2rem 0 1rem 0;
     text-align: center;
-    color: var(--dark-violet);
+    color: var(--violet);
 }
 
 h2 {
@@ -73,11 +71,11 @@ a:hover {
 }
 
 mark {
-    background-color: var(--highlight);
-    color: var(--white);
+    background-color: var(--light-blue);
     padding: 1px 2px;
-    font-size: 0.8rem;
-    font-weight: 500;
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: bold;
 }
 
 hr {
@@ -92,7 +90,7 @@ ul {
 }
 
 .highlight {
-    background-color: var(--highlight);
+    background-color: var(--violet);
     color: var(--white);
     padding: 1px 3px;
     border-radius: 5px;
@@ -155,7 +153,7 @@ ul {
     display: inline-block;
     position: relative;
     border-radius: 20px;
-    background-color: var(--highlight);
+    background-color: var(--violet);
     background-size: cover;
     background-position: center;
 }
@@ -251,6 +249,7 @@ ul {
 .card-header {
     padding-bottom: 10px;
     font-size: 1.5rem;
+    color: var(--green);
 }
 .card-description {
     padding-bottom: 10px;
@@ -334,10 +333,10 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
 }
 code {
     background-color: var(--black) !important;
-    font-size: 0.9rem !important;
+    font-size: 1.0rem !important;
 }
 .file {
-    color: var(--highlight)
+    color: var(--violet)
     margin: 18px 0 0 0;
     font-size: 12px;
     text-indent: 12px; 

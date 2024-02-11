@@ -9,46 +9,34 @@
 <body>
 
 <link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
-
-<header class="header">
-    <div class="header-content">
-        <div class="logo">
-            <a href="../index.html">Vistor's Blog</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+    
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="./../index.html">Vistor's Blog</a>
+            </div>
+            <nav>
+                <a href="./../about.html" class="nav-link">about</a>
+            </nav>
         </div>
-        <nav>
-            <a href="../about.html" class="nav-link">about</a>
-        </nav>
-    </div>
-</header>
+    </header>
 
-<div class="content-wrapper">
-
+    <div class="content-wrapper">
 <div style="height: 10px;"></div>
- <div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--red); width: 200px; left:100px;"></div>
-</div>
-<div style="height: 2px;"></div>
- <div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--green); width: 100px; left:48px;"></div>
-</div>
-
+ <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--violet); width: 256px; left: 97px;"></div></div><div style="height: 2px;"></div>
+ <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--white); width: 253px; left: 51px;"></div></div>
 <h1 id="how-to-write-readable-code-in-python">
 	How To Write Readable Code in Python
 </h1>
-
-<div style="text-align: center;"><div class="subtitle">Published on <mark>nov 6th 2023</mark>. Last edit on <mark>nov 6th 2023</mark></div>
+<div style="text-align: center;"><div class="subtitle">Published on <mark>nov 6th 2023</mark>
+. Last edit on <mark>nov 6th 2023</mark>
+</div>
 </div>
 
 <div style="height: 10px;"></div>
- <div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--violet); width: 200px; right:48px;"></div>
-</div>
-<div style="height: 5px;"></div>
- <div style="position: relative; height: 10px; width: 100%;">
-<div class="rectangle" style="background-color: var(--orange); width: 75px; right:150px;"></div>
-</div>
-
+ <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--pink); width: 249px; right: 76px;"></div></div><div style="height: 5px;"></div>
+ <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--violet); width: 208px; right: 68px;"></div></div>
 <div style="height: 20px;"></div>
 
 <p>
@@ -57,36 +45,44 @@
 <h2 id="table-of-contents">
 	Table of Contents
 </h2>
-
 <ul>
-	<li><a href="#example-code">Example Code</a></li>
-	<li><a href="#use-descriptive-variable-names">Use descriptive variable names</a></li>
-	<li><a href="#write-procedural-code">Write Procedural Code</a></li>
-	<li><a href="#use-type-hints">Use Type Hints</a></li>
-	<li><a href="#avoid-using-comments">Avoid Using Comments</a></li>
-	<li><a href="#use-docstrings">Use Docstrings</a></li>
-	<li><a href="#wrapping-up">Wrapping Up</a></li>
-	<li><a href="#recommended-posts">Recommended posts</a></li>
+<li><a href="#example-code">Example Code</a></li>
+<li><a href="#use-descriptive-variable-names">Use descriptive variable names</a></li>
+<li><a href="#write-procedural-code">Write Procedural Code</a></li>
+<li><a href="#use-type-hints">Use Type Hints</a></li>
+<li><a href="#avoid-using-comments">Avoid Using Comments</a></li>
+<li><a href="#use-docstrings">Use Docstrings</a></li>
+<li><a href="#wrapping-up">Wrapping Up</a></li>
+<li><a href="#recommended-posts">Recommended posts</a></li>
 </ul>
-
 <h2 id="example-code">
 	Example Code
 </h2>
-
 <p>
-	We will be using this simple code snippet as an example throughout this post. This code defines a class called <mark>Foo</mark> with two methods: <mark>bar</mark> and <mark>baz</mark>. A priori, it is not clear what this code does. We can make it more readable by following the tips below.
+	We will be using this simple code snippet as an example throughout this post. This code defines a class called <mark>Foo</mark>
+ with two methods: <mark>bar</mark>
+ and <mark>baz</mark>
+. A priori, it is not clear what this code does. We can make it more readable by following the tips below.
 </p>
 <div style="height: 20px;"></div>
 
 <div class="code-container">
-  <pre><code>class Foo:<br>    def __init__(self, a, b):<br>        self.a = a<br>        self.b = b<br><br>    def bar(self):<br>        return np.pi*np.power(self.a, 2)*self.b<br><br>    def baz(self):<br>        return 2*np.pi*self.a*self.b + 2*np.pi*np.power(self.a, 2)</code></pre>
+  <pre><code>class Foo:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+    
+    def bar(self):
+        return np.pi*np.power(self.a, 2)*self.b
+    
+    def baz(self):
+        return 2*np.pi*self.a*self.b + 2*np.pi*np.power(self.a, 2)</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <h2 id="use-descriptive-variable-names">
 	Use descriptive variable names
 </h2>
-
 <p>
 	The first step to writing readable code is to use descriptive variable names.
 </p>
@@ -94,27 +90,39 @@
 	There is a famous quote by Phil Karlton that says: "There are only two hard things in Computer Science: cache invalidation and naming things". The seemingly simple task of choosing clear and meaningful names for variables can be surprisingly challenging. In our example is a piece of cake:
 </p>
 <ul>
-	<li>The class <mark>Foo</mark> represents a Cylinder.<br></li>
-	<li>The variable <mark>a</mark> represents the radius of the cylinder.<br></li>
-	<li>The variable <mark>b</mark> represents the height of the cylinder.<br></li>
-	<li>The method <mark>bar</mark> computes the volume of the cylinder.<br></li>
-	<li>The method <mark>baz</mark> computes the area of the cylinder.<br></li>
+	<li>The class <mark>Foo</mark>
+ represents a Cylinder.</li>
+	<li>The variable <mark>a</mark>
+ represents the radius of the cylinder.</li>
+	<li>The variable <mark>b</mark>
+ represents the height of the cylinder.</li>
+	<li>The method <mark>bar</mark>
+ computes the volume of the cylinder.</li>
+	<li>The method <mark>baz</mark>
+ computes the area of the cylinder.</li>
 </ul>
-
 <p>
 	Making these changes, our code becomes much more readable:
 </p>
 <div style="height: 20px;"></div>
 
 <div class="code-container">
-  <pre><code>class Cylinder:<br>    def __init__(self, radius, height):<br>        self.radius = radius<br>        self.height = height<br><br>    def volume(self):<br>        return np.pi*np.power(self.radius, 2)*self.height<br><br>    def area(self):<br>        return 2*np.pi*self.radius*self.height + 2*np.pi*np.power(self.radius, 2)</code></pre>
+  <pre><code>class Cylinder:
+    def __init__(self, radius, height):
+        self.radius = radius
+        self.height = height
+    
+    def volume(self):
+        return np.pi*np.power(self.radius, 2)*self.height
+    
+    def area(self):
+        return 2*np.pi*self.radius*self.height + 2*np.pi*np.power(self.radius, 2)</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <h2 id="write-procedural-code">
 	Write Procedural Code
 </h2>
-
 <p>
 	Always try to write procedural code.
 </p>
@@ -122,19 +130,30 @@
 	Try to divide the code in many steps as necessary. You are not a better programmer for writing more one-liners. It is often more befenicial to be clear than the minuscule optimization you might achieve.
 </p>
 <p>
-	In our example, despite of being a simple piece of code, I hope the point is clear. We can divide the <mark>area</mark> method result into two calculations: one for the lateral area and one for the base area. This further explains what the code does and makes it more readable:
+	In our example, despite of being a simple piece of code, I hope the point is clear. We can divide the <mark>area</mark>
+ method result into two calculations: one for the lateral area and one for the base area. This further explains what the code does and makes it more readable:
 </p>
 <div style="height: 20px;"></div>
 
 <div class="code-container">
-  <pre><code>class Cylinder:<br>    def __init__(self, radius, height):<br>        self.radius = radius<br>        self.height = height<br><br>    def volume(self):<br>        return np.pi*np.power(self.radius, 2)*self.height<br><br>    def area(self):<br>        lateral_area = 2*np.pi*self.radius*self.height<br>        base_area = 2*np.pi*np.power(self.radius, 2)<br>        return lateral_area + base_area</code></pre>
+  <pre><code>class Cylinder:
+    def __init__(self, radius, height):
+        self.radius = radius
+        self.height = height
+    
+    def volume(self):
+        return np.pi*np.power(self.radius, 2)*self.height
+    
+    def area(self):
+        lateral_area = 2*np.pi*self.radius*self.height
+        base_area = 2*np.pi*np.power(self.radius, 2)
+        return lateral_area + base_area</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <h2 id="use-type-hints">
 	Use Type Hints
 </h2>
-
 <p>
 	Python is an interpreted language, meaning that it is a loosey-goofey language. If you pass to the cylinder constructor a boolean variable, Python will not even blink. The program will just panic during runtime, which sometimes is very annoying. 
 </p>
@@ -145,19 +164,30 @@
 	Type hinting has a double purpose: help the LSPs do their work better and help the programmer understand the code better.
 </p>
 <p>
-	In our example, we can add type hints to the arguments of all methods, the class' attributes and the variable declaration in the <mark>area</mark> method. In case of passing a wrong argument type, our LSP will warn us.
+	In our example, we can add type hints to the arguments of all methods, the class' attributes and the variable declaration in the <mark>area</mark>
+ method. In case of passing a wrong argument type, our LSP will warn us.
 </p>
 <div style="height: 20px;"></div>
 
 <div class="code-container">
-  <pre><code>class Cylinder:<br>    def __init__(self, radius: float, height: float) -> None:<br>        self.radius: float = radius<br>        self.height: float = height<br><br>    def volume(self) -> float:<br>        return np.pi*np.power(self.radius, 2)*self.height<br><br>    def area(self) -> float:<br>        lateral_area: float = 2*np.pi*self.radius*self.height<br>        base_area: float = 2*np.pi*np.power(self.radius, 2)<br>        return lateral_area + base_area</code></pre>
+  <pre><code>class Cylinder:
+    def __init__(self, radius: float, height: float) -> None:
+        self.radius: float = radius
+        self.height: float = height
+    
+    def volume(self) -> float:
+        return np.pi*np.power(self.radius, 2)*self.height
+    
+    def area(self) -> float:
+        lateral_area: float = 2*np.pi*self.radius*self.height
+        base_area: float = 2*np.pi*np.power(self.radius, 2)
+        return lateral_area + base_area</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <h2 id="avoid-using-comments">
 	Avoid Using Comments
 </h2>
-
 <p>
 	Comments are not for documenting your code.
 </p>
@@ -165,19 +195,31 @@
 	Comments are for explaining why you did something, not what you did. If you need to explain what you did, then you should refactor your code to make it more readable.
 </p>
 <p>
-	In our example there is not much to say, but to make the point clearer, we could annotate the choice of using NumPy instead of the built-in <mark>**</mark>, for example.
+	In our example there is not much to say, but to make the point clearer, we could annotate the choice of using NumPy instead of the built-in <mark>**</mark>
+, for example.
 </p>
 <div style="height: 20px;"></div>
 
 <div class="code-container">
-  <pre><code>class Cylinder:<br>    def __init__(self, radius: float, height: float) -> None:<br>        self.radius: float = radius<br>        self.height: float = height<br><br>    def volume(self) -> float:<br>        # np.power is faster than ** <br>        return np.pi*np.power(self.radius, 2)*self.height<br><br>    def area(self) -> float:<br>        lateral_area: float = 2*np.pi*self.radius*self.height<br>        base_area: float = 2*np.pi*np.power(self.radius, 2)<br>        return lateral_area + base_area</code></pre>
+  <pre><code>class Cylinder:
+    def __init__(self, radius: float, height: float) -> None:
+        self.radius: float = radius
+        self.height: float = height
+    
+    def volume(self) -> float:
+        # np.power is faster than **
+        return np.pi*np.power(self.radius, 2)*self.height
+    
+    def area(self) -> float:
+        lateral_area: float = 2*np.pi*self.radius*self.height
+        base_area: float = 2*np.pi*np.power(self.radius, 2)
+        return lateral_area + base_area</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <h2 id="use-docstrings">
 	Use Docstrings
 </h2>
-
 <p>
 	Docstrings are for documenting your code.
 </p>
@@ -193,14 +235,52 @@
 <div style="height: 20px;"></div>
 
 <div class="code-container">
-  <pre><code>class Cylinder:<br>    '''<br>    A class to represent a cylinder.<br>    '''<br>    def __init__(self, radius: float, height: float) -> None:<br>        '''<br>        Parameters<br>        ----------<br>        radius : float<br>            The radius of the cylinder.<br>        height : float<br>            The height of the cylinder.<br>        '''<br>        self.radius: float = radius<br>        self.height: float = height<br><br>    def volume(self) -> float:<br>        '''<br>        Computes the volume of the cylinder.<br><br>        Returns<br>        -------<br>        float<br>            The volume of the cylinder.<br>        '''<br>        # np.power is faster than **<br>        return np.pi*np.power(self.radius, 2)*self.height<br><br>    def area(self) -> float:<br>        '''<br>        Computes the area of the cylinder.<br><br>        Returns<br>        -------<br>        float<br>            The area of the cylinder.<br>        '''<br>        lateral_area: float = 2*np.pi*self.radius*self.height<br>        base_area: float = 2*np.pi*np.power(self.radius, 2)<br>        return lateral_area + base_area</code></pre>
+  <pre><code>class Cylinder:
+    '''
+    A class to represent a cylinder.
+    '''
+    def __init__(self, radius: float, height: float) -> None:
+        '''
+        Parameters
+        ----------
+        radius : float
+            The radius of the cylinder.
+        height : float
+            The height of the cylinder.
+        '''
+        self.radius: float = radius
+        self.height: float = height
+    
+    def volume(self) -> float:
+        '''
+        Computes the volume of the cylinder.
+    
+        Returns
+        -------
+        float
+            The volume of the cylinder.
+        '''
+        # np.power is faster than **
+        return np.pi*np.power(self.radius, 2)*self.height
+    
+    def area(self) -> float:
+        '''
+        Computes the area of the cylinder.
+    
+        Returns
+        -------
+        float
+            The area of the cylinder.
+        '''
+        lateral_area: float = 2*np.pi*self.radius*self.height
+        base_area: float = 2*np.pi*np.power(self.radius, 2)
+        return lateral_area + base_area</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
 
 <h2 id="wrapping-up">
 	Wrapping Up
 </h2>
-
 <p>
 	Writing readable code is a skill that takes time to master. It is not easy to write code that is both readable and efficient. But, as with everything in life, practice makes perfect. The more you write code, the better you will get at it.
 </p>
@@ -210,15 +290,15 @@
 <h2 id="recommended-posts">
 	Recommended Posts
 </h2>
-
 <p>
 	If you liked this post, you might also like
 </p>
 <div class="card-row">
 <div class="card">
-    <div class="card-header">How To Document Your Python Code with Docstrings</div>
-    <div class="card-description">Learn how to document your Python code with Docstrings to enhance your APIs.</div>
-    <div class="card-date">nov 6th 2023</div>
+<div class="card-header">How To Document Your Python Code with Docstrings</div>
+<div class="card-description">Learn how to document your Python code with Docstrings to enhance your APIs.</div>
+<div class="card-date">nov 6th 2023</div>
+
     <div class="card-button-container">
         <a href="./docstrings.html" class="card-button">
             <span>READ</span>
@@ -228,12 +308,13 @@
             </div>
         </a>
     </div>
+    
 </div>
-
 <div class="card">
-    <div class="card-header">How To Create a Python Virtual Environment with Conda</div>
-    <div class="card-description">Learn how to create a Python Virtual Environment with Conda to manage your Python version and libraries.</div>
-    <div class="card-date">oct 11th 2023</div>
+<div class="card-header">How To Create a Python Virtual Environment with Conda</div>
+<div class="card-description">Learn how to create a Python Virtual Environment with Conda to manage your Python version and libraries.</div>
+<div class="card-date">oct 11th 2023</div>
+
     <div class="card-button-container">
         <a href="./conda.html" class="card-button">
             <span>READ</span>
@@ -243,16 +324,13 @@
             </div>
         </a>
     </div>
+    
 </div>
-
 </div>
-</div>
-<div style="height: 60px;"></div>
-<div class="divider" style="height: 20px; background-color: var(--blue);"></div>
-
-<script src="./../scripts/scroll.js"></script>
-<script src="./../scripts/copyCode.js"></script>
-<script> hljs.highlightAll(); </script>
-
+<div style="height: 120px;"></div>
+    <div class="divider" style="height: 20px; background-color: var(--orange);"></div>
+    <script src="./../scripts/scroll.js"></script>
+    <script src="./../scripts/copyCode.js"></script>
+    <script> hljs.highlightAll(); </script>
 </body>
 </html>

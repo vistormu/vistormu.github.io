@@ -1,81 +1,48 @@
 @title{Vistor's Blog: NeoVim}
 @style{./../style.css}
 
-@post-header
+@header
+
+@vsp{10} @rectangle{left}
+@vsp{2} @rectangle{left}
 
 @h1
 How to Set Up Neovim from Scratch
 
 @line
 
-@subtitle
-Published on @mark{oct 15th 2023}. Last edit on @mark{oct 15th 2023}.
+@center
+@subtitle{Published on @mark{feb 11th 2024}. Last edit on @mark{feb 11th 2024}}
+
+If you are here it means that you have build the courage to try NeoVim like a real programmer. You won't ever need IDEs or waiting for slow apps to open.
+
+In this blog post I will explain how to set up a minimal and modular NeoVim configuration from scratch. I will also cover necessary installations in your system for a complete experience.
+
+@vsp{10} @rectangle{right}
+@vsp{5} @rectangle{right}
 
 @spacer
-
-Neovim is the superior technology for text editing. You do not need IDEs or waiting for slow apps to open. Editing in the terminal is just enough. Neovim is super fast, lightweight and highly costumizable. You will learn how to adapt Neovim to your preferences, achieving high editing speeds. Moreover, once you get used to Vim Motions there will be no way back.
-
-A very popular Neovim configuration guide is @url{https://github.com/nvim-lua/kickstart.nvim}{kickstart.nvim}, which is also a very good way to start the Neovim journey. Also, I highly recommend @url{https://www.youtube.com/watch?v=w7i4amO_zaE}{ThePrimeagen's video} on the topic, which is a thirty-minute video that covers everything you need to know. However, if you don't watch it at 0.5x speed you could die of anxiety.
-
-If you don't feel like configuring your own Neovim, there are many pre-configured Neovim distributions out there. The most popular ones are @url{https://github.com/NvChad/NvChad}{NvChad} and @url{https://github.com/LunarVim/LunarVim}{LunarVim}. However, using these bad bois will result in learning the key-bindings of others and not yours.
-
-This blog post is a guide on my minimal Neovim configuration which is highly based on the ThePrimeagen's video I mentioned before. I will also cover necessary installations in your system that are not mentioned in the video.
-
-Lastly, if you are not using a Linux-based operating system this blog post is not for you. Sorry not sorry.
-
-@spacer
-
-@spacer
-
-@line
 
 @h2
 Table of Contents
 
-@list{
-Installing Neovim
+@toc{
+Other Materials
 }{
 }
 
-@spacer
+@h2
+Other Materials
 
-@line
+A very popular Neovim configuration guide is @url{https://github.com/nvim-lua/kickstart.nvim}{kickstart.nvim}, which is also a very good way to start the Neovim journey. 
 
-@spacer
+Also, I highly recommend @url{https://www.youtube.com/watch?v=w7i4amO_zaE}{ThePrimeagen's video} on the topic, which is a thirty-minute video that covers everything you need to know. Watch it at 0.5x speed if you don't want to die from anxiety. Take into account that the video uses @mark{packer} as a package manager and it has been archived.
+
+If you don't feel like configuring your own Neovim, there are many pre-configured Neovim distributions out there. The most popular ones are @url{https://github.com/NvChad/NvChad}{NvChad} and @url{https://github.com/LunarVim/LunarVim}{LunarVim}. However, consider that when using these bad bois you are mostly using the configurations of others.
 
 @h2
 Installing Neovim
 
-The first step, of course, is to download and install Neovim. If you are using a Debian-based Linux distribution, you can install Neovim with the following command:
+The first step, of course, is to download and install Neovim. If you are using a Debian-based Linux distribution, I recommend you use snap, as it is very important to download a version of Neovim higher that @mark{0.9.0}, as many plugins are not supported for lower versions.
 
-@file{terminal}
-@pre
-sudo snap install --edge nvim --classic
-
-If you are using an Arch-based Linux distribution, you can install Neovim with the following command:
-
-@file{terminal}
-@pre
-sudo pacman -S neovim
-
-If you are using a different Linux distribution, like Fedora, you can install Neovim with the following command:
-
-@file{terminal}
-@pre
-sudo dnf install neovim
-
-It is very important to download a version of Neovim higher that @mark{0.9.0}, as many plugins are not supported for lower versions.
-
-If everything went well, you should be able to run Neovim with the following command:
-
-@file{terminal}
-@pre
-nvim
-
-And you sohuld see this very, very ugly screen:
-
-@spacer
-
-
-
-@post-footer
+@footer
