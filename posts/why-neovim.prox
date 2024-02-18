@@ -5,8 +5,7 @@
 
 @spacer
 
-@rectangle{left}
-@vsp{2} @rectangle{left}
+@rectangles{left}
 
 @h1
 Why NeoVim
@@ -28,8 +27,7 @@ But, really... why would anyone use Vim? You already have VSCode, with your 50 t
 
 In this article I will explain the main advantages of using Vim, or I should say NeoVim, and if it suits you or not. In advance, and although it hurts me a little bit, NeoVim is not for everyone.
 
-@vsp{10} @rectangle{right}
-@vsp{5} @rectangle{right}
+@rectangles{right}
 
 @h2
 The Main Advantages of NeoVim

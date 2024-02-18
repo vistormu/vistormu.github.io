@@ -4,15 +4,13 @@
 
 @spacer
 
-@rectangle{left}
-@vsp{5} @rectangle{left}
+@rectangles{left}
 
 @h1{Welcome to Vistor's Blog!}
 
 Hello! I am Vistor, a PhD Student researching in Machine Learning applications to Robotics. In this webpage you will find blog posts about various topics like tutorials, personal opinions... I hope you find it useful.
 
-@rectangle{right}
-@spacer @rectangle{right}
+@rectangles{right}
 
 @h2
 PYTHON TUTORIALS

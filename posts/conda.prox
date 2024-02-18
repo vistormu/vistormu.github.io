@@ -3,8 +3,7 @@
 
 @header
 
-@vsp{10} @rectangle{left}
-@vsp{2} @rectangle{left}
+@rectangles{left}
 
 @h1
 How to Create a Python Virtual Environment with Conda
@@ -12,8 +11,7 @@ How to Create a Python Virtual Environment with Conda
 @center
 @subtitle{Published on @mark{oct 11th 2023}. Last edit on @mark{oct 11th 2023}}
 
-@vsp{10} @rectangle{right}
-@vsp{5} @rectangle{right}
+@rectangles{right}
 
 @spacer
 
@@ -53,7 +51,7 @@ If you are using a @mark{x86_64} architecture, run:
 @file{terminal}
 
 @pre
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \\
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \\\\
 -O ~/miniconda3/miniconda.sh
 
 If you are using an @mark{arm64} architecture, run:
@@ -61,7 +59,7 @@ If you are using an @mark{arm64} architecture, run:
 @file{terminal}
 
 @pre
-wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh \\
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh \\\\
 -O ~/miniconda3/miniconda.sh
 
 3. Run the installer with your shell (@mark{bash} or @mark{zsh} usually):

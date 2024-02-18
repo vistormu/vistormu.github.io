@@ -3,8 +3,7 @@
 
 @header
 
-@vsp{10} @rectangle{left}
-@vsp{2} @rectangle{left}
+@rectangles{left}
 
 @h1
 How to Upload a Python Package to PyPi
@@ -14,8 +13,7 @@ How to Upload a Python Package to PyPi
 
 If you're frequently programming in Python and have developed custom tools that are useful across multiple projects, it's a smart move to consider publishing them on PyPI. This blog post will show you how to do that. We'll also cover how to manage your release versions and keep a tidy changelog.
 
-@vsp{10} @rectangle{right}
-@vsp{5} @rectangle{right}
+@rectangles{right}
 
 @h2
 Table of Contents

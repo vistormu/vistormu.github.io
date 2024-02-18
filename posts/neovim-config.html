@@ -23,108 +23,64 @@
     </header>
 
     <div class="content-wrapper">
-<div style="height: 10px;"></div>
- <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--green); width: 233px; left: 87px;"></div></div><div style="height: 2px;"></div>
- <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--pink); width: 251px; left: 56px;"></div></div>
+<div style="position: relative; height: 10px; width: 100%;">
+        <div style="height: 10px;"></div>
+        <div class="rectangle" style="background-color: var(--pink); width: 227px; left: 87px;"></div>
+        <div style="height: 12px;"></div>
+        <div class="rectangle" style="background-color: var(--red); width: 235px; left: 69px;"></div>
+    </div>
 <h1 id="how-to-set-up-neovim-from-scratch">
 	How to Set Up Neovim from Scratch
 </h1>
 <hl>
-<div style="text-align: center;"><div class="subtitle">Published on <mark>oct 29th 2023</mark>
-. Last edit on <mark>nov 5th 2023</mark>
+<div style="text-align: center;"><div class="subtitle">Published on <mark>feb 11th 2024</mark>
+. Last edit on <mark>feb 11th 2024</mark>
 </div>
 </div>
 
 <p>
-	Hello
+	If you are here it means that you have build the courage to try NeoVim like a real programmer. You won't ever need IDEs or waiting for slow apps to open.
 </p>
-<div style="height: 10px;"></div>
- <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--orange); width: 88px; right: 98px;"></div></div><div style="height: 5px;"></div>
- <div style="position: relative; height: 10px; width: 100%;"><div class="rectangle" style="background-color: var(--violet); width: 89px; right: 62px;"></div></div>
+<p>
+	In this blog post I will explain how to set up a minimal and modular NeoVim configuration from scratch. I will also cover necessary installations in your system for a complete experience.
+</p>
+<div style="position: relative; height: 10px; width: 100%;">
+        <div style="height: 10px;"></div>
+        <div class="rectangle" style="background-color: var(--purple); width: 155px; right: 62px;"></div>
+        <div style="height: 7px;"></div>
+        <div class="rectangle" style="background-color: var(--white); width: 162px; right: 70px;"></div>
+    </div>
 <div style="height: 20px;"></div>
 
-<p>
-	Neovim is the superior technology for text editing. You do not need IDEs or waiting for slow apps to open. Editing in the terminal is just enough. Neovim is super fast, lightweight and highly costumizable. You will learn how to adapt Neovim to your preferences, achieving high editing speeds. Moreover, once you get used to Vim Motions there will be no way back.
-</p>
-<p>
-	A very popular Neovim configuration guide is <a href="https://github.com/nvim-lua/kickstart.nvim">kickstart.nvim</a>, which is also a very good way to start the Neovim journey. Also, I highly recommend <a href="https://www.youtube.com/watch?v=w7i4amO_zaE">ThePrimeagen's video</a> on the topic, which is a thirty-minute video that covers everything you need to know. However, if you don't watch it at 0.5x speed you could die of anxiety.
-</p>
-<p>
-	If you don't feel like configuring your own Neovim, there are many pre-configured Neovim distributions out there. The most popular ones are <a href="https://github.com/NvChad/NvChad">NvChad</a> and <a href="https://github.com/LunarVim/LunarVim">LunarVim</a>. However, using these bad bois will result in learning the key-bindings of others and not yours.
-</p>
-<p>
-	This blog post is a guide on my minimal Neovim configuration which is highly based on the ThePrimeagen's video I mentioned before. I will also cover necessary installations in your system that are not mentioned in the video.
-</p>
-<p>
-	Lastly, if you are not using a Linux-based operating system this blog post is not for you. Sorry not sorry.
-</p>
-<div style="height: 20px;"></div>
-
-<div style="height: 20px;"></div>
-
-<hl>
 <h2 id="table-of-contents">
 	Table of Contents
 </h2>
 <ul>
-	<li>Installing Neovim</li>
-	<li></li>
+<li><a href="#other-materials">Other Materials</a></li>
+<li><a href="#"></a></li>
 </ul>
-<div style="height: 20px;"></div>
-
-<hl>
-<div style="height: 20px;"></div>
-
+<h2 id="other-materials">
+	Other Materials
+</h2>
+<p>
+	A very popular Neovim configuration guide is <a href="https://github.com/nvim-lua/kickstart.nvim">kickstart.nvim</a>, which is also a very good way to start the Neovim journey. 
+</p>
+<p>
+	Also, I highly recommend <a href="https://www.youtube.com/watch?v=w7i4amO_zaE">ThePrimeagen's video</a> on the topic, which is a thirty-minute video that covers everything you need to know. Watch it at 0.5x speed if you don't want to die from anxiety. Take into account that the video uses <mark>packer</mark>
+ as a package manager and it has been archived.
+</p>
+<p>
+	If you don't feel like configuring your own Neovim, there are many pre-configured Neovim distributions out there. The most popular ones are <a href="https://github.com/NvChad/NvChad">NvChad</a> and <a href="https://github.com/LunarVim/LunarVim">LunarVim</a>. However, consider that when using these bad bois you are mostly using the configurations of others.
+</p>
 <h2 id="installing-neovim">
 	Installing Neovim
 </h2>
 <p>
-	The first step, of course, is to download and install Neovim. If you are using a Debian-based Linux distribution, you can install Neovim with the following command:
-</p>
-<div class="file">terminal</div>
-<div class="code-container">
-  <pre><code>sudo snap install --edge nvim --classic</code></pre>
-  <button class="copy-btn">Copy</button>
-</div>
-
-<p>
-	If you are using an Arch-based Linux distribution, you can install Neovim with the following command:
-</p>
-<div class="file">terminal</div>
-<div class="code-container">
-  <pre><code>sudo pacman -S neovim</code></pre>
-  <button class="copy-btn">Copy</button>
-</div>
-
-<p>
-	If you are using a different Linux distribution, like Fedora, you can install Neovim with the following command:
-</p>
-<div class="file">terminal</div>
-<div class="code-container">
-  <pre><code>sudo dnf install neovim</code></pre>
-  <button class="copy-btn">Copy</button>
-</div>
-
-<p>
-	It is very important to download a version of Neovim higher that <mark>0.9.0</mark>
+	The first step, of course, is to download and install Neovim. If you are using a Debian-based Linux distribution, I recommend you use snap, as it is very important to download a version of Neovim higher that <mark>0.9.0</mark>
 , as many plugins are not supported for lower versions.
 </p>
-<p>
-	If everything went well, you should be able to run Neovim with the following command:
-</p>
-<div class="file">terminal</div>
-<div class="code-container">
-  <pre><code>nvim</code></pre>
-  <button class="copy-btn">Copy</button>
-</div>
-
-<p>
-	And you sohuld see this very, very ugly screen:
-</p>
-<div style="height: 20px;"></div>
-
 <div style="height: 120px;"></div>
-    <div class="divider" style="height: 20px; background-color: var(--blue);"></div>
+    <div class="divider" style="height: 20px; background-color: var(--orange);"></div>
     <script src="./../scripts/scroll.js"></script>
     <script src="./../scripts/copyCode.js"></script>
     <script> hljs.highlightAll(); </script>

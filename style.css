@@ -337,7 +337,7 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
 }
 code {
     background-color: var(--black) !important;
-    font-size: 1.0rem !important;
+    font-size: 0.9rem !important;
 }
 .file {
     color: var(--violet)
@@ -438,6 +438,6 @@ code {
 @media screen and (max-width: 768px) {
     .card {
         width: 80%;
-        height: 275px;
+        height: 360px;
     }
 }

@@ -3,8 +3,7 @@
 
 @header
 
-@vsp{10} @rectangle{left}
-@vsp{2} @rectangle{left}
+@rectangles{left}
 
 @h1
 Title
@@ -14,8 +13,7 @@ Title
 
 Text
 
-@vsp{10} @rectangle{right}
-@vsp{5} @rectangle{right}
+@rectangles{right}
 
 @spacer
 
