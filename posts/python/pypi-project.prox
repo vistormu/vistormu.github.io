@@ -1,7 +1,7 @@
 @title{Vistor's Blog: PyPi Project}
-@style{./../style.css}
+@style{./../../style.css}
 
-@header
+@header{2}
 
 @rectangles{left}
 
@@ -332,4 +332,4 @@ References
 @url{https://setuptools.pypa.io/en/latest/userguide/package_discovery.html}{Package Discovery}
 }
 
-@footer
+@footer{2}

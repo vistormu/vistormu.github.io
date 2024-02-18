@@ -1,7 +1,7 @@
 @title{Vistor's Blog: Readable Python Code}
-@style{./../style.css}
+@style{./../../style.css}
 
-@header
+@header{2}
 
 @rectangles{left}
 
@@ -254,16 +254,6 @@ If you liked this post, you might also like
 <div class="card-row">
 
 @card{
-How To Document Your Python Code with Docstrings
-}{
-Learn how to document your Python code with Docstrings to enhance your APIs.
-}{
-nov 6th 2023
-}{
-./docstrings.html
-}
-
-@card{
 How To Create a Python Virtual Environment with Conda
 }{
 Learn how to create a Python Virtual Environment with Conda to manage your Python version and libraries.
@@ -275,4 +265,4 @@ oct 11th 2023
 
 </div>
 
-@footer
+@footer{2}

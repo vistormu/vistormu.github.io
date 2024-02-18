@@ -1,7 +1,7 @@
 @title{Vistor's Blog: NeoVim}
-@style{./../style.css}
+@style{./../../style.css}
 
-@header
+@header{2}
 
 @rectangles{left}
 
@@ -335,12 +335,7 @@ local function load_plugins()
     end
 end
 
-I invite you to check @url{https://github.com/vistormu/nvim/blob/master/lua/lazy-plugins.lua}{my configuration} to see the complete list of plugins and their configurations. I will list here the most important plugins:
-
-@list{
-@url{https://github.com/nvim-treesitter/nvim-treesitter}{nvim-treesitter}: provides the syntax highlighting to your code.
-}{
-}
+I invite you to check @url{https://github.com/vistormu/nvim/blob/master/lua/lazy-plugins.lua}{my configuration} to see the complete list of plugins and their configurations and @url{./neovim-plugins.html}{my blog post} for a further explanation on them.
 
 @h2
 Other Dependencies
@@ -417,17 +412,9 @@ Why use NeoVim instead of other text editors?
 }{
 oct 29th 2023
 }{
-../posts/why-neovim.html
-}
-
-@card{
-Vim Motions
-}{
-Learn how to use Vim motions to navigate through your code.
-}{
-}{
+./why-neovim.html
 }
 
 </div>
 
-@footer
+@footer{2}

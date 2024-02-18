@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+	<title>Vistor's Blog: Python</title>
+	<link rel="stylesheet" href="./../../style.css">
+</head>
+<body>
+
+<link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+    
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="./../../index.html">Vistor's Blog</a>
+            </div>
+            <nav>
+                <a href="./../../about.html" class="nav-link">about</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+<div style="position: relative; height: 10px; width: 100%;">
+        <div style="height: 10px;"></div>
+        <div class="rectangle" style="background-color: var(--blue); width: 244px; left: 77px;"></div>
+        <div style="height: 15px;"></div>
+        <div class="rectangle" style="background-color: var(--white); width: 204px; left: 81px;"></div>
+    </div>
+<h1 id="using-namedtuple-and-dataclass-in-python">
+	Using NamedTuple and Dataclass in Python
+</h1>
+<div style="text-align: center;"><div class="subtitle">Published on <mark>feb 18th 2024</mark>. Last edit on <mark>feb 18th 2024</mark></div></div>
+<p>
+	Sometimes, when working with Python, you may want to create a class that is just a simple container for some data, so you just write a plain class. Well, Python developers thought ahead of you on that use case and created <mark>typing.NamedTuple</mark> and <mark>dataclasses.dataclass</mark> for you.
+</p>
+<div style="position: relative; height: 10px; width: 100%;">
+        <div style="height: 10px;"></div>
+        <div class="rectangle" style="background-color: var(--light-blue); width: 99px; right: 68px;"></div>
+        <div style="height: 6px;"></div>
+        <div class="rectangle" style="background-color: var(--blue); width: 94px; right: 58px;"></div>
+    </div>
+<h2 id="building-a-game-library">
+	Building a Game Library
+</h2>
+<p>
+	Picture this scenario: you just bought five new games on Steam sale. At first you are happy and thrilled for playing, but then you realize that your library has over 200 games and that probably "Cities Skylines II" is not your top priority.
+</p>
+<p>
+	Instead of playing, you decide to write a Python script to organize your library, and you start like this:
+</p>
+<div class="code-container">
+  <pre><code>class Game:
+    def __init__(self, name: str, price: float, rating: float):
+        self.name = name
+        self.price = price
+        self.rating = rating</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+<p>
+	Then you saw on a YouTube video that you could use a <mark>__repr__</mark> method to print your objects in a more readable way, so you add this to your class:
+</p>
+<div class="code-container">
+  <pre><code>    def __repr__(self) -> str:
+        return f"""
+        {self.name.upper()}\n
+        Price: {self.price}\n
+        Rating: {self.rating}
+        """</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+<p>
+	Your code is looking good, so you proceed to program a <mark>Library</mark> class to hold all your games:
+</p>
+<div class="code-container">
+  <pre><code>class Library:
+    def __init__(self):
+        self.games = []
+    
+    def add_game(self, game: Game):
+        self.games.append(game)</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+<p>
+	Wouldn't it be nice to have a method that returns cool metrics about my library?
+</p>
+<div class="code-container">
+  <pre><code>    def get_cool_metrics(self) -> int:
+        return len(self.games)</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+<p>
+	What about the total price?
+</p>
+<div class="code-container">
+  <pre><code>    def get_cool_metrics(self) -> tuple[int, float]:
+        return len(self.games), sum(game.price for game in self.games)</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+<p>
+	And what about the total playtime?
+</p>
+<p>
+	But wait. That would imply adding an argument to the constructor of <mark>Game</mark>, update the <mark>__repr__</mark>... And then the <mark>get_cool_metrics</mark> methods would return a <mark>tuple[int, float, float]</mark>? Why is everything so complicated?
+</p>
+<h2 id="introducing-dataclasses">
+	Introducing Dataclasses
+</h2>
+<p>
+	Python dataclasses are a way to create classes that are just simple containers for data. Their syntax is simpler and they have a lot of pre-implemented dunder methods, including the constructor.
+</p>
+<p>
+	You could use a <mark>dataclass</mark> to create the <mark>Game</mark> class.
+</p>
+<div class="code-container">
+  <pre><code>from dataclasses import dataclass
+    
+@dataclass
+class Game:
+    name: str
+    price: float
+    rating: float</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+<p>
+	And adding the playtime attribute is just as simple as adding a new line to the class definition.
+</p>
+<p>
+	And they could be used for the return type of the <mark>get_cool_metrics</mark> method, right?
+</p>
+<h2 id="introducing-namedtuple">
+	Introducing NamedTuple
+</h2>
+<p>
+	While dataclasses are a great way to create simple classes, they are dynamic, or in other words: mutable and slow. And what you really need is a C-like struct to hold data.
+</p>
+<p>
+	In Python, the most similar thing to a struct is a <mark>collections.namedtuple</mark> and a <mark>typing.NamedTuple</mark>.
+</p>
+<p>
+	You shouldn't use <mark>collections.namedtuple</mark>. The syntax is ugly and it is not as powerful as the <mark>typing.NamedTuple</mark>, as it benefits from the Python classes syntax.
+</p>
+<p>
+	Now, we can create a "struct" to hold the cool metrics of our library.
+</p>
+<div class="code-container">
+  <pre><code>from typing import NamedTuple
+    
+class CoolMetrics(NamedTuple):
+    total_games: int
+    total_price: float
+    total_playtime: float</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+<p>
+	As you an see, the syntax is very similar to the <mark>dataclass</mark> syntax. But remember, <mark>NamedTuple</mark> acts the same way as a Python tuple with named attributes. It is inmutable and faster than a class.
+</p>
+<p>
+	Finally, our library method would look like this:
+</p>
+<div class="code-container">
+  <pre><code>    def get_cool_metrics(self) -> CoolMetrics:
+        total_games = len(self.games)
+        total_price = sum(game.price for game in self.games)
+        total_playtime = sum(game.playtime for game in self.games)
+        return CoolMetrics(total_games, total_price, total_playtime)</code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+<p>
+	Now you can access the data by dot notation, and extend the <mark>CoolMetrics</mark> and the <mark>get_cool_metrics</mark> method at will.
+</p>
+<h2 id="so,-what-are-the-differences?">
+	So, What Are the Differences?
+</h2>
+<p>
+	A <mark>NamedTuple</mark> is a simple container for data, a fancier Python tuple or a C-like struct. It's immutable: you can't change the values after the object is created. In the case of the <mark>CoolMetrics</mark> object, why would you change any atrribute?
+</p>
+<p>
+	On the other hand, a <mark>dataclass</mark> is a prettier way of writing a simple Python class that holds state. It offers lot of pre-implemented magic methods, like <mark>__init__</mark>, <mark>__repr__</mark>, <mark>__eq__</mark>, and so on. It is mutable, and you can change the values at will. For example, I could easily update the playtime of my <mark>Game</mark> class by accessing the attribute.
+</p>
+<h2 id="wrapping-up">
+	Wrapping Up
+</h2>
+<p>
+	In this article, we saw how to use <mark>NamedTuple</mark> and <mark>dataclass</mark> to create simple classes that hold data and their main differences. Now, go and play some video games, cause your library won't ever shrink.
+</p>
+<h2 id="recommended-posts">
+	Recommended Posts
+</h2>
+<div class="card-row">
+<div class="card">
+<div class="card-header">Create a Python Virtual Environment with Conda</div>
+<div class="card-description">Learn how to manage your Python version and libraries.</div>
+<div class="card-date">oct 11th 2023</div>
+
+    <div class="card-button-container">
+        <a href="./conda.html" class="card-button">
+            <span>READ</span>
+            <div class="icon-container">
+                <div class="black-square"></div>
+                <div class="circle"></div>
+            </div>
+        </a>
+    </div>
+    
+</div>
+<div class="card">
+<div class="card-header">Write Readable Code in Python</div>
+<div class="card-description">Learn how to write readable code in Python to make it more maintainable and understandable.</div>
+<div class="card-date">nov 6th 2023</div>
+
+    <div class="card-button-container">
+        <a href="./readable-code.html" class="card-button">
+            <span>READ</span>
+            <div class="icon-container">
+                <div class="black-square"></div>
+                <div class="circle"></div>
+            </div>
+        </a>
+    </div>
+    
+</div>
+</div>
+<div style="height: 120px;"></div>
+    <div class="divider" style="height: 20px; background-color: var(--light-blue);"></div>
+    <script src="./../../scripts/scroll.js"></script>
+    <script src="./../../scripts/copyCode.js"></script>
+    <script> hljs.highlightAll(); </script>
+</body>
+</html>

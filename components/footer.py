@@ -12,16 +12,13 @@ colors: list[str] = [
 ]
 
 
-def function(where: str = "post") -> str:
-    scroll_script: str = "./scripts/scroll.js"
-    if where == "post":
-        scroll_script = "./." + scroll_script
+def function(level=0) -> str:
+    level = int(level)
 
-    copy_script: str = "./scripts/copyCode.js"
-    if where == "post":
-        copy_script = "./." + copy_script
+    scroll_script: str = "./."*level + "./scripts/scroll.js"
+    copy_script: str = "./."*level + "./scripts/copyCode.js"
 
-    highlight_script: str = "<script> hljs.highlightAll(); </script>" if where == "post" else ""
+    highlight_script: str = "<script> hljs.highlightAll(); </script>" if level > 0 else ""
 
     bar_color: str = random.choice(colors)
 

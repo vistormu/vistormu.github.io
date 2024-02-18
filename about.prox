@@ -1,6 +1,6 @@
 @style{./style.css}
 
-@header{index}
+@header
 
 @spacer
 
@@ -120,4 +120,4 @@ Have you ever felt like you don't want to decide between a series of options? De
 https://github.com/vistormu/decision_maker
 }
 
-@footer{about}
+@footer

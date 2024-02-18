@@ -1,7 +1,7 @@
 @title{Vistor's Blog: Why NeoVim}
-@style{./../style.css}
+@style{./../../style.css}
 
-@header
+@header{2}
 
 @spacer
 
@@ -82,22 +82,22 @@ If your answer is No/Yes, you probably are an Emacs enthusiast, and I don't know
 I your answer is Yes/Yes, welcome to the club. And remember, the first rule of the NeoVim Club is to always talk about NeoVim.
 
 
-#@h2
-#Suggested Posts
+@h2
+Recommended Posts
 
 
-#<div class="card-row">
+<div class="card-row">
 
-#@card{
-#How to Setup NeoVim from Scratch
-#}{
-#Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
-#}{
-#oct 11th 2023
-#}{
-#./neovim-config.html
-#}
+@card{
+Setup NeoVim from Scratch
+}{
+Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
+}{
+feb 18th 2024
+}{
+./neovim-config.html
+}
 
-#</div>
+</div>
 
-@footer
+@footer{2}

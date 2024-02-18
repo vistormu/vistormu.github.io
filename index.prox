@@ -1,6 +1,6 @@
 @style{./style.css}
 
-@header{index}
+@header
 
 @spacer
 
@@ -13,7 +13,10 @@ Hello! I am Vistor, a PhD Student researching in Machine Learning applications t
 @rectangles{right}
 
 @h2
-PYTHON TUTORIALS
+PYTHON
+
+@h3
+Python Basics
 
 <div class="card-row">
 
@@ -24,7 +27,7 @@ Learn how to manage your Python version and libraries.
 }{
 oct 11th 2023
 }{
-./posts/conda.html
+./posts/python/conda.html
 }
 
 @card{
@@ -34,18 +37,23 @@ Learn how to write readable code in Python to make it more maintainable and unde
 }{
 nov 6th 2023
 }{
-./posts/readable-code.html
+./posts/python/readable-code.html
 }
 
 @card{
-Document Your Python Code with Docstrings
+Using NamedTuple and Dataclass in Python
 }{
-Learn how to document your Python code with Docstrings to enhance your APIs.
+Learn how to use NamedTuple and Dataclass to create more readable and maintainable code.
 }{
+feb 18th 2024
 }{
+./posts/python/named-tuple-dataclass.html
 }
 
 </div>
+
+@h3
+Python Projects
 
 <div class="card-row">
 
@@ -58,13 +66,21 @@ Learn how to structure a Python project to make it more maintainable and underst
 }
 
 @card{
-Upload a Python Package to PyPI
+Document Your Python Code with Docstrings
 }{
-Learn how to upload a Python package to PyPI to make it available for everyone.
+Learn how to document your Python code with Docstrings to enhance your APIs.
+}{
+}{
+}
+
+@card{
+Upload a Python Package to PyPi
+}{
+Learn how to upload a Python package to PyPi to make it available for everyone.
 }{
 jan 30th 2024
 }{
-./posts/pypi-project.html
+./posts/python/pypi-project.html
 }
 
 @card{
@@ -78,12 +94,40 @@ Learn how to generate documentation for a Python project to make it more underst
 </div>
 
 @h2
-LATEX TUTORIALS
+PYTORCH
 
 <div class="card-row">
 
 @card{
-Install LaTex in VSCode
+Structure a PyTorch Project
+}{
+}{
+}{
+}
+
+@card{
+Regression with PyTorch
+}{
+}{
+}{
+}
+
+@card{
+Classification with PyTorch and the MNIST Dataset
+}{
+}{
+}{
+}
+
+</div>
+
+@h2
+LATEX
+
+<div class="card-row">
+
+@card{
+Install LaTeX in VSCode
 }{
 Learn how to install LaTeX in VSCode to write your documents.
 }{
@@ -120,7 +164,7 @@ Why use NeoVim instead of other text editors?
 }{
 oct 29th 2023
 }{
-./posts/why-neovim.html
+./posts/neovim/why-neovim.html
 }
 
 @card{
@@ -130,7 +174,15 @@ Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
 }{
 feb 18th 2024
 }{
-./posts/neovim-config.html
+./posts/neovim/neovim-config.html
+}
+
+@card{
+Must Have Plugins for NeoVim
+}{
+Discover the must have plugins for NeoVim.
+}{
+}{
 }
 
 @card{
@@ -166,4 +218,4 @@ Learn how I created the syntax highlighting for Proxima
 
 </div>
 
-@footer{index}
+@footer

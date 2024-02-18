@@ -1,7 +1,7 @@
 @title{Vistor's Blog: Conda}
-@style{./../style.css}
+@style{./../../style.css}
 
-@header
+@header{2}
 
 @rectangles{left}
 
@@ -157,4 +157,38 @@ numpy==1.21.2
 pandas==1.3.3
 matplotlib==3.4.3
 
-@footer
+And then install them with the @mark{pip} command.
+
+@h2
+Wrapping Up
+
+In this blog post I have covered how to install Conda, create a virtual environment and install packages. I hope that you find this information useful and that it helps you to organize your projects better.
+
+@h2
+Recommended Posts
+
+<div class="card-row">
+
+@card{
+Write Readable Code in Python
+}{
+Learn how to write readable code in Python to make it more maintainable and understandable.
+}{
+nov 6th 2023
+}{
+./readable-code.html
+}
+
+@card{
+Using NamedTuple and Dataclass in Python
+}{
+Learn how to use NamedTuple and Dataclass to create more readable and maintainable code.
+}{
+feb 18th 2024
+}{
+./named-tuple-dataclass.html
+}
+
+</div>
+
+@footer{2}
