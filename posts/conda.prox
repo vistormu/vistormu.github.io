@@ -6,7 +6,7 @@
 @rectangles{left}
 
 @h1
-How to Create a Python Virtual Environment with Conda
+Create a Python Virtual Environment with Conda
 
 @center
 @subtitle{Published on @mark{oct 11th 2023}. Last edit on @mark{oct 11th 2023}}

@@ -18,9 +18,9 @@ PYTHON TUTORIALS
 <div class="card-row">
 
 @card{
-How To Create a Python Virtual Environment with Conda
+Create a Python Virtual Environment with Conda
 }{
-Learn how to create a Python Virtual Environment with Conda to manage your Python version and libraries.
+Learn how to manage your Python version and libraries.
 }{
 oct 11th 2023
 }{
@@ -28,7 +28,7 @@ oct 11th 2023
 }
 
 @card{
-How To Write Readable Code in Python
+Write Readable Code in Python
 }{
 Learn how to write readable code in Python to make it more maintainable and understandable.
 }{
@@ -38,7 +38,7 @@ nov 6th 2023
 }
 
 @card{
-How To Document Your Python Code with Docstrings
+Document Your Python Code with Docstrings
 }{
 Learn how to document your Python code with Docstrings to enhance your APIs.
 }{
@@ -50,7 +50,7 @@ Learn how to document your Python code with Docstrings to enhance your APIs.
 <div class="card-row">
 
 @card{
-How to Structure a Python Project
+Structure a Python Project
 }{
 Learn how to structure a Python project to make it more maintainable and understandable.
 }{
@@ -58,7 +58,7 @@ Learn how to structure a Python project to make it more maintainable and underst
 }
 
 @card{
-How to Upload a Python Package to PyPI
+Upload a Python Package to PyPI
 }{
 Learn how to upload a Python package to PyPI to make it available for everyone.
 }{
@@ -68,7 +68,7 @@ jan 30th 2024
 }
 
 @card{
-How to Generate Documentation for a Python Project
+Generate Documentation for a Python Project
 }{
 Learn how to generate documentation for a Python project to make it more understandable.
 }{
@@ -83,15 +83,15 @@ LATEX TUTORIALS
 <div class="card-row">
 
 @card{
-How to Install LaTex on your Machine
+Install LaTex in VSCode
 }{
-Learn how to install LaTeX on your machine to write beautiful documents.
+Learn how to install LaTeX in VSCode to write your documents.
 }{
 }{
 }
 
 @card{
-How to Use BibTeX to Manage your References
+Managing References with BibTeX
 }{
 Learn how to use BibTeX to manage your references and citations.
 }{
@@ -99,9 +99,9 @@ Learn how to use BibTeX to manage your references and citations.
 }
 
 @card{
-How to Structure a LaTeX Project
+Structure a Big LaTeX Project
 }{
-Learn how to structure a LaTeX project to make it more maintainable and understandable.
+Learn how to structure a big LaTeX project to make it more maintainable and understandable.
 }{
 }{
 }
@@ -124,17 +124,42 @@ oct 29th 2023
 }
 
 @card{
-How to Setup NeoVim from Scratch
+Setup NeoVim from Scratch
 }{
 Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
 }{
+feb 18th 2024
 }{
+./posts/neovim-config.html
 }
 
 @card{
 Vim Motions
 }{
 Learn how to use Vim motions to navigate through your code.
+}{
+}{
+}
+
+</div>
+
+@h2
+PROXIMA
+
+<div class="card-row">
+
+@card{
+What is Proxima
+}{
+What is Proxima and why I made it
+}{
+}{
+}
+
+@card{
+How I Created the Syntax Highlighting for Proxima
+}{
+Learn how I created the syntax highlighting for Proxima
 }{
 }{
 }

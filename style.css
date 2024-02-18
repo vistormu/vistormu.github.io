@@ -12,7 +12,8 @@
     --violet: #9085C1;
     --light-blue: #99A7B4;
 
-    --glow: #DB547580;
+    /* --glow: #DB547580; */
+    --glow: #DC869F60;
 
     --max-width: 840px;
 }
@@ -340,17 +341,16 @@ code {
     font-size: 0.9rem !important;
 }
 .file {
-    color: var(--violet)
+    color: var(--orange);
     margin: 18px 0 0 0;
     font-size: 12px;
-    text-indent: 12px; 
 }
 .code-container {
     position: relative;
 }
 .copy-btn {
     position: absolute;
-    right: 12px;
+    right: 0;
     top: -16px;
     margin: 0;
     padding: 0;

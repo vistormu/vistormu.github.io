@@ -6,7 +6,7 @@
 @rectangles{left}
 
 @h1
-How to Upload a Python Package to PyPi
+Upload a Python Package to PyPi
 
 @center
 @subtitle{Published on @mark{jan 30th 2024}. Last edit on @mark{jan 30th 2024}}

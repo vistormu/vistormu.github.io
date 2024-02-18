@@ -25,26 +25,21 @@
     <div class="content-wrapper">
 <div style="position: relative; height: 10px; width: 100%;">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--pink); width: 184px; left: 92px;"></div>
-        <div style="height: 11px;"></div>
-        <div class="rectangle" style="background-color: var(--yellow); width: 117px; left: 69px;"></div>
+        <div class="rectangle" style="background-color: var(--green); width: 182px; left: 89px;"></div>
+        <div style="height: 13px;"></div>
+        <div class="rectangle" style="background-color: var(--black); width: 105px; left: 73px;"></div>
     </div>
-<h1 id="how-to-write-readable-code-in-python">
-	How To Write Readable Code in Python
+<h1 id="write-readable-code-in-python">
+	Write Readable Code in Python
 </h1>
-<div style="text-align: center;"><div class="subtitle">Published on <mark>nov 6th 2023</mark>
-. Last edit on <mark>nov 6th 2023</mark>
-</div>
-</div>
-
+<div style="text-align: center;"><div class="subtitle">Published on <mark>nov 6th 2023</mark>. Last edit on <mark>nov 6th 2023</mark></div></div>
 <div style="position: relative; height: 10px; width: 100%;">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--yellow); width: 136px; right: 79px;"></div>
-        <div style="height: 9px;"></div>
-        <div class="rectangle" style="background-color: var(--red); width: 130px; right: 99px;"></div>
+        <div class="rectangle" style="background-color: var(--yellow); width: 250px; right: 76px;"></div>
+        <div style="height: 7px;"></div>
+        <div class="rectangle" style="background-color: var(--red); width: 175px; right: 60px;"></div>
     </div>
 <div style="height: 20px;"></div>
-
 <p>
 	Have you ever returned to a project you haven't worked on in a while and had no idea what you were doing? Or maybe you've been working on a project with a team and you have no idea what your teammates code does? If you have, then you know how important it is to write readable code.
 </p>
@@ -65,13 +60,9 @@
 	Example Code
 </h2>
 <p>
-	We will be using this simple code snippet as an example throughout this post. This code defines a class called <mark>Foo</mark>
- with two methods: <mark>bar</mark>
- and <mark>baz</mark>
-. A priori, it is not clear what this code does. We can make it more readable by following the tips below.
+	We will be using this simple code snippet as an example throughout this post. This code defines a class called <mark>Foo</mark> with two methods: <mark>bar</mark> and <mark>baz</mark>. A priori, it is not clear what this code does. We can make it more readable by following the tips below.
 </p>
 <div style="height: 20px;"></div>
-
 <div class="code-container">
   <pre><code>class Foo:
     def __init__(self, a, b):
@@ -85,7 +76,6 @@
         return 2*np.pi*self.a*self.b + 2*np.pi*np.power(self.a, 2)</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
-
 <h2 id="use-descriptive-variable-names">
 	Use descriptive variable names
 </h2>
@@ -96,22 +86,16 @@
 	There is a famous quote by Phil Karlton that says: "There are only two hard things in Computer Science: cache invalidation and naming things". The seemingly simple task of choosing clear and meaningful names for variables can be surprisingly challenging. In our example is a piece of cake:
 </p>
 <ul>
-	<li>The class <mark>Foo</mark>
- represents a Cylinder.</li>
-	<li>The variable <mark>a</mark>
- represents the radius of the cylinder.</li>
-	<li>The variable <mark>b</mark>
- represents the height of the cylinder.</li>
-	<li>The method <mark>bar</mark>
- computes the volume of the cylinder.</li>
-	<li>The method <mark>baz</mark>
- computes the area of the cylinder.</li>
+	<li>The class <mark>Foo</mark> represents a Cylinder.</li>
+	<li>The variable <mark>a</mark> represents the radius of the cylinder.</li>
+	<li>The variable <mark>b</mark> represents the height of the cylinder.</li>
+	<li>The method <mark>bar</mark> computes the volume of the cylinder.</li>
+	<li>The method <mark>baz</mark> computes the area of the cylinder.</li>
 </ul>
 <p>
 	Making these changes, our code becomes much more readable:
 </p>
 <div style="height: 20px;"></div>
-
 <div class="code-container">
   <pre><code>class Cylinder:
     def __init__(self, radius, height):
@@ -125,7 +109,6 @@
         return 2*np.pi*self.radius*self.height + 2*np.pi*np.power(self.radius, 2)</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
-
 <h2 id="write-procedural-code">
 	Write Procedural Code
 </h2>
@@ -136,11 +119,9 @@
 	Try to divide the code in many steps as necessary. You are not a better programmer for writing more one-liners. It is often more befenicial to be clear than the minuscule optimization you might achieve.
 </p>
 <p>
-	In our example, despite of being a simple piece of code, I hope the point is clear. We can divide the <mark>area</mark>
- method result into two calculations: one for the lateral area and one for the base area. This further explains what the code does and makes it more readable:
+	In our example, despite of being a simple piece of code, I hope the point is clear. We can divide the <mark>area</mark> method result into two calculations: one for the lateral area and one for the base area. This further explains what the code does and makes it more readable:
 </p>
 <div style="height: 20px;"></div>
-
 <div class="code-container">
   <pre><code>class Cylinder:
     def __init__(self, radius, height):
@@ -156,7 +137,6 @@
         return lateral_area + base_area</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
-
 <h2 id="use-type-hints">
 	Use Type Hints
 </h2>
@@ -170,11 +150,9 @@
 	Type hinting has a double purpose: help the LSPs do their work better and help the programmer understand the code better.
 </p>
 <p>
-	In our example, we can add type hints to the arguments of all methods, the class' attributes and the variable declaration in the <mark>area</mark>
- method. In case of passing a wrong argument type, our LSP will warn us.
+	In our example, we can add type hints to the arguments of all methods, the class' attributes and the variable declaration in the <mark>area</mark> method. In case of passing a wrong argument type, our LSP will warn us.
 </p>
 <div style="height: 20px;"></div>
-
 <div class="code-container">
   <pre><code>class Cylinder:
     def __init__(self, radius: float, height: float) -> None:
@@ -190,7 +168,6 @@
         return lateral_area + base_area</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
-
 <h2 id="avoid-using-comments">
 	Avoid Using Comments
 </h2>
@@ -201,11 +178,9 @@
 	Comments are for explaining why you did something, not what you did. If you need to explain what you did, then you should refactor your code to make it more readable.
 </p>
 <p>
-	In our example there is not much to say, but to make the point clearer, we could annotate the choice of using NumPy instead of the built-in <mark>**</mark>
-, for example.
+	In our example there is not much to say, but to make the point clearer, we could annotate the choice of using NumPy instead of the built-in <mark>**</mark>, for example.
 </p>
 <div style="height: 20px;"></div>
-
 <div class="code-container">
   <pre><code>class Cylinder:
     def __init__(self, radius: float, height: float) -> None:
@@ -222,7 +197,6 @@
         return lateral_area + base_area</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
-
 <h2 id="use-docstrings">
 	Use Docstrings
 </h2>
@@ -239,7 +213,6 @@
 	If you want more information, check out my post on <a href="./docstrings.html">How To Document Your Python Code with Docstrings</a>.
 </p>
 <div style="height: 20px;"></div>
-
 <div class="code-container">
   <pre><code>class Cylinder:
     '''
@@ -283,7 +256,6 @@
         return lateral_area + base_area</code></pre>
   <button class="copy-btn">Copy</button>
 </div>
-
 <h2 id="wrapping-up">
 	Wrapping Up
 </h2>
@@ -334,7 +306,7 @@
 </div>
 </div>
 <div style="height: 120px;"></div>
-    <div class="divider" style="height: 20px; background-color: var(--purple);"></div>
+    <div class="divider" style="height: 20px; background-color: var(--red);"></div>
     <script src="./../scripts/scroll.js"></script>
     <script src="./../scripts/copyCode.js"></script>
     <script> hljs.highlightAll(); </script>
