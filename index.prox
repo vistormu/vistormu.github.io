@@ -218,4 +218,23 @@ Learn how I created the syntax highlighting for Proxima
 
 </div>
 
+@h2
+Other Topics
+
+@simple-entry{
+./posts/other-topics/technologies.html
+}{
+Why haven't anyone taught me these technologies?
+}{
+feb 23rd 2024
+}
+
+@simple-entry{
+./posts/other-topics/why-i-started-blogging.html
+}{
+Why I started blogging
+}{
+feb 23rd 2024
+}
+
 @footer

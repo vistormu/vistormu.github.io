@@ -1,7 +1,7 @@
 @title{Vistor's Blog:}
-@style{./../style.css}
+@style{./../../style.css}
 
-@header
+@header{2}
 
 @rectangles{left}
 
@@ -45,4 +45,4 @@ oct 11th 2023
 
 </div>
 
-@footer
+@footer{2}
