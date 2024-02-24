@@ -6,50 +6,50 @@
 @rectangles{left}
 
 @h1
-Why haven't anyone taught me these technologies?
+Why hasn't anyone taught me these technologies?
 
 @center
-@subtitle{Published on @mark{feb 23rd 2023}. Last edit on @mark{feb 23rd 2023}}
+@subtitle{Published on @mark{feb 23rd 2024}. Last edit on @mark{feb 23rd 2024}}
 
 @rectangles{right}
 
 @spacer @spacer @spacer
 
-My degree was on industrial egineering, so my field of knowledge was about fluid mechanichs, low voltage installations, low-level control... I only had one C++ course during the first semester of the first year, so imagine my knowledege of programming. I think that is unacceptable, but that is another topic...
+My degree was in industrial engineering, so my field of knowledge was about fluid mechanics, low voltage installations, low-level control... I only had one C++ course during the first semester of my first year, so imagine my knowledge of programming. I think that is unacceptable, but that is another topic...
 
-Over the course of the last years, I had to learn by myself a lot of things that I think should have been taught to me.
+Over the course of the last few years, I have had to learn a lot of things that I think should have been taught to me.
 
-In this situation, one only have access to mainstream technologies. I downloaded VSCode and started to learn Python as I had a background in engineering. The alternative was Matlab, so... I also tried to learn C\# with Unity, but I discontinued it due to lack of time.
+In this situation, one only has access to mainstream technologies. I downloaded VSCode and started to learn Python, as I had a background in engineering. The alternative was Matlab, so... I also tried to learn C\# with Unity, but I discontinued it due to a lack of time.
 
 At this point, I thought there were only a handful of programming languages: a prehistoric one called C, and modern ones like C++, Python or JavaScript. Boy, how ignorant I was.
 
-I then recieved a grant to work at a laboratory of my university during my last year. I met a guy that had previously work at many programming jobs making applications in mobile and web. He talked about something call "Git", and that it could solve all versioning problems. I didn't understand anything he was talking about. I only knew he had to do the sign of the cross everytime he talked about Linus and open source.
+I then received a grant to work at a laboratory at my university during my last year. I met a guy who had previously worked at many programming jobs, making applications for mobile and the web. He talked about something called "Git" and how it could solve all versioning problems. I didn't understand anything he was talking about. I only knew he had to make the sign of the cross every time he talked about Linus and open source.
 
-I still remember the time I was learning to use git and I asked him how to prevent some file to be uploaded to GitHub. He answered: "just create a file named .gitignore". I didn't know how to. It does not make sense to create a file with the mere extension, like, I've never created a file named ".txt".
+I still remember the time I was learning to use Git, and I asked him how to prevent some files from being uploaded to GitHub. He answered, "Just create a file named .gitignore". I didn't know how to. It does not make sense to create a file with a mere extension; for example, I've never created a file named ".txt".
 
-At last I was able to feel confident with Git and GitHub, being able to create repositories, work in multiple branches, create releases... All through the GUI, of course.
+At last, I was able to feel confident with Git and GitHub, being able to create repositories, work in multiple branches, create releases... All through the GUI, of course.
 
-Just learning good programming practices in Python was a challenge, and I had to learnt it by myself watching tons of YouTube videos. I also learnt useful design patters like the facade, strategy, or factory patterns; and ones I was not completely onboard with like multi-inheritance or singletons.
+Just learning good programming practices in Python was a challenge, and I had to learn it by myself, watching tons of YouTube videos. I also learned useful design patterns like the facade, strategy, or factory patterns, as well as ones I was not completely onboard with like multi-inheritance or singletons.
 
-All this time I was using MacOS, and I was happy with it. I've never used Linux for the simple that I was afraid of it. The things I knew about it was through memes, and the enormous number of commands you had to use for changing the wallpaper or downloading a web browser. I was just afraid of the terminal.
+All this time, I was using macOS, and I was happy with it. I've never used Linux for the simple reason that I was afraid of it. The things I knew about it were through memes, and the enormous number of commands you had to use for changing the wallpaper or downloading a web browser. I was just afraid of the terminal.
 
 I knew that eventually I would have to use Linux, so I downloaded a virtual machine and installed Ubuntu 20.04. The memes were not true, kind of. I had Firefox. It's not the Safari I was used to, but okay... However, when trying to download VSCode I bumped into the options: .deb or .rpm. Where is my double-click installer?
 
 Navigating through the terminal was not as painful as expected. This is the Linux experience, right? I was using apt for installing things. Sometimes errors would appear, and I would search for them in StackOverflow, copy the weird terminal command, and hope everything would be fixed.
 
-However, periodically I would found myself bumping into a wall of new Linux concepts I was not aware of. Oh man, when I discovered the existence of something called ".bashrc" with all the "export", "$PATH" and weird symbols...
+However, periodically I would find myself bumping into a wall of new Linux concepts I was not aware of. Oh man, when I discovered the existence of something called ".bashrc" with all the "export", "$PATH" and weird symbols...
 
-During my Master's degree, I started to learn applied Machine Learning, specifically Reinforcement Learning. I already was proficient in Python, so that was not a problem. However, the programming language was the main complication. Now I had to learn a whole subset in Machine Learning, with the dense mathematics, libraries, frameworks, common practices, standards, complex algorithms... It was overwhelming.
+During my Master's degree, I started to learn applied Machine Learning, specifically Reinforcement Learning. I was already proficient in Python, so that was not a problem. However, the programming language was the main complication. Now I had to learn a whole subset of Machine Learning, with the dense mathematics, libraries, frameworks, common practices, standards, complex algorithms... It was overwhelming.
 
-After one year I was able to understand the basics of Reinforcement Learning, and I was able to finish my Master's thesis controlling a robotic arm with an agent I implemented all by myself.
+After one year, I was able to understand the basics of Reinforcement Learning, and I was able to finish my Master's thesis controlling a robotic arm with an agent I implemented all by myself.
 
-I thought I was in my peak of programming knowledge. I was confident. I was telling everyone I was programming robots with AI. I was training the agent in my laptop with CPU, because I failed installing CUDA. 
+I thought I was at my peak of programming knowledge. I was confident. I was telling everyone I was programming robots with AI. What they didn't know is that I was training the agent on my laptop with the CPU because I failed to install CUDA. 
 
-I then started my PhD on applied Machine Learning, modeling the behaviour of non-linear material we were using for controlling the movement of robots.
+I then started my PhD on applied Machine Learning, modeling the behavior of the non-linear material we were using for controlling the movement of robots.
 
-I noticed that, as we say in Spain, I was "starting the house from the roof". I had some basic concepts, but I really didn't know how to make simple tasks as regression or classification. All over again I had to learn new things: PyTorch, training loops, logits, common practices... And everyone's code is different, so converging on the layout that made sense to me took a long time.
+I noticed that, as we say in Spain, I had "started the house from the roof". I had some basic concepts, but I really didn't know how to do simple tasks such as regression or classification. All over again I had to learn new things: PyTorch, training loops, logits, common practices... And everyone's code was different, so converging on the layout that made sense to me took a long time.
 
-I once was training a model for classification and I was getting accuracies of 99% with low training times. I felt like all my efforts were finally paying off, so I told my colleagues and supervisors I finally solved the problem I was working on. I started writing a paper to go to a national conference. However, something felt wrong. I checked the code and I noticed a bug: I misscalculated the length of my dataset, which was vital for spliting it into training and testing. The model was being trained and tested on the same data, of course achieving high scores.
+I once trained a model for classification, and I was getting accuracies of 99% with low training times. I felt like all my efforts were finally paying off, so I told my colleagues and supervisors that I had finally solved the problem I was working on. I started writing a paper to go to a national conference. However, something felt wrong. I checked the code, and I noticed a bug: I miscalculated the length of my dataset, which was vital for splitting it into training and testing. The model was being trained and tested on the same data, of course, achieving high scores.
 
 Impostor syndrome hit me hard. I was a fraud.
 
@@ -57,29 +57,29 @@ I had lots of questions. Why do I have to learn this all by myself? Why isn't an
 
 I was able to fix the problem in time, and I was able to present the paper at the conference.
 
-I started to watch lots of programming videos on Youtube, and it was just a matter of time I found out the exitence of "ThePrimagen". He is a Netflix engineer that makes videos about day-to-day programming languages, tools, opinions... I didn't understand most of the terminology he was using, like: "who ends a *something* in a arc mutex?".
+I started to watch lots of programming videos on YouTube, and it was just a matter of time I found out about ThePrimagen. He is a Netflix engineer that makes videos about day-to-day programming languages, tools, opinions... I didn't understand most of the terminology he was using, like, "Who ends *something* in an arc mutex?".
 
-I guess this is the fate of being an engineer, always encountering new things you didn't even know they existed.
+I guess this is the fate of being an engineer—always encountering new things you didn't even know existed.
 
-However, watching his videos made me want to learn more. I discovered the existence of NeoVim, a superior text editing tool. So I had it clear: I bought a mechanical keyboard and started to learn typing with all my fingers. Then, I transitioned from VSCode to NeoVim. After several months, I realized that I was only using the terminal for my daily tasks.
+However, watching his videos made me want to learn more. I discovered the existence of NeoVim, a superior text editing tool. So I had it clear: I bought a mechanical keyboard and started to learn to type with all my fingers. Then, I transitioned from VSCode to NeoVim. After several months, I realized that I was only using the terminal for my daily tasks.
 
-Finally, I had enough confidence with my superiors in my laboratory to ask for a personal desktop PC. I installed Linux, I was able to install my nemesis (CUDA), I learned how to use SSH and I started my workflow using my personal laptop with the resources of the desktop PC.
+Finally, I had enough confidence with my superiors in my laboratory to ask for a personal desktop PC. I installed Linux, I was able to install my nemesis (CUDA), I learned how to use SSH, and I started my workflow using my personal laptop with the resources of the desktop PC.
 
-I was training my models and I had to maintain the SSH connection open until the training was completed. It often took several hours, and the longest ones were about 7 to 8 hours long. Then, I discovered the existence of Tmux. I first thought it just was a terminal multiplexer, so I didn't give it much thought. When I finally knew how to use it properly, it was a game changer. I was able to disconnect from the SSH session and reconnect later to see the progress of the training. How could I have been over a year without it?
+I was training my models, and I had to maintain the SSH connection open until the training was completed. It often took several hours, and the longest ones were about 7 to 8 hours long. Then, I discovered the existence of Tmux. I first thought it was just a terminal multiplexer, so I didn't give it much thought. When I finally knew how to use it properly, it was a game changer. I was able to disconnect from the SSH session and reconnect later to see the progress of the training. How could I have spent over a year without it?
 
 Following ThePrimagen's videos, I came across a book called @url{https://interpreterbook.com/}{Writing An Interpreter In Go} by Thorsten Ball. I have always wanted to create my own programming language, and Go was under my radar for quite some time, so the book came in quite handy.
 
-I learned so much with that book. I was able to understand how a programming language works, how to create a tokenizer, a parser... And I also learned Go. It is so simple that I bet this project is enough to learn 80% of it. Additionally, I was able to transfer this knowledge into Machine Learning applications such as tokenizing text for Natural Language Processing.
+I learned so much from that book. I was able to understand how a programming language works, how to create a tokenizer, a parser... And I also learned Go. It is so simple that I bet this project is enough to learn 80% of it. Additionally, I was able to transfer this knowledge into Machine Learning applications such as tokenizing text for Natural Language Processing.
 
-Over the last months i have become interested in creating my own personal website. I started writing plain HTML and CSS and created a simple portfolio hosted in GitHub Pages. Little by little I was extending the webpage with more features each time: themes, resume, blog posts...
+Over the last few months, I have become interested in creating my own personal website. I started writing plain HTML and CSS and created a simple portfolio hosted on GitHub Pages. Little by little, I was extending the webpage with more features each time: themes, my resume, blog posts, etc.
 
-Coding in plain HTML and CSS was a pain. I hate the indentation hell, the repetition of code, the lack of variables... With my previous knowledge on creating a programming language, I created a simple markup language called @url{https://github.com/vistormu/proxima}{Proxima}. I named it after Proxima Centauri, the nearest star to the Sun, as I wanted Proxima to be very close to pure HTML. It can be seen as a transpiler to pure HTML. With a very minimal syntax, you can create HTML components (or macros) that can be reused all over the file.
+Coding in plain HTML and CSS was a pain. I hate the indentation hell, the repetition of code, the lack of variables... With my previous knowledge of creating a programming language, I created a simple markup language called @url{https://github.com/vistormu/proxima}{Proxima}. I named it after Proxima Centauri, the nearest star to the Sun, as I wanted Proxima to be very close to pure HTML. It can be seen as a transpiler for pure HTML. With a very minimal syntax, you can create HTML components (or macros) that can be reused all over the file.
 
-I have created this webpage using Proxima, and I am very happy with the result. I am able to create blog posts as if they where written in plain text.
+I have created this webpage using Proxima, and I am very happy with the result. I am able to create blog posts as if they were written in plain text.
 
-It won't be long until I find myself again in a situation where I feel like an impostor. I am lately learning how to use the combo Go+HTMX for more dynamic webpages. It is supposedly to simplify web development, but not for a person that does not know anything about it.
+It won't be long until I find myself again in a situation where I feel like an impostor. I am lately learning how to use the combo Go+HTMX for more dynamic webpages. It is supposedly meant to simplify web development, but not for a person who does not know anything about it.
 
-The engineering world has become so complex and entangled that each time I want to learn something new, the state of that technology is so advanced that it becomes unaccessible due to the huge amount of knowledge you must have.
+The engineering world has become so complex and entangled that each time I want to learn something new, the state of that technology is so advanced that it becomes inaccessible due to the huge amount of knowledge you must have.
 
 I have some questions.
 
@@ -89,8 +89,8 @@ Do we spend enough time trying to simplify the technologies we use?
 
 Do we need to know the basics of everything?
 
-Have it always took so much time to learn new things?
+Has it always taken so much time to learn new things?
 
-Why haven't anyone taught me these technologies?
+Why hasn't anyone taught me these technologies?
 
 @footer{2}

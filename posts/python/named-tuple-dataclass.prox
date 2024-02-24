@@ -18,7 +18,7 @@ Sometimes, when working with Python, you may want to create a class that is just
 @h2
 Building a Game Library
 
-Picture this scenario: you just bought five new games on Steam sale. At first you are happy and thrilled for playing, but then you realize that your library has over 200 games and that probably "Cities Skylines II" is not your top priority.
+Picture this scenario: you just bought five new games on the Steam sale. At first, you are happy and thrilled to play, but then you realize that your library has over 200 games and that probably "Cities Skylines II" is not your top priority.
 
 Instead of playing, you decide to write a Python script to organize your library, and you start like this:
 
@@ -63,12 +63,12 @@ What about the total price?
 
 And what about the total playtime?
 
-But wait. That would imply adding an argument to the constructor of @mark{Game}, update the @mark{__repr__}... And then the @mark{get_cool_metrics} methods would return a @mark{tuple[int, float, float]}? Why is everything so complicated?
+But wait. That would imply adding an argument to the constructor of @mark{Game}, updating the @mark{__repr__}... And then the @mark{get_cool_metrics} methods would return a @mark{tuple[int, float, float]}? Why is everything so complicated?
 
 @h2
 Introducing Dataclasses
 
-Python dataclasses are a way to create classes that are just simple containers for data. Their syntax is simpler and they have a lot of pre-implemented dunder methods, including the constructor.
+Python dataclasses are a way to create classes that are just simple containers for data. Their syntax is simpler, and they have a lot of pre-implemented dunder methods, including the constructor.
 
 You could use a @mark{dataclass} to create the @mark{Game} class.
 
@@ -88,11 +88,11 @@ And they could be used for the return type of the @mark{get_cool_metrics} method
 @h2
 Introducing NamedTuple
 
-While dataclasses are a great way to create simple classes, they are dynamic, or in other words: mutable and slow. And what you really need is a C-like struct to hold data.
+While dataclasses are a great way to create simple classes, they are dynamic, or, in other words, mutable and slow. And what you really need is a C-like struct to hold data.
 
 In Python, the most similar thing to a struct is a @mark{collections.namedtuple} and a @mark{typing.NamedTuple}.
 
-You shouldn't use @mark{collections.namedtuple}. The syntax is ugly and it is not as powerful as the @mark{typing.NamedTuple}, as it benefits from the Python classes syntax.
+You shouldn't use @mark{collections.namedtuple}. The syntax is ugly, and it is not as powerful as the @mark{typing.NamedTuple}, as it benefits from the Python classes syntax.
 
 Now, we can create a "struct" to hold the cool metrics of our library.
 
@@ -104,7 +104,7 @@ class CoolMetrics(NamedTuple):
     total_price: float
     total_playtime: float
 
-As you an see, the syntax is very similar to the @mark{dataclass} syntax. But remember, @mark{NamedTuple} acts the same way as a Python tuple with named attributes. It is inmutable and faster than a class.
+As you can see, the syntax is very similar to the @mark{dataclass} syntax. But remember, @mark{NamedTuple} acts the same way as a Python tuple with named attributes. It is immutable and faster than a class.
 
 Finally, our library method would look like this:
 
@@ -115,23 +115,22 @@ Finally, our library method would look like this:
         total_playtime = sum(game.playtime for game in self.games)
         return CoolMetrics(total_games, total_price, total_playtime)
 
-Now you can access the data by dot notation, and extend the @mark{CoolMetrics} and the @mark{get_cool_metrics} method at will.
+Now you can access the data by dot notation, and extend the @mark{CoolMetrics} class and the @mark{get_cool_metrics} method at will.
 
 @h2
 So, What Are the Differences?
 
-A @mark{NamedTuple} is a simple container for data, a fancier Python tuple or a C-like struct. It's immutable: you can't change the values after the object is created. In the case of the @mark{CoolMetrics} object, why would you change any atrribute?
+A @mark{NamedTuple} is a simple container for data, a fancier Python tuple, or a C-like struct. It's immutable: you can't change the values after the object is created. In the case of the @mark{CoolMetrics} object, why would you change any attribute?
 
-On the other hand, a @mark{dataclass} is a prettier way of writing a simple Python class that holds state. It offers lot of pre-implemented magic methods, like @mark{__init__}, @mark{__repr__}, @mark{__eq__}, and so on. It is mutable, and you can change the values at will. For example, I could easily update the playtime of my @mark{Game} class by accessing the attribute.
+On the other hand, a @mark{dataclass} is a prettier way of writing a simple Python class that holds state. It offers a lot of pre-implemented magic methods, like @mark{__init__}, @mark{__repr__}, @mark{__eq__}, and so on. It is mutable, and you can change the values at will. For example, I could easily update the playtime of my @mark{Game} class by accessing the attribute.
 
 @h2
 Wrapping Up
 
-In this article, we saw how to use @mark{NamedTuple} and @mark{dataclass} to create simple classes that hold data and their main differences. Now, go and play some video games, cause your library won't ever shrink.
+In this article, we saw how to use @mark{NamedTuple} and @mark{dataclass} to create simple classes that hold data and their main differences. Now, go and play some video games, because your library won't ever shrink.
 
 @h2
 Recommended Posts
-
 
 <div class="card-row">
 

@@ -25,9 +25,9 @@
     <div class="content-wrapper">
 <div style="position: relative; height: 10px; width: 100%;">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--blue); width: 244px; left: 77px;"></div>
-        <div style="height: 15px;"></div>
-        <div class="rectangle" style="background-color: var(--white); width: 204px; left: 81px;"></div>
+        <div class="rectangle" style="background-color: var(--orange); width: 69px; left: 92px;"></div>
+        <div style="height: 14px;"></div>
+        <div class="rectangle" style="background-color: var(--white); width: 204px; left: 50px;"></div>
     </div>
 <h1 id="using-namedtuple-and-dataclass-in-python">
 	Using NamedTuple and Dataclass in Python
@@ -38,15 +38,15 @@
 </p>
 <div style="position: relative; height: 10px; width: 100%;">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--light-blue); width: 99px; right: 68px;"></div>
-        <div style="height: 6px;"></div>
-        <div class="rectangle" style="background-color: var(--blue); width: 94px; right: 58px;"></div>
+        <div class="rectangle" style="background-color: var(--white); width: 252px; right: 54px;"></div>
+        <div style="height: 13px;"></div>
+        <div class="rectangle" style="background-color: var(--red); width: 244px; right: 50px;"></div>
     </div>
 <h2 id="building-a-game-library">
 	Building a Game Library
 </h2>
 <p>
-	Picture this scenario: you just bought five new games on Steam sale. At first you are happy and thrilled for playing, but then you realize that your library has over 200 games and that probably "Cities Skylines II" is not your top priority.
+	Picture this scenario: you just bought five new games on the Steam sale. At first, you are happy and thrilled to play, but then you realize that your library has over 200 games and that probably "Cities Skylines II" is not your top priority.
 </p>
 <p>
 	Instead of playing, you decide to write a Python script to organize your library, and you start like this:
@@ -103,13 +103,13 @@
 	And what about the total playtime?
 </p>
 <p>
-	But wait. That would imply adding an argument to the constructor of <mark>Game</mark>, update the <mark>__repr__</mark>... And then the <mark>get_cool_metrics</mark> methods would return a <mark>tuple[int, float, float]</mark>? Why is everything so complicated?
+	But wait. That would imply adding an argument to the constructor of <mark>Game</mark>, updating the <mark>__repr__</mark>... And then the <mark>get_cool_metrics</mark> methods would return a <mark>tuple[int, float, float]</mark>? Why is everything so complicated?
 </p>
 <h2 id="introducing-dataclasses">
 	Introducing Dataclasses
 </h2>
 <p>
-	Python dataclasses are a way to create classes that are just simple containers for data. Their syntax is simpler and they have a lot of pre-implemented dunder methods, including the constructor.
+	Python dataclasses are a way to create classes that are just simple containers for data. Their syntax is simpler, and they have a lot of pre-implemented dunder methods, including the constructor.
 </p>
 <p>
 	You could use a <mark>dataclass</mark> to create the <mark>Game</mark> class.
@@ -134,13 +134,13 @@ class Game:
 	Introducing NamedTuple
 </h2>
 <p>
-	While dataclasses are a great way to create simple classes, they are dynamic, or in other words: mutable and slow. And what you really need is a C-like struct to hold data.
+	While dataclasses are a great way to create simple classes, they are dynamic, or, in other words, mutable and slow. And what you really need is a C-like struct to hold data.
 </p>
 <p>
 	In Python, the most similar thing to a struct is a <mark>collections.namedtuple</mark> and a <mark>typing.NamedTuple</mark>.
 </p>
 <p>
-	You shouldn't use <mark>collections.namedtuple</mark>. The syntax is ugly and it is not as powerful as the <mark>typing.NamedTuple</mark>, as it benefits from the Python classes syntax.
+	You shouldn't use <mark>collections.namedtuple</mark>. The syntax is ugly, and it is not as powerful as the <mark>typing.NamedTuple</mark>, as it benefits from the Python classes syntax.
 </p>
 <p>
 	Now, we can create a "struct" to hold the cool metrics of our library.
@@ -155,7 +155,7 @@ class CoolMetrics(NamedTuple):
   <button class="copy-btn">Copy</button>
 </div>
 <p>
-	As you an see, the syntax is very similar to the <mark>dataclass</mark> syntax. But remember, <mark>NamedTuple</mark> acts the same way as a Python tuple with named attributes. It is inmutable and faster than a class.
+	As you can see, the syntax is very similar to the <mark>dataclass</mark> syntax. But remember, <mark>NamedTuple</mark> acts the same way as a Python tuple with named attributes. It is immutable and faster than a class.
 </p>
 <p>
 	Finally, our library method would look like this:
@@ -169,22 +169,22 @@ class CoolMetrics(NamedTuple):
   <button class="copy-btn">Copy</button>
 </div>
 <p>
-	Now you can access the data by dot notation, and extend the <mark>CoolMetrics</mark> and the <mark>get_cool_metrics</mark> method at will.
+	Now you can access the data by dot notation, and extend the <mark>CoolMetrics</mark> class and the <mark>get_cool_metrics</mark> method at will.
 </p>
 <h2 id="so,-what-are-the-differences?">
 	So, What Are the Differences?
 </h2>
 <p>
-	A <mark>NamedTuple</mark> is a simple container for data, a fancier Python tuple or a C-like struct. It's immutable: you can't change the values after the object is created. In the case of the <mark>CoolMetrics</mark> object, why would you change any atrribute?
+	A <mark>NamedTuple</mark> is a simple container for data, a fancier Python tuple, or a C-like struct. It's immutable: you can't change the values after the object is created. In the case of the <mark>CoolMetrics</mark> object, why would you change any attribute?
 </p>
 <p>
-	On the other hand, a <mark>dataclass</mark> is a prettier way of writing a simple Python class that holds state. It offers lot of pre-implemented magic methods, like <mark>__init__</mark>, <mark>__repr__</mark>, <mark>__eq__</mark>, and so on. It is mutable, and you can change the values at will. For example, I could easily update the playtime of my <mark>Game</mark> class by accessing the attribute.
+	On the other hand, a <mark>dataclass</mark> is a prettier way of writing a simple Python class that holds state. It offers a lot of pre-implemented magic methods, like <mark>__init__</mark>, <mark>__repr__</mark>, <mark>__eq__</mark>, and so on. It is mutable, and you can change the values at will. For example, I could easily update the playtime of my <mark>Game</mark> class by accessing the attribute.
 </p>
 <h2 id="wrapping-up">
 	Wrapping Up
 </h2>
 <p>
-	In this article, we saw how to use <mark>NamedTuple</mark> and <mark>dataclass</mark> to create simple classes that hold data and their main differences. Now, go and play some video games, cause your library won't ever shrink.
+	In this article, we saw how to use <mark>NamedTuple</mark> and <mark>dataclass</mark> to create simple classes that hold data and their main differences. Now, go and play some video games, because your library won't ever shrink.
 </p>
 <h2 id="recommended-posts">
 	Recommended Posts
@@ -224,7 +224,7 @@ class CoolMetrics(NamedTuple):
 </div>
 </div>
 <div style="height: 120px;"></div>
-    <div class="divider" style="height: 20px; background-color: var(--light-blue);"></div>
+    <div class="divider" style="height: 20px; background-color: var(--red);"></div>
     <script src="./../../scripts/scroll.js"></script>
     <script src="./../../scripts/copyCode.js"></script>
     <script> hljs.highlightAll(); </script>

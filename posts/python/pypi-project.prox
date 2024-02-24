@@ -36,14 +36,14 @@ References
 @h2
 Project Structure
 
-In this tutorial, we will upload our just recently written project named "chorizo" to PyPi.
+In this tutorial, we will upload our recently written project named "chorizo" to PyPi.
 
 There are two types of valid project structures:
 
 @h3
 src-layout
 
-The project should contain a @mark{src} directory under the project root and all modules and packages meant for distribution are placed inside this directory.
+The project should contain a @mark{src} directory under the project root, and all modules and packages meant for distribution are placed inside this directory.
 
 @pre
 chorizo
@@ -62,7 +62,7 @@ chorizo
 |-- chorizo
 |   |-- __init__.py
 
-In this project we will use the latter, because it is simpler, cleaner, and easier to explore in GitHub. And because I just hate naming something @mark{src} whe I have a cool name like "chorizo".
+In this project, we will use the latter, because it is simpler, cleaner, and easier to explore on GitHub. And because I just hate naming something "src", I have a cool name like "chorizo".
 
 @h2
 Necessary Files
@@ -133,7 +133,7 @@ pip install chorizo
 @h3
 pyproject.toml
 
-The @mark{pyproject.toml} file is used to configure the build process of your project. There are multiple backends available to build your project, but I am lately using @url{https://github.com/pypa/hatch}{hatchling}. The backend tool will be automatically installing when building, so use the one you like the most.
+The @mark{pyproject.toml} file is used to configure the build process of your project. There are multiple backends available to build your project, but I am lately using @url{https://github.com/pypa/hatch}{hatchling}. The backend tool will be automatically installed when building, so use the one you like the most.
 
 It is important to update the version of your package every time you upload a new release.
 
@@ -170,7 +170,7 @@ Issues = "https://github.com/user/chorizo/issues"
 
 While uploading my projects, I ran into some problems due to having a directory named "assets" in the root. It turns out, backend tools often ignore certain directories like "examples" or "tests" at the root level, but "assets" isn't typically one of them. I struggled to resolve this with @mark{setuptools}, but switching to @mark{hatchling} did the trick.
 
-If this is your case, you can add the following lines to the @mark{pyproject.toml} file to specify which directories to include in the build process.
+If this is your case, you can add the following lines to the @mark{pyproject.toml} file to specify which directories to include in the build process:
 
 @file{pyproject.toml}
 
@@ -181,7 +181,7 @@ packages = ["chorizo"]
 @h3
 requirements.txt
 
-It is also a good practice leaving a @mark{requirements.txt} with the dependencies in case someone wants to build from source.
+It is also a good practice to leave a @mark{requirements.txt} with the dependencies in case someone wants to build from source.
 
 @file{requirements.txt}
 
@@ -235,16 +235,16 @@ New directories will appear in your project root: @mark{dist} and @mark{chorizo.
 @h2
 Upload the Project
 
-The process of uploading your project to PyPi is a bit tricky. First of all, there are two PyPi repositories: @mark{TestPyPi} and @mark{PyPi}. The first one is used to test your project before uploading it to the second one. They are independent servers, so you need to create an account in both.
+The process of uploading your project to PyPi is a bit tricky. Firstly, there are two PyPi repositories: @mark{TestPyPi} and @mark{PyPi}. The first one is used to test your project before uploading it to the second one. They are independent servers, so you need to create an account on both.
 
-@important{Once you upload a realease, it cannot be deleted, so you need to be careful.}
+@important{Once you upload a release, it cannot be deleted, so you need to be careful.}
 
 @h3
 Upload to TestPyPi
 
 It is a good idea to upload first to the test server to check if everything is working as expected. To register an account, go to @url{https://test.pypi.org/account/register/}.
 
-Now you need a token to upload your project. To get a token, go to @url{https://test.pypi.org/manage/account/\#api-tokens} and click on "Add API token". You will need to setup a Two-Factor-Autentification, which is a bit annoying, but follow the steps.
+Now you need a token to upload your project. To get a token, go to @url{https://test.pypi.org/manage/account/\#api-tokens} and click on "Add API token". You will need to set up a Two-Factor-Autentification, which is a bit annoying, but follow the steps.
 
 Finally, you can upload your project to the test server.
 
@@ -294,7 +294,7 @@ Now it is time to upload your project to GitHub. We will tag the project with th
 git tag -a v0.0.1 -m "Release v0.0.1"
 git push origin v0.0.1
 
-Then, I use the GitHub CLI to upload the realease files to GitHub. If you don't have it installed, you can do it with your package manager of choice.
+Then, I use the GitHub CLI to upload the release files to GitHub. If you don't have it installed, you can do it with your package manager of choice.
 
 @file{terminal}
 
@@ -302,26 +302,26 @@ Then, I use the GitHub CLI to upload the realease files to GitHub. If you don't 
 sudo apt install gh
 sudo dnf install gh
 
-You will need to login to your GitHub account.
+You will need to log in to your GitHub account.
 
 @file{terminal}
 
 @pre
 gh auth login
 
-And finally you can upload the release files to GitHub. In our case, the files are in the @mark{dist} directory.
+And finally, you can upload the release files to GitHub. In our case, the files are in the @mark{dist} directory.
 
 @file{terminal}
 
 @pre
 gh release create v0.0.1 dist/*
 
-Now you will be asked to fill out all the information about the release. I usually write a changelog.md and paste it in the description of the release. You can skip that step on the CLI and edit the release later in GitHub.
+Now you will be asked to fill out all the information about the release. I usually write a changelog.md and paste it in the description of the release. You can skip that step on the CLI and edit the release later on GitHub.
 
 @h2
 Wrapping Up
 
-Now you know how to upload your projects to PyPi. It is a bit tricky at first, but once you get used to it, it is pretty straightforward. I hope you found it useful!
+Now you know how to upload your projects to PyPi. It is a bit tricky at first, but once you get used to it, it is pretty straightforward. I hope you find it useful!
 
 @h2
 References

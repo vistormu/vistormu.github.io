@@ -25,9 +25,9 @@
     <div class="content-wrapper">
 <div style="position: relative; height: 10px; width: 100%;">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--white); width: 119px; left: 91px;"></div>
-        <div style="height: 6px;"></div>
-        <div class="rectangle" style="background-color: var(--red); width: 166px; left: 84px;"></div>
+        <div class="rectangle" style="background-color: var(--white); width: 158px; left: 79px;"></div>
+        <div style="height: 7px;"></div>
+        <div class="rectangle" style="background-color: var(--red); width: 131px; left: 85px;"></div>
     </div>
 <h1 id="write-readable-code-in-python">
 	Write Readable Code in Python
@@ -35,13 +35,13 @@
 <div style="text-align: center;"><div class="subtitle">Published on <mark>nov 6th 2023</mark>. Last edit on <mark>nov 6th 2023</mark></div></div>
 <div style="position: relative; height: 10px; width: 100%;">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--white); width: 239px; right: 84px;"></div>
+        <div class="rectangle" style="background-color: var(--orange); width: 152px; right: 70px;"></div>
         <div style="height: 9px;"></div>
-        <div class="rectangle" style="background-color: var(--yellow); width: 145px; right: 63px;"></div>
+        <div class="rectangle" style="background-color: var(--blue); width: 66px; right: 90px;"></div>
     </div>
 <div style="height: 20px;"></div>
 <p>
-	Have you ever returned to a project you haven't worked on in a while and had no idea what you were doing? Or maybe you've been working on a project with a team and you have no idea what your teammates code does? If you have, then you know how important it is to write readable code.
+	Have you ever returned to a project you hadn't worked on in a while and had no idea what you were doing? Or maybe you've been working on a project with a team, and you have no idea what your teammates' code does? If you have, then you know how important it is to write readable code.
 </p>
 <h2 id="table-of-contents">
 	Table of Contents
@@ -83,7 +83,7 @@
 	The first step to writing readable code is to use descriptive variable names.
 </p>
 <p>
-	There is a famous quote by Phil Karlton that says: "There are only two hard things in Computer Science: cache invalidation and naming things". The seemingly simple task of choosing clear and meaningful names for variables can be surprisingly challenging. In our example is a piece of cake:
+	There is a famous quote by Phil Karlton that says, "There are only two hard things in Computer Science: cache invalidation and naming things". The seemingly simple task of choosing clear and meaningful names for variables can be surprisingly challenging. In our example, a piece of cake:
 </p>
 <ul>
 	<li>The class <mark>Foo</mark> represents a Cylinder.</li>
@@ -116,10 +116,10 @@
 	Always try to write procedural code.
 </p>
 <p>
-	Try to divide the code in many steps as necessary. You are not a better programmer for writing more one-liners. It is often more befenicial to be clear than the minuscule optimization you might achieve.
+	Try to divide the code into as many steps as necessary. You are not a better programmer for writing more one-liners. It is often more beneficial to be clear than the minuscule optimization you might achieve.
 </p>
 <p>
-	In our example, despite of being a simple piece of code, I hope the point is clear. We can divide the <mark>area</mark> method result into two calculations: one for the lateral area and one for the base area. This further explains what the code does and makes it more readable:
+	In our example, despite being a simple piece of code, I hope the point is clear. We can divide the <mark>area</mark> method result into two calculations: one for the lateral area and one for the base area. This further explains what the code does and makes it more readable.
 </p>
 <div style="height: 20px;"></div>
 <div class="code-container">
@@ -141,16 +141,16 @@
 	Use Type Hints
 </h2>
 <p>
-	Python is an interpreted language, meaning that it is a loosey-goofey language. If you pass to the cylinder constructor a boolean variable, Python will not even blink. The program will just panic during runtime, which sometimes is very annoying. 
+	Python is an interpreted language, meaning that it is a loosy-goofy language. If you pass to the cylinder constructor a boolean variable, Python will not even blink. The program will just panic during runtime, which is sometimes very annoying. 
 </p>
 <p>
 	To avoid these kinds of mistakes, one would normally use a Language Server Protocol (LSP) to get a real-time feedback on errors. There are many LSPs for Python, like Pylance or Pyright, and they are really nice. LSPs will try their best to catch these errors, but they are not foolproof.
 </p>
 <p>
-	Type hinting has a double purpose: help the LSPs do their work better and help the programmer understand the code better.
+	Type hinting has a double purpose: to help the LSPs do their work better and to help the programmer understand the code better.
 </p>
 <p>
-	In our example, we can add type hints to the arguments of all methods, the class' attributes and the variable declaration in the <mark>area</mark> method. In case of passing a wrong argument type, our LSP will warn us.
+	In our example, we can add type hints to the arguments of all methods, the class' attributes, and the variable declaration in the <mark>area</mark> method. In the event of passing the wrong argument type, our LSP will warn us.
 </p>
 <div style="height: 20px;"></div>
 <div class="code-container">
@@ -178,7 +178,7 @@
 	Comments are for explaining why you did something, not what you did. If you need to explain what you did, then you should refactor your code to make it more readable.
 </p>
 <p>
-	In our example there is not much to say, but to make the point clearer, we could annotate the choice of using NumPy instead of the built-in <mark>**</mark>, for example.
+	In our example, there is not much to say, but to make the point clearer, we could annotate the choice of using NumPy instead of the built-in <mark>**</mark>, for example.
 </p>
 <div style="height: 20px;"></div>
 <div class="code-container">
@@ -204,10 +204,10 @@
 	Docstrings are for documenting your code.
 </p>
 <p>
-	The ultimate way of documenting your code is to use Docstrings. Docstrings are strings that are placed right after the declaration of a function, class or method, and are used to describe what the function, class or method does. The main advantage of using Docstrings is that your LSP will show them ot you, saving lots of time on checking external documentation.
+	The ultimate way of documenting your code is to use Docstrings. Docstrings are strings that are placed right after the declaration of a function, class or method, and are used to describe what the function, class or method does. The main advantage of using Docstrings is that your LSP will show them to you, saving you lots of time checking external documentation.
 </p>
 <p>
-	It makes the code much more chunky, so I recommend using them for objects exposed by your API.
+	It makes the code much chunkier, so I recommend using them for objects exposed by your API.
 </p>
 <p>
 	If you want more information, check out my post on <a href="./docstrings.html">How To Document Your Python Code with Docstrings</a>.

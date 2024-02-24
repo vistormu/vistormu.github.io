@@ -17,25 +17,25 @@ Why I started blogging
 
 <div style="text-align: justify;">
 
-I am a PhD student in Robotics, and I apply Mahine Learning regularly.
+I am a PhD student in Robotics, and I apply Machine Learning regularly.
 
-My Master's thesis was on using Reinforcement Learning to move a robotic arm, so I had to do hours of training. Sadly, I had to use my personal computer as I dididn't have access to the resources of the laboratory. It was painful.
+My Master's thesis was on using Reinforcement Learning to move a robotic arm, so I had to do hours of training. Sadly, I had to use my personal computer, as I didn't have access to the resources of the laboratory. It was painful.
 
-I remember being, on a day close to the deadline, on a bus going from Murcia to Malaga training my model because I found a bug and I became anxious. That feeling of hoping that the battery didn't die during the 6-hour-long commute was terrorific.
+I remember being, on a day close to the deadline, on a bus going from Murcia to Malaga training my model because I found a bug and I became anxious. That feeling of hoping that the battery didn't die during the 6-hour-long commute was horrendous.
 
-The Master's thesis was a success, and I was accepted into the PhD program. As I  had been working with the team for a year, I felt confident enough to ask for a good desktop PC, with a i7 CPU and a RTX 4070. I installed Linux and CUDA. I was happy.
+The Master's thesis was a success, and I was accepted into the PhD program. As I  had been working with the team for a year, I felt confident enough to ask for a good desktop PC, with an i7 CPU and a RTX 4070. I installed Linux and CUDA. I was happy.
 
-Imagine going from a CPU in a laptop to a GPU in a desktop. And I even learnt recently how to connect via SSH, so I used my good-old laptop with the resources of a desktop PC.
+Imagine going from a CPU on a laptop to a GPU on a desktop. And I even learned recently how to connect via SSH, so I used my good-old laptop with the resources of a desktop PC.
 
-That had be the future. How does even SSH work? My smol brain with a background on industrial engineering was transitioning to the field of computer science.
+That had to be the future. How does even SSH work? My smol brain, with a background in industrial engineering, was transitioning to the field of computer science.
 
-Over the course of one year I was deep into programming. Motivated by ThePrimagen, I first bought a mechanical keyboard and I started to learn typing with all my fingers. Then I transitioned from VSCode to NeoVim. I also started to program in other languages like Go, where I made a small project on creating my own programming language.
+Over the course of one year, I was deeply into programming. Motivated by ThePrimagen, I first bought a mechanical keyboard, and I started to learn to type with all my fingers. Then I transitioned from VSCode to NeoVim. I also started to program in other languages, like Go, where I made a small project on creating my own programming language.
 
 I then started to create my personal website, just a simple portfolio. I used plain HTML and CSS, but it was a nightmare to manage. I didn't like the indentation hell, and locating the specific thing I wanted to change was time-consuming.
 
 With my new knowledge of making a programming language, I created my own markup language to make an abstraction layer over plain HTML and CSS. I named it @url{https://github.com/vistormu/proxima}{Proxima}, after Proxima Centauri, the nearest star to the Sun, as I wanted it to be very close to HTML and CSS.
 
-Last year I travelled to Switzerland to visit a close friend of my partner. I told him a problem we were having with the communications of a physical system, bla bla bla. And he said: "the me of five years ago also had this problem and I documented it in my blog post".
+Last year, I traveled to Switzerland to visit a close friend of my partner. I told him about a problem we were having with the communications of a physical system, bla bla bla. And he said, "I, five years ago, also had this problem, and I documented it in my blog post".
 
 That made me think. I had been learning a lot of things, and probably I could help someone someday by documenting my journey.
 

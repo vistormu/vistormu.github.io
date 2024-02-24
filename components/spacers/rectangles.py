@@ -12,7 +12,6 @@ def function(alignment: str) -> str:
         "violet",
         "orange",
         "pink",
-        "black",
     ]
 
     color_1: str = random.choice(colors)
