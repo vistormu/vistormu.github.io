@@ -1,23 +1,15 @@
-import os
-
-
-def function(title: str, description: str, date: str, link: str) -> str:
-    if link and not link.startswith("/"):
-        raise ValueError(f"Ensure that the link starts with a forward slash: {link}")
-
-    if link and not os.path.exists(link[1:]):
-        raise ValueError(f"File not found: {link}")
+def function(title: str, description: str, link: str) -> str:
+    if link and not link.startswith("http"):
+        raise ValueError(f"Ensure that the link is a valid HTTP address: {link}")
 
     card_style = ' '.join([
         "relative",
-        "w-5/12",
+        "w-full",
         "h-64",
         "border-2",
         "border-white",
         "p-4",
         "my-2",
-        "max-md:w-4/5",
-        "max-md:h-72",
     ])
 
     title_style = ' '.join([
@@ -25,15 +17,6 @@ def function(title: str, description: str, date: str, link: str) -> str:
         "text-2xl",
         "font-bold",
         "text-violet",
-    ])
-
-    date_style = ' '.join([
-        "absolute",
-        "bottom-4",
-        "left-4",
-        "p-2",
-        "text-sm",
-        "text-orange",
     ])
 
     button_container_style = ' '.join([
@@ -95,7 +78,6 @@ def function(title: str, description: str, date: str, link: str) -> str:
     <div class="{card_style}" style="flex: 0 0 auto;">
         <div class="{title_style}">{title}</div>
         <p>{description}</p>
-        <div class="{date_style}">{date if link else "coming soon"}</div>
         {button if link else ""}
     </div>
     '''

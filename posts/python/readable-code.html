@@ -4,67 +4,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
 	<title>Vistor's Blog: Readable Python Code</title>
-	<link rel="stylesheet" href="./../../style.css">
+	<link rel="stylesheet" href="/css/output.css">
 </head>
 <body>
 
 <link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
     
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <a href="./../../index.html">Vistor's Blog</a>
-            </div>
-            <nav>
-                <a href="./../../about.html" class="nav-link">about</a>
-            </nav>
+    <header class="sticky top-0 bg-black z-50">
+        <div class="header flex justify-between items-center max-w-4xl mx-auto p-4 ease-linear duration-200">
+            <a class="text-white text-2xl font-bold" href="/index.html">Vistor's Blog</a>
+            <a class="nav-link flex space-x-4 text-white" href="/about.html">about</a>
         </div>
     </header>
 
-    <div class="content-wrapper">
-<div style="position: relative; height: 10px; width: 100%;">
+    <div class="max-w-4xl mx-auto p-4">
+<div class="relative h-2">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--white); width: 158px; left: 79px;"></div>
-        <div style="height: 7px;"></div>
-        <div class="rectangle" style="background-color: var(--red); width: 131px; left: 85px;"></div>
+        <div class="absolute h-2 bg-red" style="width: 243px; left: 68px;"></div>
+        <div style="height: 9px;"></div>
+        <div class="absolute h-2 bg-violet" style="width: 73px; left: 52px;"></div>
     </div>
-<h1 id="write-readable-code-in-python">
+<h1 class="text-3xl font-bold mt-8 mb-4 text-center text-green" id="write-readable-code-in-python">
 	Write Readable Code in Python
 </h1>
-<div style="text-align: center;"><div class="subtitle">Published on <mark>nov 6th 2023</mark>. Last edit on <mark>nov 6th 2023</mark></div></div>
-<div style="position: relative; height: 10px; width: 100%;">
+<div style="text-align: center;"><div class="subtitle">Published on <mark class="bg-gray text-white">nov 6th 2023</mark>. Last edit on <mark class="bg-gray text-white">nov 6th 2023</mark></div></div>
+<div class="relative h-2">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--orange); width: 152px; right: 70px;"></div>
-        <div style="height: 9px;"></div>
-        <div class="rectangle" style="background-color: var(--blue); width: 66px; right: 90px;"></div>
+        <div class="absolute h-2 bg-blue" style="width: 231px; right: 51px;"></div>
+        <div style="height: 8px;"></div>
+        <div class="absolute h-2 bg-pink" style="width: 211px; right: 91px;"></div>
     </div>
 <div style="height: 20px;"></div>
 <p>
 	Have you ever returned to a project you hadn't worked on in a while and had no idea what you were doing? Or maybe you've been working on a project with a team, and you have no idea what your teammates' code does? If you have, then you know how important it is to write readable code.
 </p>
-<h2 id="table-of-contents">
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="table-of-contents">
 	Table of Contents
 </h2>
-<ul>
-<li><a href="#example-code">Example Code</a></li>
-<li><a href="#use-descriptive-variable-names">Use descriptive variable names</a></li>
-<li><a href="#write-procedural-code">Write Procedural Code</a></li>
-<li><a href="#use-type-hints">Use Type Hints</a></li>
-<li><a href="#avoid-using-comments">Avoid Using Comments</a></li>
-<li><a href="#use-docstrings">Use Docstrings</a></li>
-<li><a href="#wrapping-up">Wrapping Up</a></li>
-<li><a href="#recommended-posts">Recommended posts</a></li>
+<ul class="list-none list-inside mb-8">
+<li>-&gt;&nbsp;<a href="#example-code">Example Code</a></li>
+<li>-&gt;&nbsp;<a href="#use-descriptive-variable-names">Use descriptive variable names</a></li>
+<li>-&gt;&nbsp;<a href="#write-procedural-code">Write Procedural Code</a></li>
+<li>-&gt;&nbsp;<a href="#use-type-hints">Use Type Hints</a></li>
+<li>-&gt;&nbsp;<a href="#avoid-using-comments">Avoid Using Comments</a></li>
+<li>-&gt;&nbsp;<a href="#use-docstrings">Use Docstrings</a></li>
+<li>-&gt;&nbsp;<a href="#wrapping-up">Wrapping Up</a></li>
+<li>-&gt;&nbsp;<a href="#recommended-posts">Recommended posts</a></li>
 </ul>
-<h2 id="example-code">
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="example-code">
 	Example Code
 </h2>
 <p>
-	We will be using this simple code snippet as an example throughout this post. This code defines a class called <mark>Foo</mark> with two methods: <mark>bar</mark> and <mark>baz</mark>. A priori, it is not clear what this code does. We can make it more readable by following the tips below.
+	We will be using this simple code snippet as an example throughout this post. This code defines a class called <mark class="bg-gray text-white">Foo</mark> with two methods: <mark class="bg-gray text-white">bar</mark> and <mark class="bg-gray text-white">baz</mark>. A priori, it is not clear what this code does. We can make it more readable by following the tips below.
 </p>
-<div style="height: 20px;"></div>
-<div class="code-container">
-  <pre><code>class Foo:
+<div class="text-orange mt-4 text-sm"> </div>
+    <div class="relative">
+        <pre class="border border-white overflow-x-auto p-4 mb-8"><code class="!bg-black !text-sm language-python">class Foo:
     def __init__(self, a, b):
         self.a = a
         self.b = b
@@ -74,9 +70,9 @@
     
     def baz(self):
         return 2*np.pi*self.a*self.b + 2*np.pi*np.power(self.a, 2)</code></pre>
-  <button class="copy-btn">Copy</button>
-</div>
-<h2 id="use-descriptive-variable-names">
+        <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="use-descriptive-variable-names">
 	Use descriptive variable names
 </h2>
 <p>
@@ -85,19 +81,19 @@
 <p>
 	There is a famous quote by Phil Karlton that says, "There are only two hard things in Computer Science: cache invalidation and naming things". The seemingly simple task of choosing clear and meaningful names for variables can be surprisingly challenging. In our example, a piece of cake:
 </p>
-<ul>
-	<li>The class <mark>Foo</mark> represents a Cylinder.</li>
-	<li>The variable <mark>a</mark> represents the radius of the cylinder.</li>
-	<li>The variable <mark>b</mark> represents the height of the cylinder.</li>
-	<li>The method <mark>bar</mark> computes the volume of the cylinder.</li>
-	<li>The method <mark>baz</mark> computes the area of the cylinder.</li>
+<ul class="list-disc list-inside mb-8">
+	<li>The class <mark class="bg-gray text-white">Foo</mark> represents a Cylinder.</li>
+	<li>The variable <mark class="bg-gray text-white">a</mark> represents the radius of the cylinder.</li>
+	<li>The variable <mark class="bg-gray text-white">b</mark> represents the height of the cylinder.</li>
+	<li>The method <mark class="bg-gray text-white">bar</mark> computes the volume of the cylinder.</li>
+	<li>The method <mark class="bg-gray text-white">baz</mark> computes the area of the cylinder.</li>
 </ul>
 <p>
 	Making these changes, our code becomes much more readable:
 </p>
-<div style="height: 20px;"></div>
-<div class="code-container">
-  <pre><code>class Cylinder:
+<div class="text-orange mt-4 text-sm"> </div>
+    <div class="relative">
+        <pre class="border border-white overflow-x-auto p-4 mb-8"><code class="!bg-black !text-sm language-python">class Cylinder:
     def __init__(self, radius, height):
         self.radius = radius
         self.height = height
@@ -107,9 +103,9 @@
     
     def area(self):
         return 2*np.pi*self.radius*self.height + 2*np.pi*np.power(self.radius, 2)</code></pre>
-  <button class="copy-btn">Copy</button>
-</div>
-<h2 id="write-procedural-code">
+        <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="write-procedural-code">
 	Write Procedural Code
 </h2>
 <p>
@@ -119,11 +115,11 @@
 	Try to divide the code into as many steps as necessary. You are not a better programmer for writing more one-liners. It is often more beneficial to be clear than the minuscule optimization you might achieve.
 </p>
 <p>
-	In our example, despite being a simple piece of code, I hope the point is clear. We can divide the <mark>area</mark> method result into two calculations: one for the lateral area and one for the base area. This further explains what the code does and makes it more readable.
+	In our example, despite being a simple piece of code, I hope the point is clear. We can divide the <mark class="bg-gray text-white">area</mark> method result into two calculations: one for the lateral area and one for the base area. This further explains what the code does and makes it more readable.
 </p>
-<div style="height: 20px;"></div>
-<div class="code-container">
-  <pre><code>class Cylinder:
+<div class="text-orange mt-4 text-sm"> </div>
+    <div class="relative">
+        <pre class="border border-white overflow-x-auto p-4 mb-8"><code class="!bg-black !text-sm language-python">class Cylinder:
     def __init__(self, radius, height):
         self.radius = radius
         self.height = height
@@ -135,9 +131,9 @@
         lateral_area = 2*np.pi*self.radius*self.height
         base_area = 2*np.pi*np.power(self.radius, 2)
         return lateral_area + base_area</code></pre>
-  <button class="copy-btn">Copy</button>
-</div>
-<h2 id="use-type-hints">
+        <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="use-type-hints">
 	Use Type Hints
 </h2>
 <p>
@@ -150,25 +146,25 @@
 	Type hinting has a double purpose: to help the LSPs do their work better and to help the programmer understand the code better.
 </p>
 <p>
-	In our example, we can add type hints to the arguments of all methods, the class' attributes, and the variable declaration in the <mark>area</mark> method. In the event of passing the wrong argument type, our LSP will warn us.
+	In our example, we can add type hints to the arguments of all methods, the class' attributes, and the variable declaration in the <mark class="bg-gray text-white">area</mark> method. In the event of passing the wrong argument type, our LSP will warn us.
 </p>
-<div style="height: 20px;"></div>
-<div class="code-container">
-  <pre><code>class Cylinder:
-    def __init__(self, radius: float, height: float) -> None:
+<div class="text-orange mt-4 text-sm"> </div>
+    <div class="relative">
+        <pre class="border border-white overflow-x-auto p-4 mb-8"><code class="!bg-black !text-sm language-python">class Cylinder:
+    def __init__(self, radius: float, height: float) -&gt; None:
         self.radius: float = radius
         self.height: float = height
     
-    def volume(self) -> float:
+    def volume(self) -&gt; float:
         return np.pi*np.power(self.radius, 2)*self.height
     
-    def area(self) -> float:
+    def area(self) -&gt; float:
         lateral_area: float = 2*np.pi*self.radius*self.height
         base_area: float = 2*np.pi*np.power(self.radius, 2)
         return lateral_area + base_area</code></pre>
-  <button class="copy-btn">Copy</button>
-</div>
-<h2 id="avoid-using-comments">
+        <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="avoid-using-comments">
 	Avoid Using Comments
 </h2>
 <p>
@@ -178,26 +174,26 @@
 	Comments are for explaining why you did something, not what you did. If you need to explain what you did, then you should refactor your code to make it more readable.
 </p>
 <p>
-	In our example, there is not much to say, but to make the point clearer, we could annotate the choice of using NumPy instead of the built-in <mark>**</mark>, for example.
+	In our example, there is not much to say, but to make the point clearer, we could annotate the choice of using NumPy instead of the built-in <mark class="bg-gray text-white">**</mark>, for example.
 </p>
-<div style="height: 20px;"></div>
-<div class="code-container">
-  <pre><code>class Cylinder:
-    def __init__(self, radius: float, height: float) -> None:
+<div class="text-orange mt-4 text-sm"> </div>
+    <div class="relative">
+        <pre class="border border-white overflow-x-auto p-4 mb-8"><code class="!bg-black !text-sm language-python">class Cylinder:
+    def __init__(self, radius: float, height: float) -&gt; None:
         self.radius: float = radius
         self.height: float = height
     
-    def volume(self) -> float:
+    def volume(self) -&gt; float:
         # np.power is faster than **
         return np.pi*np.power(self.radius, 2)*self.height
     
-    def area(self) -> float:
+    def area(self) -&gt; float:
         lateral_area: float = 2*np.pi*self.radius*self.height
         base_area: float = 2*np.pi*np.power(self.radius, 2)
         return lateral_area + base_area</code></pre>
-  <button class="copy-btn">Copy</button>
-</div>
-<h2 id="use-docstrings">
+        <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="use-docstrings">
 	Use Docstrings
 </h2>
 <p>
@@ -210,15 +206,15 @@
 	It makes the code much chunkier, so I recommend using them for objects exposed by your API.
 </p>
 <p>
-	If you want more information, check out my post on <a href="./docstrings.html">How To Document Your Python Code with Docstrings</a>.
+	If you want more information, check out my post on <a href="/posts/python/docstrings.html">How To Document Your Python Code with Docstrings</a>.
 </p>
-<div style="height: 20px;"></div>
-<div class="code-container">
-  <pre><code>class Cylinder:
+<div class="text-orange mt-4 text-sm"> </div>
+    <div class="relative">
+        <pre class="border border-white overflow-x-auto p-4 mb-8"><code class="!bg-black !text-sm language-python">class Cylinder:
     '''
     A class to represent a cylinder.
     '''
-    def __init__(self, radius: float, height: float) -> None:
+    def __init__(self, radius: float, height: float) -&gt; None:
         '''
         Parameters
         ----------
@@ -230,7 +226,7 @@
         self.radius: float = radius
         self.height: float = height
     
-    def volume(self) -> float:
+    def volume(self) -&gt; float:
         '''
         Computes the volume of the cylinder.
     
@@ -242,7 +238,7 @@
         # np.power is faster than **
         return np.pi*np.power(self.radius, 2)*self.height
     
-    def area(self) -> float:
+    def area(self) -&gt; float:
         '''
         Computes the area of the cylinder.
     
@@ -254,9 +250,9 @@
         lateral_area: float = 2*np.pi*self.radius*self.height
         base_area: float = 2*np.pi*np.power(self.radius, 2)
         return lateral_area + base_area</code></pre>
-  <button class="copy-btn">Copy</button>
-</div>
-<h2 id="wrapping-up">
+        <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="wrapping-up">
 	Wrapping Up
 </h2>
 <p>
@@ -265,34 +261,35 @@
 <p>
 	Thanks for reading!
 </p>
-<h2 id="recommended-posts">
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="recommended-posts">
 	Recommended Posts
 </h2>
 <p>
 	If you liked this post, you might also like
 </p>
 <div class="card-row">
-<div class="card">
-<div class="card-header">How To Create a Python Virtual Environment with Conda</div>
-<div class="card-description">Learn how to create a Python Virtual Environment with Conda to manage your Python version and libraries.</div>
-<div class="card-date">oct 11th 2023</div>
-
-    <div class="card-button-container">
-        <a href="./conda.html" class="card-button">
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">How To Create a Python Virtual Environment with Conda</div>
+        <p>Learn how to create a Python Virtual Environment with Conda to manage your Python version and libraries.</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">oct 11th 2023</div>
+        
+    <div class="absolute bottom-4 right-4 group">
+        <a href="/posts/python/conda.html" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
             <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
+            <div class="relative">
+                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
             </div>
         </a>
     </div>
     
-</div>
+    </div>
 </div>
 <div style="height: 120px;"></div>
-    <div class="divider" style="height: 20px; background-color: var(--orange);"></div>
-    <script src="./../../scripts/scroll.js"></script>
-    <script src="./../../scripts/copyCode.js"></script>
+
+    <div class="absolute left-0 right-0 h-2 bg-blue"></div>
+    <script src="/js/scroll.js"></script>
+    <script src="/js/copyCode.js"></script>
     <script> hljs.highlightAll(); </script>
 </body>
 </html>

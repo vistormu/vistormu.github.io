@@ -4,41 +4,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
 	<title>Vistor's Blog: Why NeoVim</title>
-	<link rel="stylesheet" href="./../../style.css">
+	<link rel="stylesheet" href="/css/output.css">
 </head>
 <body>
 
 <link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
     
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <a href="./../../index.html">Vistor's Blog</a>
-            </div>
-            <nav>
-                <a href="./../../about.html" class="nav-link">about</a>
-            </nav>
+    <header class="sticky top-0 bg-black z-50">
+        <div class="header flex justify-between items-center max-w-4xl mx-auto p-4 ease-linear duration-200">
+            <a class="text-white text-2xl font-bold" href="/index.html">Vistor's Blog</a>
+            <a class="nav-link flex space-x-4 text-white" href="/about.html">about</a>
         </div>
     </header>
 
-    <div class="content-wrapper">
+    <div class="max-w-4xl mx-auto p-4">
 <div style="height: 20px;"></div>
-<div style="position: relative; height: 10px; width: 100%;">
+<div class="relative h-2">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--blue); width: 156px; left: 79px;"></div>
-        <div style="height: 12px;"></div>
-        <div class="rectangle" style="background-color: var(--red); width: 148px; left: 96px;"></div>
+        <div class="absolute h-2 bg-blue" style="width: 181px; left: 66px;"></div>
+        <div style="height: 13px;"></div>
+        <div class="absolute h-2 bg-orange" style="width: 185px; left: 99px;"></div>
     </div>
-<h1 id="why-neovim">
+<h1 class="text-3xl font-bold mt-8 mb-4 text-center text-green" id="why-neovim">
 	Why NeoVim
 </h1>
-<div style="text-align: center;"><div class="subtitle">Published on <mark>oct 29th 2023</mark>. Last edit on <mark>nov 5th 2023</mark></div></div>
-<div style="position: relative; height: 10px; width: 100%;">
+<div style="text-align: center;"><div class="subtitle">Published on <mark class="bg-gray text-white">oct 29th 2023</mark>. Last edit on <mark class="bg-gray text-white">nov 5th 2023</mark></div></div>
+<div class="relative h-2">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--green); width: 244px; right: 64px;"></div>
-        <div style="height: 5px;"></div>
-        <div class="rectangle" style="background-color: var(--orange); width: 262px; right: 67px;"></div>
+        <div class="absolute h-2 bg-yellow" style="width: 59px; right: 80px;"></div>
+        <div style="height: 14px;"></div>
+        <div class="absolute h-2 bg-blue" style="width: 251px; right: 93px;"></div>
     </div>
 <div style="height: 20px;"></div> <div style="height: 20px;"></div> <div style="height: 20px;"></div>
 <p>
@@ -59,19 +55,19 @@
 <p>
 	In this article, I will explain the main advantages of using Vim, or, I should say, NeoVim, and if it suits you or not. In advance, and although it hurts me a little bit, NeoVim is not for everyone.
 </p>
-<h2 id="the-main-advantages-of-neovim">
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="the-main-advantages-of-neovim">
 	The Main Advantages of NeoVim
 </h2>
 <p>
 	Using NeoVim has many advantages. I very much like how fast and lightweight it is. I really enjoy using the terminal. I love my highly customizable, minimalistic NeoVim setup. However, in my opinion, there are two main advantages.
 </p>
-<h3 id="vim-motions">
+<h2 class="text-xl mt-8 text-green" id="vim-motions">
 	Vim motions
-</h3>
+</h2>
 <p>
 	Vim is a modal editor. This means that it has different modes in which you can edit text, and not only one like the rest of the text editors.
 </p>
-<ul>
+<ul class="list-disc list-inside mb-8">
 	<li>Normal mode. This is the default mode in which you can move the cursor around the file. From this mode, you can access the three following ones.</li>
 	<li>Insert mode. In this mode, you can edit text as a normal editor.</li>
 	<li>Visual mode. In this mode, you can select text.</li>
@@ -83,9 +79,9 @@
 <p>
 	Vim's key bindings are just another level of editing text. At the beginning, it might have been overwhelming, but now that I have gotten used to it, I cannot imagine editing text without these motions.
 </p>
-<h3 id="close-to-the-"metal"">
+<h2 class="text-xl mt-8 text-green" id="close-to-the-"metal"">
 	Close to the "metal"
-</h3>
+</h2>
 <p>
 	NeoVim is not a plug-and-play editor. You can always copy-paste some config file or use a pre-configured NeoVim distribution, but that would be missing the point, in my opinion.
 </p>
@@ -95,13 +91,13 @@
 <p>
 	This is not trivial for most of the people, but if you have that curiosity about learning how things work behind the curtain, I assure you that you will learn a lot about how the tools around programming languages work. That curiosity will make you stand out, for sure.
 </p>
-<h2 id="is-neovim-for-you">
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="is-neovim-for-you">
 	Is NeoVim for you
 </h2>
 <p>
 	To know if NeoVim is for you or not, simply ask yourself these questions:
 </p>
-<ul>
+<ul class="list-disc list-inside mb-8">
 	<li>Do I want to use Vim keybindings?</li>
 	<li>Do I care about how programming languages work?</li>
 </ul>
@@ -117,31 +113,32 @@
 <p>
 	If your answer is Yes/Yes, welcome to the club. And remember, the first rule of the NeoVim Club is to always talk about NeoVim.
 </p>
-<h2 id="recommended-posts">
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="recommended-posts">
 	Recommended Posts
 </h2>
-<div class="card-row">
-<div class="card">
-<div class="card-header">Setup NeoVim from Scratch</div>
-<div class="card-description">Learn how to setup NeoVim from scratch, with a custom configuration and plugins.</div>
-<div class="card-date">feb 18th 2024</div>
-
-    <div class="card-button-container">
-        <a href="./neovim-config.html" class="card-button">
+<div class="card-carousel">
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Setup NeoVim from Scratch</div>
+        <p>Learn how to setup NeoVim from scratch, with a custom configuration and plugins.</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">feb 18th 2024</div>
+        
+    <div class="absolute bottom-4 right-4 group">
+        <a href="/posts/neovim/neovim-config.html" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
             <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
+            <div class="relative">
+                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
             </div>
         </a>
     </div>
     
-</div>
+    </div>
 </div>
 <div style="height: 120px;"></div>
-    <div class="divider" style="height: 20px; background-color: var(--pink);"></div>
-    <script src="./../../scripts/scroll.js"></script>
-    <script src="./../../scripts/copyCode.js"></script>
+
+    <div class="absolute left-0 right-0 h-2 bg-light-blue"></div>
+    <script src="/js/scroll.js"></script>
+    <script src="/js/copyCode.js"></script>
     <script> hljs.highlightAll(); </script>
 </body>
 </html>

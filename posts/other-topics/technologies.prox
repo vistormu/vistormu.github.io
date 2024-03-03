@@ -1,7 +1,7 @@
 @title{Vistor's Blog}
-@style{./../../style.css}
+@style{/css/output.css}
 
-@header{2}
+@header
 
 @rectangles{left}
 
@@ -93,4 +93,4 @@ Has it always taken so much time to learn new things?
 
 Why hasn't anyone taught me these technologies?
 
-@footer{2}
+@footer

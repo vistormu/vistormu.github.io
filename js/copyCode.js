@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", function() {
             copyToClipboard(code);
 
             // Change button text and revert after 2 seconds
-            this.innerText = 'Copied!';
+            this.innerText = 'copied!';
             setTimeout(() => {
-                this.innerText = 'Copy';
+                this.innerText = 'copy';
             }, 2000);
         });
     });

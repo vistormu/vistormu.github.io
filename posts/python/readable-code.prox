@@ -1,7 +1,7 @@
 @title{Vistor's Blog: Readable Python Code}
-@style{./../../style.css}
+@style{/css/output.css}
 
-@header{2}
+@header
 
 @rectangles{left}
 
@@ -43,9 +43,7 @@ Example Code
 
 We will be using this simple code snippet as an example throughout this post. This code defines a class called @mark{Foo} with two methods: @mark{bar} and @mark{baz}. A priori, it is not clear what this code does. We can make it more readable by following the tips below.
 
-@spacer
-
-@pre
+@code-block{ }{python}{
 class Foo:
     def __init__(self, a, b):
         self.a = a
@@ -56,9 +54,7 @@ class Foo:
     
     def baz(self):
         return 2*np.pi*self.a*self.b + 2*np.pi*np.power(self.a, 2)
-
-
-
+}
 
 @h2
 Use descriptive variable names
@@ -81,9 +77,7 @@ The method @mark{baz} computes the area of the cylinder.
 
 Making these changes, our code becomes much more readable:
 
-@spacer
-
-@pre
+@code-block{ }{python}{
 class Cylinder:
     def __init__(self, radius, height):
         self.radius = radius
@@ -94,8 +88,7 @@ class Cylinder:
     
     def area(self):
         return 2*np.pi*self.radius*self.height + 2*np.pi*np.power(self.radius, 2)
-
-
+}
 
 @h2
 Write Procedural Code
@@ -106,9 +99,7 @@ Try to divide the code into as many steps as necessary. You are not a better pro
 
 In our example, despite being a simple piece of code, I hope the point is clear. We can divide the @mark{area} method result into two calculations: one for the lateral area and one for the base area. This further explains what the code does and makes it more readable.
 
-@spacer
-
-@pre
+@code-block{ }{python}{
 class Cylinder:
     def __init__(self, radius, height):
         self.radius = radius
@@ -121,6 +112,7 @@ class Cylinder:
         lateral_area = 2*np.pi*self.radius*self.height
         base_area = 2*np.pi*np.power(self.radius, 2)
         return lateral_area + base_area
+}
 
 
 
@@ -135,9 +127,7 @@ Type hinting has a double purpose: to help the LSPs do their work better and to 
 
 In our example, we can add type hints to the arguments of all methods, the class' attributes, and the variable declaration in the @mark{area} method. In the event of passing the wrong argument type, our LSP will warn us.
 
-@spacer
-
-@pre
+@code-block{ }{python}{
 class Cylinder:
     def __init__(self, radius: float, height: float) -> None:
         self.radius: float = radius
@@ -150,8 +140,7 @@ class Cylinder:
         lateral_area: float = 2*np.pi*self.radius*self.height
         base_area: float = 2*np.pi*np.power(self.radius, 2)
         return lateral_area + base_area
-
-
+}
 
 @h2
 Avoid Using Comments
@@ -162,9 +151,7 @@ Comments are for explaining why you did something, not what you did. If you need
 
 In our example, there is not much to say, but to make the point clearer, we could annotate the choice of using NumPy instead of the built-in @mark{**}, for example.
 
-@spacer
-
-@pre
+@code-block{ }{python}{
 class Cylinder:
     def __init__(self, radius: float, height: float) -> None:
         self.radius: float = radius
@@ -178,7 +165,7 @@ class Cylinder:
         lateral_area: float = 2*np.pi*self.radius*self.height
         base_area: float = 2*np.pi*np.power(self.radius, 2)
         return lateral_area + base_area
-
+}
 
 @h2
 Use Docstrings
@@ -189,11 +176,9 @@ The ultimate way of documenting your code is to use Docstrings. Docstrings are s
 
 It makes the code much chunkier, so I recommend using them for objects exposed by your API.
 
-If you want more information, check out my post on @url{./docstrings.html}{How To Document Your Python Code with Docstrings}.
+If you want more information, check out my post on @url{/posts/python/docstrings.html}{How To Document Your Python Code with Docstrings}.
 
-@spacer
-
-@pre
+@code-block{ }{python}{
 class Cylinder:
     '''
     A class to represent a cylinder.
@@ -234,8 +219,7 @@ class Cylinder:
         lateral_area: float = 2*np.pi*self.radius*self.height
         base_area: float = 2*np.pi*np.power(self.radius, 2)
         return lateral_area + base_area
-
-
+}
 
 @h2
 Wrapping Up
@@ -258,9 +242,9 @@ Learn how to create a Python Virtual Environment with Conda to manage your Pytho
 }{
 oct 11th 2023
 }{
-./conda.html
+/posts/python/conda.html
 }
 
 </div>
 
-@footer{2}
+@footer

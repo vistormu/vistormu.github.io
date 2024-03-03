@@ -3,30 +3,29 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="/css/output.css">
 </head>
 <body>
 
-<header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <a href="./index.html">Vistor's Blog</a>
-            </div>
-            <nav>
-                <a href="./about.html" class="nav-link">about</a>
-            </nav>
+<link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+    
+    <header class="sticky top-0 bg-black z-50">
+        <div class="header flex justify-between items-center max-w-4xl mx-auto p-4 ease-linear duration-200">
+            <a class="text-white text-2xl font-bold" href="/index.html">Vistor's Blog</a>
+            <a class="nav-link flex space-x-4 text-white" href="/about.html">about</a>
         </div>
     </header>
 
-    <div class="content-wrapper">
+    <div class="max-w-4xl mx-auto p-4">
 <div style="height: 20px;"></div>
-<div style="position: relative; height: 10px; width: 100%;">
+<div class="relative h-2">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--blue); width: 106px; left: 64px;"></div>
-        <div style="height: 9px;"></div>
-        <div class="rectangle" style="background-color: var(--yellow); width: 159px; left: 93px;"></div>
+        <div class="absolute h-2 bg-red" style="width: 134px; left: 87px;"></div>
+        <div style="height: 10px;"></div>
+        <div class="absolute h-2 bg-light-blue" style="width: 107px; left: 77px;"></div>
     </div>
-<h1 id="about-me">
+<h1 class="text-3xl font-bold mt-8 mb-4 text-center text-green" id="about-me">
 	About Me
 </h1>
 <p>
@@ -38,13 +37,13 @@
 <p>
 	My love for understanding how things work led me to study engineering. Now, I'm working as a researcher in soft robotics, focusing mainly on software development.
 </p>
-<div style="position: relative; height: 10px; width: 100%;">
+<div class="relative h-2">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--light-blue); width: 262px; right: 59px;"></div>
-        <div style="height: 9px;"></div>
-        <div class="rectangle" style="background-color: var(--white); width: 78px; right: 80px;"></div>
+        <div class="absolute h-2 bg-light-blue" style="width: 125px; right: 79px;"></div>
+        <div style="height: 15px;"></div>
+        <div class="absolute h-2 bg-red" style="width: 186px; right: 97px;"></div>
     </div>
-<h1 id="researcher">
+<h1 class="text-3xl font-bold mt-8 mb-4 text-center text-green" id="researcher">
 	Researcher
 </h1>
 <p>
@@ -53,91 +52,81 @@
 <p>
 	In 2021, I worked as a researcher at the University of Málaga, focusing on the development of mechanical ventilators. I then transitioned to working at the RoboticsLab research group at the University Carlos III of Madrid in 2022, where I currently pursue the Ph.D. degree and research about applying Machine Learning methods in soft robotics.
 </p>
-<div style="position: relative; height: 10px; width: 100%;">
+<div class="relative h-2">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--red); width: 194px; left: 81px;"></div>
-        <div style="height: 8px;"></div>
-        <div class="rectangle" style="background-color: var(--green); width: 50px; left: 59px;"></div>
+        <div class="absolute h-2 bg-white" style="width: 237px; left: 96px;"></div>
+        <div style="height: 7px;"></div>
+        <div class="absolute h-2 bg-pink" style="width: 227px; left: 56px;"></div>
     </div>
-<h2 id="journal-articles">
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="journal-articles">
 	Journal articles
 </h2>
-<div class="card" style="width: 90%; margin-left: auto; margin-right: auto;">
-    <div class="card-header">Design of a soft sensor based on silver-coated polyamide threads and stress-strain modeling via Gaussian processes</div>
-    <div class="card-description">C. Ballester, <u>V. Muñoz</u>, D. Copaci, L. Moreno, D. Blanco | Sensors and Actuators A: Physical | 2024</div>
-    <div class="card-button-container">
-        <a href="https://doi.org/10.1016/j.sna.2024.115058" class="card-button">
+<div class="relative w-full h-64 border-2 border-white p-4 my-2" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Design of a soft sensor based on silver-coated polyamide threads and stress-strain modeling via Gaussian processes</div>
+        <p>C. Ballester, <u>V. Muñoz</u>, D. Copaci, L. Moreno, D. Blanco | Sensors and Actuators A: Physical | 2024</p>
+        
+    <div class="absolute bottom-4 right-4 group">
+        <a href="https://doi.org/10.1016/j.sna.2024.115058" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
             <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
+            <div class="relative">
+                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
             </div>
         </a>
     </div>
-</div>
-<h2 id="conference-papers">
+    
+    </div>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="conference-papers">
 	Conference papers
 </h2>
-<div class="card" style="width: 90%; margin-left: auto; margin-right: auto;">
-    <div class="card-header">Estimation of the load on an SMA actuator for rehabilitation</div>
-    <div class="card-description">C. Ballester, <u>V. Muñoz</u>, D. Blanco | XLIV Jornadas de Automática | 2023</div>
-    <div class="card-button-container">
-        <a href="https://doi.org/10.17979/spudc.9788497498609.507" class="card-button">
+<div class="relative w-full h-64 border-2 border-white p-4 my-2" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Estimation of the load on an SMA actuator for rehabilitation</div>
+        <p>C. Ballester, <u>V. Muñoz</u>, D. Blanco | XLIV Jornadas de Automática | 2023</p>
+        
+    <div class="absolute bottom-4 right-4 group">
+        <a href="https://doi.org/10.17979/spudc.9788497498609.507" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
             <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
+            <div class="relative">
+                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
             </div>
         </a>
     </div>
-</div>
-<div class="card" style="width: 90%; margin-left: auto; margin-right: auto;">
-    <div class="card-header">An introduction to Apprenticeship Learning by teaching an agent how to play a video game</div>
-    <div class="card-description"><u>V. Muñoz</u>, A. Prados, R. Barber | 17th International Technology, Education and Development Conference | 2023</div>
-    <div class="card-button-container">
-        <a href="https://doi.org/10.21125/inted.2023.1264" class="card-button">
+    
+    </div>
+<div class="relative w-full h-64 border-2 border-white p-4 my-2" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">An introduction to Apprenticeship Learning by teaching an agent how to play a video game</div>
+        <p><u>V. Muñoz</u>, A. Prados, R. Barber | 17th International Technology, Education and Development Conference | 2023</p>
+        
+    <div class="absolute bottom-4 right-4 group">
+        <a href="https://doi.org/10.21125/inted.2023.1264" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
             <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
+            <div class="relative">
+                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
             </div>
         </a>
     </div>
-</div>
-<div class="card" style="width: 90%; margin-left: auto; margin-right: auto;">
-    <div class="card-header">Design of a proportional controller for a mechanical ventilator</div>
-    <div class="card-description"><u>V. Muñoz</u>, M. Rollón, V. F. Muñoz | Jornadas de Robótica, Educación en Automática y Bioingeniería | 2022 | ISBN: 978-84-09-41095-8</div>
-    <div class="card-button-container">
-        <a href="" class="card-button">
-            <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
-            </div>
-        </a>
+    
     </div>
-</div>
-<div class="card" style="width: 90%; margin-left: auto; margin-right: auto;">
-    <div class="card-header">Creación del ventilador mecánico Andalucía Respira</div>
-    <div class="card-description">V. F. Muñoz, C. Pérez, I. Díaz, <u>V. Muñoz</u>, M. Rollón, M. Mengual, A. Santiago | XII Simposio CEA de bioingeniería | 2021 | ISBN: 978-84-09-26469-8</div>
-    <div class="card-button-container">
-        <a href="" class="card-button">
-            <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
-            </div>
-        </a>
+<div class="relative w-full h-64 border-2 border-white p-4 my-2" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Design of a proportional controller for a mechanical ventilator</div>
+        <p><u>V. Muñoz</u>, M. Rollón, V. F. Muñoz | Jornadas de Robótica, Educación en Automática y Bioingeniería | 2022 | ISBN: 978-84-09-41095-8</p>
+        
     </div>
-</div>
+<div class="relative w-full h-64 border-2 border-white p-4 my-2" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Creación del ventilador mecánico Andalucía Respira</div>
+        <p>V. F. Muñoz, C. Pérez, I. Díaz, <u>V. Muñoz</u>, M. Rollón, M. Mengual, A. Santiago | XII Simposio CEA de bioingeniería | 2021 | ISBN: 978-84-09-26469-8</p>
+        
+    </div>
 <div style="height: 20px;"></div> <div style="height: 20px;"></div> <div style="height: 20px;"></div>
-<div style="position: relative; height: 10px; width: 100%;">
+<div class="relative h-2">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--blue); width: 243px; left: 76px;"></div>
-        <div style="height: 7px;"></div>
-        <div class="rectangle" style="background-color: var(--light-blue); width: 221px; left: 91px;"></div>
+        <div class="absolute h-2 bg-white" style="width: 227px; left: 49px;"></div>
+        <div style="height: 15px;"></div>
+        <div class="absolute h-2 bg-red" style="width: 79px; left: 77px;"></div>
     </div>
-<h1 id="programmer">
+<h1 class="text-3xl font-bold mt-8 mb-4 text-center text-green" id="programmer">
 	Programmer
 </h1>
 <p>
@@ -146,73 +135,83 @@
 <p>
 	I do not consider myself a professional programmer, but I sure have the enthusiasm of one.
 </p>
-<div style="position: relative; height: 10px; width: 100%;">
+<div class="relative h-2">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--green); width: 193px; right: 60px;"></div>
-        <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--violet); width: 187px; right: 87px;"></div>
+        <div class="absolute h-2 bg-white" style="width: 125px; right: 93px;"></div>
+        <div style="height: 12px;"></div>
+        <div class="absolute h-2 bg-light-blue" style="width: 193px; right: 62px;"></div>
     </div>
-<h2 id="projects">
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="projects">
 	Projects
 </h2>
-<div class="card" style="width: 90%; margin-left: auto; margin-right: auto;">
-    <div class="card-header">Proxima</div>
-    <div class="card-description">Proxima is a markup language that transpiles Proxima source code into HTML. It offers clearer syntax instead of plain HTML/CSS coding.</div>
-    <div class="card-button-container">
-        <a href="https://github.com/vistormu/proxima" class="card-button">
+<div class="relative w-full h-64 border-2 border-white p-4 my-2" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Proxima</div>
+        <p>Proxima is a markup language that transpiles Proxima source code into HTML. It offers clearer syntax instead of plain HTML/CSS coding.</p>
+        
+    <div class="absolute bottom-4 right-4 group">
+        <a href="https://github.com/vistormu/proxima" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
             <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
+            <div class="relative">
+                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
             </div>
         </a>
     </div>
-</div>
-<div class="card" style="width: 90%; margin-left: auto; margin-right: auto;">
-    <div class="card-header">Catasta</div>
-    <div class="card-description">Catasta is a Python library designed to simplify and accelerate the process of machine learning model experimentation. It encapsulates the complexities of model training and evaluation, offering researchers and developers a straightforward pipeline for rapid model assessment with minimal setup required.</div>
-    <div class="card-button-container">
-        <a href="https://github.com/vistormu/catasta" class="card-button">
+    
+    </div>
+<div class="relative w-full h-64 border-2 border-white p-4 my-2" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Catasta</div>
+        <p>Catasta is a Python library designed to simplify and accelerate the process of machine learning model experimentation. It encapsulates the complexities of model training and evaluation, offering researchers and developers a straightforward pipeline for rapid model assessment with minimal setup required.</p>
+        
+    <div class="absolute bottom-4 right-4 group">
+        <a href="https://github.com/vistormu/catasta" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
             <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
+            <div class="relative">
+                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
             </div>
         </a>
     </div>
-</div>
-<h2 id="side-projects">
+    
+    </div>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="side-projects">
 	Side projects
 </h2>
-<div class="card" style="width: 90%; margin-left: auto; margin-right: auto;">
-    <div class="card-header">Kimchi</div>
-    <div class="card-description">Kimchi is a general-purpose programming language that aims to have a simple, consistent and coherent syntax. Kimchi was part of a personal project to learn about programming language design and implementation. It is written in Go and it is based on the book <a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> by Thorsten Ball. </div>
-    <div class="card-button-container">
-        <a href="https://github.com/vistormu/kimchilang" class="card-button">
+<div class="relative w-full h-64 border-2 border-white p-4 my-2" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Kimchi</div>
+        <p>Kimchi is a general-purpose programming language that aims to have a simple, consistent and coherent syntax. Kimchi was part of a personal project to learn about programming language design and implementation. It is written in Go and it is based on the book <a href="https://interpreterbook.com">Writing an Interpreter in Go</a> by Thorsten Ball. </p>
+        
+    <div class="absolute bottom-4 right-4 group">
+        <a href="https://github.com/vistormu/kimchilang" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
             <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
+            <div class="relative">
+                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
             </div>
         </a>
     </div>
-</div>
-<div class="card" style="width: 90%; margin-left: auto; margin-right: auto;">
-    <div class="card-header">Decision Maker</div>
-    <div class="card-description">Have you ever felt like you don't want to decide between a series of options? Decision Maker helps your indecision by running a board game!</div>
-    <div class="card-button-container">
-        <a href="https://github.com/vistormu/decision_maker" class="card-button">
+    
+    </div>
+<div class="relative w-full h-64 border-2 border-white p-4 my-2" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Decision Maker</div>
+        <p>Have you ever felt like you don't want to decide between a series of options? Decision Maker helps your indecision by running a board game!</p>
+        
+    <div class="absolute bottom-4 right-4 group">
+        <a href="https://github.com/vistormu/decision_maker" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
             <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
+            <div class="relative">
+                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
             </div>
         </a>
     </div>
-</div>
+    
+    </div>
 <div style="height: 120px;"></div>
-    <div class="divider" style="height: 20px; background-color: var(--pink);"></div>
-    <script src="./scripts/scroll.js"></script>
-    <script src="./scripts/copyCode.js"></script>
+
+    <div class="absolute left-0 right-0 h-2 bg-orange"></div>
+    <script src="/js/scroll.js"></script>
+    <script src="/js/copyCode.js"></script>
+    <script> hljs.highlightAll(); </script>
 </body>
 </html>

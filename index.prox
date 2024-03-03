@@ -1,4 +1,4 @@
-@style{./style.css}
+@style{./css/output.css}
 
 @header
 
@@ -18,7 +18,7 @@ PYTHON
 @h3
 Python Basics
 
-<div class="card-row">
+<div class="card-carousel">
 
 @card{
 Create a Python Virtual Environment with Conda
@@ -27,7 +27,7 @@ Learn how to manage your Python version and libraries.
 }{
 oct 11th 2023
 }{
-./posts/python/conda.html
+/posts/python/conda.html
 }
 
 @card{
@@ -37,7 +37,7 @@ Learn how to write readable code in Python to make it more maintainable and unde
 }{
 nov 6th 2023
 }{
-./posts/python/readable-code.html
+/posts/python/readable-code.html
 }
 
 @card{
@@ -47,7 +47,7 @@ Learn how to use NamedTuple and Dataclass to create more readable and maintainab
 }{
 feb 18th 2024
 }{
-./posts/python/named-tuple-dataclass.html
+/posts/python/named-tuple-dataclass.html
 }
 
 </div>
@@ -55,7 +55,7 @@ feb 18th 2024
 @h3
 Python Projects
 
-<div class="card-row">
+<div class="card-carousel">
 
 @card{
 Structure a Python Project
@@ -80,7 +80,7 @@ Learn how to upload a Python package to PyPi to make it available for everyone.
 }{
 jan 30th 2024
 }{
-./posts/python/pypi-project.html
+/posts/python/pypi-project.html
 }
 
 @card{
@@ -96,7 +96,7 @@ Learn how to generate documentation for a Python project to make it more underst
 @h2
 PYTORCH
 
-<div class="card-row">
+<div class="card-carousel">
 
 @card{
 Structure a PyTorch Project
@@ -124,7 +124,7 @@ Classification with PyTorch and the MNIST Dataset
 @h2
 LATEX
 
-<div class="card-row">
+<div class="card-carousel">
 
 @card{
 Install LaTeX in VSCode
@@ -155,7 +155,7 @@ Learn how to structure a big LaTeX project to make it more maintainable and unde
 @h2
 NEOVIM
 
-<div class="card-row">
+<div class="card-carousel">
 
 @card{
 Why NeoVim
@@ -164,7 +164,7 @@ Why use NeoVim instead of other text editors?
 }{
 oct 29th 2023
 }{
-./posts/neovim/why-neovim.html
+/posts/neovim/why-neovim.html
 }
 
 @card{
@@ -174,7 +174,7 @@ Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
 }{
 feb 18th 2024
 }{
-./posts/neovim/neovim-config.html
+/posts/neovim/neovim-config.html
 }
 
 @card{
@@ -198,7 +198,7 @@ Learn how to use Vim motions to navigate through your code.
 @h2
 PROXIMA
 
-<div class="card-row">
+<div class="card-carousel">
 
 @card{
 What is Proxima
@@ -222,7 +222,7 @@ Learn how I created the syntax highlighting for Proxima
 Other Topics
 
 @simple-entry{
-./posts/other-topics/technologies.html
+/posts/other-topics/technologies.html
 }{
 Why hasn't anyone taught me these technologies?
 }{
@@ -230,7 +230,7 @@ feb 23rd 2024
 }
 
 @simple-entry{
-./posts/other-topics/why-i-started-blogging.html
+/posts/other-topics/why-i-started-blogging.html
 }{
 Why I started blogging
 }{

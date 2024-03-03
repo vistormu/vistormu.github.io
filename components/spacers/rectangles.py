@@ -27,11 +27,28 @@ def function(alignment: str) -> str:
 
     gap: int = random.randint(5, 15)
 
+    container_style = ' '.join([
+        "relative",
+        "h-2",
+    ])
+
+    rectangle_1_style = ' '.join([
+        "absolute",
+        "h-2",
+        f"bg-{color_1}",
+    ])
+
+    rectangle_2_style = ' '.join([
+        "absolute",
+        "h-2",
+        f"bg-{color_2}",
+    ])
+
     return f'''
-    <div style="position: relative; height: 10px; width: 100%;">
+    <div class="{container_style}">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--{color_1}); width: {width_1}px; {alignment}: {gutter_1}px;"></div>
+        <div class="{rectangle_1_style}" style="width: {width_1}px; {alignment}: {gutter_1}px;"></div>
         <div style="height: {gap}px;"></div>
-        <div class="rectangle" style="background-color: var(--{color_2}); width: {width_2}px; {alignment}: {gutter_2}px;"></div>
+        <div class="{rectangle_2_style}" style="width: {width_2}px; {alignment}: {gutter_2}px;"></div>
     </div>
     '''

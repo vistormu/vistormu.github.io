@@ -4,43 +4,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
 	<title>Vistor's Blog</title>
-	<link rel="stylesheet" href="./../../style.css">
+	<link rel="stylesheet" href="/css/output.css">
 </head>
 <body>
 
 <link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
     
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <a href="./../../index.html">Vistor's Blog</a>
-            </div>
-            <nav>
-                <a href="./../../about.html" class="nav-link">about</a>
-            </nav>
+    <header class="sticky top-0 bg-black z-50">
+        <div class="header flex justify-between items-center max-w-4xl mx-auto p-4 ease-linear duration-200">
+            <a class="text-white text-2xl font-bold" href="/index.html">Vistor's Blog</a>
+            <a class="nav-link flex space-x-4 text-white" href="/about.html">about</a>
         </div>
     </header>
 
-    <div class="content-wrapper">
-<div style="position: relative; height: 10px; width: 100%;">
+    <div class="max-w-4xl mx-auto p-4">
+<div class="relative h-2">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--orange); width: 219px; left: 70px;"></div>
-        <div style="height: 8px;"></div>
-        <div class="rectangle" style="background-color: var(--white); width: 124px; left: 63px;"></div>
+        <div class="absolute h-2 bg-red" style="width: 248px; left: 67px;"></div>
+        <div style="height: 14px;"></div>
+        <div class="absolute h-2 bg-orange" style="width: 172px; left: 93px;"></div>
     </div>
-<h1 id="why-i-started-blogging">
+<h1 class="text-3xl font-bold mt-8 mb-4 text-center text-green" id="why-i-started-blogging">
 	Why I started blogging
 </h1>
-<div style="text-align: center;"><div class="subtitle">Published on <mark>feb 23rd 2024</mark>. Last edit on <mark>feb 23rd 2024</mark></div></div>
-<div style="position: relative; height: 10px; width: 100%;">
+<div style="text-align: center;"><div class="subtitle">Published on <mark class="bg-gray text-white">feb 23rd 2024</mark>. Last edit on <mark class="bg-gray text-white">feb 23rd 2024</mark></div></div>
+<div class="relative h-2">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--light-blue); width: 186px; right: 95px;"></div>
-        <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--violet); width: 176px; right: 81px;"></div>
+        <div class="absolute h-2 bg-yellow" style="width: 164px; right: 65px;"></div>
+        <div style="height: 7px;"></div>
+        <div class="absolute h-2 bg-white" style="width: 103px; right: 69px;"></div>
     </div>
 <div style="height: 20px;"></div> <div style="height: 20px;"></div> <div style="height: 20px;"></div>
-<div style="text-align: justify;">
 <p>
 	I am a PhD student in Robotics, and I apply Machine Learning regularly.
 </p>
@@ -77,11 +72,11 @@
 <p>
 	Welcome to my blog.
 </p>
-</div>
 <div style="height: 120px;"></div>
-    <div class="divider" style="height: 20px; background-color: var(--orange);"></div>
-    <script src="./../../scripts/scroll.js"></script>
-    <script src="./../../scripts/copyCode.js"></script>
+
+    <div class="absolute left-0 right-0 h-2 bg-blue"></div>
+    <script src="/js/scroll.js"></script>
+    <script src="/js/copyCode.js"></script>
     <script> hljs.highlightAll(); </script>
 </body>
 </html>

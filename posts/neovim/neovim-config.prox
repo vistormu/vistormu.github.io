@@ -1,14 +1,12 @@
 @title{Vistor's Blog: NeoVim}
-@style{./../../style.css}
+@style{/css/output.css}
 
-@header{2}
+@header
 
 @rectangles{left}
 
 @h1
 Set Up Neovim from Scratch
-
-@line
 
 @center
 @subtitle{Published on @mark{feb 18th 2024}. Last edit on @mark{feb 18th 2024}}
@@ -57,7 +55,7 @@ Long story short, my configuration is a mix of the simplicity of @mark{kickstart
 @h2
 Installing Neovim
 
-The first step, of course, is to download and install Neovim. If you are using a Debian-based Linux distribution, I recommend you use @mark{snap} and @bold{not} @mark{apt}, as it is very important to download a version of Neovim higher that @mark{0.9.0}, as many plugins are not supported for lower versions.
+The first step, of course, is to download and install Neovim. If you are using a Debian-based Linux distribution, I recommend you use @mark{snap} and not @mark{apt}, as it is very important to download a version of Neovim higher that @mark{0.9.0}, as many plugins are not supported for lower versions.
 
 As far as I am concerned, with the rest of package managers, you should be fine.
 
@@ -66,14 +64,13 @@ Setting Up the Configuration
 
 The first thing you need to do is to create a directory for your Neovim configuration under the @mark{~/.config} directory.
 
-@file{terminal}
-
-@pre
+@code-block{terminal}{shell}{
 mkdir -p ~/.config/nvim
+}
 
 This is the structure we will end up with:
 
-@pre
+@code-block{ }{ }{
 nvim
 ├── init.lua
 └── lua
@@ -85,6 +82,7 @@ nvim
         ├── telescope.lua
         ├── treesitter.lua
         └── ...
+}
 
 I will now guide you in chronological order through the creation of the files.
 
@@ -93,11 +91,10 @@ init.lua
 
 The @mark{init.lua} file is the entry point of the configuration. It is a Lua file that will be executed when Neovim starts. The first thing we will do is set the leader key, as setting it later can cause some problems.
 
-@file{./init.lua}
-
-@pre
+@code-block{init.lua}{lua}{
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+}
 
 We will be coming back to this file later on to load the rest of the configuration.
 
@@ -106,9 +103,7 @@ lua/set.lua
 
 The @mark{set.lua} file contains all the settings of NeoVim.
 
-@file{./lua/set.lua}
-
-@pre
+@code-block{lua/set.lua}{lua}{
 -- Set the line numbers and relative line numbers
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -140,21 +135,22 @@ vim.opt.colorcolumn = ""
 -- Set the spelling
 vim.opt.spell = true
 vim.opt.spelllang = "en_us"
+}
 
 And we will add the following line to the @mark{init.lua} file to load the settings:
 
-@file{./init.lua}
-
-@pre
+@code-block{init.lua}{lua}{
 require("set")
+}
 
 @h3
 remap.lua
 
 The @mark{remap.lua} file contains all the remappings for creating custom keybindings. The syntax is pretty easy to understand:
 
-@pre
+@code-block{ }{lua}{
 vim.api.nvim_set_keymap("MODE", "KEY", "ACTION")
+}
 
 @list{
 MODE: The mode in which the keybinding will be active. It can be @mark{n} for normal mode, @mark{i} for insert mode, @mark{v} for visual mode, and so on.
@@ -164,62 +160,58 @@ KEY: The key that will trigger the action.
 ACTION: The action that will be triggered when the key is pressed.
 }
 
-@file{./lua/remap.lua}
-
-@pre
+@code-block{lua/remap.lua}{lua}{
 -- Move up and down selection
-vim.keymap.set("v", "\<S-Down\>", ":m '\>+1\<CR\>gv=gv")
-vim.keymap.set("v", "\<S-Up\>", ":m '\<-2\<CR\>gv=gv")
+vim.keymap.set("v", "<S-Down>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<S-Up>", ":m '<-2<CR>gv=gv")
     
 -- Indent and unindent selection
-vim.keymap.set("v", "\<Tab\>", "\>gv")
-vim.keymap.set("v", "\<S-Tab\>", "\<gv")
+vim.keymap.set("v", "<Tab>", ">gv")
+vim.keymap.set("v", "<S-Tab>", "<gv")
     
 -- Move half page up and down
-vim.keymap.set("n", "\<C-Down\>", "\<C-d\>zz")
-vim.keymap.set("n", "\<C-Up\>", "\<C-u\>zz")
+vim.keymap.set("n", "<C-Down>", "<C-d>zz")
+vim.keymap.set("n", "<C-Up>", "<C-u>zz")
     
 -- Paste without copying to clipboard
-vim.keymap.set("x", "\<leader\>p", "\\"_dP")
+vim.keymap.set("x", "<leader>p", "\\"_dP")
     
 -- Change all concurrences of word
-vim.keymap.set("n", "\<leader\>cac", ":%s/\\\\\<\<C-r\>\<C-w\>\\\\>/\<C-r\>\<C-w\>/gI\<Left\>\<Left\>\<Left\>")
+vim.keymap.set("n", "<leader>cac", ":%s/\\\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
     
 -- New line
-vim.keymap.set("n", "\<leader\>nl", "o\<Esc\>")
+vim.keymap.set("n", "<leader>nl", "o<Esc>")
     
 -- Copy to system's clipboard
-vim.keymap.set("n", "\<leader\>y", "\\"+y")
-vim.keymap.set("v", "\<leader\>y", "\\"+y")
-vim.keymap.set("n", "\<leader\>Y", "\\"+Y")
+vim.keymap.set("n", "<leader>y", "\\"+y")
+vim.keymap.set("v", "<leader>y", "\\"+y")
+vim.keymap.set("n", "<leader>Y", "\\"+Y")
     
 -- Go up and down trough long soft-wrapped lines
-vim.keymap.set("n", "\<Down\>", "gj")
-vim.keymap.set("n", "\<Up\>", "gk")
-vim.keymap.set("v", "\<Down\>", "gj")
-vim.keymap.set("v", "\<Up\>", "gk")
+vim.keymap.set("n", "<Down>", "gj")
+vim.keymap.set("n", "<Up>", "gk")
+vim.keymap.set("v", "<Down>", "gj")
+vim.keymap.set("v", "<Up>", "gk")
     
 -- Exit to netrw
-vim.keymap.set("n", "-", ":Ex\<CR\>")
+vim.keymap.set("n", "-", ":Ex<CR>")
     
 -- Spell
-vim.keymap.set("n", "\<leader\>ss", ":setlocal spell!\<CR\>")
+vim.keymap.set("n", "<leader>ss", ":setlocal spell!<CR>")
+}
 
 And we will add the following line to the @mark{init.lua} file to load the remappings:
 
-@file{./init.lua}
-
-@pre
+@code-block{init.lua}{lua}{
 require("remap")
+}
 
 @h3
 lua/lazy-bootstrap.lua
 
 We will use @url{https://github.com/folke/lazy.nvim}{lazy.nvim} to load our plugins. You just need to copy this into your @mark{lazy-bootstrap.lua} file:
 
-@file{./lua/lazy-bootstrap.lua}
-
-@pre
+@code-block{lua/lazy-bootstrap.lua}{lua}{
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system(\{
@@ -232,32 +224,29 @@ if not vim.loop.fs_stat(lazypath) then
   \})
 end
 vim.opt.rtp:prepend(lazypath)
+}
 
 And include it in the @mark{init.lua} file:
 
-@file{./init.lua}
-
-@pre
+@code-block{init.lua}{lua}{
 require("lazy-bootstrap")
+}
 
 @h3
 lua/lazy-plugins.lua
 
 Now it's the time for installing the plugins. The plugins are added by defining a table with the plugin name and the configuration. For example, for adding the ability to toggle code comments, you need to add @mark{tpope/vim-commentary}:
 
-@file{./lua/lazy-plugins.lua}
-
-@pre
+@code-block{lua/lazy-plugins.lua}{lua}{
 require('lazy').setup(\{
     -- Toggle comments
     "tpope/vim-commentary"
 \}, \{\})
+}
 
 Some of the plugins require some extra configuration. For example, for @mark{nvim-treesitter}, you need to add the following:
 
-@file{./lua/lazy-plugins.lua}
-
-@pre
+@code-block{lua/lazy-plugins.lua}{lua}{
 require('lazy').setup(\{
     -- Toggle comments
     "tpope/vim-commentary"
@@ -265,12 +254,11 @@ require('lazy').setup(\{
     -- Treesitter
     \{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"\},
 \}, \{\})
+}
 
 And some other requires an extra configuration file. For exmaple, I use @mark{catppuccin} as my theme but I don't like the default configuration. So I created the following file under @mark{lua/plugins/}:
 
-@file{./lua/plugins/colorscheme.lua}
-
-@pre
+@code-block{lua/plugins/colorscheme.lua}{lua}{
 require("catppuccin").setup(\{
     flavour = "mocha", -- latte, frappe, macchiato, mocha
     background = \{ -- :h background
@@ -317,12 +305,11 @@ require("catppuccin").setup(\{
     
 -- Set colorscheme after options
 vim.cmd.colorscheme('catppuccin')
+}
 
 And for loading all the configurations inside my @mark{plugins} directory, I have the following function in my @mark{init.lua}:
 
-@file{./init.lua}
-
-@pre
+@code-block{init.lua}{lua}{
 local function load_plugins()
     local fn = vim.fn
     local plugin_dir = fn.stdpath('config') .. '/lua/plugins'
@@ -334,8 +321,9 @@ local function load_plugins()
         end
     end
 end
+}
 
-I invite you to check @url{https://github.com/vistormu/nvim/blob/master/lua/lazy-plugins.lua}{my configuration} to see the complete list of plugins and their configurations and @url{./neovim-plugins.html}{my blog post} for a further explanation on them.
+I invite you to check @url{https://github.com/vistormu/nvim/blob/master/lua/lazy-plugins.lua}{my configuration} to see the complete list of plugins and their configurations. # and @url{/posts/neovim/neovim-plugins.html}{my blog post} for a further explanation on them.
 
 @h2
 Other Dependencies
@@ -347,31 +335,28 @@ Fuzzy Finder
 
 For example, @mark{ripgrep} is a very fast search tool that is used by @mark{telescope} for searching files. You can install it with the following command:
 
-@file{terminal}
-
-@pre
+@code-block{terminal}{shell}{
 sudo apt install ripgrep
+}
 
 @h3
 NodeJS and npm
 
 Many of the LSPs require the installation of @mark{NodeJS} and @mark{npm}. If you are using Debian, again, the @mark{NodeJS} and @mark{npm} versions are outdated. So you need to run:
 
-@file{terminal}
-
-@pre
+@code-block{terminal}{shell}{
 curl -fsSL hhtps://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt install -y nodejs npm
+}
 
 @h3
 Clipboard support
 
 If you want to have clipboard support, you need to install @mark{xclip}:
 
-@file{terminal}
-
-@pre
+@code-block{terminal}{shell}{
 sudo apt install xclip
+}
 
 @h3
 Nerd Fonts
@@ -380,17 +365,15 @@ Many of the plugins require @mark{Nerd Fonts} for the icons. You need to downloa
 
 Once you have downloaded the font, you need to unzip it and move it to the @mark{/usr/share/fonts/} directory:
 
-@file{terminal}
-
-@pre
+@code-block{terminal}{shell}{
 sudo unzip ~/Downloads/your-font.zip -d /usr/share/fonts/
+}
 
 Lastly, you need to update the font cache:
 
-@file{terminal}
-
-@pre
+@code-block{terminal}{shell}{
 sudo fc-cache -f -v
+}
 
 and set the font in your terminal emulator.
 
@@ -403,7 +386,7 @@ I hope you have enjoyed this guide.
 @h2
 Recommended Posts
 
-<div class="card-row">
+<div class="card-carousel">
 
 @card{
 Why NeoVim
@@ -412,9 +395,9 @@ Why use NeoVim instead of other text editors?
 }{
 oct 29th 2023
 }{
-./why-neovim.html
+/posts/neovim/why-neovim.html
 }
 
 </div>
 
-@footer{2}
+@footer

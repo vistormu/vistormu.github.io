@@ -3,264 +3,265 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="./css/output.css">
 </head>
 <body>
 
-<header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <a href="./index.html">Vistor's Blog</a>
-            </div>
-            <nav>
-                <a href="./about.html" class="nav-link">about</a>
-            </nav>
+<link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+    
+    <header class="sticky top-0 bg-black z-50">
+        <div class="header flex justify-between items-center max-w-4xl mx-auto p-4 ease-linear duration-200">
+            <a class="text-white text-2xl font-bold" href="/index.html">Vistor's Blog</a>
+            <a class="nav-link flex space-x-4 text-white" href="/about.html">about</a>
         </div>
     </header>
 
-    <div class="content-wrapper">
+    <div class="max-w-4xl mx-auto p-4">
 <div style="height: 20px;"></div>
-<div style="position: relative; height: 10px; width: 100%;">
+<div class="relative h-2">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--violet); width: 209px; left: 80px;"></div>
-        <div style="height: 9px;"></div>
-        <div class="rectangle" style="background-color: var(--red); width: 244px; left: 62px;"></div>
+        <div class="absolute h-2 bg-light-blue" style="width: 122px; left: 55px;"></div>
+        <div style="height: 10px;"></div>
+        <div class="absolute h-2 bg-pink" style="width: 72px; left: 66px;"></div>
     </div>
-<h1 id="welcome-to-vistor's-blog!">
+<h1 class="text-3xl font-bold mt-8 mb-4 text-center text-green" id="welcome-to-vistor's-blog!">
 	Welcome to Vistor's Blog!
 </h1>
 <p>
 	Hello! I am Vistor, a PhD Student researching in Machine Learning applications to Robotics. In this webpage you will find blog posts about various topics like tutorials, personal opinions... I hope you find it useful.
 </p>
-<div style="position: relative; height: 10px; width: 100%;">
+<div class="relative h-2">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--light-blue); width: 193px; right: 59px;"></div>
-        <div style="height: 12px;"></div>
-        <div class="rectangle" style="background-color: var(--red); width: 181px; right: 73px;"></div>
+        <div class="absolute h-2 bg-light-blue" style="width: 54px; right: 97px;"></div>
+        <div style="height: 15px;"></div>
+        <div class="absolute h-2 bg-pink" style="width: 143px; right: 74px;"></div>
     </div>
-<h2 id="python">
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="python">
 	PYTHON
 </h2>
-<h3 id="python-basics">
+<h2 class="text-xl mt-8 text-green" id="python-basics">
 	Python Basics
-</h3>
-<div class="card-row">
-<div class="card">
-<div class="card-header">Create a Python Virtual Environment with Conda</div>
-<div class="card-description">Learn how to manage your Python version and libraries.</div>
-<div class="card-date">oct 11th 2023</div>
-
-    <div class="card-button-container">
-        <a href="./posts/python/conda.html" class="card-button">
+</h2>
+<div class="card-carousel">
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Create a Python Virtual Environment with Conda</div>
+        <p>Learn how to manage your Python version and libraries.</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">oct 11th 2023</div>
+        
+    <div class="absolute bottom-4 right-4 group">
+        <a href="/posts/python/conda.html" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
             <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
+            <div class="relative">
+                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
             </div>
         </a>
     </div>
     
-</div>
-<div class="card">
-<div class="card-header">Write Readable Code in Python</div>
-<div class="card-description">Learn how to write readable code in Python to make it more maintainable and understandable.</div>
-<div class="card-date">nov 6th 2023</div>
-
-    <div class="card-button-container">
-        <a href="./posts/python/readable-code.html" class="card-button">
+    </div>
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Write Readable Code in Python</div>
+        <p>Learn how to write readable code in Python to make it more maintainable and understandable.</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">nov 6th 2023</div>
+        
+    <div class="absolute bottom-4 right-4 group">
+        <a href="/posts/python/readable-code.html" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
             <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
+            <div class="relative">
+                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
             </div>
         </a>
     </div>
     
-</div>
-<div class="card">
-<div class="card-header">Using NamedTuple and Dataclass in Python</div>
-<div class="card-description">Learn how to use NamedTuple and Dataclass to create more readable and maintainable code.</div>
-<div class="card-date">feb 18th 2024</div>
-
-    <div class="card-button-container">
-        <a href="./posts/python/named-tuple-dataclass.html" class="card-button">
+    </div>
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Using NamedTuple and Dataclass in Python</div>
+        <p>Learn how to use NamedTuple and Dataclass to create more readable and maintainable code.</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">feb 18th 2024</div>
+        
+    <div class="absolute bottom-4 right-4 group">
+        <a href="/posts/python/named-tuple-dataclass.html" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
             <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
+            <div class="relative">
+                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
             </div>
         </a>
     </div>
     
+    </div>
 </div>
-</div>
-<h3 id="python-projects">
+<h2 class="text-xl mt-8 text-green" id="python-projects">
 	Python Projects
-</h3>
-<div class="card-row">
-<div class="card">
-<div class="card-header">Structure a Python Project</div>
-<div class="card-description">Learn how to structure a Python project to make it more maintainable and understandable.</div>
-<div class="card-date">coming soon</div>
-
-</div>
-<div class="card">
-<div class="card-header">Document Your Python Code with Docstrings</div>
-<div class="card-description">Learn how to document your Python code with Docstrings to enhance your APIs.</div>
-<div class="card-date">coming soon</div>
-
-</div>
-<div class="card">
-<div class="card-header">Upload a Python Package to PyPi</div>
-<div class="card-description">Learn how to upload a Python package to PyPi to make it available for everyone.</div>
-<div class="card-date">jan 30th 2024</div>
-
-    <div class="card-button-container">
-        <a href="./posts/python/pypi-project.html" class="card-button">
+</h2>
+<div class="card-carousel">
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Structure a Python Project</div>
+        <p>Learn how to structure a Python project to make it more maintainable and understandable.</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">coming soon</div>
+        
+    </div>
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Document Your Python Code with Docstrings</div>
+        <p>Learn how to document your Python code with Docstrings to enhance your APIs.</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">coming soon</div>
+        
+    </div>
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Upload a Python Package to PyPi</div>
+        <p>Learn how to upload a Python package to PyPi to make it available for everyone.</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">jan 30th 2024</div>
+        
+    <div class="absolute bottom-4 right-4 group">
+        <a href="/posts/python/pypi-project.html" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
             <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
+            <div class="relative">
+                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
             </div>
         </a>
     </div>
     
+    </div>
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Generate Documentation for a Python Project</div>
+        <p>Learn how to generate documentation for a Python project to make it more understandable.</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">coming soon</div>
+        
+    </div>
 </div>
-<div class="card">
-<div class="card-header">Generate Documentation for a Python Project</div>
-<div class="card-description">Learn how to generate documentation for a Python project to make it more understandable.</div>
-<div class="card-date">coming soon</div>
-
-</div>
-</div>
-<h2 id="pytorch">
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="pytorch">
 	PYTORCH
 </h2>
-<div class="card-row">
-<div class="card">
-<div class="card-header">Structure a PyTorch Project</div>
-<div class="card-description"></div>
-<div class="card-date">coming soon</div>
-
+<div class="card-carousel">
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Structure a PyTorch Project</div>
+        <p></p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">coming soon</div>
+        
+    </div>
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Regression with PyTorch</div>
+        <p></p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">coming soon</div>
+        
+    </div>
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Classification with PyTorch and the MNIST Dataset</div>
+        <p></p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">coming soon</div>
+        
+    </div>
 </div>
-<div class="card">
-<div class="card-header">Regression with PyTorch</div>
-<div class="card-description"></div>
-<div class="card-date">coming soon</div>
-
-</div>
-<div class="card">
-<div class="card-header">Classification with PyTorch and the MNIST Dataset</div>
-<div class="card-description"></div>
-<div class="card-date">coming soon</div>
-
-</div>
-</div>
-<h2 id="latex">
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="latex">
 	LATEX
 </h2>
-<div class="card-row">
-<div class="card">
-<div class="card-header">Install LaTeX in VSCode</div>
-<div class="card-description">Learn how to install LaTeX in VSCode to write your documents.</div>
-<div class="card-date">coming soon</div>
-
+<div class="card-carousel">
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Install LaTeX in VSCode</div>
+        <p>Learn how to install LaTeX in VSCode to write your documents.</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">coming soon</div>
+        
+    </div>
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Managing References with BibTeX</div>
+        <p>Learn how to use BibTeX to manage your references and citations.</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">coming soon</div>
+        
+    </div>
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Structure a Big LaTeX Project</div>
+        <p>Learn how to structure a big LaTeX project to make it more maintainable and understandable.</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">coming soon</div>
+        
+    </div>
 </div>
-<div class="card">
-<div class="card-header">Managing References with BibTeX</div>
-<div class="card-description">Learn how to use BibTeX to manage your references and citations.</div>
-<div class="card-date">coming soon</div>
-
-</div>
-<div class="card">
-<div class="card-header">Structure a Big LaTeX Project</div>
-<div class="card-description">Learn how to structure a big LaTeX project to make it more maintainable and understandable.</div>
-<div class="card-date">coming soon</div>
-
-</div>
-</div>
-<h2 id="neovim">
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="neovim">
 	NEOVIM
 </h2>
-<div class="card-row">
-<div class="card">
-<div class="card-header">Why NeoVim</div>
-<div class="card-description">Why use NeoVim instead of other text editors?</div>
-<div class="card-date">oct 29th 2023</div>
-
-    <div class="card-button-container">
-        <a href="./posts/neovim/why-neovim.html" class="card-button">
+<div class="card-carousel">
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Why NeoVim</div>
+        <p>Why use NeoVim instead of other text editors?</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">oct 29th 2023</div>
+        
+    <div class="absolute bottom-4 right-4 group">
+        <a href="/posts/neovim/why-neovim.html" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
             <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
+            <div class="relative">
+                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
             </div>
         </a>
     </div>
     
-</div>
-<div class="card">
-<div class="card-header">Setup NeoVim from Scratch</div>
-<div class="card-description">Learn how to setup NeoVim from scratch, with a custom configuration and plugins.</div>
-<div class="card-date">feb 18th 2024</div>
-
-    <div class="card-button-container">
-        <a href="./posts/neovim/neovim-config.html" class="card-button">
+    </div>
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Setup NeoVim from Scratch</div>
+        <p>Learn how to setup NeoVim from scratch, with a custom configuration and plugins.</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">feb 18th 2024</div>
+        
+    <div class="absolute bottom-4 right-4 group">
+        <a href="/posts/neovim/neovim-config.html" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
             <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
+            <div class="relative">
+                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
             </div>
         </a>
     </div>
     
+    </div>
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Must Have Plugins for NeoVim</div>
+        <p>Discover the must have plugins for NeoVim.</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">coming soon</div>
+        
+    </div>
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">Vim Motions</div>
+        <p>Learn how to use Vim motions to navigate through your code.</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">coming soon</div>
+        
+    </div>
 </div>
-<div class="card">
-<div class="card-header">Must Have Plugins for NeoVim</div>
-<div class="card-description">Discover the must have plugins for NeoVim.</div>
-<div class="card-date">coming soon</div>
-
-</div>
-<div class="card">
-<div class="card-header">Vim Motions</div>
-<div class="card-description">Learn how to use Vim motions to navigate through your code.</div>
-<div class="card-date">coming soon</div>
-
-</div>
-</div>
-<h2 id="proxima">
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="proxima">
 	PROXIMA
 </h2>
-<div class="card-row">
-<div class="card">
-<div class="card-header">What is Proxima</div>
-<div class="card-description">What is Proxima and why I made it</div>
-<div class="card-date">coming soon</div>
-
+<div class="card-carousel">
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">What is Proxima</div>
+        <p>What is Proxima and why I made it</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">coming soon</div>
+        
+    </div>
+<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
+        <div class="pb-2 text-2xl font-bold text-violet">How I Created the Syntax Highlighting for Proxima</div>
+        <p>Learn how I created the syntax highlighting for Proxima</p>
+        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">coming soon</div>
+        
+    </div>
 </div>
-<div class="card">
-<div class="card-header">How I Created the Syntax Highlighting for Proxima</div>
-<div class="card-description">Learn how I created the syntax highlighting for Proxima</div>
-<div class="card-date">coming soon</div>
-
-</div>
-</div>
-<h2 id="other-topics">
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="other-topics">
 	Other Topics
 </h2>
 <div style="margin: 10px;">
     <p>
-    >> <a href="./posts/other-topics/technologies.html">Why hasn't anyone taught me these technologies?</a> | feb 23rd 2024
+    >> <a href="/posts/other-topics/technologies.html">Why hasn't anyone taught me these technologies?</a> | feb 23rd 2024
     </p>
 </div>
 <div style="margin: 10px;">
     <p>
-    >> <a href="./posts/other-topics/why-i-started-blogging.html">Why I started blogging</a> | feb 23rd 2024
+    >> <a href="/posts/other-topics/why-i-started-blogging.html">Why I started blogging</a> | feb 23rd 2024
     </p>
 </div>
 <div style="height: 120px;"></div>
-    <div class="divider" style="height: 20px; background-color: var(--blue);"></div>
-    <script src="./scripts/scroll.js"></script>
-    <script src="./scripts/copyCode.js"></script>
+
+    <div class="absolute left-0 right-0 h-2 bg-green"></div>
+    <script src="/js/scroll.js"></script>
+    <script src="/js/copyCode.js"></script>
+    <script> hljs.highlightAll(); </script>
 </body>
 </html>

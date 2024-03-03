@@ -1,7 +1,7 @@
 @title{Vistor's Blog: PyPi Project}
-@style{./../../style.css}
+@style{/css/output.css}
 
-@header{2}
+@header
 
 @rectangles{left}
 
@@ -45,11 +45,12 @@ src-layout
 
 The project should contain a @mark{src} directory under the project root, and all modules and packages meant for distribution are placed inside this directory.
 
-@pre
+@code-block{ }{ }{
 chorizo
 |-- src
 |   |-- chorizo
 |   |   |-- __init__.py
+}
 
 
 @h3
@@ -57,10 +58,11 @@ flat-layout
 
 The package directory is the project root itself.
 
-@pre
+@code-block{ }{ }{
 chorizo
 |-- chorizo
 |   |-- __init__.py
+}
 
 In this project, we will use the latter, because it is simpler, cleaner, and easier to explore on GitHub. And because I just hate naming something "src", I have a cool name like "chorizo".
 
@@ -69,7 +71,7 @@ Necessary Files
 
 For a project to be uploaded to PyPi, it needs to have a few files in the root directory.
 
-@pre
+@code-block{ }{ }{
 chorizo
 |-- chorizo
 |   |-- __init__.py
@@ -78,6 +80,7 @@ chorizo
 |-- pyproject.toml
 |-- README.md
 |-- requirements.txt
+}
 
 
 @h3
@@ -89,9 +92,7 @@ The most common license for open source projects is the MIT license, so we will 
 
 Don't forget to change the year and the name of the author.
 
-@file{LICENSE}
-
-@pre
+@code-block{LICENSE}{txt}{
 MIT License
     
 Copyright (c) [year] [fullname]
@@ -113,15 +114,14 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+}
 
 @h3
 README.md
 
 A @mark{README.md} file is used to describe your project. It is a good practice to include a description of your project, the installation, some examples...
 
-@file{README.md}
-
-@pre
+@code-block{README.md}{md}{
 \# chorizo
 An example project named chorizo.
     
@@ -129,6 +129,7 @@ An example project named chorizo.
 ```bash
 pip install chorizo
 ```
+}
 
 @h3
 pyproject.toml
@@ -137,9 +138,7 @@ The @mark{pyproject.toml} file is used to configure the build process of your pr
 
 It is important to update the version of your package every time you upload a new release.
 
-@file{pyproject.toml}
-
-@pre
+@code-block{pyproject.toml}{toml}{
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
@@ -167,41 +166,39 @@ dependencies = [
 [project.urls]
 Homepage = "https://github.com/user/chorizo"
 Issues = "https://github.com/user/chorizo/issues"
+}
 
 While uploading my projects, I ran into some problems due to having a directory named "assets" in the root. It turns out, backend tools often ignore certain directories like "examples" or "tests" at the root level, but "assets" isn't typically one of them. I struggled to resolve this with @mark{setuptools}, but switching to @mark{hatchling} did the trick.
 
 If this is your case, you can add the following lines to the @mark{pyproject.toml} file to specify which directories to include in the build process:
 
-@file{pyproject.toml}
-
-@pre
+@code-block{pyproject.toml}{toml}{
 [tool.hatch.build.targets.wheel]
 packages = ["chorizo"]
+}
 
 @h3
 requirements.txt
 
 It is also a good practice to leave a @mark{requirements.txt} with the dependencies in case someone wants to build from source.
 
-@file{requirements.txt}
-
-@pre
+@code-block{requirements.txt}{txt}{
 numpy
 matplotlib
 pandas
+}
 
 @h3
 .gitignore
 
 As a bonus tip, you can add a .gitignore file to your project to avoid uploading unnecessary files to GitHub.
 
-@file{.gitignore}
-
-@pre
+@code-block{.gitignore}{txt}{
 **/__pycache__
 /dist
 /build
 *.egg-info
+}
 
 @h2
 Build the Project
@@ -218,17 +215,15 @@ First of, you need to install two packages: @mark{build} and @mark{twine}:
 
 @spacer
 
-@file{terminal}
-
-@pre
+@code-block{terminal}{shell}{
 pip install build twine
+}
 
 Once everything is set up, you can build your project.
 
-@file{terminal}
-
-@pre
+@code-block{terminal}{shell}{
 python -m build
+}
 
 New directories will appear in your project root: @mark{dist} and @mark{chorizo.egg-info}. @mark{dist} contains the files that will be uploaded to PyPi, and @mark{chorizo.egg-info} contains some metadata about your project.
 
@@ -248,26 +243,24 @@ Now you need a token to upload your project. To get a token, go to @url{https://
 
 Finally, you can upload your project to the test server.
 
-@file{terminal}
-
-@pre
+@code-block{terminal}{shell}{
 python -m twine upload --repository testpypi dist/*
+}
 
 @h3
 Download and Test
 
 You can download your project from the test server with pip. 
-@file{terminal}
 
-@pre
+@code-block{terminal}{shell}{
 pip install --index-url https://test.pypi.org/simple/ --no-deps chorizo
+}
 
-Ypur package will be installed with no dependendies, so you need to install them manually using your @mark{requierements.txt}.
+Your package will be installed with no dependencies, so you need to install them manually using your @mark{requierements.txt}.
 
-@file{terminal}
-
-@pre
+@code-block{terminal}{shell}{
 pip install -r requirements.txt
+}
 
 @h3
 Upload to PyPi
@@ -276,10 +269,9 @@ Once you are sure that everything is working as expected, you can upload your pr
 
 You need now to register an account in @url{https://pypi.org/account/register/} and follow the same steps as before: enabling 2FA and generating a token.
 
-@file{terminal}
-
-@pre
+@code-block{terminal}{shell}{
 python -m twine upload dist/*
+}
 
 Now your project can be installed with pip. 
 
@@ -288,33 +280,29 @@ Versioning
 
 Now it is time to upload your project to GitHub. We will tag the project with the released version and push it to GitHub. 
 
-@file{terminal}
-
-@pre
+@code-block{terminal}{shell}{
 git tag -a v0.0.1 -m "Release v0.0.1"
 git push origin v0.0.1
+}
 
 Then, I use the GitHub CLI to upload the release files to GitHub. If you don't have it installed, you can do it with your package manager of choice.
 
-@file{terminal}
-
-@pre
+@code-block{terminal}{shell}{
 sudo apt install gh
 sudo dnf install gh
+}
 
 You will need to log in to your GitHub account.
 
-@file{terminal}
-
-@pre
+@code-block{terminal}{shell}{
 gh auth login
+}
 
 And finally, you can upload the release files to GitHub. In our case, the files are in the @mark{dist} directory.
 
-@file{terminal}
-
-@pre
+@code-block{terminal}{shell}{
 gh release create v0.0.1 dist/*
+}
 
 Now you will be asked to fill out all the information about the release. I usually write a changelog.md and paste it in the description of the release. You can skip that step on the CLI and edit the release later on GitHub.
 
@@ -332,4 +320,4 @@ References
 @url{https://setuptools.pypa.io/en/latest/userguide/package_discovery.html}{Package Discovery}
 }
 
-@footer{2}
+@footer

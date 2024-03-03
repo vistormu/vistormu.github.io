@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --max-width: 840px;
+    }
+    html {
+        font-family: Ubuntu Mono, monospace;
+        scroll-behavior: smooth;
+        @apply bg-black text-white;
+        box-sizing: border-box;
+        scroll-padding-top: 5em;
+    }
+    p {
+        margin: 1rem 0;
+        line-height: 1.15;
+    }
+    a {
+        @apply text-blue;
+    }
+    pre {
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    pre::-webkit-scrollbar, code::-webkit-scrollbar {
+        display: none;
+    }
+    .card-carousel {
+          display: flex;
+          overflow-x: auto;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          margin: 0;
+          padding: 0;
+          gap: 1rem;
+    }
+    .header.shrink {
+        padding: 0 0.5rem;
+    }
+}

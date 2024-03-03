@@ -1,7 +1,7 @@
 @title{Vistor's Blog}
-@style{./../../style.css}
+@style{/css/output.css}
 
-@header{2}
+@header
 
 @rectangles{left}
 
@@ -14,8 +14,6 @@ Why I started blogging
 @rectangles{right}
 
 @spacer @spacer @spacer
-
-<div style="text-align: justify;">
 
 I am a PhD student in Robotics, and I apply Machine Learning regularly.
 
@@ -41,6 +39,4 @@ That made me think. I had been learning a lot of things, and probably I could he
 
 Welcome to my blog.
 
-</div>
-
-@footer{2}
+@footer

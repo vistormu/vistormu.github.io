@@ -1,4 +1,4 @@
-@style{./style.css}
+@style{/css/output.css}
 
 @header
 
@@ -27,7 +27,7 @@ In 2021, I worked as a researcher at the University of Málaga, focusing on the 
 @h2
 Journal articles
 
-@entry{
+@fw-card{
 Design of a soft sensor based on silver-coated polyamide threads and stress-strain modeling via Gaussian processes
 }{
 C. Ballester, @uline{V. Muñoz}, D. Copaci, L. Moreno, D. Blanco | Sensors and Actuators A: Physical | 2024
@@ -38,7 +38,7 @@ https://doi.org/10.1016/j.sna.2024.115058
 @h2
 Conference papers
 
-@entry{
+@fw-card{
 Estimation of the load on an SMA actuator for rehabilitation
 }{
 C. Ballester, @uline{V. Muñoz}, D. Blanco | XLIV Jornadas de Automática | 2023
@@ -46,7 +46,7 @@ C. Ballester, @uline{V. Muñoz}, D. Blanco | XLIV Jornadas de Automática | 2023
 https://doi.org/10.17979/spudc.9788497498609.507
 }
 
-@entry{
+@fw-card{
 An introduction to Apprenticeship Learning by teaching an agent how to play a video game
 }{
 @uline{V. Muñoz}, A. Prados, R. Barber | 17th International Technology, Education and Development Conference | 2023
@@ -54,14 +54,14 @@ An introduction to Apprenticeship Learning by teaching an agent how to play a vi
 https://doi.org/10.21125/inted.2023.1264
 }
 
-@entry{
+@fw-card{
 Design of a proportional controller for a mechanical ventilator
 }{
 @uline{V. Muñoz}, M. Rollón, V. F. Muñoz | Jornadas de Robótica, Educación en Automática y Bioingeniería | 2022 | ISBN: 978-84-09-41095-8
 }{
 }
 
-@entry{
+@fw-card{
 Creación del ventilador mecánico Andalucía Respira
 }{
 V. F. Muñoz, C. Pérez, I. Díaz, @uline{V. Muñoz}, M. Rollón, M. Mengual, A. Santiago | XII Simposio CEA de bioingeniería | 2021 | ISBN: 978-84-09-26469-8
@@ -83,7 +83,7 @@ I do not consider myself a professional programmer, but I sure have the enthusia
 @h2
 Projects
 
-@entry{
+@fw-card{
 Proxima
 }{
 Proxima is a markup language that transpiles Proxima source code into HTML. It offers clearer syntax instead of plain HTML/CSS coding.
@@ -92,7 +92,7 @@ https://github.com/vistormu/proxima
 }
 
 
-@entry{
+@fw-card{
 Catasta
 }{
 Catasta is a Python library designed to simplify and accelerate the process of machine learning model experimentation. It encapsulates the complexities of model training and evaluation, offering researchers and developers a straightforward pipeline for rapid model assessment with minimal setup required.
@@ -104,15 +104,15 @@ https://github.com/vistormu/catasta
 @h2
 Side projects
 
-@entry{
+@fw-card{
 Kimchi
 }{
-Kimchi is a general-purpose programming language that aims to have a simple, consistent and coherent syntax. Kimchi was part of a personal project to learn about programming language design and implementation. It is written in Go and it is based on the book <a href="https://interpreterbook.com/">Writing an Interpreter in Go</a> by Thorsten Ball. 
+Kimchi is a general-purpose programming language that aims to have a simple, consistent and coherent syntax. Kimchi was part of a personal project to learn about programming language design and implementation. It is written in Go and it is based on the book @url{https://interpreterbook.com}{Writing an Interpreter in Go} by Thorsten Ball. 
 }{
 https://github.com/vistormu/kimchilang
 }
 
-@entry{
+@fw-card{
 Decision Maker
 }{
 Have you ever felt like you don't want to decide between a series of options? Decision Maker helps your indecision by running a board game!
