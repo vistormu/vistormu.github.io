@@ -18,14 +18,14 @@
         </div>
     </header>
 
-    <div class="max-w-4xl mx-auto p-4">
-<div class="relative h-2">
+    <div class="max-w-4xl mx-auto px-4">
+<div class="relative">
         <div style="height: 10px;"></div>
-        <div class="absolute h-2 bg-red" style="width: 119px; left: 78px;"></div>
-        <div style="height: 8px;"></div>
-        <div class="absolute h-2 bg-blue" style="width: 237px; left: 67px;"></div>
+        <div class="absolute h-2 bg-violet" style="width: 159px; left: 60px;"></div>
+        <div style="height: 14px;"></div>
+        <div class="absolute h-2 bg-orange" style="width: 68px; left: 99px;"></div>
     </div>
-<h1 class="text-3xl font-bold mt-8 mb-4 text-center text-green" id="set-up-neovim-from-scratch">
+<h1 class="text-3xl font-bold mt-8 mb-4 text-center text-violet" id="set-up-neovim-from-scratch">
 	Set Up Neovim from Scratch
 </h1>
 <div style="text-align: center;"><div class="subtitle">Published on <mark class="bg-gray text-white">feb 18th 2024</mark>. Last edit on <mark class="bg-gray text-white">feb 18th 2024</mark></div></div>
@@ -35,13 +35,13 @@
 <p>
 	In this blog post I will explain how to set up a minimal and modular NeoVim configuration from scratch. I will also cover necessary installations in your system for a complete experience.
 </p>
-<div class="relative h-2">
+<div class="relative">
         <div style="height: 10px;"></div>
-        <div class="absolute h-2 bg-pink" style="width: 138px; right: 86px;"></div>
-        <div style="height: 10px;"></div>
-        <div class="absolute h-2 bg-orange" style="width: 175px; right: 51px;"></div>
+        <div class="absolute h-2 bg-blue" style="width: 183px; right: 63px;"></div>
+        <div style="height: 9px;"></div>
+        <div class="absolute h-2 bg-green" style="width: 58px; right: 62px;"></div>
     </div>
-<div style="height: 20px;"></div>
+<div class="h-5 "></div>
 <h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="table-of-contents">
 	Table of Contents
 </h2>
@@ -224,7 +224,7 @@ vim.keymap.set("n", "&lt;leader&gt;nl", "o&lt;Esc&gt;")
 vim.keymap.set("n", "&lt;leader&gt;y", "\"+y")
 vim.keymap.set("v", "&lt;leader&gt;y", "\"+y")
 vim.keymap.set("n", "&lt;leader&gt;Y", "\"+Y")
-    
+        
 -- Go up and down trough long soft-wrapped lines
 vim.keymap.set("n", "&lt;Down&gt;", "gj")
 vim.keymap.set("n", "&lt;Up&gt;", "gk")
@@ -297,7 +297,9 @@ vim.opt.rtp:prepend(lazypath)</code></pre>
     <div class="relative">
         <pre class="border border-white overflow-x-auto p-4 mb-8"><code class="!bg-black !text-sm language-lua">require('lazy').setup({
     -- Toggle comments
-    "tpope/vim-commentary"    -- Treesitter
+    "tpope/vim-commentary"
+    
+    -- Treesitter
     {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 }, {})</code></pre>
         <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
@@ -447,30 +449,9 @@ sudo apt install -y nodejs npm</code></pre>
 <p>
 	I hope you have enjoyed this guide.
 </p>
-<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="recommended-posts">
-	Recommended Posts
-</h2>
-<div class="card-carousel">
-<div class="relative w-5/12 h-64 border-2 border-white p-4 my-2 max-md:w-4/5 max-md:h-72" style="flex: 0 0 auto;">
-        <div class="pb-2 text-2xl font-bold text-violet">Why NeoVim</div>
-        <p>Why use NeoVim instead of other text editors?</p>
-        <div class="absolute bottom-4 left-4 p-2 text-sm text-orange">oct 29th 2023</div>
-        
-    <div class="absolute bottom-4 right-4 group">
-        <a href="/posts/neovim/why-neovim.html" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
-            <span>READ</span>
-            <div class="relative">
-                <div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
-                <div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
-            </div>
-        </a>
-    </div>
-    
-    </div>
-</div>
 <div style="height: 120px;"></div>
 
-    <div class="absolute left-0 right-0 h-2 bg-yellow"></div>
+    <div class="absolute left-0 right-0 h-2 bg-orange"></div>
     <script src="/js/scroll.js"></script>
     <script src="/js/copyCode.js"></script>
     <script> hljs.highlightAll(); </script>

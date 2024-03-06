@@ -186,7 +186,7 @@ vim.keymap.set("n", "<leader>nl", "o<Esc>")
 vim.keymap.set("n", "<leader>y", "\\"+y")
 vim.keymap.set("v", "<leader>y", "\\"+y")
 vim.keymap.set("n", "<leader>Y", "\\"+Y")
-    
+        
 -- Go up and down trough long soft-wrapped lines
 vim.keymap.set("n", "<Down>", "gj")
 vim.keymap.set("n", "<Up>", "gk")
@@ -250,7 +250,7 @@ Some of the plugins require some extra configuration. For example, for @mark{nvi
 require('lazy').setup(\{
     -- Toggle comments
     "tpope/vim-commentary"
-
+    
     -- Treesitter
     \{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"\},
 \}, \{\})
@@ -381,23 +381,5 @@ and set the font in your terminal emulator.
 Wrapping Up
 
 I hope you have enjoyed this guide.
-
-
-@h2
-Recommended Posts
-
-<div class="card-carousel">
-
-@card{
-Why NeoVim
-}{
-Why use NeoVim instead of other text editors?
-}{
-oct 29th 2023
-}{
-/posts/neovim/why-neovim.html
-}
-
-</div>
 
 @footer

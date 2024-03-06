@@ -711,6 +711,10 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   margin-bottom: 0.5rem;
 }
 
+.-mt-10{
+  margin-top: -2.5rem;
+}
+
 .mb-4{
   margin-bottom: 1rem;
 }
@@ -765,6 +769,10 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
 
 .h-4{
   height: 1rem;
+}
+
+.h-5{
+  height: 1.25rem;
 }
 
 .h-6{

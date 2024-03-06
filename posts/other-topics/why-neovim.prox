@@ -81,21 +81,4 @@ If your answer is No/Yes, you probably are an Emacs enthusiast, and I don't know
 
 If your answer is Yes/Yes, welcome to the club. And remember, the first rule of the NeoVim Club is to always talk about NeoVim.
 
-@h2
-Recommended Posts
-
-<div class="card-carousel">
-
-@card{
-Setup NeoVim from Scratch
-}{
-Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
-}{
-feb 18th 2024
-}{
-/posts/neovim/neovim-config.html
-}
-
-</div>
-
 @footer

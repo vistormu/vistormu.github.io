@@ -4,82 +4,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
 	<title>Vistor's Blog:</title>
-	<link rel="stylesheet" href="./../../style.css">
+	<link rel="stylesheet" href="/css/output.css">
 </head>
 <body>
 
 <link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
     
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <a href="./../../index.html">Vistor's Blog</a>
-            </div>
-            <nav>
-                <a href="./../../about.html" class="nav-link">about</a>
-            </nav>
+    <header class="sticky top-0 bg-black z-50">
+        <div class="header flex justify-between items-center max-w-4xl mx-auto p-4 ease-linear duration-200">
+            <a class="text-white text-2xl font-bold" href="/index.html">Vistor's Blog</a>
+            <a class="nav-link flex space-x-4 text-white" href="/about.html">about</a>
         </div>
     </header>
 
-    <div class="content-wrapper">
-<div style="position: relative; height: 10px; width: 100%;">
+    <div class="max-w-4xl mx-auto px-4">
+<div class="relative">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--yellow); width: 210px; left: 87px;"></div>
-        <div style="height: 12px;"></div>
-        <div class="rectangle" style="background-color: var(--blue); width: 157px; left: 84px;"></div>
+        <div class="absolute h-2 bg-orange" style="width: 51px; left: 75px;"></div>
+        <div style="height: 15px;"></div>
+        <div class="absolute h-2 bg-yellow" style="width: 108px; left: 62px;"></div>
     </div>
-<h1 id="title">
+<h1 class="text-3xl font-bold mt-8 mb-4 text-center text-violet" id="title">
 	Title
 </h1>
-<div style="text-align: center;"><div class="subtitle">Published on <mark>oct 29th 2023</mark>. Last edit on <mark>nov 5th 2023</mark></div></div>
+<div style="text-align: center;"><div class="subtitle">Published on <mark class="bg-gray text-white">oct 29th 2023</mark>. Last edit on <mark class="bg-gray text-white">nov 5th 2023</mark></div></div>
 <p>
 	Text
 </p>
-<div style="position: relative; height: 10px; width: 100%;">
+<div class="relative">
         <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--yellow); width: 64px; right: 81px;"></div>
-        <div style="height: 10px;"></div>
-        <div class="rectangle" style="background-color: var(--light-blue); width: 224px; right: 93px;"></div>
+        <div class="absolute h-2 bg-violet" style="width: 238px; right: 50px;"></div>
+        <div style="height: 6px;"></div>
+        <div class="absolute h-2 bg-white" style="width: 88px; right: 92px;"></div>
     </div>
-<div style="height: 20px;"></div>
-<h2 id="section">
+<div class="h-5 "></div>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="section">
 	Section
 </h2>
 <p>
 	Section text.
 </p>
-<h2 id="section">
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="section">
 	Section
 </h2>
 <p>
 	Section text.
 </p>
-<h2 id="suggested-posts">
-	Suggested Posts
-</h2>
-<div class="card-row">
-<div class="card">
-<div class="card-header">How to Setup NeoVim from Scratch</div>
-<div class="card-description">Learn how to setup NeoVim from scratch, with a custom configuration and plugin.</div>
-<div class="card-date">oct 11th 2023</div>
-
-    <div class="card-button-container">
-        <a href="./neovim-config.html" class="card-button">
-            <span>READ</span>
-            <div class="icon-container">
-                <div class="black-square"></div>
-                <div class="circle"></div>
-            </div>
-        </a>
-    </div>
-    
-</div>
-</div>
 <div style="height: 120px;"></div>
-    <div class="divider" style="height: 20px; background-color: var(--purple);"></div>
-    <script src="./../../scripts/scroll.js"></script>
-    <script src="./../../scripts/copyCode.js"></script>
+
+    <div class="absolute left-0 right-0 h-2 bg-light-blue"></div>
+    <script src="/js/scroll.js"></script>
+    <script src="/js/copyCode.js"></script>
     <script> hljs.highlightAll(); </script>
 </body>
 </html>

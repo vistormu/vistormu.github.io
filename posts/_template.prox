@@ -1,7 +1,7 @@
 @title{Vistor's Blog:}
-@style{./../../style.css}
+@style{/css/output.css}
 
-@header{2}
+@header
 
 @rectangles{left}
 
@@ -27,22 +27,22 @@ Section
 
 Section text.
 
-@h2
-Suggested Posts
+# @h2
+# Suggested Posts
 
 
-<div class="card-row">
+# <div class="card-row">
 
-@card{
-How to Setup NeoVim from Scratch
-}{
-Learn how to setup NeoVim from scratch, with a custom configuration and plugin.
-}{
-oct 11th 2023
-}{
-./neovim-config.html
-}
+# @card{
+# How to Setup NeoVim from Scratch
+# }{
+# Learn how to setup NeoVim from scratch, with a custom configuration and plugin.
+# }{
+# oct 11th 2023
+# }{
+# ./neovim-config.html
+# }
 
-</div>
+# </div>
 
-@footer{2}
+@footer

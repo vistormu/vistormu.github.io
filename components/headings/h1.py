@@ -7,7 +7,7 @@ def function(text: str) -> str:
         "mt-8",
         "mb-4",
         "text-center",
-        "text-green",
+        "text-violet",
     ]
     style: str = " ".join(styles)
 

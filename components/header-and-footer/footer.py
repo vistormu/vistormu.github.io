@@ -6,7 +6,7 @@ colors: list[str] = [
     "green",
     "yellow",
     "orange",
-    "purple",
+    "violet",
     "pink",
     "light-blue",
 ]

@@ -12,6 +12,13 @@ Hello! I am Vistor, a PhD Student researching in Machine Learning applications t
 
 @rectangles{right}
 
+@spacer @spacer @spacer
+
+@h1
+Tutorials
+
+@spacer{-10}
+
 @h2
 PYTHON
 
@@ -158,16 +165,6 @@ NEOVIM
 <div class="card-carousel">
 
 @card{
-Why NeoVim
-}{
-Why use NeoVim instead of other text editors?
-}{
-oct 29th 2023
-}{
-/posts/neovim/why-neovim.html
-}
-
-@card{
 Setup NeoVim from Scratch
 }{
 Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
@@ -218,23 +215,43 @@ Learn how I created the syntax highlighting for Proxima
 
 </div>
 
-@h2
+@spacer @spacer @spacer
+
+@h1
 Other Topics
 
 @simple-entry{
-/posts/other-topics/technologies.html
+I'm simplifying my life
 }{
-Why hasn't anyone taught me these technologies?
+mar 6th 2024
 }{
-feb 23rd 2024
+/posts/other-topics/simplifying-my-life.html
 }
 
 @simple-entry{
-/posts/other-topics/why-i-started-blogging.html
+Why is self-learning not rewarding enough?
 }{
+feb 23rd 2024
+}{
+/posts/other-topics/self-learning.html
+}
+
+@simple-entry{
 Why I started blogging
 }{
 feb 23rd 2024
+}{
+/posts/other-topics/why-i-started-blogging.html
 }
+
+
+@simple-entry{
+Why NeoVim
+}{
+oct 29th 2023
+}{
+/posts/other-topics/why-neovim.html
+}
+
 
 @footer

@@ -29,7 +29,6 @@ def function(alignment: str) -> str:
 
     container_style = ' '.join([
         "relative",
-        "h-2",
     ])
 
     rectangle_1_style = ' '.join([
