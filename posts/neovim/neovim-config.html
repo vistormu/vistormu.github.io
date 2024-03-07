@@ -21,9 +21,9 @@
     <div class="max-w-4xl mx-auto px-4">
 <div class="relative">
         <div style="height: 10px;"></div>
-        <div class="absolute h-2 bg-violet" style="width: 159px; left: 60px;"></div>
+        <div class="absolute h-2 bg-white" style="width: 202px; left: 53px;"></div>
         <div style="height: 14px;"></div>
-        <div class="absolute h-2 bg-orange" style="width: 68px; left: 99px;"></div>
+        <div class="absolute h-2 bg-blue" style="width: 252px; left: 84px;"></div>
     </div>
 <h1 class="text-3xl font-bold mt-8 mb-4 text-center text-violet" id="set-up-neovim-from-scratch">
 	Set Up Neovim from Scratch
@@ -37,9 +37,9 @@
 </p>
 <div class="relative">
         <div style="height: 10px;"></div>
-        <div class="absolute h-2 bg-blue" style="width: 183px; right: 63px;"></div>
-        <div style="height: 9px;"></div>
-        <div class="absolute h-2 bg-green" style="width: 58px; right: 62px;"></div>
+        <div class="absolute h-2 bg-blue" style="width: 200px; right: 93px;"></div>
+        <div style="height: 5px;"></div>
+        <div class="absolute h-2 bg-red" style="width: 102px; right: 71px;"></div>
     </div>
 <div class="h-5 "></div>
 <h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="table-of-contents">
@@ -117,9 +117,9 @@
 <p>
 	I will now guide you in chronological order through the creation of the files.
 </p>
-<h2 class="text-xl mt-8 text-green" id="init.lua">
+<h3 class="text-xl mt-8 text-green" id="init.lua">
 	init.lua
-</h2>
+</h3>
 <p>
 	The <mark class="bg-gray text-white">init.lua</mark> file is the entry point of the configuration. It is a Lua file that will be executed when Neovim starts. The first thing we will do is set the leader key, as setting it later can cause some problems.
 </p>
@@ -132,9 +132,9 @@ vim.g.maplocalleader = ' '</code></pre>
 <p>
 	We will be coming back to this file later on to load the rest of the configuration.
 </p>
-<h2 class="text-xl mt-8 text-green" id="lua/set.lua">
+<h3 class="text-xl mt-8 text-green" id="lua/set.lua">
 	lua/set.lua
-</h2>
+</h3>
 <p>
 	The <mark class="bg-gray text-white">set.lua</mark> file contains all the settings of NeoVim.
 </p>
@@ -181,9 +181,9 @@ vim.opt.spelllang = "en_us"</code></pre>
         <pre class="border border-white overflow-x-auto p-4 mb-8"><code class="!bg-black !text-sm language-lua">require("set")</code></pre>
         <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
     </div>
-<h2 class="text-xl mt-8 text-green" id="remap.lua">
+<h3 class="text-xl mt-8 text-green" id="remap.lua">
 	remap.lua
-</h2>
+</h3>
 <p>
 	The <mark class="bg-gray text-white">remap.lua</mark> file contains all the remappings for creating custom keybindings. The syntax is pretty easy to understand:
 </p>
@@ -246,9 +246,9 @@ vim.keymap.set("n", "&lt;leader&gt;ss", ":setlocal spell!&lt;CR&gt;")</code></pr
         <pre class="border border-white overflow-x-auto p-4 mb-8"><code class="!bg-black !text-sm language-lua">require("remap")</code></pre>
         <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
     </div>
-<h2 class="text-xl mt-8 text-green" id="lua/lazy-bootstrap.lua">
+<h3 class="text-xl mt-8 text-green" id="lua/lazy-bootstrap.lua">
 	lua/lazy-bootstrap.lua
-</h2>
+</h3>
 <p>
 	We will use <a href="https://github.com/folke/lazy.nvim">lazy.nvim</a> to load our plugins. You just need to copy this into your <mark class="bg-gray text-white">lazy-bootstrap.lua</mark> file:
 </p>
@@ -276,9 +276,9 @@ vim.opt.rtp:prepend(lazypath)</code></pre>
         <pre class="border border-white overflow-x-auto p-4 mb-8"><code class="!bg-black !text-sm language-lua">require("lazy-bootstrap")</code></pre>
         <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
     </div>
-<h2 class="text-xl mt-8 text-green" id="lua/lazy-plugins.lua">
+<h3 class="text-xl mt-8 text-green" id="lua/lazy-plugins.lua">
 	lua/lazy-plugins.lua
-</h2>
+</h3>
 <p>
 	Now it's the time for installing the plugins. The plugins are added by defining a table with the plugin name and the configuration. For example, for adding the ability to toggle code comments, you need to add <mark class="bg-gray text-white">tpope/vim-commentary</mark>:
 </p>
@@ -384,9 +384,9 @@ end</code></pre>
 <p>
 	There are some other dependencies that you might want to install. 
 </p>
-<h2 class="text-xl mt-8 text-green" id="fuzzy-finder">
+<h3 class="text-xl mt-8 text-green" id="fuzzy-finder">
 	Fuzzy Finder
-</h2>
+</h3>
 <p>
 	For example, <mark class="bg-gray text-white">ripgrep</mark> is a very fast search tool that is used by <mark class="bg-gray text-white">telescope</mark> for searching files. You can install it with the following command:
 </p>
@@ -395,9 +395,9 @@ end</code></pre>
         <pre class="border border-white overflow-x-auto p-4 mb-8"><code class="!bg-black !text-sm language-shell">sudo apt install ripgrep</code></pre>
         <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
     </div>
-<h2 class="text-xl mt-8 text-green" id="nodejs-and-npm">
+<h3 class="text-xl mt-8 text-green" id="nodejs-and-npm">
 	NodeJS and npm
-</h2>
+</h3>
 <p>
 	Many of the LSPs require the installation of <mark class="bg-gray text-white">NodeJS</mark> and <mark class="bg-gray text-white">npm</mark>. If you are using Debian, again, the <mark class="bg-gray text-white">NodeJS</mark> and <mark class="bg-gray text-white">npm</mark> versions are outdated. So you need to run:
 </p>
@@ -407,9 +407,9 @@ end</code></pre>
 sudo apt install -y nodejs npm</code></pre>
         <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
     </div>
-<h2 class="text-xl mt-8 text-green" id="clipboard-support">
+<h3 class="text-xl mt-8 text-green" id="clipboard-support">
 	Clipboard support
-</h2>
+</h3>
 <p>
 	If you want to have clipboard support, you need to install <mark class="bg-gray text-white">xclip</mark>:
 </p>
@@ -418,9 +418,9 @@ sudo apt install -y nodejs npm</code></pre>
         <pre class="border border-white overflow-x-auto p-4 mb-8"><code class="!bg-black !text-sm language-shell">sudo apt install xclip</code></pre>
         <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
     </div>
-<h2 class="text-xl mt-8 text-green" id="nerd-fonts">
+<h3 class="text-xl mt-8 text-green" id="nerd-fonts">
 	Nerd Fonts
-</h2>
+</h3>
 <p>
 	Many of the plugins require <mark class="bg-gray text-white">Nerd Fonts</mark> for the icons. You need to download it from <a href="https://www.nerdfonts.com/font-downloads">their webpage</a>.
 </p>

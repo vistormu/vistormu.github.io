@@ -21,9 +21,9 @@
     <div class="max-w-4xl mx-auto px-4">
 <div class="relative">
         <div style="height: 10px;"></div>
-        <div class="absolute h-2 bg-violet" style="width: 184px; left: 86px;"></div>
-        <div style="height: 8px;"></div>
-        <div class="absolute h-2 bg-pink" style="width: 96px; left: 85px;"></div>
+        <div class="absolute h-2 bg-white" style="width: 105px; left: 98px;"></div>
+        <div style="height: 9px;"></div>
+        <div class="absolute h-2 bg-violet" style="width: 91px; left: 60px;"></div>
     </div>
 <h1 class="text-3xl font-bold mt-8 mb-4 text-center text-violet" id="upload-a-python-package-to-pypi">
 	Upload a Python Package to PyPi
@@ -34,9 +34,9 @@
 </p>
 <div class="relative">
         <div style="height: 10px;"></div>
-        <div class="absolute h-2 bg-blue" style="width: 238px; right: 72px;"></div>
-        <div style="height: 5px;"></div>
-        <div class="absolute h-2 bg-yellow" style="width: 113px; right: 49px;"></div>
+        <div class="absolute h-2 bg-pink" style="width: 229px; right: 55px;"></div>
+        <div style="height: 11px;"></div>
+        <div class="absolute h-2 bg-blue" style="width: 186px; right: 91px;"></div>
     </div>
 <h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="table-of-contents">
 	Table of Contents
@@ -59,9 +59,9 @@
 <p>
 	There are two types of valid project structures:
 </p>
-<h2 class="text-xl mt-8 text-green" id="src-layout">
+<h3 class="text-xl mt-8 text-green" id="src-layout">
 	src-layout
-</h2>
+</h3>
 <p>
 	The project should contain a <mark class="bg-gray text-white">src</mark> directory under the project root, and all modules and packages meant for distribution are placed inside this directory.
 </p>
@@ -73,9 +73,9 @@
 |   |   |-- __init__.py</code></pre>
         <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
     </div>
-<h2 class="text-xl mt-8 text-green" id="flat-layout">
+<h3 class="text-xl mt-8 text-green" id="flat-layout">
 	flat-layout
-</h2>
+</h3>
 <p>
 	The package directory is the project root itself.
 </p>
@@ -107,9 +107,9 @@
 |-- requirements.txt</code></pre>
         <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
     </div>
-<h2 class="text-xl mt-8 text-green" id="license">
+<h3 class="text-xl mt-8 text-green" id="license">
 	LICENSE
-</h2>
+</h3>
 <p>
 	A license is a legal tool you can use to protect your intellectual property. For choosing the most suitable license for your project, check <a href="https://choosealicense.com/">https://choosealicense.com/</a> for more information.
 </p>
@@ -144,9 +144,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</code></pre>
         <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
     </div>
-<h2 class="text-xl mt-8 text-green" id="readme.md">
+<h3 class="text-xl mt-8 text-green" id="readme.md">
 	README.md
-</h2>
+</h3>
 <p>
 	A <mark class="bg-gray text-white">README.md</mark> file is used to describe your project. It is a good practice to include a description of your project, the installation, some examples...
 </p>
@@ -161,9 +161,9 @@ pip install chorizo
 ```</code></pre>
         <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
     </div>
-<h2 class="text-xl mt-8 text-green" id="pyproject.toml">
+<h3 class="text-xl mt-8 text-green" id="pyproject.toml">
 	pyproject.toml
-</h2>
+</h3>
 <p>
 	The <mark class="bg-gray text-white">pyproject.toml</mark> file is used to configure the build process of your project. There are multiple backends available to build your project, but I am lately using <a href="https://github.com/pypa/hatch">hatchling</a>. The backend tool will be automatically installed when building, so use the one you like the most.
 </p>
@@ -213,9 +213,9 @@ Issues = "https://github.com/user/chorizo/issues"</code></pre>
 packages = ["chorizo"]</code></pre>
         <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
     </div>
-<h2 class="text-xl mt-8 text-green" id="requirements.txt">
+<h3 class="text-xl mt-8 text-green" id="requirements.txt">
 	requirements.txt
-</h2>
+</h3>
 <p>
 	It is also a good practice to leave a <mark class="bg-gray text-white">requirements.txt</mark> with the dependencies in case someone wants to build from source.
 </p>
@@ -226,9 +226,9 @@ matplotlib
 pandas</code></pre>
         <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
     </div>
-<h2 class="text-xl mt-8 text-green" id=".gitignore">
+<h3 class="text-xl mt-8 text-green" id=".gitignore">
 	.gitignore
-</h2>
+</h3>
 <p>
 	As a bonus tip, you can add a .gitignore file to your project to avoid uploading unnecessary files to GitHub.
 </p>
@@ -283,9 +283,9 @@ pandas</code></pre>
     </div>
     <p>Once you upload a release, it cannot be deleted, so you need to be careful.</p>
 </div>
-<h2 class="text-xl mt-8 text-green" id="upload-to-testpypi">
+<h3 class="text-xl mt-8 text-green" id="upload-to-testpypi">
 	Upload to TestPyPi
-</h2>
+</h3>
 <p>
 	It is a good idea to upload first to the test server to check if everything is working as expected. To register an account, go to <a href="https://test.pypi.org/account/register/">https://test.pypi.org/account/register/</a>.
 </p>
@@ -300,9 +300,9 @@ pandas</code></pre>
         <pre class="border border-white overflow-x-auto p-4 mb-8"><code class="!bg-black !text-sm language-shell">python -m twine upload --repository testpypi dist/*</code></pre>
         <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
     </div>
-<h2 class="text-xl mt-8 text-green" id="download-and-test">
+<h3 class="text-xl mt-8 text-green" id="download-and-test">
 	Download and Test
-</h2>
+</h3>
 <p>
 	You can download your project from the test server with pip. 
 </p>
@@ -319,9 +319,9 @@ pandas</code></pre>
         <pre class="border border-white overflow-x-auto p-4 mb-8"><code class="!bg-black !text-sm language-shell">pip install -r requirements.txt</code></pre>
         <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
     </div>
-<h2 class="text-xl mt-8 text-green" id="upload-to-pypi">
+<h3 class="text-xl mt-8 text-green" id="upload-to-pypi">
 	Upload to PyPi
-</h2>
+</h3>
 <p>
 	Once you are sure that everything is working as expected, you can upload your project to the PyPi server.
 </p>

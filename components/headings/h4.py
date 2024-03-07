@@ -2,10 +2,9 @@ def function(text: str) -> str:
     anchor: str = text.replace(" ", "-").lower()
 
     styles: list[str] = [
-        "text-xl",
-        "mt-8",
-        "text-green",
+        "text-lg",
+        "font-bold",
     ]
     style: str = " ".join(styles)
 
-    return f'<h3 class="{style}" id="{anchor}">\n\t{text}\n</h3>\n'
+    return f'<h4 class="{style}" id="{anchor}">\n\t{text}\n</h4>\n'
