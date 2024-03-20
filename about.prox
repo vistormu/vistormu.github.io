@@ -8,9 +8,9 @@
 
 @h1{About Me}
 
-Hello! I am Víctor Muñoz or Vistor for short. I come from Malaga, a beautiful city in the south of Spain, known for sunshine-fried-fish combo. Growing up, my home was filled with computers, and I spent many nights watching documentaries about the universe with my dad. So I guess that's why I've always felt the need to understand things deeply, driving my mom crazy. 
+Hello! I am Vistor. I come from Malaga, a beautiful city in the south of Spain, known for its sunshine/fried-fish combo. Growing up, my home was filled with computers, and I spent many nights watching documentaries about the universe with my dad. So I guess that's why I've always felt the need to understand things deeply, driving my mom crazy. 
 
-I tend to intelectualize every interest I have: how does internet work? Why does music sound good? Why is there a Universe to begin with? These thoughts give me a philosophical outlook, allowing me to appreciate life more deeply, although sometimes they also lead to existential crises right before bed.
+I tend to intellectualize every interest I have: how does the internet work? Why does music sound good? Why is there a Universe to begin with? These thoughts give me a philosophical outlook, allowing me to appreciate life more deeply, although sometimes they also lead to existential crises right before bed.
 
 My love for understanding how things work led me to study engineering. Now, I'm working as a researcher in soft robotics, focusing mainly on software development.
 
@@ -74,9 +74,9 @@ V. F. Muñoz, C. Pérez, I. Díaz, @uline{V. Muñoz}, M. Rollón, M. Mengual, A.
 
 @h1{Programmer}
 
-I am also a passionate programmer. At my work I use Python and I have created verious libraries to boost my workflow. In my free time I like learning new languages, and Go has been my favourite one by far. This webpage is built using a custom static site generator written in Go, named @url{https://github.com/vistormu/proxima}{Proxima}. Proxima functions as a transpiler to plain HTML, and it makes building static sites very clean and simple. I am very proud of my work and I wanted to share it with you.
+I am also a passionate programmer. At my work, I use Python and I have created various libraries to boost my workflow. In my spare time, I like learning new languages, and Go has been my favorite one by far. This webpage is built using a custom static site generator written in Go, named @url{https://github.com/vistormu/proxima}{Proxima}. Proxima functions as a transpiler to plain HTML, and it makes building static sites very clean and simple. I am very proud of my work, and I wanted to share it with you.
 
-I do not consider myself a professional programmer, but I sure have the enthusiasm of one.
+I do not consider myself a professional programmer, but I certainly have the enthusiasm of one.
 
 @rectangles{right}
 

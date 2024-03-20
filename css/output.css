@@ -471,6 +471,10 @@ a{
   color: rgb(82 130 151 / var(--tw-text-opacity));
 }
 
+a:hover{
+  text-decoration-line: underline;
+}
+
 pre {
   scroll-behavior: smooth;
   scrollbar-width: none;
@@ -759,6 +763,10 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   display: contents;
 }
 
+.hidden{
+  display: none;
+}
+
 .h-10{
   height: 2.5rem;
 }
@@ -815,6 +823,10 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   flex-shrink: 1;
 }
 
+.grow{
+  flex-grow: 1;
+}
+
 .origin-right{
   transform-origin: right;
 }
@@ -825,6 +837,10 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
 
 .list-inside{
   list-style-position: inside;
+}
+
+.list-outside{
+  list-style-position: outside;
 }
 
 .list-disc{
@@ -942,8 +958,17 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   padding: 1rem;
 }
 
+.px-8{
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 .pb-2{
   padding-bottom: 0.5rem;
+}
+
+.pl-4{
+  padding-left: 1rem;
 }
 
 .text-center{
@@ -963,6 +988,11 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
 .text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-lg{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .text-sm{

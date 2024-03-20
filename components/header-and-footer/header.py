@@ -42,14 +42,14 @@ def function() -> str:
     content_wrapper_style = ' '.join([
         "max-w-4xl",
         "mx-auto",
-        "px-4",
+        "px-8",
     ])
 
     return f'''
     {highlight_js}
     <header class="{header_style}">
         <div class="{content_style}">
-            <a class="{title_style}" href="{blog_src}">Vistor's Blog</a>
+            <a class="{title_style}" href="{blog_src}">Blog del Vistor</a>
             <a class="{nav_style}" href="{about_src}">about</a>
         </div>
     </header>

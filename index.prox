@@ -6,13 +6,29 @@
 
 @rectangles{left}
 
-@h1{Welcome to Vistor's Blog!}
+@h1{Welcome!}
 
-Hello! I am Vistor, a PhD Student researching in Machine Learning applications to Robotics. In this webpage you will find blog posts about various topics like tutorials, personal opinions... I hope you find it useful.
+I am Vistor, a PhD Student researching in Machine Learning applications to Robotics. I felt the need to share my knowledge and experiences with the world during my journey. You will find here tutorials, personal opinions and some thoughts about my research and life. I hope you will find something useful here!
 
 @rectangles{right}
 
 @spacer @spacer @spacer
+
+@navbar{
+python
+}{
+pytorch
+}{
+latex
+}{
+neovim
+}{
+proxima
+}{
+challenges
+}{
+other topics
+}
 
 @h1
 Tutorials
@@ -210,9 +226,28 @@ mar 7th 2024
 @card{
 How I Created the Syntax Highlighting for Proxima
 }{
-Learn how I created the syntax highlighting for Proxima
+Because a language is nothing without syntax highlighting
 }{
+mar 7th 2024
 }{
+# /posts/proxima/treesitter.html
+}
+
+</div>
+
+@h2
+CHALLENGES
+
+<div class="card-carousel">
+
+@card{
+Snake Game in the Terminal with Go
+}{
+Learn how to create a Snake game in the terminal with Go.
+}{
+mar 18th 2024
+}{
+/posts/challenges/snake-cli.html
 }
 
 </div>
@@ -221,6 +256,14 @@ Learn how I created the syntax highlighting for Proxima
 
 @h1
 Other Topics
+
+@simple-entry{
+Programming challenges recommendations
+}{
+mar 18th 2024
+}{
+/posts/other-topics/programming-challenges-recommendations.html
+}
 
 @simple-entry{
 I'm simplifying my life

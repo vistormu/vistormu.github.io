@@ -21,6 +21,7 @@
     }
     a {
         @apply text-blue;
+        @apply hover:underline;
     }
     pre {
         scroll-behavior: smooth;
