@@ -1,7 +1,5 @@
 @header
 
-@rectangles{left}
-
 @h1{Set Up Neovim from Scratch}
 
 @post-info{
@@ -15,10 +13,6 @@ feb 18th 2024
 If you are here it means that you have built the courage to try NeoVim like a real programmer. You won't ever need IDEs or wait for slow apps to open.
 
 In this blog post I will explain how to set up a minimal and modular NeoVim configuration from scratch. I will also cover necessary installations in your system for a complete experience.
-
-@rectangles{right}
-
-@spacer
 
 @h2{Table of Contents}
 

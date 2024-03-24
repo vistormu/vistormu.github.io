@@ -1,7 +1,5 @@
 @header
 
-@rectangles{left}
-
 @h1{How I Created the Syntax Highlighting for Proxima}
 
 @post-info{
@@ -15,10 +13,6 @@ x
 Seeing my new-born baby (@url{https://github.com/vistormu/proxima}{Proxima}) in white plain text was hard. I had to do something about it. I had to give it some color. I had to make it beautiful.
 
 In this post, I will share with you how I created the syntax highlighting for Proxima using Tree-sitter and how I installed it in Neovim.
-
-@rectangles{right}
-
-@spacer
 
 @h2{Table of Contents}
 

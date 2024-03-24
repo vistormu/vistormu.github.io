@@ -1,29 +1,39 @@
 import os
 
 
-def function(title: str, description: str, date: str, link: str) -> str:
-    if link and not link.startswith("/"):
-        raise ValueError(f"Ensure that the link starts with a forward slash: {link}")
-
-    if link and not os.path.exists(link[1:]):
-        raise ValueError(f"File not found: {link}")
+def function(title: str,
+             subtitle: str,
+             description: str,
+             date: str = "",
+             link: str = "",
+             button_text: str = "READ",
+             ) -> str:
+    if link:
+        if not link.startswith("http") and not link.startswith("/"):
+            raise ValueError(f"Ensure that the link is a valid HTTP address or an absolute path to a file: {link}")
+        elif link.startswith("/") and not os.path.exists(link[1:]):
+            raise ValueError(f"File not found: {link}")
 
     card_style = ' '.join([
         "relative",
         "w-full",
-        "h-64",
+        "h-72",
         "border-2",
         "border-white",
         "p-4",
         "my-2",
-        "max-md:h-72",
+        "max-md:h-96",
     ])
 
     title_style = ' '.join([
-        "pb-2",
-        "text-2xl",
+        "text-xl",
         "font-bold",
         "text-blue",
+    ])
+
+    subtitle_style = ' '.join([
+        "text-sm",
+        "text-green",
     ])
 
     date_style = ' '.join([
@@ -81,7 +91,7 @@ def function(title: str, description: str, date: str, link: str) -> str:
     button: str = f'''
     <div class="{button_container_style}">
         <a href="{link}" class="{button_style}">
-            <span>READ</span>
+            <span>{button_text}</span>
             <div class="relative">
                 <div class="{square_style}"></div>
                 <div class="{circle_style}"></div>
@@ -93,8 +103,9 @@ def function(title: str, description: str, date: str, link: str) -> str:
     return f'''
     <article class="{card_style}">
         <div class="{title_style}">{title}</div>
+        <div class="{subtitle_style}">{subtitle}</div>
         <p>{description}</p>
-        <div class="{date_style}">{date if link else "coming soon"}</div>
+        <div class="{date_style}">{date}</div>
         {button if link else ""}
     </article>
     '''

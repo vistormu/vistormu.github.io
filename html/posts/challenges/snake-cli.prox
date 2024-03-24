@@ -1,7 +1,5 @@
 @header
 
-@rectangles{left}
-
 @h1{Snake Game in the Terminal using Go}
 
 @post-info{
@@ -17,10 +15,6 @@ The terminal is a powerful tool that can be used for more than just running comm
 Each go module will be responsible for a different part of the game. We will have a module for the terminal, one for reading the user's input, one for the game logic, and one for rendering.
 
 Let's get started!
-
-@rectangles{right}
-
-@spacer
 
 @h2{Table of Contents}
 

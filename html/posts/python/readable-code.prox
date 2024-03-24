@@ -1,7 +1,5 @@
 @header
 
-@rectangles{left}
-
 @h1{Write Readable Code in Python}
 
 @post-info{
@@ -13,8 +11,6 @@ nov 6th 2023
 }
 
 Have you ever returned to a project you hadn't worked on in a while and had no idea what you were doing? Or maybe you've been working on a project with a team, and you have no idea what your teammates' code does? If you have, then you know how important it is to write readable code.
-
-@rectangles{right}
 
 @h2{Table of Contents}
 

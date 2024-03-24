@@ -1,8 +1,15 @@
 @header
 
-@spacer
-@h1{Blog}{left}
-@spacer
+@page-section{
+Blog
+}{
+}{
+Here you will find personal opinions, thoughts, and experiences on a variety of topics.
+}{
+2024
+}{
+2023
+}
 
 @h2{2024}
 
@@ -11,6 +18,9 @@
 @card{
 Programming challenges recommendations
 }{
+# subtitle
+}{
+# description
 }{
 mar 18th 2024
 }{
@@ -20,6 +30,9 @@ mar 18th 2024
 @card{
 I'm simplifying my life
 }{
+# subtitle
+}{
+# description
 }{
 mar 6th 2024
 }{
@@ -29,6 +42,9 @@ mar 6th 2024
 @card{
 Why is self-learning not rewarding enough?
 }{
+# subtitle
+}{
+# description
 }{
 feb 23rd 2024
 }{
@@ -38,6 +54,9 @@ feb 23rd 2024
 @card{
 Why I started blogging
 }{
+# subtitle
+}{
+# description
 }{
 feb 23rd 2024
 }{
@@ -53,6 +72,9 @@ feb 23rd 2024
 @card{
 Why NeoVim
 }{
+# subtitle
+}{
+# description
 }{
 oct 29th 2023
 }{

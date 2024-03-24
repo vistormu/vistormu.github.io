@@ -1,7 +1,5 @@
 @header
 
-@rectangles{left}
-
 @h1{Upload a Python Package to PyPi}
 
 @post-info{
@@ -13,8 +11,6 @@ jan 30th 2024
 }
 
 If you're frequently programming in Python and have developed custom tools that are useful across multiple projects, it's a smart move to consider publishing them on PyPI. This blog post will show you how to do that. We'll also cover how to manage your release versions and keep a tidy changelog.
-
-@rectangles{right}
 
 @h2{Table of Contents}
 

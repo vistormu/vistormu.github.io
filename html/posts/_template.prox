@@ -1,7 +1,5 @@
 @header
 
-@rectangles{left}
-
 @h1{Title}
 
 @post-info{
@@ -13,10 +11,6 @@ nov 5th 2023
 }
 
 This is the introduction of the post.
-
-@rectangles{right}
-
-@spacer
 
 @h2{Table of Contents}
 

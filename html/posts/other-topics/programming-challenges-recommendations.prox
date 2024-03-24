@@ -1,7 +1,5 @@
 @header
 
-@rectangles{left}
-
 @h1{Programming Challenges Recommendations}
 
 @post-info{
@@ -13,10 +11,6 @@ mar 18th 2024
 }
 
 Along my programming journey, I've found some challenges that I consider very useful to improve my skills. I'll list them here, and update this list as I find more challenges.
-
-@rectangles{right}
-
-@spacer
 
 @h2{Advent of Code}
 

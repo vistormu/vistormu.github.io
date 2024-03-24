@@ -1,101 +1,218 @@
 @header
 
-@spacer
-@h1{Projects}{left}
-@spacer
+@page-section{
+Projects
+}{
+Programming and Researching
+}{
+Take a look at some of my projects and contributions.
+}{
+projects
+}{
+side projects
+}{
+journal articles
+}{
+conference papers
+}
 
 @h2{Projects}
 
-@fw-card{
+@card{
 Proxima
 }{
 \#go
 }{
 Proxima is a markup language that transpiles Proxima source code into HTML. It offers clearer syntax instead of plain HTML/CSS coding.
 }{
+}{
 https://github.com/vistormu/proxima
+}{
+VISIT
 }
 
 
-@fw-card{
+@card{
 Catasta
 }{
 \#python \#pytorch
 }{
 Catasta is a Python library designed to simplify and accelerate the process of machine learning model experimentation. It encapsulates the complexities of model training and evaluation, offering researchers and developers a straightforward pipeline for rapid model assessment with minimal setup required.
 }{
+}{
 https://github.com/vistormu/catasta
+}{
+VISIT
+}
+
+@card{
+vistormu.github.io
+}{
+\#proxima \#html \#css
+}{
+This website
+}{
+}{
+https://github.com/vistormu/vistormu.github.io
+}{
+VISIT
+}
+
+@card{
+vclog
+}{
+\#python
+}{
+Vistor's Console Logger (VCLog) offers a minimal and colorful console logging. Single-script. No dependencies. It is available on PyPI.
+}{
+}{
+https://github.com/vistormu/vclog
+}{
+VISIT
 }
 
 
 @h2{Side projects}
 
-@fw-card{
+@card{
+Snake in the CLI
+}{
+\#go
+}{
+This is my attempt to create a simple Snake game using only Go. It is a fun project to learn more about the terminal and its capabilities. I have a @url{/html/posts/challenges/snake-cli.html}{a blog post} on how to do it.
+}{
+}{
+https://github.com/vistormu/snake-cli
+}{
+VISIT
+}
+
+@card{
+Jamba
+}{
+\#go
+}{
+Jamba is a superfast and lightweight text editor inspired by Vim and written in Go. It is based on the @url{http://antirez.com/news/108}{antirez's Kilo Text Editor}, and it is my attempt to port the C version to a more idiomatic Go code. Also, I extended it to resemble Vim, which has been so fun. I highly recommend you to try and build your own text editor with @url{https://viewsourcecode.org/snaptoken/kilo/index.html}{this wonderful tutorial!}
+}{
+}{
+https://github.com/vistormu/jamba
+}{
+VISIT
+}
+
+@card{
 Kimchi
 }{
 \#go
 }{
 Kimchi is a general-purpose programming language that aims to have a simple, consistent and coherent syntax. Kimchi was part of a personal project to learn about programming language design and implementation. It is written in Go and it is based on the book @url{https://interpreterbook.com}{Writing an Interpreter in Go} by Thorsten Ball. 
 }{
+}{
 https://github.com/vistormu/kimchilang
+}{
+VISIT
 }
 
-@fw-card{
+@card{
 Decision Maker
 }{
 \#go
 }{
 Have you ever felt like you don't want to decide between a series of options? Decision Maker helps your indecision by running a board game!
 }{
+}{
 https://github.com/vistormu/decision_maker
+}{
+VISIT
+}
+
+@card{
+Advent of Code
+}{
+\#go-2022 \#python-2022
+}{
+Advent of Code is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.
+}{
+}{
+https://github.com/vistormu/advent_of_code
+}{
+VISIT
 }
 
 @h2{Journal articles}
 
-@fw-card{
+@card{
+Flexible strain-stress soft sensor modeling: integration and comparative analysis of Deep Learning architectures for regression
+}{
+@uline{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco | Engineering Applications of Artificial Intelligence | 2024
+}{
+}{
+under review
+}{
+# link
+}{
+# button text
+}
+
+@card{
 Design of a soft sensor based on silver-coated polyamide threads and stress-strain modeling via Gaussian processes
 }{
 C. Ballester, @uline{V. Muñoz}, D. Copaci, L. Moreno, D. Blanco | Sensors and Actuators A: Physical | 2024
 }{
 }{
+}{
 https://doi.org/10.1016/j.sna.2024.115058
+}{
+VISIT
 }
 
 @h2{Conference papers}
 
-@fw-card{
+@card{
 Estimation of the load on an SMA actuator for rehabilitation
 }{
 C. Ballester, @uline{V. Muñoz}, D. Blanco | XLIV Jornadas de Automática | 2023
 }{
 }{
+}{
 https://doi.org/10.17979/spudc.9788497498609.507
+}{
+VISIT
 }
 
-@fw-card{
+@card{
 An introduction to Apprenticeship Learning by teaching an agent how to play a video game
 }{
 @uline{V. Muñoz}, A. Prados, R. Barber | 17th International Technology, Education and Development Conference | 2023
 }{
 }{
+}{
 https://doi.org/10.21125/inted.2023.1264
+}{
+VISIT
 }
 
-@fw-card{
+@card{
 Design of a proportional controller for a mechanical ventilator
 }{
 @uline{V. Muñoz}, M. Rollón, V. F. Muñoz | Jornadas de Robótica, Educación en Automática y Bioingeniería | 2022 | ISBN: 978-84-09-41095-8
 }{
 }{
+}{
+}{
+VISIT
 }
 
-@fw-card{
+@card{
 Creación del ventilador mecánico Andalucía Respira
 }{
 V. F. Muñoz, C. Pérez, I. Díaz, @uline{V. Muñoz}, M. Rollón, M. Mengual, A. Santiago | XII Simposio CEA de bioingeniería | 2021
 }{
 }{
+}{
 http://hdl.handle.net/10115/17868
+}{
+VISIT
 }
 
 @footer

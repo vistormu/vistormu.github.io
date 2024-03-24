@@ -1,10 +1,10 @@
-def function(text: str, alignment: str = "center") -> str:
+def function(text: str) -> str:
     style = " ".join([
         "text-3xl",
         "font-bold",
         "mt-8",
         "mb-4",
-        f"text-{alignment}",
+        f"text-center",
         "text-violet",
     ])
 

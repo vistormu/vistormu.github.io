@@ -1,8 +1,6 @@
 @header
 
-@spacer
-@h1{Welcome!}{left}
-@spacer
+@welcome-message
 
 @h2{About me}
 

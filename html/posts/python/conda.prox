@@ -1,7 +1,5 @@
 @header
 
-@rectangles{left}
-
 @h1{Create a Python Virtual Environment with Conda}
 
 @post-info{
@@ -17,8 +15,6 @@ It is very important to be organized when working on a project. This is especial
 In this blog post, I will cover how to download and set up a Conda environment for your Python projects. I will also cover how to manage the dependencies once the virtual environment is running.
 
 Also, I will assume that you are using a Linux distribution. If you are using Windows, I recommend installing the Windows Subsystem for Linux (WSL) and following the instructions as if you were using Linux.
-
-@rectangles{right}
 
 @h2{Table of Contents}
 

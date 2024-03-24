@@ -705,16 +705,6 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   margin-bottom: 0.5rem;
 }
 
-.my-4{
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.my-8{
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
 .mb-4{
   margin-bottom: 1rem;
 }
@@ -741,6 +731,10 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
 
 .mt-8{
   margin-top: 2rem;
+}
+
+.mb-2{
+  margin-bottom: 0.5rem;
 }
 
 .flex{
@@ -783,12 +777,16 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   height: 16rem;
 }
 
+.h-72{
+  height: 18rem;
+}
+
 .h-8{
   height: 2rem;
 }
 
-.h-72{
-  height: 18rem;
+.h-screen{
+  height: 100vh;
 }
 
 .w-24{
@@ -843,12 +841,20 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   list-style-type: none;
 }
 
+.flex-col{
+  flex-direction: column;
+}
+
 .items-start{
   align-items: flex-start;
 }
 
 .items-center{
   align-items: center;
+}
+
+.justify-center{
+  justify-content: center;
 }
 
 .justify-between{
@@ -992,6 +998,11 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-4xl{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .font-bold{

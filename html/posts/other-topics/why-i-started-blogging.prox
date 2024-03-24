@@ -1,7 +1,5 @@
 @header
 
-@rectangles{left}
-
 @h1{Why I started blogging}
 
 @post-info{
@@ -11,10 +9,6 @@ feb 23rd 2024
 }{
 2
 }
-
-@rectangles{right}
-
-@spacer
 
 I am a PhD student in Robotics, and I apply Machine Learning regularly.
 

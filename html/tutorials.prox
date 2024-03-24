@@ -1,15 +1,12 @@
 @header
 
-@spacer
-@h1{Tutorials}{left}
-@spacer
-
-@navbar{
+@page-section{
+Tutorials
+}{
+}{
+Here you will find a collection of tutorials on various topics. I hope you find it useful!
+}{
 python
-}{
-pytorch
-}{
-latex
 }{
 neovim
 }{
@@ -20,12 +17,14 @@ challenges
 
 @h2{PYTHON}
 
-@h3{Python Basics}
+# @h3{Python Basics}
 
 <div class="card-grid">
 
 @card{
 Create a Python Virtual Environment with Conda
+}{
+\#python \#conda
 }{
 Learn how to manage your Python version and libraries.
 }{
@@ -37,6 +36,8 @@ oct 11th 2023
 @card{
 Write Readable Code in Python
 }{
+\#python
+}{
 Learn how to write readable code in Python to make it more maintainable and understandable.
 }{
 nov 6th 2023
@@ -47,6 +48,8 @@ nov 6th 2023
 @card{
 Using NamedTuple and Dataclass in Python
 }{
+\#python
+}{
 Learn how to use NamedTuple and Dataclass to create more readable and maintainable code.
 }{
 feb 18th 2024
@@ -54,30 +57,40 @@ feb 18th 2024
 /html/posts/python/named-tuple-dataclass.html
 }
 
-</div>
+# </div>
 
-@h3{Python Projects}
+# @h3{Python Projects}
 
-<div class="card-grid">
+# <div class="card-grid">
 
-@card{
-Structure a Python Project
-}{
-Learn how to structure a Python project to make it more maintainable and understandable.
-}{
-}{
-}
+# @card{
+# Structure a Python Project
+# }{
+# # subtitle
+# }{
+# Learn how to structure a Python project to make it more maintainable and understandable.
+# }{
+# # date
+# }{
+# # link
+# }
 
-@card{
-Document Your Python Code with Docstrings
-}{
-Learn how to document your Python code with Docstrings to enhance your APIs.
-}{
-}{
-}
+# @card{
+# Document Your Python Code with Docstrings
+# }{
+# # subtitle
+# }{
+# Learn how to document your Python code with Docstrings to enhance your APIs.
+# }{
+# # date
+# }{
+# # link
+# }
 
 @card{
 Upload a Python Package to PyPi
+}{
+\#python \#pypi
 }{
 Learn how to upload a Python package to PyPi to make it available for everyone.
 }{
@@ -86,72 +99,103 @@ jan 30th 2024
 /html/posts/python/pypi-project.html
 }
 
-@card{
-Generate Documentation for a Python Project
-}{
-Learn how to generate documentation for a Python project to make it more understandable.
-}{
-}{
-}
+# @card{
+# Generate Documentation for a Python Project
+# }{
+# # subtitle
+# }{
+# Learn how to generate documentation for a Python project to make it more understandable.
+# }{
+# # date
+# }{
+# # link
+# }
 
 </div>
 
-@h2{PYTORCH}
+# @h2{PYTORCH}
 
-<div class="card-grid">
+# <div class="card-grid">
 
-@card{
-Structure a PyTorch Project
-}{
-}{
-}{
-}
+# @card{
+# Structure a PyTorch Project
+# }{
+# # subtitle
+# }{
+# # description
+# }{
+# # date
+# }{
+# # link
+# }
 
-@card{
-Regression with PyTorch
-}{
-}{
-}{
-}
+# @card{
+# Regression with PyTorch
+# }{
+# # subtitle
+# }{
+# # description
+# }{
+# # date
+# }{
+# # link
+# }
 
-@card{
-Classification with PyTorch and the MNIST Dataset
-}{
-}{
-}{
-}
+# @card{
+# Classification with PyTorch and the MNIST Dataset
+# }{
+# # subtitle
+# }{
+# # description
+# }{
+# # date
+# }{
+# # link
+# }
 
-</div>
+# </div>
 
-@h2{LATEX}
+# @h2{LATEX}
 
-<div class="card-grid">
+# <div class="card-grid">
 
-@card{
-Install LaTeX in VSCode
-}{
-Learn how to install LaTeX in VSCode to write your documents.
-}{
-}{
-}
+# @card{
+# Install LaTeX in VSCode
+# }{
+# # subtitle
+# }{
+# Learn how to install LaTeX in VSCode to write your documents.
+# }{
+# # date
+# }{
+# # link
+# }
 
-@card{
-Managing References with BibTeX
-}{
-Learn how to use BibTeX to manage your references and citations.
-}{
-}{
-}
+# @card{
+# Managing References with BibTeX
+# }{
+# # subtitle
+# }{
+# Learn how to use BibTeX to manage your references and citations.
+# }{
+# # date
+# }{
+# # link
+# }
 
-@card{
-Structure a Big LaTeX Project
-}{
-Learn how to structure a big LaTeX project to make it more maintainable and understandable.
-}{
-}{
-}
+# @card{
+# Structure a Big LaTeX Project
+# }{
+# # subtitle
+# }{
+# Learn how to structure a big LaTeX project to make it more maintainable and understandable.
+# }{
+# # date
+# }{
+# # link
+# }
 
-</div>
+# </div>
 
 @h2{NEOVIM}
 
@@ -160,6 +204,8 @@ Learn how to structure a big LaTeX project to make it more maintainable and unde
 @card{
 Setup NeoVim from Scratch
 }{
+\#neovim \#lua \#lazy
+}{
 Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
 }{
 feb 18th 2024
@@ -167,21 +213,29 @@ feb 18th 2024
 /html/posts/neovim/neovim-config.html
 }
 
-@card{
-Must Have Plugins for NeoVim
-}{
-Discover the must have plugins for NeoVim.
-}{
-}{
-}
+# @card{
+# Must Have Plugins for NeoVim
+# }{
+# # subtitle
+# }{
+# Discover the must have plugins for NeoVim.
+# }{
+# # date
+# }{
+# # link
+# }
 
-@card{
-Vim Motions
-}{
-Learn how to use Vim motions to navigate through your code.
-}{
-}{
-}
+# @card{
+# Vim Motions
+# }{
+# # subtitle
+# }{
+# Learn how to use Vim motions to navigate through your code.
+# }{
+# # date
+# }{
+# # link
+# }
 
 </div>
 
@@ -192,6 +246,8 @@ Learn how to use Vim motions to navigate through your code.
 @card{
 What is Proxima
 }{
+\#proxima \#html \#css \#python
+}{
 What is Proxima and why I made it
 }{
 mar 7th 2024
@@ -199,15 +255,17 @@ mar 7th 2024
 /html/posts/proxima/what-is-proxima.html
 }
 
-@card{
-How I Created the Syntax Highlighting for Proxima
-}{
-Because a language is nothing without syntax highlighting
-}{
-mar 7th 2024
-}{
-# /html/posts/proxima/treesitter.html
-}
+# @card{
+# How I Created the Syntax Highlighting for Proxima
+# }{
+# # subtitle
+# }{
+# Because a language is nothing without syntax highlighting
+# }{
+# mar 7th 2024
+# }{
+# # /html/posts/proxima/treesitter.html
+# }
 
 </div>
 
@@ -217,6 +275,8 @@ mar 7th 2024
 
 @card{
 Snake Game in the Terminal with Go
+}{
+\#go \#cli
 }{
 Learn how to create a Snake game in the terminal with Go.
 }{

@@ -1,9 +1,5 @@
 @header
 
-@spacer
-
-@rectangles{left}
-
 @h1{Why NeoVim}
 
 @post-info{
@@ -13,10 +9,6 @@ nov 5th 2023
 }{
 5
 }
-
-@rectangles{right}
-
-@spacer
 
 You have probably heard of Vim.
 

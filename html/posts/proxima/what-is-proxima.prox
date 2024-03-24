@@ -1,7 +1,5 @@
 @header
 
-@rectangles{left}
-
 @h1{What is Proxima?}
 
 @post-info{
@@ -23,8 +21,6 @@ I'm not that person anymore. Now I have the knowledge and the tools to write my 
 By that time, I was writing this webpage in plain HTML/CSS. My objective was to end the indentation hell and lack of reusability of elements.
 
 I present to you @url{https://github.com/vistormu/proxima}{Proxima}, a LaTeX inspired markup language that transpiles to HTML.
-
-@rectangles{right}
 
 @h2{Table of Contents}
 
