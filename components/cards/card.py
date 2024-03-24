@@ -10,13 +10,12 @@ def function(title: str, description: str, date: str, link: str) -> str:
 
     card_style = ' '.join([
         "relative",
-        "w-5/12",
+        "w-full",
         "h-64",
         "border-2",
         "border-white",
         "p-4",
         "my-2",
-        "max-md:w-4/5",
         "max-md:h-72",
     ])
 
@@ -24,7 +23,7 @@ def function(title: str, description: str, date: str, link: str) -> str:
         "pb-2",
         "text-2xl",
         "font-bold",
-        "text-violet",
+        "text-blue",
     ])
 
     date_style = ' '.join([
@@ -92,10 +91,10 @@ def function(title: str, description: str, date: str, link: str) -> str:
     '''
 
     return f'''
-    <div class="{card_style}" style="flex: 0 0 auto;">
+    <article class="{card_style}">
         <div class="{title_style}">{title}</div>
         <p>{description}</p>
         <div class="{date_style}">{date if link else "coming soon"}</div>
         {button if link else ""}
-    </div>
+    </article>
     '''

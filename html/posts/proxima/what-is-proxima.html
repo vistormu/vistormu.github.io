@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/output.css">
+<link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+</head>
+<body>
+<header>
+        
+<nav class="flex justify-evenly max-w-4xl mx-auto p-4">
+            
+<a class="text-lg font-semibold text-white no-underline" href="/index.html">about</a>
+            
+<a class="text-lg font-semibold text-white no-underline" href="/html/projects.html">projects</a>
+            
+<a class="text-lg font-semibold text-white no-underline" href="/html/tutorials.html">tutorials</a>
+            
+<a class="text-lg font-semibold text-white no-underline" href="/html/blog.html">blog</a>
+        </nav>
+    </header>
+    
+<div class="max-w-4xl mx-auto px-8">
+<div class="relative">
+        
+<div style="height: 10px;"></div>
+        
+<div class="absolute h-2 bg-blue" style="width: 205px; left: 69px;"></div>
+        
+<div style="height: 9px;"></div>
+        
+<div class="absolute h-2 bg-red" style="width: 273px; left: 77px;"></div>
+    </div>
+<h1 class="text-3xl font-bold mt-8 mb-4 text-center text-violet" id="what-is-proxima?">What is Proxima?</h1>
+<div class="text-sm text-center">
+        
+<span>Published: 
+<mark class="bg-gray text-white">mar 7th 2024</mark></span>
+        
+<span>Last Edit: 
+<mark class="bg-gray text-white">mar 23rd 2024</mark></span>
+        
+<span>Read Time: 
+<mark class="bg-gray text-white">3 min</mark></span>
+    </div>
+<p>
+	Probably, the most useful piece of technology that I have ever learned is LaTeX. I could finally move Microsoft Word to the trash, where it belongs. As an engineer and researcher, I have had to write lots of reports and papers since college. Positioning figures, tables, writing equations, citing, managing bibliography, cross-referencing... All of that contained in a fairly simple markup language. And the output, a beautiful document a 
+<mark class="bg-gray text-white">.docx</mark> file could never achieve.
+</p>
+<p>
+	Then, I started to learn how to program by myself, as in college they thought teaching only Matlab was a good idea... Sooner or later, I bumped into Git and GitHub, where Markdown is the markup language of choice. I learned it in a couple of minutes. So simple and so powerful...
+</p>
+<p>
+	As I was learning more and more about programming, a simple thought crossed my mind: "Why can't I write my own markup language?". Quickly, I realized why: I didn't have the ability to do so. When I searched in Google (pre-GTP era) how to write a markup language, I didn't understand a single thing. Abstract Syntax what? I thought it was just too complex for me. I was just a simple man, writing its simple Python code.
+</p>
+<p>
+	I'm not that person anymore. Now I have the knowledge and the tools to write my own markup language.
+</p>
+<p>
+	By that time, I was writing this webpage in plain HTML/CSS. My objective was to end the indentation hell and lack of reusability of elements.
+</p>
+<p>
+	I present to you 
+<a href="https://github.com/vistormu/proxima">Proxima</a>, a LaTeX inspired markup language that transpiles to HTML.
+</p>
+<div class="relative">
+        
+<div style="height: 10px;"></div>
+        
+<div class="absolute h-2 bg-blue" style="width: 223px; right: 57px;"></div>
+        
+<div style="height: 11px;"></div>
+        
+<div class="absolute h-2 bg-pink" style="width: 129px; right: 92px;"></div>
+    </div>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="table-of-contents">
+	Table of Contents
+</h2>
+<ul class="list-none list-inside mb-8">
+<li>-&gt;&nbsp;
+<a href="#advantages-of-proxima">Advantages of Proxima</a></li>
+<li>-&gt;&nbsp;
+<a href="#simple-syntax">Simple Syntax</a></li>
+<li>-&gt;&nbsp;
+<a href="#components">Components</a></li>
+<li>-&gt;&nbsp;
+<a href="#wrapping-up">Wrapping Up</a></li>
+</ul>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="simple-syntax">
+	Simple Syntax
+</h2>
+<p>
+	I wanted to make its syntax as simple as possible, while still being able to interoperate with HTML. In fact, you can write pure HTML inside Proxima, and it will be transpiled as is.
+</p>
+<p>
+	As in LaTeX, I decided Proxima to be a command-based language, or in Proxima jargon, a tag-based language. You can create your own HTML snippets (more on that later), and use them as tags in your Proxima document. They can contain, or not, arguments. Lastly, I also wanted a good solution for writing comments.
+</p>
+<p>
+	That gave us a minimum number of five special characters: one for tags, two for arguments, and one for comments. And let's not forget our good-old friend, the scape character.
+</p>
+<ul class="list-disc list-outside mb-8 pl-4">
+	
+<li>
+<mark class="bg-gray text-white">@</mark> is used to define a tag. This character is mostly used to write emails, so it's save to use. Also, it looks cool.</li>
+	
+<li>
+<mark class="bg-gray text-white">{</mark> and 
+<mark class="bg-gray text-white">}</mark> are used to define arguments, as in LaTeX.</li>
+	
+<li>
+<mark class="bg-gray text-white">#</mark> is used to define comments. It's a common character for comments in programming languages. I'm sorry, 
+<mark class="bg-gray text-white">//</mark> lovers, but that could conflict with HTTP addresses.</li>
+	
+<li>Lastly, as in everywhere, 
+<mark class="bg-gray text-white">\</mark> is used to escape characters.</li>
+</ul>
+<p>
+	As HTML can also be written inside Proxima, the characters 
+<mark class="bg-gray text-white">&lt;</mark> and 
+<mark class="bg-gray text-white">&gt;</mark> can also be considered as part of the syntax.
+</p>
+<p>
+	One little feature implemented in Proxima is that escaping like 
+<mark class="bg-gray text-white">\&lt;</mark> and 
+<mark class="bg-gray text-white">\&gt;</mark> is parsed as 
+<mark class="bg-gray text-white">&amp;lt;</mark> and 
+<mark class="bg-gray text-white">&amp;gt;</mark>, respectively. Also, the newline character 
+<mark class="bg-gray text-white">\n</mark> is parsed as a 
+<mark class="bg-gray text-white">&lt;br&gt;</mark> tag.
+</p>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="components">
+	Components
+</h2>
+<p>
+	The main feature of Proxima is the ability to create your own HTML snippets and use them as tags in your Proxima document. These snippets are called components. They can contain to none to as many arguments as needed, resulting in a very flexible and reusable way to write HTML.
+</p>
+<p>
+	Components are defined inside a 
+<mark class="bg-gray text-white">components</mark> directory. Proxima will look recursively for all 
+<mark class="bg-gray text-white">.html</mark> and 
+<mark class="bg-gray text-white">.py</mark> files inside it.
+</p>
+<h3 class="text-xl mt-8 text-green" id="html-components">
+	HTML Components
+</h3>
+<p>
+	HTML components are 
+<mark class="bg-gray text-white">.html</mark> files inside the 
+<mark class="bg-gray text-white">components</mark> directory. They serve as a quick and simple way to write HTML snippets.
+</p>
+<p>
+	Let's define a simple component to divide the page with a horizontal line:
+</p>
+<div class="text-orange mt-4 text-sm">components/divider.html</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-html">&lt;div style="height: 1rem;"&gt;&lt;/div&gt;
+&lt;hr&gt;</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	Then, in your 
+<mark class="bg-gray text-white">.prox</mark> file, you can use it as a tag:
+</p>
+<div class="text-orange mt-4 text-sm">index.prox</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-js">@divider</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	To include arguments in your component, add 
+<mark class="bg-gray text-white">@</mark> characters inside the 
+<mark class="bg-gray text-white">.html</mark> file, and Proxima will replace them with the arguments passed in the 
+<mark class="bg-gray text-white">.prox</mark> file by order.
+</p>
+<div class="text-orange mt-4 text-sm">components/title.html</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-html">&lt;h1&gt;@&lt;/h1&gt;</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<div class="text-orange mt-4 text-sm">index.prox</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-js">@title{My Title}</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<h3 class="text-xl mt-8 text-green" id="python-components">
+	Python Components
+</h3>
+<p>
+	For more flexible components, you can use the power of Python. Python components are 
+<mark class="bg-gray text-white">.py</mark> files inside the 
+<mark class="bg-gray text-white">components</mark> directory. They are more powerful than HTML components, as they can contain logic and use external libraries.
+</p>
+<p>
+	Python components are defined as a function that returns a string. The function must be named 
+<mark class="bg-gray text-white">function</mark>. Remember that all arguments are passed as strings, so you need to do the necessary type conversions.
+</p>
+<div class="text-orange mt-4 text-sm">components/pycomponent.py</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-python">def function(arg1: str, arg2: str) -&gt; str:
+    return f"{arg1} {arg2}"</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	Then, as usual, you can use it as a tag in your 
+<mark class="bg-gray text-white">.prox</mark> file:
+</p>
+<div class="text-orange mt-4 text-sm">index.prox</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-js">@pycomponent{Hello}{World}</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	Python components are so powerful that I discovered cool use cases that I didn't think of when I started to develop Proxima. Here are some examples:
+</p>
+<h4 class="text-lg font-bold" id="lists">
+	Lists
+</h4>
+<p>
+	You can create lists without that obnoxious 
+<mark class="bg-gray text-white">&lt;li&gt;</mark> and 
+<mark class="bg-gray text-white">&lt;/li&gt;</mark>tags that clutter your code:
+</p>
+<div class="text-orange mt-4 text-sm">components/list.py</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-python">def function(*args: str) -&gt; str:
+    items: str = ""
+    for arg in args:
+        items += f"&lt;li&gt;{arg}&lt;/li&gt;"
+    
+    return f"&lt;ul&gt;{items}&lt;/ul&gt;</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<div class="text-orange mt-4 text-sm">index.prox</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-js">@list{
+Item 1
+}{
+Item 2
+}{
+Item 3
+}</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<h4 class="text-lg font-bold" id="check-if-the-linked-page-exists">
+	Check if the linked page exists
+</h4>
+<p>
+	In this blog post, I have links to other blog posts every now and then. If you change the location of that post, you will end up with a 404 error. And, let's be real, it's impossible to remember all the places in which you linked that post. So, I created a Python component that checks if the linked page exists. If it doesn't, it will throw an error.
+</p>
+<div class="text-orange mt-4 text-sm">components/link.py</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-python">import os
+    
+def function(link: str, alt_text: str | None = None) -&gt; str:
+    # Enforce absolute paths
+    if not link.startswith("/"):
+        raise ValueError("Link must be an absolute path")
+    
+    # Remove the leading slash and check if the file exists
+    if not os.path.exists(link[1:]):
+        raise ValueError(f"File {link} does not exist")
+    
+    if alt_text is None:
+        alt_text = link
+    
+    return f"&lt;a href='{link}'&gt;{alt_text}&lt;/a&gt;"</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	With this component, I enforce myself to be consistent using absolute paths. Another cool thing to notice is that I can define optional arguments in Python components.
+</p>
+<div class="text-orange mt-4 text-sm">index.prox</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-js">@link{/posts/post1}{Post 1}
+# This will throw an error if the file does not exist
+    
+@link{/posts/post1.html}
+# The alt text will be the same as the link
+    
+@link{/posts/post1.html}{Post 1}
+# The alt text will be different from the link</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<h4 class="text-lg font-bold" id="cool-anchor-headers">
+	Cool anchor headers
+</h4>
+<p>
+	Most of my blog posts have a table of contents. Writing the anchor headers apart from the titles was a pain. So, I created a Python component that generates the anchor headers for me.
+</p>
+<div class="text-orange mt-4 text-sm">components/h1.py</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-python">def function(title: str) -&gt; str:
+    anchor: str = title.lower().replace(" ", "-")
+    
+    return f"&lt;h1 id='{anchor}'&gt;{title}&lt;/h1&gt;"</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	And very similar to the 
+<mark class="bg-gray text-white">@list</mark> component, I created a 
+<mark class="bg-gray text-white">@toc</mark> component that generates the table of contents for me.
+</p>
+<div class="text-orange mt-4 text-sm">components/toc.py</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-python">def function(*args: str) -&gt; str:
+    items: str = ""
+    for arg in args:
+        anchor: str = arg.lower().replace(" ", "-")
+        items += f"&lt;li&gt;&lt;a href='#{anchor}'&gt;{arg}&lt;/a&gt;&lt;/li&gt;"
+    
+    return f"&lt;ul&gt;{items}&lt;/ul&gt;</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	So now, I can write my blog posts like this:
+</p>
+<div class="text-orange mt-4 text-sm">index.prox</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-js">@toc{
+Advantages of Proxima
+}{
+Simple Syntax
+}{
+Components
+}{
+Wrapping Up
+}
+    
+@h1{Advantages of Proxima}
+...
+    
+@h1{Simple Syntax}
+...</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	And simply click on the table of contents to go to the desired section.
+</p>
+<h3 class="text-xl mt-8 text-green" id="tailwind-synergy">
+	Tailwind Synergy
+</h3>
+<p>
+	I have become a big fan of Tailwind CSS. At first I thought that "separation of concerns" (different files for HTML and CSS) was a good idea. But as I started to develop this blog, I realized that it's a pain to search the CSS file for the class that I want to change. Also, my CSS file was getting bigger and bigger with ghost classes that I didn't know if I could delete or not.
+</p>
+<p>
+	So, I migrated to Tailwind CSS, and I'm loving it. Now I have the style in a per-component basis, and I can see the style and the HTML together. For example, this is my complete 
+<mark class="bg-gray text-white">@h1</mark> tag:
+</p>
+<div class="text-orange mt-4 text-sm">components/h1.py</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-python">def function(text: str) -&gt; str:
+    anchor: str = text.replace(" ", "-").lower()
+        
+    styles: list[str] = " ".join([
+        "text-3xl",
+        "font-bold",
+        "mt-8",
+        "mb-4",
+        "text-center",
+        "text-violet",
+    ])
+    
+    return f'&lt;h1 class="{style}" id="{anchor}"&gt;\n\t{text}\n&lt;/h1&gt;\n'</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	This just looks so much better, I'm so proud of it.
+</p>
+<h3 class="text-xl mt-8 text-green" id="future-components">
+	Future Components
+</h3>
+<p>
+	In the future, I plan to add more types of components, such as JavaScript components, so that webdevs don't have to touch other languages to write their components.
+</p>
+<p>
+	Also, I may include Proxima components to add nested tag definitions, but I'm not sure if that's a good idea yet.
+</p>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="wrapping-up">
+	Wrapping Up
+</h2>
+<p>
+	It's been so much fun to develop Proxima. In the process, I learned a lot about Go, tokenizing, parsing... I guess it's only use case is to write this blog, but, oh boy, how much I love it.
+</p>
+<div style="height: 120px;"></div>
+    
+<div class="absolute left-0 right-0 h-2 bg-blue"></div>
+    
+<script src="/js/copyCode.js"></script>
+    
+<script> hljs.highlightAll(); </script>
+</body>
+</html>

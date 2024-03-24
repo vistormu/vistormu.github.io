@@ -8,7 +8,6 @@ colors: list[str] = [
     "orange",
     "violet",
     "pink",
-    "light-blue",
 ]
 
 
@@ -27,7 +26,6 @@ def function() -> str:
     <div style="height: 120px;"></div>
 
     <div class="{bottom_line_style}"></div>
-    <script src="/js/scroll.js"></script>
     <script src="/js/copyCode.js"></script>
     <script> hljs.highlightAll(); </script>
     '''

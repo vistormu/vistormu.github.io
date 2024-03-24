@@ -1,22 +1,33 @@
-def function(title: str, description: str, link: str) -> str:
-    if link and not link.startswith("http"):
-        raise ValueError(f"Ensure that the link is a valid HTTP address: {link}")
+import os
 
-    card_style = ' '.join([
+
+def function(title: str, subtitle: str, description: str, link: str) -> str:
+    if link:
+        if not link.startswith("http") and not link.startswith("/"):
+            raise ValueError(f"Ensure that the link is a valid HTTP address or an absolute path to a file: {link}")
+        elif link.startswith("/") and not os.path.exists(link[1:]):
+            raise ValueError(f"File not found: {link}")
+
+    article_style = ' '.join([
         "relative",
         "w-full",
-        "h-64",
+        "h-72",
         "border-2",
         "border-white",
         "p-4",
         "my-2",
+        "max-md:h-96",
     ])
 
     title_style = ' '.join([
-        "pb-2",
-        "text-2xl",
+        "text-xl",
         "font-bold",
-        "text-violet",
+        "text-green",
+    ])
+
+    subtitle_style = ' '.join([
+        "text-sm",
+        "text-orange",
     ])
 
     button_container_style = ' '.join([
@@ -65,7 +76,7 @@ def function(title: str, description: str, link: str) -> str:
     button: str = f'''
     <div class="{button_container_style}">
         <a href="{link}" class="{button_style}">
-            <span>READ</span>
+            <span>VISIT</span>
             <div class="relative">
                 <div class="{square_style}"></div>
                 <div class="{circle_style}"></div>
@@ -75,9 +86,10 @@ def function(title: str, description: str, link: str) -> str:
     '''
 
     return f'''
-    <div class="{card_style}" style="flex: 0 0 auto;">
+    <article class="{article_style}">
         <div class="{title_style}">{title}</div>
+        <div class="{subtitle_style}">{subtitle}</div>
         <p>{description}</p>
         {button if link else ""}
-    </div>
+    </article>
     '''

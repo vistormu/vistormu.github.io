@@ -1,7 +1,4 @@
-def function(height: str | None = None) -> str:
-    if height is None:
-        height = "5"
-
+def function(height: str = "5") -> str:
     positive: bool = False if height.startswith("-") else True
     if not positive:
         height = height.lstrip("-")

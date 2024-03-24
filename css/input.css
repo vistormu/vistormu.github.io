@@ -13,7 +13,7 @@
         scroll-behavior: smooth;
         @apply bg-black text-white;
         box-sizing: border-box;
-        scroll-padding-top: 5em;
+        scroll-padding-top: 2rem;
     }
     p {
         margin: 1rem 0;
@@ -40,7 +40,9 @@
           padding: 0;
           gap: 1rem;
     }
-    .header.shrink {
-        padding: 0 0.5rem;
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1rem;
     }
 }

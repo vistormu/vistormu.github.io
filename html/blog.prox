@@ -1,0 +1,64 @@
+@header
+
+@spacer
+@h1{Blog}{left}
+@spacer
+
+@h2{2024}
+
+<div class="card-grid">
+
+@card{
+Programming challenges recommendations
+}{
+}{
+mar 18th 2024
+}{
+/html/posts/other-topics/programming-challenges-recommendations.html
+}
+
+@card{
+I'm simplifying my life
+}{
+}{
+mar 6th 2024
+}{
+/html/posts/other-topics/simplifying-my-life.html
+}
+
+@card{
+Why is self-learning not rewarding enough?
+}{
+}{
+feb 23rd 2024
+}{
+/html/posts/other-topics/self-learning.html
+}
+
+@card{
+Why I started blogging
+}{
+}{
+feb 23rd 2024
+}{
+/html/posts/other-topics/why-i-started-blogging.html
+}
+
+</div>
+
+@h2{2023}
+
+<div class="card-grid">
+
+@card{
+Why NeoVim
+}{
+}{
+oct 29th 2023
+}{
+/html/posts/other-topics/why-neovim.html
+}
+
+</div>
+
+@footer

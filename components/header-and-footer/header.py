@@ -1,42 +1,26 @@
+head = '''
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/output.css">
+<link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+'''
+
+
 def function() -> str:
-    highlight_js: str = '''
-    <link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
-    '''
-
-    blog_src = "/index.html"
-    about_src = "/about.html"
-
-    header_style = ' '.join([
-        "sticky",
-        "top-0",
-        "bg-black",
-        "z-50",
-    ])
-
-    content_style = ' '.join([
-        "header",
+    nav_style = ' '.join([
         "flex",
-        "justify-between",
-        "items-center",
+        "justify-evenly",
         "max-w-4xl",
         "mx-auto",
         "p-4",
-        "ease-linear",
-        "duration-200",
     ])
 
-    title_style = ' '.join([
+    nav_items_style = ' '.join([
+        "text-lg",
+        "font-semibold",
         "text-white",
-        "text-2xl",
-        "font-bold",
-    ])
-
-    nav_style = ' '.join([
-        "nav-link",
-        "flex",
-        "space-x-4",
-        "text-white",
+        "no-underline",
     ])
 
     content_wrapper_style = ' '.join([
@@ -46,12 +30,14 @@ def function() -> str:
     ])
 
     return f'''
-    {highlight_js}
-    <header class="{header_style}">
-        <div class="{content_style}">
-            <a class="{title_style}" href="{blog_src}">Blog del Vistor</a>
-            <a class="{nav_style}" href="{about_src}">about</a>
-        </div>
+    {head}
+    <header>
+        <nav class="{nav_style}">
+            <a class="{nav_items_style}" href="/index.html">about</a>
+            <a class="{nav_items_style}" href="/html/projects.html">projects</a>
+            <a class="{nav_items_style}" href="/html/tutorials.html">tutorials</a>
+            <a class="{nav_items_style}" href="/html/blog.html">blog</a>
+        </nav>
     </header>
 
     <div class="{content_wrapper_style}">

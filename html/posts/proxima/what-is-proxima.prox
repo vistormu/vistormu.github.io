@@ -1,0 +1,266 @@
+@header
+
+@rectangles{left}
+
+@h1{What is Proxima?}
+
+@post-info{
+mar 7th 2024
+}{
+mar 23rd 2024
+}{
+3
+}
+
+Probably, the most useful piece of technology that I have ever learned is LaTeX. I could finally move Microsoft Word to the trash, where it belongs. As an engineer and researcher, I have had to write lots of reports and papers since college. Positioning figures, tables, writing equations, citing, managing bibliography, cross-referencing... All of that contained in a fairly simple markup language. And the output, a beautiful document a @mark{.docx} file could never achieve.
+
+Then, I started to learn how to program by myself, as in college they thought teaching only Matlab was a good idea... Sooner or later, I bumped into Git and GitHub, where Markdown is the markup language of choice. I learned it in a couple of minutes. So simple and so powerful...
+
+As I was learning more and more about programming, a simple thought crossed my mind: "Why can't I write my own markup language?". Quickly, I realized why: I didn't have the ability to do so. When I searched in Google (pre-GTP era) how to write a markup language, I didn't understand a single thing. Abstract Syntax what? I thought it was just too complex for me. I was just a simple man, writing its simple Python code.
+
+I'm not that person anymore. Now I have the knowledge and the tools to write my own markup language.
+
+By that time, I was writing this webpage in plain HTML/CSS. My objective was to end the indentation hell and lack of reusability of elements.
+
+I present to you @url{https://github.com/vistormu/proxima}{Proxima}, a LaTeX inspired markup language that transpiles to HTML.
+
+@rectangles{right}
+
+@h2{Table of Contents}
+
+@toc{
+Advantages of Proxima
+}{
+Simple Syntax
+}{
+Components
+}{
+Wrapping Up
+}
+
+@h2{Simple Syntax}
+
+I wanted to make its syntax as simple as possible, while still being able to interoperate with HTML. In fact, you can write pure HTML inside Proxima, and it will be transpiled as is.
+
+As in LaTeX, I decided Proxima to be a command-based language, or in Proxima jargon, a tag-based language. You can create your own HTML snippets (more on that later), and use them as tags in your Proxima document. They can contain, or not, arguments. Lastly, I also wanted a good solution for writing comments.
+
+That gave us a minimum number of five special characters: one for tags, two for arguments, and one for comments. And let's not forget our good-old friend, the scape character.
+
+@list{
+@mark{\@} is used to define a tag. This character is mostly used to write emails, so it's save to use. Also, it looks cool.
+}{
+@mark{\{} and @mark{\}} are used to define arguments, as in LaTeX.
+}{
+@mark{\#} is used to define comments. It's a common character for comments in programming languages. I'm sorry, @mark{//} lovers, but that could conflict with HTTP addresses.
+}{
+Lastly, as in everywhere, @mark{\\} is used to escape characters.
+}
+
+As HTML can also be written inside Proxima, the characters @mark{\<} and @mark{\>} can also be considered as part of the syntax.
+
+One little feature implemented in Proxima is that escaping like @mark{\\\<} and @mark{\\\>} is parsed as @mark{&amp;lt;} and @mark{&amp;gt;}, respectively. Also, the newline character @mark{\\n} is parsed as a @mark{\<br\>} tag.
+
+@h2{Components}
+
+The main feature of Proxima is the ability to create your own HTML snippets and use them as tags in your Proxima document. These snippets are called components. They can contain to none to as many arguments as needed, resulting in a very flexible and reusable way to write HTML.
+
+Components are defined inside a @mark{components} directory. Proxima will look recursively for all @mark{.html} and @mark{.py} files inside it.
+
+@h3{HTML Components}
+
+HTML components are @mark{.html} files inside the @mark{components} directory. They serve as a quick and simple way to write HTML snippets.
+
+Let's define a simple component to divide the page with a horizontal line:
+
+@code-block{components/divider.html}{html}{
+<div style="height: 1rem;"></div>
+<hr>
+}
+
+Then, in your @mark{.prox} file, you can use it as a tag:
+
+@code-block{index.prox}{js}{
+\@divider
+}
+
+To include arguments in your component, add @mark{\@} characters inside the @mark{.html} file, and Proxima will replace them with the arguments passed in the @mark{.prox} file by order.
+
+@code-block{components/title.html}{html}{
+<h1>\@</h1>
+}
+
+@code-block{index.prox}{js}{
+\@title\{My Title\}
+}
+
+@h3{Python Components}
+
+For more flexible components, you can use the power of Python. Python components are @mark{.py} files inside the @mark{components} directory. They are more powerful than HTML components, as they can contain logic and use external libraries.
+
+Python components are defined as a function that returns a string. The function must be named @mark{function}. Remember that all arguments are passed as strings, so you need to do the necessary type conversions.
+
+@code-block{components/pycomponent.py}{python}{
+def function(arg1: str, arg2: str) -> str:
+    return f"\{arg1\} \{arg2\}"
+}
+
+Then, as usual, you can use it as a tag in your @mark{.prox} file:
+
+@code-block{index.prox}{js}{
+\@pycomponent\{Hello\}\{World\}
+}
+
+Python components are so powerful that I discovered cool use cases that I didn't think of when I started to develop Proxima. Here are some examples:
+
+@h4{Lists}
+
+You can create lists without that obnoxious @mark{\<li\>} and @mark{\</li\>}tags that clutter your code:
+
+@code-block{components/list.py}{python}{
+def function(*args: str) -> str:
+    items: str = ""
+    for arg in args:
+        items += f"\<li\>\{arg\}\</li\>"
+    
+    return f"\<ul\>\{items\}\</ul\>
+}
+
+@code-block{index.prox}{js}{
+\@list\{
+Item 1
+\}\{
+Item 2
+\}\{
+Item 3
+\}
+}
+
+@h4{Check if the linked page exists}
+
+In this blog post, I have links to other blog posts every now and then. If you change the location of that post, you will end up with a 404 error. And, let's be real, it's impossible to remember all the places in which you linked that post. So, I created a Python component that checks if the linked page exists. If it doesn't, it will throw an error.
+
+@code-block{components/link.py}{python}{
+import os
+    
+def function(link: str, alt_text: str | None = None) -> str:
+    \# Enforce absolute paths
+    if not link.startswith("/"):
+        raise ValueError("Link must be an absolute path")
+    
+    \# Remove the leading slash and check if the file exists
+    if not os.path.exists(link[1:]):
+        raise ValueError(f"File \{link\} does not exist")
+    
+    if alt_text is None:
+        alt_text = link
+    
+    return f"\<a href='\{link\}'\>\{alt_text\}\</a\>"
+}
+
+With this component, I enforce myself to be consistent using absolute paths. Another cool thing to notice is that I can define optional arguments in Python components.
+
+@code-block{index.prox}{js}{
+\@link\{/posts/post1\}\{Post 1\}
+\# This will throw an error if the file does not exist
+    
+\@link\{/posts/post1.html\}
+\# The alt text will be the same as the link
+    
+\@link\{/posts/post1.html\}\{Post 1\}
+\# The alt text will be different from the link
+}
+
+@h4{Cool anchor headers}
+
+Most of my blog posts have a table of contents. Writing the anchor headers apart from the titles was a pain. So, I created a Python component that generates the anchor headers for me.
+
+@code-block{components/h1.py}{python}{
+def function(title: str) -> str:
+    anchor: str = title.lower().replace(" ", "-")
+    
+    return f"\<h1 id='\{anchor\}'\>\{title\}\</h1\>"
+}
+
+And very similar to the @mark{\@list} component, I created a @mark{\@toc} component that generates the table of contents for me.
+
+@code-block{components/toc.py}{python}{
+def function(*args: str) -> str:
+    items: str = ""
+    for arg in args:
+        anchor: str = arg.lower().replace(" ", "-")
+        items += f"\<li\>\<a href='\#\{anchor\}'\>\{arg\}\</a\>\</li\>"
+    
+    return f"\<ul\>\{items\}\</ul\>
+}
+
+So now, I can write my blog posts like this:
+
+@code-block{index.prox}{js}{
+\@toc\{
+Advantages of Proxima
+\}\{
+Simple Syntax
+\}\{
+Components
+\}\{
+Wrapping Up
+\}
+    
+\@h1\{Advantages of Proxima\}
+...
+    
+\@h1\{Simple Syntax\}
+...
+}
+
+And simply click on the table of contents to go to the desired section.
+
+@h3{Tailwind Synergy}
+
+I have become a big fan of Tailwind CSS. At first I thought that "separation of concerns" (different files for HTML and CSS) was a good idea. But as I started to develop this blog, I realized that it's a pain to search the CSS file for the class that I want to change. Also, my CSS file was getting bigger and bigger with ghost classes that I didn't know if I could delete or not.
+
+So, I migrated to Tailwind CSS, and I'm loving it. Now I have the style in a per-component basis, and I can see the style and the HTML together. For example, this is my complete @mark{\@h1} tag:
+
+@code-block{components/h1.py}{python}{
+def function(text: str) -> str:
+    anchor: str = text.replace(" ", "-").lower()
+        
+    styles: list[str] = " ".join([
+        "text-3xl",
+        "font-bold",
+        "mt-8",
+        "mb-4",
+        "text-center",
+        "text-violet",
+    ])
+    
+    return f'\<h1 class="\{style\}" id="\{anchor\}">\\n\\t\{text\}\\n\</h1\>\\n'
+}
+
+This just looks so much better, I'm so proud of it.
+
+
+@h3{Future Components}
+
+In the future, I plan to add more types of components, such as JavaScript components, so that webdevs don't have to touch other languages to write their components.
+
+Also, I may include Proxima components to add nested tag definitions, but I'm not sure if that's a good idea yet.
+
+@h2{Wrapping Up}
+
+It's been so much fun to develop Proxima. In the process, I learned a lot about Go, tokenizing, parsing... I guess it's only use case is to write this blog, but, oh boy, how much I love it.
+
+# @h2
+# Recommended Posts
+
+# <div class="card-carousel">
+
+# @card{
+# How I Created the Syntax Highlighter for Proxima
+# }{
+# }{
+# }
+
+# </div>
+
+@footer

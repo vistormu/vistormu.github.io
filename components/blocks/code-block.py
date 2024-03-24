@@ -41,6 +41,8 @@ def function(file: str, language: str, code: str) -> str:
 
     file_html = f'<div class="{file_style}">{file}</div>' if file else ''
 
+    code = code.rstrip("\n")
+
     return f"""
     {file_html}
     <div class="relative">

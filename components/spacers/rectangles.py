@@ -7,7 +7,6 @@ def function(alignment: str) -> str:
         "red",
         "green",
         "blue",
-        "light-blue",
         "yellow",
         "violet",
         "orange",

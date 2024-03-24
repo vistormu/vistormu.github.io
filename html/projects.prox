@@ -1,0 +1,101 @@
+@header
+
+@spacer
+@h1{Projects}{left}
+@spacer
+
+@h2{Projects}
+
+@fw-card{
+Proxima
+}{
+\#go
+}{
+Proxima is a markup language that transpiles Proxima source code into HTML. It offers clearer syntax instead of plain HTML/CSS coding.
+}{
+https://github.com/vistormu/proxima
+}
+
+
+@fw-card{
+Catasta
+}{
+\#python \#pytorch
+}{
+Catasta is a Python library designed to simplify and accelerate the process of machine learning model experimentation. It encapsulates the complexities of model training and evaluation, offering researchers and developers a straightforward pipeline for rapid model assessment with minimal setup required.
+}{
+https://github.com/vistormu/catasta
+}
+
+
+@h2{Side projects}
+
+@fw-card{
+Kimchi
+}{
+\#go
+}{
+Kimchi is a general-purpose programming language that aims to have a simple, consistent and coherent syntax. Kimchi was part of a personal project to learn about programming language design and implementation. It is written in Go and it is based on the book @url{https://interpreterbook.com}{Writing an Interpreter in Go} by Thorsten Ball. 
+}{
+https://github.com/vistormu/kimchilang
+}
+
+@fw-card{
+Decision Maker
+}{
+\#go
+}{
+Have you ever felt like you don't want to decide between a series of options? Decision Maker helps your indecision by running a board game!
+}{
+https://github.com/vistormu/decision_maker
+}
+
+@h2{Journal articles}
+
+@fw-card{
+Design of a soft sensor based on silver-coated polyamide threads and stress-strain modeling via Gaussian processes
+}{
+C. Ballester, @uline{V. Muñoz}, D. Copaci, L. Moreno, D. Blanco | Sensors and Actuators A: Physical | 2024
+}{
+}{
+https://doi.org/10.1016/j.sna.2024.115058
+}
+
+@h2{Conference papers}
+
+@fw-card{
+Estimation of the load on an SMA actuator for rehabilitation
+}{
+C. Ballester, @uline{V. Muñoz}, D. Blanco | XLIV Jornadas de Automática | 2023
+}{
+}{
+https://doi.org/10.17979/spudc.9788497498609.507
+}
+
+@fw-card{
+An introduction to Apprenticeship Learning by teaching an agent how to play a video game
+}{
+@uline{V. Muñoz}, A. Prados, R. Barber | 17th International Technology, Education and Development Conference | 2023
+}{
+}{
+https://doi.org/10.21125/inted.2023.1264
+}
+
+@fw-card{
+Design of a proportional controller for a mechanical ventilator
+}{
+@uline{V. Muñoz}, M. Rollón, V. F. Muñoz | Jornadas de Robótica, Educación en Automática y Bioingeniería | 2022 | ISBN: 978-84-09-41095-8
+}{
+}{
+}
+
+@fw-card{
+Creación del ventilador mecánico Andalucía Respira
+}{
+V. F. Muñoz, C. Pérez, I. Díaz, @uline{V. Muñoz}, M. Rollón, M. Mengual, A. Santiago | XII Simposio CEA de bioingeniería | 2021
+}{
+}{
+http://hdl.handle.net/10115/17868
+}
+
+@footer

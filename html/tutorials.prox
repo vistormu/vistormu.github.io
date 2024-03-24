@@ -1,0 +1,230 @@
+@header
+
+@spacer
+@h1{Tutorials}{left}
+@spacer
+
+@navbar{
+python
+}{
+pytorch
+}{
+latex
+}{
+neovim
+}{
+proxima
+}{
+challenges
+}
+
+@h2{PYTHON}
+
+@h3{Python Basics}
+
+<div class="card-grid">
+
+@card{
+Create a Python Virtual Environment with Conda
+}{
+Learn how to manage your Python version and libraries.
+}{
+oct 11th 2023
+}{
+/html/posts/python/conda.html
+}
+
+@card{
+Write Readable Code in Python
+}{
+Learn how to write readable code in Python to make it more maintainable and understandable.
+}{
+nov 6th 2023
+}{
+/html/posts/python/readable-code.html
+}
+
+@card{
+Using NamedTuple and Dataclass in Python
+}{
+Learn how to use NamedTuple and Dataclass to create more readable and maintainable code.
+}{
+feb 18th 2024
+}{
+/html/posts/python/named-tuple-dataclass.html
+}
+
+</div>
+
+@h3{Python Projects}
+
+<div class="card-grid">
+
+@card{
+Structure a Python Project
+}{
+Learn how to structure a Python project to make it more maintainable and understandable.
+}{
+}{
+}
+
+@card{
+Document Your Python Code with Docstrings
+}{
+Learn how to document your Python code with Docstrings to enhance your APIs.
+}{
+}{
+}
+
+@card{
+Upload a Python Package to PyPi
+}{
+Learn how to upload a Python package to PyPi to make it available for everyone.
+}{
+jan 30th 2024
+}{
+/html/posts/python/pypi-project.html
+}
+
+@card{
+Generate Documentation for a Python Project
+}{
+Learn how to generate documentation for a Python project to make it more understandable.
+}{
+}{
+}
+
+</div>
+
+@h2{PYTORCH}
+
+<div class="card-grid">
+
+@card{
+Structure a PyTorch Project
+}{
+}{
+}{
+}
+
+@card{
+Regression with PyTorch
+}{
+}{
+}{
+}
+
+@card{
+Classification with PyTorch and the MNIST Dataset
+}{
+}{
+}{
+}
+
+</div>
+
+@h2{LATEX}
+
+<div class="card-grid">
+
+@card{
+Install LaTeX in VSCode
+}{
+Learn how to install LaTeX in VSCode to write your documents.
+}{
+}{
+}
+
+@card{
+Managing References with BibTeX
+}{
+Learn how to use BibTeX to manage your references and citations.
+}{
+}{
+}
+
+@card{
+Structure a Big LaTeX Project
+}{
+Learn how to structure a big LaTeX project to make it more maintainable and understandable.
+}{
+}{
+}
+
+</div>
+
+@h2{NEOVIM}
+
+<div class="card-grid">
+
+@card{
+Setup NeoVim from Scratch
+}{
+Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
+}{
+feb 18th 2024
+}{
+/html/posts/neovim/neovim-config.html
+}
+
+@card{
+Must Have Plugins for NeoVim
+}{
+Discover the must have plugins for NeoVim.
+}{
+}{
+}
+
+@card{
+Vim Motions
+}{
+Learn how to use Vim motions to navigate through your code.
+}{
+}{
+}
+
+</div>
+
+@h2{PROXIMA}
+
+<div class="card-grid">
+
+@card{
+What is Proxima
+}{
+What is Proxima and why I made it
+}{
+mar 7th 2024
+}{
+/html/posts/proxima/what-is-proxima.html
+}
+
+@card{
+How I Created the Syntax Highlighting for Proxima
+}{
+Because a language is nothing without syntax highlighting
+}{
+mar 7th 2024
+}{
+# /html/posts/proxima/treesitter.html
+}
+
+</div>
+
+@h2{CHALLENGES}
+
+<div class="card-grid">
+
+@card{
+Snake Game in the Terminal with Go
+}{
+Learn how to create a Snake game in the terminal with Go.
+}{
+mar 18th 2024
+}{
+/html/posts/challenges/snake-cli.html
+}
+
+</div>
+
+@footer
