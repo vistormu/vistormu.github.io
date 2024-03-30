@@ -38,5 +38,6 @@ def function(title, subtitle, description, *links) -> str:
         <div class="{subtitle_style}">{subtitle}</div>
         <p>{description}</p>
         <span>{links_html}</span>
+        <div class="h-72"></div>
     </div>
     """

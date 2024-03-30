@@ -5,9 +5,6 @@ def function() -> str:
 
     links = {
         "about me": "/index.html#about-me",
-        "projects": "/html/projects.html",
-        "tutorials": "/html/tutorials.html",
-        "blog": "/html/blog.html",
         "GitHub": "https://github.com/vistormu",
         "email": "emailto:vimunozs@pa.uc3m.es",
         "cv": "/html/cv/cv.html"
@@ -51,5 +48,6 @@ def function() -> str:
         <div class="{subtitle_style}">{subtitle}</div>
         <p>{description}</p>
         <span>{links_html}</span>
+        <div class="h-72"></div>
     </div>
     """
