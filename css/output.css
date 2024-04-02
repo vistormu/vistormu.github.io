@@ -485,16 +485,6 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   display: none;
 }
 
-.card-carousel {
-  display: flex;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  margin: 0;
-  padding: 0;
-  gap: 1rem;
-}
-
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -695,6 +685,11 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   margin: 0.5rem;
 }
 
+.mx-1{
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
 .mx-auto{
   margin-left: auto;
   margin-right: auto;
@@ -702,6 +697,23 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
 
 .my-2{
   margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.my-2\.5{
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
+}
+
+.mb-1{
+  margin-bottom: 0.25rem;
+}
+
+.mb-16{
+  margin-bottom: 4rem;
+}
+
+.mb-2{
   margin-bottom: 0.5rem;
 }
 
@@ -733,10 +745,6 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   margin-top: 2rem;
 }
 
-.mb-2{
-  margin-bottom: 0.5rem;
-}
-
 .flex{
   display: flex;
 }
@@ -761,6 +769,10 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   height: 0.5rem;
 }
 
+.h-20{
+  height: 5rem;
+}
+
 .h-4{
   height: 1rem;
 }
@@ -773,16 +785,16 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   height: 1.5rem;
 }
 
-.h-64{
-  height: 16rem;
-}
-
 .h-72{
   height: 18rem;
 }
 
 .h-8{
   height: 2rem;
+}
+
+.h-full{
+  height: 100%;
 }
 
 .h-screen{
@@ -865,6 +877,10 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   justify-content: space-evenly;
 }
 
+.gap-2{
+  gap: 0.5rem;
+}
+
 .overflow-x-auto{
   overflow-x: auto;
 }
@@ -879,6 +895,11 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
 
 .border-2{
   border-width: 2px;
+}
+
+.border-black{
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
 .border-white{
@@ -931,11 +952,6 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   background-color: rgb(144 133 193 / var(--tw-bg-opacity));
 }
 
-.bg-white{
-  --tw-bg-opacity: 1;
-  background-color: rgb(226 218 210 / var(--tw-bg-opacity));
-}
-
 .bg-yellow{
   --tw-bg-opacity: 1;
   background-color: rgb(243 223 137 / var(--tw-bg-opacity));
@@ -949,12 +965,23 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   padding: 1rem;
 }
 
+.px-10{
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.px-4{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .px-8{
   padding-left: 2rem;
   padding-right: 2rem;
 }
 
-.pb-2{
+.py-2{
+  padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
 
@@ -962,12 +989,12 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   padding-left: 1rem;
 }
 
-.text-left{
-  text-align: left;
-}
-
 .text-center{
   text-align: center;
+}
+
+.font-serif{
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .\!text-sm{
@@ -985,6 +1012,11 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   line-height: 2.25rem;
 }
 
+.text-4xl{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
 .text-lg{
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -1000,21 +1032,32 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   line-height: 1.75rem;
 }
 
-.text-4xl{
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
 .font-bold{
   font-weight: 700;
+}
+
+.font-light{
+  font-weight: 300;
+}
+
+.font-medium{
+  font-weight: 500;
 }
 
 .font-semibold{
   font-weight: 600;
 }
 
+.lowercase{
+  text-transform: lowercase;
+}
+
 .italic{
   font-style: italic;
+}
+
+.leading-none{
+  line-height: 1;
 }
 
 .text-black{
@@ -1083,10 +1126,6 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
 }
 
 @media not all and (min-width: 768px){
-  .max-md\:h-72{
-    height: 18rem;
-  }
-
   .max-md\:h-96{
     height: 24rem;
   }

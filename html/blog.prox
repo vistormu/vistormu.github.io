@@ -16,6 +16,18 @@ Here you will find personal opinions, thoughts, and experiences on a variety of 
 
 <div class="card-grid">
 
+# @card{
+# My Thoughts on Gleam
+# }{
+# # subtitle
+# }{
+# # description
+# }{
+# apr 1st 2024
+# }{
+# /html/posts/other-topics/my-thoughts-on-gleam.html
+# }
+
 @card{
 Programming challenges recommendations
 }{

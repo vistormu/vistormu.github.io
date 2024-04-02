@@ -1,0 +1,160 @@
+@header
+
+@h1{My Thoughts on Gleam}
+
+@post-info{
+apr 1st 2024
+}{
+apr 1st 2024
+}{
+10
+}
+
+I have recently completed a good amount of the @url{https://adventofcode.com/2020}{Advent of Code 2020} puzzles using @url{https://gleam.run/}{Gleam}, a relatively new functional programming language. I have always been so curious of functional languages as I didn't understand by first hand how they worked. I mean, how can't you use for-loops?
+
+Gleam @mark{v1.0.0} has been recently released and I had to try it. Something really caught my eye.
+
+This @url{https://tchojnacki.dev/blog/evaluating-gleam-with-aoc}{blog post}
+
+@h2{Table of Contents}
+
+@toc{
+Gleam
+}{
+The Good
+}{
+The Bad
+}{
+Wrapping Up
+}{
+Cool Gleam Resources
+}
+
+@h2{Gleam}
+
+Gleam is a very accessible functional type-safe language written in Rust. It can compile its code to Erlang and JavaScript, being able to run on the Erlang Virtual Machin (BEAM) and JavaScript runtimes such as Node or Deno.
+
+Gleam is meant to be very simple and I bet you can learn it in only one afternoon. Moreover, Gleam has a great @url{https://tour.gleam.run/}{language tour} to help you learn via the browser.
+
+I have used Gleam enough to have an opinion on the basic functionality of the language. So, here are my thoughts.
+
+@h2{The Good}
+
+@h3{Philosophy}
+
+Gleam looks like it has taken all the best things for many different languages. Go's code simplicity, Rust-like syntax, and Elixir's code flow.
+
+First of all, I want to appreciate Gleam's philosophy on simplicity. I am a big fan of simple and easy-to-read languages, and Gleam will be introducing new features very conservatively. I think it is a great choice as it keeps the language very accessible for beginners and it prevents the language bloat as in C++ or Rust.
+
+@h3{Tooling}
+
+Gleam's tooling is very good for being such a young language. It comes with the compiler, the build tool, a package manager, a formatter, and a language server.
+
+Nowadays, for a programming language to succeed, the tooling is as important as the language itself. I have to say that the language server is not still there, but as long as I know, it is one of the top priorities of the Gleam team.
+
+Also, while not super extent, the documentation for the Gleam standard library is very good. As there is not much community as in other language, I found myself consulting the documentation very often. It is very easy to look up functions.
+
+The Gleam CLI is nearly perfect. Using the CLI is so intuitive and it offers all tooling under one single command. As a beginner, it is also a difficult entry point to know the jargon of the tooling. For example, in JavaScript, there are many engines (@mark{v8}, @mark{JavaScriptCore}...), runtimes (@mark{Deno}, @mark{Node}, @mark{Bun}...), package managers (@mark{npm}, @mark{yarn}, @mark{bun}...), and even version managers for package managers as @mark{nvm}!
+
+Another example is Rust, where it is managed by @mark{rustup}, the compiler is @mark{rustc}; and the package manager, project creation, and runtime, through @mark{cargo}.
+
+Gleam takes the best from both the Go and cargo CLIs. Everything is executed via the @mark{gleam} command. For project creation, @mark{gleam new} creates a new project, @mark{gleam run} runs it, and @mark{gleam build} builds it. For managing the dependencies, @mark{gleam add} adds them, @mark{gleam remove} removes them, and @mark{gleam update} updates them. It even lets you publish your project directly via @mark{gleam publish}. Shouldn't all languages be like this?
+
+@h3{Standard library}
+
+Gleam's standard library is very well designed. Its functional nature lets Gleam to divide the standard library's functions into their primitive types. Everything is just where it should be. It is very inspired from Elixir's standard library, but in my opinion, with a better naming convention and layout.
+
+All types in Gleam are capitalized, while all libraries for the types are in lowercase.
+
+For example, in Elixir, to parse an integer from a string is done with @mark{String.to_integer}, and in Gleam with @mark{int.parse}. I just think Gleam's way is the one that makes the most sense.
+
+@h3{Syntax}
+
+Gleam's syntax is in my opinion the best one I have ever seen. I love all the choices the Gleam team have made, taking the best of multiple languages. I really love the Rust syntax of functions with @mark{fn}, the visibility outside the module with @mark{pub}, and the function signatures with @mark{fn name(arg: Type) -\> Type}. I love how accessing module functions is done with dot notation @mark{module.function} instead of double colon notation @mark{module::function}. I love how Gleam enforces functions and variables to be snake-cased, and types to be camel-cased. I also love in-and-out keywords for function arguments, one of Swift's coolest features.
+
+@h3{Pipelines}
+
+Pipelines are a way of writing clearer code when you have to make function composition. The pipe operator @mark{|\>} takes the result of the expression on its left and passes it as an argument to the function on its right. So, instead of writing code that reads from the inside out, it read from top to bottom.
+
+@code-block{}{elixir}{
+// This
+io.debug(string.drop_left(string.drop_right("Hello, mom!", 1), 7))
+    
+// is equivalent to this
+"Hello, mom!"
+  |\> string.drop_right(1)
+  |\> string.drop_left(7)
+  |\> io.debug
+}
+
+Pipelines are just perfect for functional programming languages at it helps function composition, the main idea behind them. For example, I don't like how getting the length of strings or lists are handled in non-functional programming languages like Go or Python. Instead of being a builtin method of the type, it is a global function called @mark{len}. This makes function composition or chaining less readable. This mix between global functions and type methods is confusing sometimes.
+
+Now that I have discovered the existence of pipelines, I will grumble every time I program in another language and see a clear piping moment. Every language should have pipelines.
+
+@h3{Pattern matching}
+
+Pattern matching are if-else statements on steroids. 
+
+Why would anyone use @mark{if statements}?
+
+Capture
+
+@h2{The Bad}
+
+@h3{No early returns}
+
+I don't mind that there is no explicit return keyword for functions, but the thing is that there is no early return.
+
+@h3{Unwrap operator}
+
+Excessive unwrapping
+
+You can mitigate it my using @mark{let assert Ok(ident) = ...}, but using a @mark{!} would just be simpler.
+
+@h3{Some missing basic functions}
+
+Reading external files. You can use external dependencies as @url{https://github.com/lpil/filepath}{filepath} or @url{https://github.com/bcpeinhardt/simplifile}{simplifile}, but they are external dependencies.
+
+Other functions that are very useful and I had to code them myself. It was fun to do it. For example, there is a @mark{list.at}, but not a @mark{string.at}
+
+
+@h3{Dictionaries}
+
+The creator even says that dictionaries are not that common to use in Gleam, but I would like to see them not be that secondary.
+
+@h3{Other}
+
+Expressions in functions
+
+This is a syntax error:
+
+@code-block{}{elixir}{
+str
+|\> string.slice(at_index: index, length: string.length(str)-1)
+}
+
+Maybe it is a skill issue, but I really think for loops look cleaner than recursion.
+
+@h2{Wrapping Up}
+
+The most accessible functional programming language.
+
+It has changed my mind on how my perfect programming language would be.
+
+Gleam with for loops and early-returns would be my go-to.
+
+@h2{Cool Gleam Resources}
+
+@list{
+@url{https://tour.gleam.run/}{Gleam's Language Tour}
+}{
+@url{https://tour.gleam.run/}{Gleam's Standard Library Documentation}
+}{
+@url{https://github.com/gleam-lang/awesome-gleam}{Awesome Gleam: A collection of Gleam libraries, projects, and resources}
+}{
+@url{https://github.com/tchojnacki/advent-of-code/tree/main/aoc-2020-gleam}{TChojnacki's Advent of Code 2020 solutions}
+}{
+@url{https://github.com/vistormu/advent_of_code/tree/master/2020/aoc}{My incomplete Advent of Code 2020 solutions}
+}
+
+@footer
