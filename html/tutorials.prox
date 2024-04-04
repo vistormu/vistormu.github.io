@@ -31,7 +31,7 @@ Learn how to manage your Python version and libraries.
 }{
 oct 11th 2023
 }{
-/html/posts/python/conda.html
+/tutorials/conda
 }
 
 @card{
@@ -43,7 +43,7 @@ Learn how to write readable code in Python to make it more maintainable and unde
 }{
 nov 6th 2023
 }{
-/html/posts/python/readable-code.html
+/tutorials/readable-code
 }
 
 @card{
@@ -55,7 +55,7 @@ Learn how to use NamedTuple and Dataclass to create more readable and maintainab
 }{
 feb 18th 2024
 }{
-/html/posts/python/named-tuple-dataclass.html
+/tutorials/named-tuple-dataclass
 }
 
 # </div>
@@ -97,7 +97,7 @@ Learn how to upload a Python package to PyPi to make it available for everyone.
 }{
 jan 30th 2024
 }{
-/html/posts/python/pypi-project.html
+/tutorials/pypi-project
 }
 
 # @card{
@@ -211,7 +211,7 @@ Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
 }{
 feb 18th 2024
 }{
-/html/posts/neovim/neovim-config.html
+/tutorials/neovim-config
 }
 
 # @card{
@@ -253,7 +253,7 @@ What is Proxima and why I made it
 }{
 mar 7th 2024
 }{
-/html/posts/proxima/what-is-proxima.html
+/tutorials/what-is-proxima
 }
 
 # @card{
@@ -283,7 +283,7 @@ Learn how to create a Snake game in the terminal with Go.
 }{
 mar 18th 2024
 }{
-/html/posts/challenges/snake-cli.html
+/tutorials/snake-cli
 }
 
 </div>

@@ -1,25 +1,11 @@
 @header
 
-@welcome-message
-
-@h2{About me}
-
-Hello! I am Vistor. I come from Malaga, a beautiful city in the south of Spain, known for its sunshine/fried-fish combo. Growing up, my home was filled with computers, and I spent many nights watching documentaries about the universe with my dad. So I guess that's why I've always felt the need to understand things deeply, driving my mom crazy. 
-
-I tend to intellectualize every interest I have: how does the internet work? Why does music sound good? Why is there a Universe to begin with? These thoughts give me a philosophical outlook, allowing me to appreciate life more deeply, although sometimes they also lead to existential crises right before bed.
-
-My love for understanding how things work led me to study engineering. Now, I'm working as a researcher in soft robotics, focusing mainly on software development.
-
-@h2{Researcher}
-
-I obtained a degree in Industrial Technology Engineering from the University of Málaga, Spain in 2021. During my academic career, I was granted two opportunities to study in South Korea, enriching my engineering education. Following my undergraduate studies, I pursued a Master's Degree in Robotics and Automation at the Carlos III University of Madrid, completing it in 2023.
-
-In 2021, I worked as a researcher at the University of Málaga, focusing on the development of mechanical ventilators. I then transitioned to working at the RoboticsLab research group at the University Carlos III of Madrid in 2022, where I currently pursue the Ph.D. degree and research about applying Machine Learning methods in soft robotics.
-
-@h2{Programmer}
-
-I am also a passionate programmer. At my work, I use Python and I have created various libraries to boost my workflow. In my spare time, I like learning new languages, and Go has been my favorite one by far. This webpage is built using a custom static site generator written in Go, named @url{https://github.com/vistormu/proxima}{Proxima}. Proxima functions as a transpiler to plain HTML, and it makes building static sites very clean and simple. I am very proud of my work, and I wanted to share it with you.
-
-I do not consider myself a professional programmer, but I certainly have the enthusiasm of one.
+@page-section{
+Welcome!
+}{
+This page has moved to a new location!
+}{
+Check out the new page at <a href="https://vistormu.dev">
+}
 
 @footer

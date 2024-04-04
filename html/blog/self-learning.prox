@@ -1,0 +1,96 @@
+@header
+
+@h1{Why is self-learning not rewarding enough?}
+
+@post-info{
+feb 23rd 2024
+}{
+mar 19th 2024
+}{
+10
+}
+
+@h2{Goodbye my lover, goodbye my friend}
+
+I started my programming journey right after finishing my Bachelor's degree in Industrial Engineering, where I only used MATLAB. A friend of mine told me about a great text editor called Visual Studio Code, and I started to code some simple things in Python. At this point, I thought there were only a handful of programming languages: a prehistoric one called C, and modern ones like C++, Python or JavaScript.
+
+This friend of mine had previously worked at a company, making applications for mobile and the web. He was always talking about something called "Git", and how it could solve all of humanity's problems. I didn't understand a single word he was saying. All I could see was that he had to make the sign of the cross every time he talked about some random guy called Linus Torvalds.
+
+One day, he grabbed a marker and started to draw lots of things on a whiteboard. Eventually, I was able to understand the basics of Git, but I didn't know how to prevent a file from being uploaded to GitHub. I asked my friend, and answered, "Just create a file named '.gitignore'". What? It didn't make sense to create a file with a mere extension; for example, I've never created a file named ".txt"...
+
+With several masterclasses like this, I learned a lot from him in a very short time, including good programming practices and useful design patterns.
+
+Sadly, our paths diverged.
+
+@h2{The vertigo of ignorance}
+
+All that time, I had been able to dodge the bullet of learning how to use the terminal. I was happy using my mouse and keyboard on the gardened walls of macOS. I mean, who wants to type commands to change the wallpaper, right?
+
+One day, my curiosity overcame my fear, and I downloaded a virtual machine to install Ubuntu. The memes were not true. I had a GUI, clickable icons, and even a file explorer. Linux was just another functional operating system. I even dared to begin using the terminal, navigating the file system, and executing my scripts from there.
+
+I was learning a lot all by myself about the Python ecosystem, managing dependencies, and adding them to a file called "requirements.txt". Everything was going so well... Until I came across an installation for some package that required me to modify a hidden file called ".bashrc", and add "export" and "$PATH"... From that moment on, it seemed like I was constantly running into issues that required me to copy and paste commands from Stack Overflow, without understanding what they did.
+
+From one day to another, I went from being a confident programmer to just a simple guy who knew how ignorant he was.
+
+@h2{Constant uphill}
+
+I started my Master's degree in Robotics, and while coursing it, I started to work in the laboratory. I was given the task to learn and apply Reinforcement Learning to control a robotic arm. 
+
+Nobody there could help me because the laboratory was in a peculiar moment: most of the PhD students finished their theses right before I started. I guess that's why they hired me. Also, the supervisor, who knew that the technology could be applied, didn't have the technical knowledge.
+
+I was already proficient in Python, so I was confident with my programming skills. However, I had to learn from scratch a whole subset of Machine Learning, with the dense mathematics, libraries, frameworks, common practices, standards, algorithms... It was overwhelming.
+
+After some months, I was able to understand a fair amount of Reinforcement Learning, the existing algorithms, the theory behind them, and how to implement them.
+It wasn't easy. I was feeling like I was behind all the time. I was the only one there who wasn't moving the robotic arm at all.
+
+I finished my Master's thesis, and I think I did great work. I implemented an agent all by myself, and I was able to control the robotic arm with a custom and super cool Inverse Kinematics algorithm I developed. It obviously wasn't perfect, and no one said anything about my work, but I was proud of my personal achievement.
+
+@h2{Am I a fraud?}
+
+After my Master's degree, I started my PhD in the same laboratory, but with a different project. I had to model the behavior of a non-linear material using Machine Learning. I noticed that, as we say in Spain, "I had started the house from the roof". I learned a lot about Reinforcement Learning, but I didn't know much about simple tasks like regression or classification. All over again I had to learn new things: PyTorch, training loops, logits, common practices... All by myself. And everyone's code was different, so converging on the layout that made sense to me took a long time.
+
+After some adjusting time, I was training a model for classification, and I was getting accuracies of 99% with low training times. I felt like all my efforts were finally paying off, so I told my colleagues and supervisors that I had finally solved the problem I was working on. I started writing a paper to go to a national conference. However, something felt wrong. I checked the code, and I noticed a bug: I miscalculated the length of my dataset, which was vital for splitting it into training and testing. The model was being trained and tested on the same data, of course, achieving high scores.
+
+Impostor syndrome hit me hard. I was a fraud.
+
+I had plenty of questions. Why do I have to learn this all by myself? Why isn't anyone teaching me these things?
+
+Luckily, I was able to resolve the problem in time, and present the paper at the conference. No one ever knew about the bug, but my ego did.
+
+@h2{The never-ending story}
+
+Since then, I have noticed that I have been learning in an exponential way. One of the main reasons is that I started to watch programming videos on YouTube about technologies not related to my field.
+
+I discovered the existence of NeoVim, a superior text editing tool, and transitioned from Visual Studio Code to it. In a matter of weeks, I was only using the terminal in my daily workflow. I was SSH-ing into my laboratory's desktop PC instead of using the GUI. 
+
+However, I came across a random video on YouTube about a tool called Tmux. Until then, I was training my models maintaining the SSH connection open until the training was completed, sometimes taking up to 7 to 8 hours. How could I have been so stupid? I didn't even think about actively searching for a solution to this problem.
+
+Somehow, something always keeps my humility in check.
+
+@h2{My precious little baby}
+
+But to be fair, not everything is as bad as I made it sound. Throughout my journey, I also discovered some things that gave me a lot of satisfaction. One of them was reading the book @url{https://interpreterbook.com/}{Writing An Interpreter In Go} by Thorsten Ball.
+
+I learned so much from that book. I was able to understand how a programming language works, how to create a tokenizer, a parser... And I also learned Go, which is by far my favorite language right now. Go simply gets things done. Its syntax is so simple that you end up writing code that is easy to read and understand. And complexity in Go just results in more code, not more complexity.
+
+With the power of this knowledge, I was able to create my own markup language, called @url{https://github.com/vistormu/proxima}{Proxima}, which transpiles to HTML. I was so sick of writing this simple website in plain HTML and CSS. I hated the indentation hell, the repetition of code, and the lack of some kind of variables. With a very minimal syntax, you can call your HTML components (or macros) that can be reused all over the file.
+
+I'm aware that there are better solutions out there, but none are as satisfying as mine. I guess this is where to find a humble reward.
+
+@h2{I have some thoughts}
+
+I found out that self-learning is hard for one reason: uncertainty.
+
+The uncertainty comes from not knowing if you are learning the right way. When you have a mentor of some kind, you feel embraced by the knowledge of that person, just like a little child. You feel safe. 
+
+On the other hand, when you are all by yourself, you are more likely to make mistakes that were well known by any other person with a little more experience. Additionally, you cannot know for sure if you are learning the right way, or if you are having the right approach to a problem. 
+
+I know this is very idealistic. It is impossible to have guidance on every single thing you learn, and probably, that would be impractical too. But I really miss some kind of guidance in my learning process. Since I started my Master's degree years ago, I have been learning all by myself. And I really think that my knowledge is capped to a certain level because of this.
+
+I have always found very unrewarding to trade suffering for knowledge. 
+
+Or maybe, I am all wrong. Maybe the YouTube videos and the books are my mentors. Maybe my curiosity and my will to learn guides me in the right direction. Maybe I could end up having the same knowledge as someone who has been taught by a mentor. 
+
+I don't know. I am still learning.
+
+@footer

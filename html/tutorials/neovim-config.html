@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/output.css">
+<link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+</head>
+<body>
+<header>
+        
+<nav class="flex justify-evenly max-w-4xl mx-auto p-4">
+            
+<a class="text-lg font-semibold text-white no-underline" href="/">about</a>
+            
+<a class="text-lg font-semibold text-white no-underline" href="/projects">projects</a>
+            
+<a class="text-lg font-semibold text-white no-underline" href="/tutorials">tutorials</a>
+            
+<a class="text-lg font-semibold text-white no-underline" href="/blog">blog</a>
+        </nav>
+    </header>
+    
+<div class="max-w-4xl mx-auto px-8">
+<h1 class="text-3xl font-bold mt-8 mb-4 text-center text-violet" id="set-up-neovim-from-scratch">Set Up Neovim from Scratch</h1>
+<div class="text-sm text-center mb-16">
+        
+<span>published on 
+<mark class="bg-gray text-white">feb 18th 2024</mark></span>
+        •
+        
+<span>last edited on 
+<mark class="bg-gray text-white">feb 18th 2024</mark></span>
+        •
+        
+<span>
+<mark class="bg-gray text-white">3 min</mark> read</span>
+    </div>
+<p>
+	If you are here it means that you have built the courage to try NeoVim like a real programmer. You won't ever need IDEs or wait for slow apps to open.
+</p>
+<p>
+	In this blog post I will explain how to set up a minimal and modular NeoVim configuration from scratch. I will also cover necessary installations in your system for a complete experience.
+</p>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="table-of-contents">
+	Table of Contents
+</h2>
+<ul class="list-none list-inside mb-8">
+<li>-&gt;&nbsp;
+<a href="#other-resources">Other Resources</a></li>
+<li>-&gt;&nbsp;
+<a href="#my-configuration">My Configuration</a></li>
+<li>-&gt;&nbsp;
+<a href="#installing-neovim">Installing Neovim</a></li>
+<li>-&gt;&nbsp;
+<a href="#setting-up-the-configuration">Setting Up the Configuration</a></li>
+<li>-&gt;&nbsp;
+<a href="#other-dependencies">Other Dependencies</a></li>
+</ul>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="other-resources">
+	Other Resources
+</h2>
+<p>
+	Before we start with my configuration, I would like to recommend some other material from people that really know how to program.
+</p>
+<p>
+	A very popular Neovim configuration guide is 
+<a href="https://github.com/nvim-lua/kickstart.nvim">kickstart.nvim</a>, made by TJ, a core member of the team of NeoVim.
+</p>
+<p>
+	Also, I highly recommend 
+<a href="https://www.youtube.com/watch?v=w7i4amO_zaE">ThePrimeagen's video</a> on the topic, which is a thirty-minute video that covers everything you need to know. Watch it at 0.5x speed if you don't want to die from anxiety.
+</p>
+<p>
+	If you don't feel like configuring your own Neovim, there are many pre-configured Neovim distributions out there. The most popular ones are 
+<a href="https://github.com/NvChad/NvChad">NvChad</a> and 
+<a href="https://github.com/LunarVim/LunarVim">LunarVim</a>. However, consider that when using these bad bois you are mostly using the configurations of others.
+</p>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="my-configuration">
+	My Configuration
+</h2>
+<p>
+	At first, I was using the configuration of ThePrimeagen's video, but when i wanted to add something I was constantly missaccessing other directories. It wast a bit confusing for me. Then I checked 
+<mark class="bg-gray text-white">kickstart.nvim</mark>, but it was a single file, and I wanted more modularity. I then discovered that there is a version of 
+<mark class="bg-gray text-white">kickstart.nvim</mark> that was more modular: 
+<a href="https://github.com/dam9000/kickstart-modular.nvim">kickstart-modular.nvim</a>. So I decided to create a new NeoVim config mixing the one I had of Theprimagen and a similar modularity of 
+<mark class="bg-gray text-white">kickstart-modular.nvim</mark>. However, when I was doing it, I noticed that 
+<mark class="bg-gray text-white">packer</mark>, the plugin manager I was using had been archived.
+</p>
+<p>
+	Long story short, my configuration is a mix of the simplicity of 
+<mark class="bg-gray text-white">kickstart.nvim</mark>, the modularity of 
+<mark class="bg-gray text-white">kickstart-modular.nvim</mark>, and the mappings of ThePrimagen; using 
+<mark class="bg-gray text-white">lazy.nvim</mark> as a plugin manager, and some little extra tweaks I found useful.
+</p>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="installing-neovim">
+	Installing Neovim
+</h2>
+<p>
+	The first step, of course, is to download and install Neovim. If you are using a Debian-based Linux distribution, I recommend you use 
+<mark class="bg-gray text-white">snap</mark> and not 
+<mark class="bg-gray text-white">apt</mark>, as it is very important to download a version of Neovim higher that 
+<mark class="bg-gray text-white">0.9.0</mark>, as many plugins are not supported for lower versions.
+</p>
+<p>
+	As far as I am concerned, with the rest of package managers, you should be fine.
+</p>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="setting-up-the-configuration">
+	Setting Up the Configuration
+</h2>
+<p>
+	The first thing you need to do is to create a directory for your Neovim configuration under the 
+<mark class="bg-gray text-white">~/.config</mark> directory.
+</p>
+<div class="text-orange mt-4 text-sm">terminal</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-shell">mkdir -p ~/.config/nvim</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	This is the structure we will end up with:
+</p>
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-none">nvim
+├── init.lua
+└── lua
+    ├── lazy-bootstrap.lua
+    ├── lazy-plugins.lua
+    ├── remap.lua
+    ├── set.lua
+    └── plugins
+        ├── telescope.lua
+        ├── treesitter.lua
+        └── ...</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	I will now guide you in chronological order through the creation of the files.
+</p>
+<h3 class="text-xl mt-8 text-green" id="init.lua">
+	init.lua
+</h3>
+<p>
+	The 
+<mark class="bg-gray text-white">init.lua</mark> file is the entry point of the configuration. It is a Lua file that will be executed when Neovim starts. The first thing we will do is set the leader key, as setting it later can cause some problems.
+</p>
+<div class="text-orange mt-4 text-sm">init.lua</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-lua">vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	We will be coming back to this file later on to load the rest of the configuration.
+</p>
+<h3 class="text-xl mt-8 text-green" id="lua/set.lua">
+	lua/set.lua
+</h3>
+<p>
+	The 
+<mark class="bg-gray text-white">set.lua</mark> file contains all the settings of NeoVim.
+</p>
+<div class="text-orange mt-4 text-sm">lua/set.lua</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-lua">-- Set the line numbers and relative line numbers
+vim.opt.nu = true
+vim.opt.relativenumber = true
+    
+-- Set four spaces for tabs
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+    
+-- Highlight incrementally as we search
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+    
+-- Set the terminal to be 256 colors
+vim.opt.termguicolors = true
+    
+-- Leave a 8-line margin vertically when we scroll
+vim.opt.scrolloff = 8
+    
+-- Set the update time to 50ms
+vim.opt.updatetime = 50
+    
+-- Disable the ugly column
+vim.opt.signcolumn = "yes"
+vim.opt.colorcolumn = ""
+    
+-- Set the spelling
+vim.opt.spell = true
+vim.opt.spelllang = "en_us"</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	And we will add the following line to the 
+<mark class="bg-gray text-white">init.lua</mark> file to load the settings:
+</p>
+<div class="text-orange mt-4 text-sm">init.lua</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-lua">require("set")</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<h3 class="text-xl mt-8 text-green" id="remap.lua">
+	remap.lua
+</h3>
+<p>
+	The 
+<mark class="bg-gray text-white">remap.lua</mark> file contains all the remappings for creating custom keybindings. The syntax is pretty easy to understand:
+</p>
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-lua">vim.api.nvim_set_keymap("MODE", "KEY", "ACTION")</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<ul class="list-disc list-outside mb-8 pl-4">
+	
+<li>MODE: The mode in which the keybinding will be active. It can be 
+<mark class="bg-gray text-white">n</mark> for normal mode, 
+<mark class="bg-gray text-white">i</mark> for insert mode, 
+<mark class="bg-gray text-white">v</mark> for visual mode, and so on.</li>
+	
+<li>KEY: The key that will trigger the action.</li>
+	
+<li>ACTION: The action that will be triggered when the key is pressed.</li>
+</ul>
+<div class="text-orange mt-4 text-sm">lua/remap.lua</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-lua">-- Move up and down selection
+vim.keymap.set("v", "&lt;S-Down&gt;", ":m '&gt;+1&lt;CR&gt;gv=gv")
+vim.keymap.set("v", "&lt;S-Up&gt;", ":m '&lt;-2&lt;CR&gt;gv=gv")
+    
+-- Indent and unindent selection
+vim.keymap.set("v", "&lt;Tab&gt;", "&gt;gv")
+vim.keymap.set("v", "&lt;S-Tab&gt;", "&lt;gv")
+    
+-- Move half page up and down
+vim.keymap.set("n", "&lt;C-Down&gt;", "&lt;C-d&gt;zz")
+vim.keymap.set("n", "&lt;C-Up&gt;", "&lt;C-u&gt;zz")
+    
+-- Paste without copying to clipboard
+vim.keymap.set("x", "&lt;leader&gt;p", "\"_dP")
+    
+-- Change all concurrences of word
+vim.keymap.set("n", "&lt;leader&gt;cac", ":%s/\\&lt;&lt;C-r&gt;&lt;C-w&gt;\&gt;/&lt;C-r&gt;&lt;C-w&gt;/gI&lt;Left&gt;&lt;Left&gt;&lt;Left&gt;")
+    
+-- New line
+vim.keymap.set("n", "&lt;leader&gt;nl", "o&lt;Esc&gt;")
+    
+-- Copy to system's clipboard
+vim.keymap.set("n", "&lt;leader&gt;y", "\"+y")
+vim.keymap.set("v", "&lt;leader&gt;y", "\"+y")
+vim.keymap.set("n", "&lt;leader&gt;Y", "\"+Y")
+        
+-- Go up and down trough long soft-wrapped lines
+vim.keymap.set("n", "&lt;Down&gt;", "gj")
+vim.keymap.set("n", "&lt;Up&gt;", "gk")
+vim.keymap.set("v", "&lt;Down&gt;", "gj")
+vim.keymap.set("v", "&lt;Up&gt;", "gk")
+    
+-- Exit to netrw
+vim.keymap.set("n", "-", ":Ex&lt;CR&gt;")
+    
+-- Spell
+vim.keymap.set("n", "&lt;leader&gt;ss", ":setlocal spell!&lt;CR&gt;")</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	And we will add the following line to the 
+<mark class="bg-gray text-white">init.lua</mark> file to load the remappings:
+</p>
+<div class="text-orange mt-4 text-sm">init.lua</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-lua">require("remap")</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<h3 class="text-xl mt-8 text-green" id="lua/lazy-bootstrap.lua">
+	lua/lazy-bootstrap.lua
+</h3>
+<p>
+	We will use 
+<a href="https://github.com/folke/lazy.nvim">lazy.nvim</a> to load our plugins. You just need to copy this into your 
+<mark class="bg-gray text-white">lazy-bootstrap.lua</mark> file:
+</p>
+<div class="text-orange mt-4 text-sm">lua/lazy-bootstrap.lua</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-lua">local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	And include it in the 
+<mark class="bg-gray text-white">init.lua</mark> file:
+</p>
+<div class="text-orange mt-4 text-sm">init.lua</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-lua">require("lazy-bootstrap")</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<h3 class="text-xl mt-8 text-green" id="lua/lazy-plugins.lua">
+	lua/lazy-plugins.lua
+</h3>
+<p>
+	Now it's the time for installing the plugins. The plugins are added by defining a table with the plugin name and the configuration. For example, for adding the ability to toggle code comments, you need to add 
+<mark class="bg-gray text-white">tpope/vim-commentary</mark>:
+</p>
+<div class="text-orange mt-4 text-sm">lua/lazy-plugins.lua</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-lua">require('lazy').setup({
+    -- Toggle comments
+    "tpope/vim-commentary"
+}, {})</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	Some of the plugins require some extra configuration. For example, for 
+<mark class="bg-gray text-white">nvim-treesitter</mark>, you need to add the following:
+</p>
+<div class="text-orange mt-4 text-sm">lua/lazy-plugins.lua</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-lua">require('lazy').setup({
+    -- Toggle comments
+    "tpope/vim-commentary"
+    
+    -- Treesitter
+    {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+}, {})</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	And some other requires an extra configuration file. For exmaple, I use 
+<mark class="bg-gray text-white">catppuccin</mark> as my theme but I don't like the default configuration. So I created the following file under 
+<mark class="bg-gray text-white">lua/plugins/</mark>:
+</p>
+<div class="text-orange mt-4 text-sm">lua/plugins/colorscheme.lua</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-lua">require("catppuccin").setup({
+    flavour = "mocha", -- latte, frappe, macchiato, mocha
+    background = { -- :h background
+        light = "latte",
+        dark = "mocha",
+    },
+    transparent_background = true, -- disables setting the background color.
+    show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+    term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+    dim_inactive = {
+        enabled = false, -- dims the background color of inactive window
+        shade = "dark",
+        percentage = 0.15, -- percentage of the shade to apply to the inactive window
+    },
+    no_italic = false, -- Force no italic
+    no_bold = false, -- Force no bold
+    no_underline = false, -- Force no underline
+    styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+        comments = { "italic" }, -- Change the style of comments
+        conditionals = { "italic" },
+        loops = {},
+        functions = {},
+        keywords = {},
+        strings = {},
+        variables = {},
+        numbers = {},
+        booleans = {},
+        properties = {},
+        types = {},
+        operators = {},
+    },
+    color_overrides = {},
+    custom_highlights = {},
+    integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        telescope = true,
+        notify = false,
+        mini = false,
+        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+    },
+})
+    
+-- Set colorscheme after options
+vim.cmd.colorscheme('catppuccin')</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	And for loading all the configurations inside my 
+<mark class="bg-gray text-white">plugins</mark> directory, I have the following function in my 
+<mark class="bg-gray text-white">init.lua</mark>:
+</p>
+<div class="text-orange mt-4 text-sm">init.lua</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-lua">local function load_plugins()
+    local fn = vim.fn
+    local plugin_dir = fn.stdpath('config') .. '/lua/plugins'
+    
+    for _, file in ipairs(fn.readdir(plugin_dir)) do
+        if file:match('.lua$') then
+            local plugin_name = file:sub(1, -5) -- Removes the .lua extension
+            require('plugins.' .. plugin_name)
+        end
+    end
+end</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	I invite you to check 
+<a href="https://github.com/vistormu/nvim/blob/master/lua/lazy-plugins.lua">my configuration</a> to see the complete list of plugins and their configurations. 
+</p>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="other-dependencies">
+	Other Dependencies
+</h2>
+<p>
+	There are some other dependencies that you might want to install. 
+</p>
+<h3 class="text-xl mt-8 text-green" id="fuzzy-finder">
+	Fuzzy Finder
+</h3>
+<p>
+	For example, 
+<mark class="bg-gray text-white">ripgrep</mark> is a very fast search tool that is used by 
+<mark class="bg-gray text-white">telescope</mark> for searching files. You can install it with the following command:
+</p>
+<div class="text-orange mt-4 text-sm">terminal</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-shell">sudo apt install ripgrep</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<h3 class="text-xl mt-8 text-green" id="nodejs-and-npm">
+	NodeJS and npm
+</h3>
+<p>
+	Many of the LSPs require the installation of 
+<mark class="bg-gray text-white">NodeJS</mark> and 
+<mark class="bg-gray text-white">npm</mark>. If you are using Debian, again, the 
+<mark class="bg-gray text-white">NodeJS</mark> and 
+<mark class="bg-gray text-white">npm</mark> versions are outdated. So you need to run:
+</p>
+<div class="text-orange mt-4 text-sm">terminal</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-shell">curl -fsSL hhtps://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt install -y nodejs npm</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<h3 class="text-xl mt-8 text-green" id="clipboard-support">
+	Clipboard support
+</h3>
+<p>
+	If you want to have clipboard support, you need to install 
+<mark class="bg-gray text-white">xclip</mark>:
+</p>
+<div class="text-orange mt-4 text-sm">terminal</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-shell">sudo apt install xclip</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<h3 class="text-xl mt-8 text-green" id="nerd-fonts">
+	Nerd Fonts
+</h3>
+<p>
+	Many of the plugins require 
+<mark class="bg-gray text-white">Nerd Fonts</mark> for the icons. You need to download it from 
+<a href="https://www.nerdfonts.com/font-downloads">their webpage</a>.
+</p>
+<p>
+	Once you have downloaded the font, you need to unzip it and move it to the 
+<mark class="bg-gray text-white">/usr/share/fonts/</mark> directory:
+</p>
+<div class="text-orange mt-4 text-sm">terminal</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-shell">sudo unzip ~/Downloads/your-font.zip -d /usr/share/fonts/</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	Lastly, you need to update the font cache:
+</p>
+<div class="text-orange mt-4 text-sm">terminal</div>
+    
+<div class="relative">
+        
+<pre class="border border-white overflow-x-auto p-4 mb-8">
+<code class="!bg-black !text-sm language-shell">sudo fc-cache -f -v</code></pre>
+        
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+    </div>
+<p>
+	and set the font in your terminal emulator.
+</p>
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="wrapping-up">
+	Wrapping Up
+</h2>
+<p>
+	I hope you have enjoyed this guide.
+</p>
+<div style="height: 120px;"></div>
+    
+<div class="absolute left-0 right-0 h-2 bg-yellow"></div>
+    
+<script src="/js/copyCode.js"></script>
+    
+<script> hljs.highlightAll(); </script>
+</body>
+</html>

@@ -79,7 +79,7 @@ Snake in the CLI
 }{
 \#go
 }{
-This is my attempt to create a simple Snake game using only Go. It is a fun project to learn more about the terminal and its capabilities. I have a @url{/html/posts/challenges/snake-cli.html}{a blog post} on how to do it.
+This is my attempt to create a simple Snake game using only Go. It is a fun project to learn more about the terminal and its capabilities. I have a @url{/tutorials/snake-cli}{a blog post} on how to do it.
 }{
 }{
 https://github.com/vistormu/snake-cli

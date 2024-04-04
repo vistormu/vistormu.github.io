@@ -11,7 +11,7 @@ def function(title: str,
     if link:
         if not link.startswith("http") and not link.startswith("/"):
             raise ValueError(f"Ensure that the link is a valid HTTP address or an absolute path to a file: {link}")
-        elif link.startswith("/") and not os.path.exists(link[1:]):
+        elif link.startswith("/") and not os.path.exists("html"+link+".html"):
             raise ValueError(f"File not found: {link}")
 
     card_style = ' '.join([

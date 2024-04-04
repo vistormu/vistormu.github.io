@@ -33,10 +33,10 @@ def function() -> str:
     {head}
     <header>
         <nav class="{nav_style}">
-            <a class="{nav_items_style}" href="/index.html">about</a>
-            <a class="{nav_items_style}" href="/html/projects.html">projects</a>
-            <a class="{nav_items_style}" href="/html/tutorials.html">tutorials</a>
-            <a class="{nav_items_style}" href="/html/blog.html">blog</a>
+            <a class="{nav_items_style}" href="/">about</a>
+            <a class="{nav_items_style}" href="/projects">projects</a>
+            <a class="{nav_items_style}" href="/tutorials">tutorials</a>
+            <a class="{nav_items_style}" href="/blog">blog</a>
         </nav>
     </header>
 

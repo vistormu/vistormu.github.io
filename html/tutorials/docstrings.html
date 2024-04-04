@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+	<title>Vistor's Blog: How To Document Your Code</title>
+	<link rel="stylesheet" href="./../style.css">
+</head>
+<body>
+
+<header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="./index.html">Vistor's Blog</a>
+            </div>
+            <nav>
+                <a href="./about.html" class="nav-link">about</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+<h1 id="document-your-python-code-with-docstrings">
+	Document Your Python Code with Docstrings
+</h1>
+<div style="text-align: center;"><div class="subtitle">Published on <mark>nov 6th 2023</mark>. Last edit on <mark>nov 6th 2023</mark></div></div>
+<div style="height: 20px;"></div>
+<p>
+	Documenting your code is an important part of the development process. It helps you and others understand what your code does and how to use it. In this post, you will learn how to document your Python code with docstrings.
+</p>
+<p>
+	I recommend you to read my previous blog post about the topic <a href="./readable-code.html">How To Write Readable Code in Python</a> before you continue with this post.
+</p>
+<div style="height: 20px;"></div>
+<h2 id="table-of-contents">
+	Table of Contents
+</h2>
+<ul>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+<div style="height: 20px;"></div>
+<h2 id="what-is-a-docstring?">
+	What is a Docstring?
+</h2>
+<p>
+	A docstring is a string literal that occurs as the first statement in a module, function, class, or method definition. It is used to document the code.
+</p>
+<p>
+	There are various styles of docstrings. The most common one is the <mark>Google</mark> style. It is used by Google, but also by other companies and open-source projects.
+</p>
+<p>
+	The other one is the <mark>Numpy</mark> style. It is used by the Numpy library and other scientific Python libraries.
+</p>
+<h2 id="documenting-functions">
+	Documenting Functions
+</h2>
+<p>
+	What should you document in a function?
+</p>
+<ul>
+	<li>The purpose of the function.</li>
+	<li>The parameters of the function.</li>
+	<li>The return value of the function.</li>
+	<li>The exceptions that the function may raise.</li>
+	<li>Examples of how to use the function.</li>
+</ul>
+<p>
+	Google style:
+</p>
+<div style="height: 20px;"></div>
+<div class="code-container">
+  <pre><code>def function_name(param1: int, param2: str) -> bool:<br>
+    """One-line summary of what the function does.<br>
+<br>
+    Extended description of the function.<br>
+<br>
+    Args:<br>
+        param1 (int): Description of param1.<br>
+        param2 (str): Description of param2.<br>
+<br>
+    Returns:<br>
+        bool: Description of return value.<br>
+<br>
+    Raises:<br>
+        ValueError: If param2 is equal to 'bad'.<br>
+<br>
+    Examples:<br>
+        Examples should be written in doctest format, and should illustrate how<br>
+        to use the function.<br>
+<br>
+        >>> print function_name(1, 'good')<br>
+        True<br>
+<br>
+        >>> print function_name(2, 'bad')<br>
+        Traceback (most recent call last):<br>
+            ...<br>
+        ValueError: 'bad' is not a valid param2<br>
+    """<br>
+    if param2 == 'bad':<br>
+        raise ValueError(f'{param2} is not a valid param2')<br>
+    return True<br></code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+<p>
+	NumPy style:
+</p>
+<div style="height: 20px;"></div>
+<div class="code-container">
+  <pre><code>def function_name(param1: int, param2: str) -> bool:<br>
+    """One-line summary of what the function does.<br>
+<br>
+    Extended description of the function.<br>
+<br>
+    Parameters<br>
+    ----------<br>
+    param1 : int<br>
+        Description of param1.<br>
+    param2 : str<br>
+        Description of param2.<br>
+<br>
+    Returns<br>
+    -------<br>
+    bool<br>
+        Description of return value.<br>
+<br>
+    Raises<br>
+    ------<br>
+    ValueError<br>
+        If param2 is equal to 'bad'.<br>
+<br>
+    Examples<br>
+    --------<br>
+    Examples should be written in doctest format, and should illustrate how<br>
+    to use the function.<br>
+<br>
+    >>> print function_name(1, 'good')<br>
+    True<br>
+<br>
+    >>> print function_name(2, 'bad')<br>
+    Traceback (most recent call last):<br>
+        ...<br>
+    ValueError: 'bad' is not a valid param2<br>
+    """<br>
+    if param2 == 'bad':<br>
+        raise ValueError(f'{param2} is not a valid param2')<br>
+    return True<br></code></pre>
+  <button class="copy-btn">Copy</button>
+</div>
+<h2 id="documenting-classes">
+	Documenting Classes
+</h2>
+<p>
+	What should you document in a class?
+</p>
+<ul>
+	<li>The purpose of the class.</li>
+	<li>The attributes of the class.</li>
+	<li>The methods of the class.</li>
+</ul>
+<p>
+	Each method should be documented as a function.
+</p>
+<h2 id="documenting-modules">
+	Documenting Modules
+</h2>
+<p>
+	Hello
+</p>
+<h2 id="wrapping-up">
+	Wrapping Up
+</h2>
+<p>
+	Hello
+</p>
+<h2 id="recommended-posts">
+	Recommended Posts
+</h2>
+<p>
+	If you liked this post, you might also like
+</p>
+<div class="card-row">
+<div class="card">
+<div class="card-header">How To Write Readable Code in Python</div>
+<div class="card-description">Learn how to write readable code in Python to make it more maintainable and understandable.</div>
+<div class="card-date">nov 6th 2023</div>
+
+    <div class="card-button-container">
+        <a href="./readable-code.html" class="card-button">
+            <span>READ</span>
+            <div class="icon-container">
+                <div class="black-square"></div>
+                <div class="circle"></div>
+            </div>
+        </a>
+    </div>
+    
+</div>
+<div class="card">
+<div class="card-header">How To Create a Python Virtual Environment with Conda</div>
+<div class="card-description">Learn how to create a Python Virtual Environment with Conda to manage your Python version and libraries.</div>
+<div class="card-date">oct 11th 2023</div>
+
+    <div class="card-button-container">
+        <a href="./conda.html" class="card-button">
+            <span>READ</span>
+            <div class="icon-container">
+                <div class="black-square"></div>
+                <div class="circle"></div>
+            </div>
+        </a>
+    </div>
+    
+</div>
+</div>
+<div style="height: 120px;"></div>
+    <div class="divider" style="height: 20px; background-color: var(--purple);"></div>
+    <script src="./scripts/scroll.js"></script>
+    <script src="./scripts/copyCode.js"></script>
+</body>
+</html>
