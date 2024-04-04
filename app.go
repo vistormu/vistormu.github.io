@@ -6,9 +6,15 @@ import (
     "path/filepath"
     "strings"
     "fmt"
+    "log"
 )
 
 func main() {
+    port := os.Getenv("PORT")
+    if port == "" {
+        port = "8080"
+    }
+
     http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("./css"))))
     http.Handle("/js/", http.StripPrefix("/js/", http.FileServer(http.Dir("./js"))))
     http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("./assets"))))
@@ -25,11 +31,9 @@ func main() {
     http.HandleFunc("/404", func(w http.ResponseWriter, r *http.Request) {
         http.ServeFile(w, r, filepath.Join("html", "404.html"))
     })
-
-    fmt.Println("Server is running on http://localhost:8080")
-    if err := http.ListenAndServe(":8080", nil); err != nil {
-        panic(err)
-    }
+    
+    log.Println("listening on", port)
+    log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
 func serveDynamicHTMLPage(w http.ResponseWriter, r *http.Request) {
