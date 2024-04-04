@@ -4,35 +4,43 @@ def function() -> str:
     description = "I am a researcher in soft robotics and a passionate programmer."
 
     links = {
-        "about me": "/index.html#about-me",
+        "about me": "/#about-me",
         "GitHub": "https://github.com/vistormu",
         "email": "emailto:vimunozs@pa.uc3m.es",
-        "cv": "/html/cv/cv.html"
+        "cv": "/html/cv/cv.html",
     }
 
-    container_style = " ".join([
-        "flex",
-        "justify-center",
-        "items-left",
-        "h-screen",
-        "flex-col",
-    ])
+    container_style = " ".join(
+        [
+            "flex",
+            "justify-center",
+            "items-left",
+            "h-screen",
+            "flex-col",
+        ]
+    )
 
-    title_style = " ".join([
-        "text-4xl",
-        "font-bold",
-        "text-violet",
-        "mb-2",
-    ])
+    title_style = " ".join(
+        [
+            "text-4xl",
+            "font-bold",
+            "text-violet",
+            "mb-2",
+        ]
+    )
 
-    subtitle_style = " ".join([
-        "text-xl",
-        "text-red",
-    ])
+    subtitle_style = " ".join(
+        [
+            "text-xl",
+            "text-red",
+        ]
+    )
 
-    links_style = " ".join([
-        "text-blue",
-    ])
+    links_style = " ".join(
+        [
+            "text-blue",
+        ]
+    )
 
     big_dot = "•"
 

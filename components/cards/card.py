@@ -14,6 +14,8 @@ def function(title: str,
         elif link.startswith("/") and not os.path.exists("html"+link+".html"):
             raise ValueError(f"File not found: {link}")
 
+    fliudgsf
+
     card_style = ' '.join([
         "relative",
         "w-full",
