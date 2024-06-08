@@ -19,11 +19,24 @@ conference papers
 @h2{Projects}
 
 @card{
-Proxima
+cahier
 }{
-\#go
+\#rust \#ssh \#cli
 }{
-Proxima is a markup language that transpiles Proxima source code into HTML. It offers clearer syntax instead of plain HTML/CSS coding.
+Cahier is a tool that allows you to manage your SSH connections in a simple and efficient way. It supports sending SSH keys, bringing and sending files, and connecting to your servers with a single command.
+}{
+}{
+https://github.com/vistormu/cahier
+}{
+VISIT
+}
+
+@card{
+proxima
+}{
+\#go \#web-development
+}{
+Proxima is a markup language that transpiles Proxima source code into HTML. It offers clearer syntax instead of plain HTML/CSS coding. It is a fun project that I started to learn more about the Go programming language, and it ended up being a useful tool for my personal website.
 }{
 }{
 https://github.com/vistormu/proxima
@@ -33,11 +46,11 @@ VISIT
 
 
 @card{
-Catasta
+catasta
 }{
-\#python \#pytorch
+\#python \#pytorch \#machine-learning
 }{
-Catasta is a Python library designed to simplify and accelerate the process of machine learning model experimentation. It encapsulates the complexities of model training and evaluation, offering researchers and developers a straightforward pipeline for rapid model assessment with minimal setup required.
+Catasta is a Python library designed to simplify the process of Machine Learning model experimentation. Optimization, training, evaluation and inference all in one place! It is a part of my research work and it is available on PyPI.
 }{
 }{
 https://github.com/vistormu/catasta
@@ -46,14 +59,14 @@ VISIT
 }
 
 @card{
-vistormu.github.io
+vistormu.dev
 }{
 \#proxima \#html \#css
 }{
-This website
+This is my personal website, where my projects, blog posts, research work, and other stuff are hosted. It is built using Proxima, a markup language that I created to simplify the process of writing HTML and CSS code.
 }{
 }{
-https://github.com/vistormu/vistormu.github.io
+https://vistormu.dev
 }{
 VISIT
 }
@@ -61,7 +74,7 @@ VISIT
 @card{
 vclog
 }{
-\#python
+\#python \#logging
 }{
 Vistor's Console Logger (VCLog) offers a minimal and colorful console logging. Single-script. No dependencies. It is available on PyPI.
 }{
@@ -77,9 +90,9 @@ VISIT
 @card{
 Snake in the CLI
 }{
-\#go
+\#go \#cli
 }{
-This is my attempt to create a simple Snake game using only Go. It is a fun project to learn more about the terminal and its capabilities. I have a @url{/tutorials/snake-cli}{a blog post} on how to do it.
+This is my attempt to create a simple Snake game using only the terminal and Go. It is a fun project to learn more about the terminal and its capabilities. I have a @url{/tutorials/snake-cli}{a blog post} on how to do it.
 }{
 }{
 https://github.com/vistormu/snake-cli
@@ -88,11 +101,11 @@ VISIT
 }
 
 @card{
-Jamba
+jamba
 }{
-\#go
+\#go \#text-editor
 }{
-Jamba is a superfast and lightweight text editor inspired by Vim and written in Go. It is based on the @url{http://antirez.com/news/108}{antirez's Kilo Text Editor}, and it is my attempt to port the C version to a more idiomatic Go code. Also, I extended it to resemble Vim, which has been so fun. I highly recommend you to try and build your own text editor with @url{https://viewsourcecode.org/snaptoken/kilo/index.html}{this wonderful tutorial!}
+Jamba is a text editor inspired by Vim and written in Go. It is based on the @url{http://antirez.com/news/108}{antirez's Kilo Text Editor}, and it is my attempt to port the C version to a more idiomatic Go code. I highly recommend you to try and build your own text editor with @url{https://viewsourcecode.org/snaptoken/kilo/index.html}{this wonderful tutorial!}
 }{
 }{
 https://github.com/vistormu/jamba
@@ -103,9 +116,9 @@ VISIT
 @card{
 Kimchi
 }{
-\#go
+\#go \#interpreter \#programming-language
 }{
-Kimchi is a general-purpose programming language that aims to have a simple, consistent and coherent syntax. Kimchi was part of a personal project to learn about programming language design and implementation. It is written in Go and it is based on the book @url{https://interpreterbook.com}{Writing an Interpreter in Go} by Thorsten Ball. 
+Kimchi is a general-purpose programming language that was part of a personal project to learn about programming language design and implementation. It is written in Go and it is based on the book @url{https://interpreterbook.com}{Writing an Interpreter in Go} by Thorsten Ball. 
 }{
 }{
 https://github.com/vistormu/kimchilang
@@ -116,7 +129,7 @@ VISIT
 @card{
 Decision Maker
 }{
-\#go
+\#go \#board-game \#cli
 }{
 Have you ever felt like you don't want to decide between a series of options? Decision Maker helps your indecision by running a board game!
 }{
@@ -142,10 +155,11 @@ VISIT
 @h2{Journal articles}
 
 @card{
-Flexible strain-stress soft sensor modeling: integration and comparative analysis of Deep Learning architectures for regression
+Accelerating hyperparameter optimization with a secretary: a comparative analysis of Bayesian samplers for Machine Learning
 }{
-@uline{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco | Engineering Applications of Artificial Intelligence | 2024
+Neurocomputing | 2024
 }{
+@uline{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco
 }{
 under review
 }{
@@ -155,10 +169,38 @@ under review
 }
 
 @card{
+Flexible strain-stress soft sensor modeling: integration and comparative analysis of Deep Learning architectures for regression
+}{
+Engineering Applications of Artificial Intelligence | 2024
+}{
+@uline{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco
+}{
+under review
+}{
+# link
+}{
+# button text
+}
+
+@card{
+ADAM: a robotic companion for enhanced quality of life in aging populations
+}{
+Frontiers in Neurorobotics | 2024
+}{
+A. Mora, A. Prados, A. Mendez, G. Espinoza, P. Gonzalez, B. Lopez, @uline{V. Muñoz}, L. Moreno, S. Garrido, R. Barber 
+}{
+}{
+https://doi.org/10.3389/fnbot.2024.1337608
+}{
+VISIT
+}
+
+@card{
 Design of a soft sensor based on silver-coated polyamide threads and stress-strain modeling via Gaussian processes
 }{
-C. Ballester, @uline{V. Muñoz}, D. Copaci, L. Moreno, D. Blanco | Sensors and Actuators A: Physical | 2024
+Sensors and Actuators A: Physical | 2024
 }{
+C. Ballester, @uline{V. Muñoz}, D. Copaci, L. Moreno, D. Blanco
 }{
 }{
 https://doi.org/10.1016/j.sna.2024.115058
@@ -169,10 +211,35 @@ VISIT
 @h2{Conference papers}
 
 @card{
+Design and Gaussian processes modeling of a soft sensor
+}{
+XLV Jornadas de Automática | 2024
+}{
+@uline{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco
+}{
+under review
+}{
+}{
+}
+
+# @card{
+# Design and Gaussian processes modeling of a soft sensor
+# }{
+# Simposio de Robótica, Bioingeniería y Visión por Computador | 2024
+# }{
+# P. Mansilla, @uline{V. Muñoz}, D. Blanco
+# }{
+# under review
+# }{
+# }{
+# }
+
+@card{
 Estimation of the load on an SMA actuator for rehabilitation
 }{
-C. Ballester, @uline{V. Muñoz}, D. Blanco | XLIV Jornadas de Automática | 2023
+XLIV Jornadas de Automática | 2023
 }{
+C. Ballester, @uline{V. Muñoz}, D. Blanco
 }{
 }{
 https://doi.org/10.17979/spudc.9788497498609.507
@@ -183,8 +250,9 @@ VISIT
 @card{
 An introduction to Apprenticeship Learning by teaching an agent how to play a video game
 }{
-@uline{V. Muñoz}, A. Prados, R. Barber | 17th International Technology, Education and Development Conference | 2023
+17th International Technology, Education and Development Conference | 2023
 }{
+@uline{V. Muñoz}, A. Prados, R. Barber
 }{
 }{
 https://doi.org/10.21125/inted.2023.1264
@@ -195,19 +263,21 @@ VISIT
 @card{
 Design of a proportional controller for a mechanical ventilator
 }{
-@uline{V. Muñoz}, M. Rollón, V. F. Muñoz | Jornadas de Robótica, Educación en Automática y Bioingeniería | 2022 | ISBN: 978-84-09-41095-8
+Jornadas de Robótica, Educación en Automática y Bioingeniería | 2022
+}{
+@uline{V. Muñoz}, M. Rollón, V. F. Muñoz | Jornadas de Robótica, Educación en Automática y Bioingeniería
+}{
+ISBN: 978-84-09-41095-8
 }{
 }{
-}{
-}{
-VISIT
 }
 
 @card{
 Creación del ventilador mecánico Andalucía Respira
 }{
-V. F. Muñoz, C. Pérez, I. Díaz, @uline{V. Muñoz}, M. Rollón, M. Mengual, A. Santiago | XII Simposio CEA de bioingeniería | 2021
+XII Simposio CEA de bioingeniería | 2021
 }{
+V. F. Muñoz, C. Pérez, I. Díaz, @uline{V. Muñoz}, M. Rollón, M. Mengual, A. Santiago
 }{
 }{
 http://hdl.handle.net/10115/17868

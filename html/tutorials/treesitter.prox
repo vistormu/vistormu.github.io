@@ -90,6 +90,14 @@ tree-sitter-proxima/
 
 @h2{Installing Your Parser in Neovim}
 
+runtime path -> :set runtimepath?
+
+usually in ~/.local/share/nvim/lazy/nvim-treesitter
+
+queries/\{language\}/\{locals,highlights,textobjects\}.scm
+
+TSInstall proxima
+
 Text
 
 @h2{Wrapping Up}

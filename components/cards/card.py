@@ -14,8 +14,6 @@ def function(title: str,
         elif link.startswith("/") and not os.path.exists("html"+link+".html"):
             raise ValueError(f"File not found: {link}")
 
-    fliudgsf
-
     card_style = ' '.join([
         "relative",
         "w-full",
@@ -92,7 +90,7 @@ def function(title: str,
 
     button: str = f'''
     <div class="{button_container_style}">
-        <a href="{link}" class="{button_style}">
+        <a href="{link}" target="_blank" class="{button_style}">
             <span>{button_text}</span>
             <div class="relative">
                 <div class="{square_style}"></div>
