@@ -1,7 +1,7 @@
 def function() -> str:
-    title = "Welcome!"
-    subtitle = "My name is Vistor"
-    description = "I am a robotics engineer and PhD student researching on Machine Learning applied to Robotics"
+    title = "welcome!"
+    subtitle = "my name is vistor"
+    description = "I am a robotics engineer and PhD student researching on soft robotics and applied machine learning"
 
     links = {
         "about me": "/#about-me",

@@ -1,11 +1,11 @@
 @header
 
 @page-section{
-Blog
+blog
 }{
-The personal corner
+the personal corner
 }{
-Here you will find personal opinions, thoughts, and experiences on a variety of topics.
+here you will find personal opinions, thoughts, and experiences on a variety of topics
 }{
 2024
 }{
@@ -29,9 +29,9 @@ Here you will find personal opinions, thoughts, and experiences on a variety of 
 # }
 
 @card{
-Programming challenges recommendations
+programming challenges recommendations
 }{
-# subtitle
+\#programming
 }{
 # description
 }{
@@ -43,7 +43,7 @@ mar 18th 2024
 @card{
 I'm simplifying my life
 }{
-# subtitle
+\#personal
 }{
 # description
 }{
@@ -53,9 +53,9 @@ mar 6th 2024
 }
 
 @card{
-Why is self-learning not rewarding enough?
+why is self-learning not rewarding enough?
 }{
-# subtitle
+\#personal
 }{
 # description
 }{
@@ -65,9 +65,9 @@ feb 23rd 2024
 }
 
 @card{
-Why I started blogging
+why I started blogging
 }{
-# subtitle
+\#personal
 }{
 # description
 }{
@@ -83,9 +83,9 @@ feb 23rd 2024
 <div class="card-grid">
 
 @card{
-Why NeoVim
+why NeoVim
 }{
-# subtitle
+\#programming
 }{
 # description
 }{

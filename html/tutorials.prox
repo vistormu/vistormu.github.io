@@ -1,11 +1,11 @@
 @header
 
 @page-section{
-Tutorials
+tutorials
 }{
-A collection of tutorials on various topics
+a collection of tutorials on various topics
 }{
-From Python to NeoVim. I hope you find something useful here.
+from python to neovim
 }{
 python
 }{
@@ -23,7 +23,7 @@ challenges
 <div class="card-grid">
 
 @card{
-Create a Python Virtual Environment with Conda
+create a python virtual environment with conda
 }{
 \#python \#conda
 }{
@@ -35,7 +35,7 @@ oct 11th 2023
 }
 
 @card{
-Write Readable Code in Python
+write readable code in python
 }{
 \#python
 }{
@@ -47,7 +47,7 @@ nov 6th 2023
 }
 
 @card{
-Using NamedTuple and Dataclass in Python
+using NamedTuple and dataclass in python
 }{
 \#python
 }{
@@ -89,11 +89,11 @@ feb 18th 2024
 # }
 
 @card{
-Upload a Python Package to PyPi
+upload a python package to PyPI
 }{
 \#python \#pypi
 }{
-Learn how to upload a Python package to PyPi to make it available for everyone.
+Learn how to upload a Python package to PyPI to make it available for everyone.
 }{
 jan 30th 2024
 }{
@@ -203,7 +203,7 @@ jan 30th 2024
 <div class="card-grid">
 
 @card{
-Setup NeoVim from Scratch
+setup NeoVim from scratch
 }{
 \#neovim \#lua \#lazy
 }{
@@ -245,7 +245,7 @@ feb 18th 2024
 <div class="card-grid">
 
 @card{
-What is Proxima
+what is proxima
 }{
 \#proxima \#html \#css \#python
 }{
@@ -275,7 +275,7 @@ mar 7th 2024
 <div class="card-grid">
 
 @card{
-Snake Game in the Terminal with Go
+snake game in the terminal with go
 }{
 \#go \#cli
 }{

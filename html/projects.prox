@@ -1,11 +1,11 @@
 @header
 
 @page-section{
-Projects
+projects
 }{
-Programming and Researching
+programming and researching
 }{
-Take a look at some of my projects and contributions.
+take a look at some of my projects and contributions
 }{
 projects
 }{
@@ -16,7 +16,7 @@ journal articles
 conference papers
 }
 
-@h2{Projects}
+@h2{projects}
 
 @card{
 cahier
@@ -61,7 +61,7 @@ VISIT
 @card{
 vistormu.dev
 }{
-\#proxima \#html \#css
+\#proxima \#html \#css \#go
 }{
 This is my personal website, where my projects, blog posts, research work, and other stuff are hosted. It is built using Proxima, a markup language that I created to simplify the process of writing HTML and CSS code.
 }{
@@ -85,10 +85,10 @@ VISIT
 }
 
 
-@h2{Side projects}
+@h2{side projects}
 
 @card{
-Snake in the CLI
+snake in the CLI
 }{
 \#go \#cli
 }{
@@ -114,7 +114,7 @@ VISIT
 }
 
 @card{
-Kimchi
+kimchi
 }{
 \#go \#interpreter \#programming-language
 }{
@@ -127,7 +127,7 @@ VISIT
 }
 
 @card{
-Decision Maker
+decision maker
 }{
 \#go \#board-game \#cli
 }{
@@ -140,7 +140,7 @@ VISIT
 }
 
 @card{
-Advent of Code
+advent of code
 }{
 \#go-2022 \#python-2022 \#gleam-2020
 }{
@@ -152,7 +152,7 @@ https://github.com/vistormu/advent_of_code
 VISIT
 }
 
-@h2{Journal articles}
+@h2{journal articles}
 
 @card{
 Accelerating hyperparameter optimization with a secretary: a comparative analysis of Bayesian samplers for Machine Learning
@@ -169,9 +169,9 @@ under review
 }
 
 @card{
-Flexible strain-stress soft sensor modeling: integration and comparative analysis of Deep Learning architectures for regression
+Modeling with Transformers a Machine-Sewn-able Strain-Stress Sensor
 }{
-Engineering Applications of Artificial Intelligence | 2024
+IEEE Sensors Journal | 2024
 }{
 @uline{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco
 }{
@@ -208,7 +208,19 @@ https://doi.org/10.1016/j.sna.2024.115058
 VISIT
 }
 
-@h2{Conference papers}
+@h2{conference papers}
+
+@card{
+Validation of the Angular Positions Estimation of an Exosuit
+}{
+2024 International Conference on Neurorehabilitation | 2024
+}{
+P. Mansilla, @uline{V. Muñoz}, D. Copaci, D. Blanco
+}{
+under review
+}{
+}{
+}
 
 @card{
 Design and Gaussian processes modeling of a soft sensor
@@ -217,9 +229,10 @@ XLV Jornadas de Automática | 2024
 }{
 @uline{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco
 }{
-under review
 }{
+https://doi.org/10.17979/ja-cea.2024.45.10864
 }{
+VISIT
 }
 
 # @card{
