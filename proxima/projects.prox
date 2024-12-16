@@ -1,0 +1,183 @@
+@doc.head{}
+
+@doc.nav{}
+
+@page.landing{
+<title> projects
+}{
+<subtitle> programming and research projects
+}{
+<description> a collection of projects I have worked on
+}{
+<links> projects
+side projects
+}
+
+@sec.h2{projects}
+
+<p>
+Here is a collection of the projects I am working on.
+</p>
+
+@card{
+<title> goraspio
+}{
+<subtitle> \#go \#raspberry-pi \#communications
+}{
+<description> goraspio is a Go library
+}{
+<date> under development
+}{
+<link> https://github.com/vistormu/goraspio
+}{
+<button_text> VISIT
+}
+
+@card{
+<title> cahier
+}{
+<subtitle> \#rust \#ssh \#cli
+}{
+<description> cahier is a tool that allows you to manage your SSH connections in a simple and efficient way. It supports sending SSH keys, bringing and sending files, and connecting to your servers with a single command.
+}{
+<date> v0.1.2
+}{
+<link> https://github.com/vistormu/cahier
+}{
+<button_text> VISIT
+}
+
+@card{
+<title> proxima
+}{
+<subtitle> \#go \#markup-language \#python
+}{
+<description> proxima is a markup language that transpiles to any text-based format you want. Creating Python components, you can extend the language with your own logic and reuse them in any part of your document.
+}{
+<date> v0.5.0
+}{
+<link> https://github.com/vistormu/proxima
+}{
+<button_text> VISIT
+}
+
+
+@card{
+<title> catasta
+}{
+<subtitle> \#python \#pytorch \#machine-learning
+}{
+<description> Catasta is a Python library designed to simplify the process of Machine Learning model experimentation. Optimization, training, evaluation and inference all in one place! It is a part of my research work and it is available on PyPI.
+}{
+<date> v0.3.0
+}{
+<link> https://github.com/vistormu/catasta
+}{
+<button_text> VISIT
+}
+
+@card{
+<title> vistormu.dev
+}{
+<subtitle> \#proxima \#html \#css \#go
+}{
+<description> This is my personal website, where my projects, blog posts, research work, and other stuff are hosted. It is built using Proxima, a markup language that I created to simplify the process of writing HTML and CSS code.
+}{
+<date>
+}{
+<link> https://vistormu.dev
+}{
+<button_text> VISIT
+}
+
+@card{
+<title> vclog
+}{
+<subtitle> \#python \#logging
+}{
+<description> Vistor's Console Logger (VCLog) offers a minimal and colorful console logging. Single-script. No dependencies. It is available on PyPI.
+}{
+<date> v.1.1.1
+}{
+<link> https://github.com/vistormu/vclog
+}{
+<button_text> VISIT
+}
+
+@sec.h2{side projects}
+
+<p>
+Here are some side projects I have worked on.
+</p>
+
+@card{
+<title> snake in the CLI
+}{
+<subtitle> \#go \#cli
+}{
+<description> This is my attempt to create a simple Snake game using only the terminal and Go. It is a fun project to learn more about the terminal and its capabilities. I have a @url{/tutorials/snake-cli}{a blog post} on how to do it.
+}{
+<date>
+}{
+<link> https://github.com/vistormu/snake-cli
+}{
+<button_text> VISIT
+}
+
+@card{
+<title> jamba
+}{
+<subtitle> \#go \#text-editor
+}{
+<description> Jamba is a text editor inspired by Vim and written in Go. It is based on the @url{http://antirez.com/news/108}{antirez's Kilo Text Editor}, and it is my attempt to port the C version to a more idiomatic Go code. I highly recommend you to try and build your own text editor with @url{https://viewsourcecode.org/snaptoken/kilo/index.html}{this wonderful tutorial!}
+}{
+<date>
+}{
+<link> https://github.com/vistormu/jamba
+}{
+<button_text> VISIT
+}
+
+@card{
+<title> kimchi
+}{
+<subtitle> \#go \#interpreter \#programming-language
+}{
+<description> Kimchi is a general-purpose programming language that was part of a personal project to learn about programming language design and implementation. It is written in Go and it is based on the book @url{https://interpreterbook.com}{Writing an Interpreter in Go} by Thorsten Ball. 
+}{
+<date>
+}{
+<link> https://github.com/vistormu/kimchilang
+}{
+<button_text> VISIT
+}
+
+@card{
+<title> decision maker
+}{
+<subtitle> \#go \#board-game \#cli
+}{
+<description> Have you ever felt like you don't want to decide between a series of options? Decision Maker helps your indecision by running a board game!
+}{
+<date>
+}{
+<link> https://github.com/vistormu/decision_maker
+}{
+<button_text> VISIT
+}
+
+@card{
+<title> advent of code
+}{
+<subtitle> \#go-2022 \#python-2022 \#gleam-2020
+}{
+<description> Advent of Code is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.
+}{
+<date>
+}{
+<link> https://github.com/vistormu/advent_of_code
+}{
+<button_text> VISIT
+}
+
+@doc.foot{}

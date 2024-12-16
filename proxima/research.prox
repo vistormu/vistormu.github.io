@@ -1,0 +1,234 @@
+@doc.head{}
+
+@doc.nav{}
+
+@page.landing{
+<title> research and teaching
+}{
+<subtitle> research and teaching
+}{
+<description> research and teaching
+}{
+<links> teaching
+journal articles
+conference papers
+}
+
+# ========
+# TEACHING
+# ========
+@sec.h2{teaching}
+
+<p>
+Control Engineering lab sessions: 24 hours
+
+Final Degree Projects supervision: 1 student
+
+Master Thesis supervision: 2 students
+</p>
+
+# ================
+# JOURNAL ARTICLES
+# ================
+@sec.h2{journal articles}
+
+@card{
+<title> Machine Learning architectures for modeling a strain-stress flexible sensor
+}{
+<subtitle> MDPI Sensors | 2024
+}{
+<description> @txt.u{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco
+}{
+<date> under review
+}{
+<link>
+}{
+<button_text>
+}
+
+@card{
+<title> Modeling with Transformers a Machine-Sewable Strain-Stress Sensor
+}{
+<subtitle> Sensors and Actuators A: Physical | 2024
+}{
+<description> @txt.u{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco
+}{
+<date> under review
+}{
+<link>
+}{
+<button_text>
+}
+
+@card{
+<title> Accelerating hyperparameter optimization with a secretary
+}{
+<subtitle> Neurocomputing | 2024
+}{
+<description> @txt.u{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco
+}{
+<date> under review
+}{
+<link>
+}{
+<button_text>
+}
+
+@card{
+<title> ADAM: a robotic companion for enhanced quality of life in aging populations
+}{
+<subtitle> Frontiers in Neurorobotics | 2024
+}{
+<description> A. Mora, A. Prados, A. Mendez, G. Espinoza, P. Gonzalez, B. Lopez, @txt.u{V. Muñoz}, L. Moreno, S. Garrido, R. Barber 
+}{
+<date> 10.3389/fnbot.2024.1337608
+}{
+<link> https://doi.org/10.3389/fnbot.2024.1337608
+}{
+<button_text> VISIT
+}
+
+@card{
+<title> Design of a soft sensor based on silver-coated polyamide threads and stress-strain modeling via Gaussian processes
+}{
+<subtitle> Sensors and Actuators A: Physical | 2024
+}{
+<description> C. Ballester, @txt.u{V. Muñoz}, D. Copaci, L. Moreno, D. Blanco
+}{
+<date> 10.1016/j.sna.2024.115058
+}{
+<link> https://doi.org/10.1016/j.sna.2024.115058
+}{
+<button_text> VISIT
+}
+
+# ===========
+# CONFERENCES
+# ===========
+@sec.h2{conference papers}
+
+@card{
+<title> High Frequency Agonist-Antagonist Controller for Shape Memory Alloy Actuators
+}{
+<subtitle> RoboSoft 2025 | 2025
+}{
+<description> C. Ballester, @txt.u{V. Muñoz}, D. Copaci, L. Moreno, D. Blanco
+}{
+<date> under review
+}{
+<link>
+}{
+<button_text>
+}
+
+@card{
+<title> Validation of the Angular Positions Estimation of an Exosuit
+}{
+<subtitle> 2024 International Conference on Neurorehabilitation | 2024
+}{
+<description> P. Mansilla, @txt.u{V. Muñoz}, D. Copaci, D. Blanco
+}{
+<date>
+}{
+<link>
+}{
+<button_text>
+}
+
+@card{
+<title> Design and Gaussian processes modeling of a soft sensor
+}{
+<subtitle> XLV Jornadas de Automática | 2024
+}{
+<description> @txt.u{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco
+}{
+<date> 10.17979/ja-cea.2024.45.10864
+}{
+<link> https://doi.org/10.17979/ja-cea.2024.45.10864
+}{
+<button_text> VISIT
+}
+
+@card{
+<title> Improving Machine Learning modeling of wearable sensors
+}{
+<subtitle> Summer School in Neurorehabilitation 2024 | 2024
+}{
+<description> @txt.u{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco
+}{
+<date>
+}{
+<link>
+}{
+<button_text>
+}
+
+# @card{
+# Design and Gaussian processes modeling of a soft sensor
+# }{
+# Simposio de Robótica, Bioingeniería y Visión por Computador | 2024
+# }{
+# P. Mansilla, @txt.u{V. Muñoz}, D. Blanco
+# }{
+# under review
+# }{
+# }{
+# }
+
+@card{
+<title> Estimation of the load on an SMA actuator for rehabilitation
+}{
+<subtitle> XLIV Jornadas de Automática | 2023
+}{
+<description> C. Ballester, @txt.u{V. Muñoz}, D. Blanco
+}{
+<date> 10.17979/spudc.9788497498609.507
+}{
+<link> https://doi.org/10.17979/spudc.9788497498609.507
+}{
+<button_text> VISIT
+}
+
+@card{
+<title> An introduction to Apprenticeship Learning by teaching an agent how to play a video game
+}{
+<subtitle> 17th International Technology, Education and Development Conference | 2023
+}{
+<description> @txt.u{V. Muñoz}, A. Prados, R. Barber
+}{
+<date>
+}{
+<link> https://doi.org/10.21125/inted.2023.1264
+}{
+<button_text> VISIT
+}
+
+@card{
+<title> Design of a proportional controller for a mechanical ventilator
+}{
+<subtitle> Jornadas de Robótica, Educación en Automática y Bioingeniería | 2022
+}{
+<description> @txt.u{V. Muñoz}, M. Rollón, V. F. Muñoz | Jornadas de Robótica, Educación en Automática y Bioingeniería
+}{
+<date> ISBN: 978-84-09-41095-8
+}{
+<link>
+}{
+<button_text>
+}
+
+@card{
+<title> Creation of the Andalucía Respira mechanical ventilator
+}{
+<subtitle> XII Simposio CEA de bioingeniería | 2021
+}{
+<description> V. F. Muñoz, C. Pérez, I. Díaz, @txt.u{V. Muñoz}, M. Rollón, M. Mengual, A. Santiago
+}{
+<date>
+}{
+<link> http://hdl.handle.net/10115/17868
+}{
+<button_text> VISIT
+}
+
+@doc.foot{}

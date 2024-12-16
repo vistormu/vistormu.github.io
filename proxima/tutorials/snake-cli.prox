@@ -1,0 +1,1120 @@
+@doc.head{}
+
+@doc.nav{}
+
+@sec.h1{Snake Game in the Terminal using Go}
+
+@post.info{
+<published> mar 18th 2024
+}{
+<last_edit> mar 18th 2024
+}{
+<read_time> 30
+}
+
+The terminal is a powerful tool that can be used for more than just running commands. In this tutorial, we will create a simple snake game that runs in the terminal using Go; no dependencies, no assets. Although the game could be done in a single script, I will break it down into multiple files so that we can learn how to structure a Go project.
+
+Each go module will be responsible for a different part of the game. We will have a module for the terminal, one for reading the user's input, one for the game logic, and one for rendering.
+
+Let's get started!
+
+@sec.h2{Table of Contents}
+
+@post.toc{
+Setup
+Entering Raw Mode
+Keyboard Input
+Game Loop and Rendering
+The Snake
+Food and Game Over
+Wrapping Up
+}
+
+@sec.h2{Setup}
+
+Before we start, make sure you have Go installed on your machine, our only dependency for this project. If you don't have it installed, you can download it from @url{https://go.dev/doc/install}{the official website}.
+
+Then, create a new directory for the project and navigate to it.
+
+@code.block{<file> terminal}{<lang> bash}{
+mkdir snake-game
+cd snake-game
+}
+
+To start a new Go project, we need to create a new module. We can do this by running the following command.
+
+@code.block{<file> <file> terminal}{<lang> bash}{
+go mod init snake
+}
+
+This will create a new file called @txt.hl{go.mod} in the current directory. This file is used to define the module and its dependencies.
+
+Now that we have our module set up, we can start writing the code for our game. Let's start by creating a new file called @txt.hl{main.go} and adding some temporary code to it.
+
+@code.block{<file> main.go}{<lang> go}{
+package main
+    
+import (
+    "fmt"
+)
+    
+func main() \{
+    fmt.Println("Hello, World!")
+\}
+}
+
+@sec.h2{Entering Raw Mode}
+
+By default, the terminal is in @txt.hl{canonical mode}. This means that the terminal waits for the user to press @txt.hl{Enter} before sending the input to the program. This is not suitable for games, as we want to process the input as soon as the user presses a key. To do this, we need to put the terminal in @txt.hl{raw mode}.
+
+@sec.h3{Storing Terminal Attributes}
+
+Let's create a new directory called @txt.hl{terminal} and add a new file called @txt.hl{termios.go} to it. This file will contain a struct called @txt.hl{Termios} that we will use to store the terminal attributes.
+
+@code.block{<file> terminal/termios.go}{<lang> go}{
+package terminal
+    
+type Termios struct \{
+    Iflag, Oflag, Cflag, Lflag uint32
+    Cc [20]byte
+    Ispeed, Ospeed uint32
+\}
+}
+
+@txt.hl{Iflag}, @txt.hl{Oflag}, @txt.hl{Cflag}, and @txt.hl{Lflag} are used to store the input, output, control, and local modes, respectively. @txt.hl{Cc} is used to store the control characters. @txt.hl{Ispeed} and @txt.hl{Ospeed} are used to store the input and output baud rates.
+
+The next step is to create a new function called @txt.hl{getTermios} that will return the current terminal attributes. For this, we will use the @txt.hl{syscall} and @txt.hl{unsafe} packages.
+
+@code.block{<file> terminal/termios.go}{<lang> go}{
+package terminal
+    
+import (
+    "syscall"
+    "unsafe"
+)
+}
+
+@code.block{<file> terminal/termios.go}{<lang> go}{
+func getTermios(fd uintptr) (*Termios, error) \{
+    termios := &Termios\{\}
+    _, _, errno := syscall.Syscall(syscall.SYS_IOCTL, fd, syscall.TCGETS, uintptr(unsafe.Pointer(termios)))
+    if errno != 0 \{
+        return nil, errno
+    \}
+    
+    return termios, nil
+\}
+}
+
+This function accepts a file descriptor @txt.hl{fd} as an argument, which is used to identify the terminal. We initialize a new @txt.hl{Termios} struct and use the @txt.hl{syscall.Syscall} function to make a system call to @txt.hl{ioctl} (input/output control) with @txt.hl{syscall.TCGETS} indicating that the current settings of the terminal are to be read. The memory address of the @txt.hl{Termios} struct is passed to @txt.hl{ioctl} through @txt.hl{unsafe.Pointer}, facilitating direct memory manipulation. If the operation is successful, the function returns a pointer to a @txt.hl{Termios} struct populated with the current terminal settings. If there's an error (indicated by a non-zero @txt.hl{errno}), an error is returned instead.
+
+For setting back the terminal attributes given a @txt.hl{Termios} struct, we can create a new function called @txt.hl{setTermios}.
+
+@code.block{<file> terminal/termios.go}{<lang> go}{
+func setTermios(fd uintptr, termios *Termios) error \{
+    _, _, errno := syscall.Syscall(syscall.SYS_IOCTL, fd, uintptr(syscall.TCSETS+1), uintptr(unsafe.Pointer(termios)))
+    if errno != 0 \{
+        return errno
+    \}
+    
+    return nil
+\}
+}
+
+The main idea is the same as the @txt.hl{getTermios} function, but this time we use @txt.hl{syscall.TCSETS} to set the terminal attributes. We add one to the constant to indicate that we want to change the terminal settings.
+
+@sec.h3{Terminal Object}
+
+Now that we have the functions to get and set the terminal attributes, we can create a new struct called @txt.hl{Terminal} that will store all of our terminal-related data. This struct will contain:
+
+@list.u{
+The file descriptor of the terminal, which is used to identify it.
+The original terminal attributes, which will be used to restore the terminal to its original state when the program exits.
+The modified terminal attributes, which will be used to put the terminal in raw mode.
+The number of columns and rows of the terminal, which will be used to render the game.
+}
+
+@code.block{<file> terminal/terminal.go}{<lang> go}{
+package terminal
+    
+type Terminal struct \{
+    fd uintptr
+    original Termios
+    modified *Termios
+    NCols int
+    NRows int
+\}
+}
+
+We will also create a new function called @txt.hl{New} that will return a new @txt.hl{Terminal} object.
+
+@code.block{<file> terminal/terminal.go}{<lang> go}{
+import (
+    "os"
+)
+}
+
+@code.block{<file> terminal/terminal.go}{<lang> go}{
+func New() (*Terminal, error) \{
+    t := &Terminal\{\}
+    
+    t.fd = os.Stdout.Fd()
+    termios, err := getTermios(t.fd)
+    if err != nil \{
+        return nil, err
+    \}
+      
+    t.original = *termios
+    t.modified = termios
+    
+    return t, nil
+\}
+}
+
+This function initializes a new @txt.hl{Terminal} object and sets the file descriptor to the standard output. It then gets the current terminal attributes and stores them in the @txt.hl{original} and @txt.hl{modified} attributes. If an error occurs, the function returns @txt.hl{nil} and the error.
+
+We can then create a new method called @txt.hl{Restore} that will restore the terminal to its original state.
+
+@code.block{<file> terminal/terminal.go}{<lang> go}{
+func (t *Terminal) Restore() error \{
+    return setTermios(t.fd, &t.original)
+\}
+}
+
+This method calls the @txt.hl{setTermios} function with the file descriptor and the original terminal attributes. If an error occurs, the method returns the error.
+
+@sec.h3{Window Size and Raw Mode}
+
+We will also create a new method called @txt.hl{getWindowSize} that will get the number of columns and rows of the terminal. First, we need to import again the @txt.hl{syscall} and @txt.hl{unsafe} packages, as we will also make a system call to @txt.hl{ioctl} to get the window size.
+
+@code.block{<file> terminal/terminal.go}{<lang> go}{
+import (
+    "os"
+    "syscall"
+    "unsafe"
+)
+}
+
+@code.block{<file> terminal/terminal.go}{<lang> go}{
+func (t *Terminal) getWindowSize() error \{
+    ws := struct \{ 
+        row uint16
+        col uint16
+    \}\{\}
+    
+    _, _, errno := syscall.Syscall(syscall.SYS_IOCTL, t.fd, syscall.TIOCGWINSZ, uintptr(unsafe.Pointer(&ws)))
+    if errno != 0 \{
+        return errno
+    \}
+    
+    t.NCols = int(ws.col)
+    t.NRows = int(ws.row)
+    
+    return nil
+\}
+}
+
+In this function, we create an anonymous struct called @txt.hl{ws} that contains two fields: @txt.hl{row} and @txt.hl{col}. We then use the @txt.hl{syscall.Syscall} function to make a system call to @txt.hl{ioctl} with @txt.hl{syscall.TIOCGWINSZ} indicating that the window size is to be read. The memory address of the @txt.hl{ws} struct is passed to @txt.hl{ioctl} through @txt.hl{unsafe.Pointer}. If the operation is successful, the function returns the number of columns and rows of the terminal. If there's an error (indicated by a non-zero @txt.hl{errno}), an error is returned instead.
+
+Finally, we will create a new method called @txt.hl{enableRawMode} that will put the terminal in raw mode.
+
+@code.block{<file> terminal/terminal.go}{<lang> go}{
+func (t *Terminal) enableRawMode() \{
+    t.modified.Lflag &^= syscall.ECHO | syscall.ICANON | syscall.ISIG | syscall.IEXTEN
+    t.modified.Iflag &^= syscall.BRKINT | syscall.ICRNL | syscall.INPCK | syscall.ISTRIP | syscall.IXON
+    t.modified.Cflag |= syscall.CS8
+    t.modified.Oflag &^= syscall.OPOST
+    t.modified.Cc[syscall.VMIN+1] = 0
+    t.modified.Cc[syscall.VTIME+1] = 1
+\}
+}
+
+This method modifies the terminal attributes to put the terminal in raw mode. It turns off a bunch of flags that are enabled by default in our terminal. Basically,
+it turns off the echoing of input, canonical mode, and signals. It also sets the character size to 8 bits and turns off output processing. Finally, it sets the minimum number of characters to read before returning from a read and the maximum amount of time to wait before returning from a read.
+
+If you are interested in learning more about the terminal attributes, you can check the @url{https://viewsourcecode.org/snaptoken/kilo/02.enteringRawMode.html}{kilo tutorial}, which explains in great detail how to put the terminal in raw mode.
+
+Now, we can complete the @txt.hl{New} function by calling the @txt.hl{enableRawMode} and @txt.hl{getWindowSize} methods.
+
+@code.block{<file> terminal/terminal.go}{<lang> go}{
+func New() (*Terminal, error) \{
+    t := &Terminal\{\}
+    
+    t.fd = os.Stdout.Fd()
+    termios, err := getTermios(t.fd)
+    if err != nil \{
+        return nil, err
+    \}
+    
+    t.original = *termios
+    t.modified = termios
+    
+    t.enableRawMode()
+    err = t.getWindowSize()
+    if err != nil \{
+        return nil, err
+    \}
+    
+    err = setTermios(t.fd, t.modified)
+    if err != nil \{
+        return nil, err
+    \}
+    
+    return t, nil
+\}
+}
+
+@sec.h3{Main Function}
+
+Now that we have our terminal object, let's modify the main function to use it. We will create a new terminal object and defer a call to its @txt.hl{Restore} method to ensure that the terminal is restored to its original state when the program exits. Additionally, we will add a loop that reads a single byte from the standard input and exits when the user presses the @txt.hl{q} key.
+
+@code.block{<file> main.go}{<lang> go}{
+package main
+    
+import (
+    "os"
+    "snake/terminal"
+)
+    
+func main() \{
+    t, err := terminal.New()
+    if err != nil \{
+        panic(err)
+    \}
+    defer t.Restore()
+    
+    buffer := make([]byte, 1)
+    for \{
+        os.Stdin.Read(buffer) 
+    
+        if buffer[0] == 'q' \{
+            break
+        \}
+    \}
+\}
+}
+
+When you run the program, you should see that the terminal is now in raw mode, meaning that the input is processed as soon as the user presses a key. For now, nothing will happen when you press a key, but we will use this functionality to move the snake in the following sections.
+
+When you press the @txt.hl{q} key, the program will exit and the terminal will be restored to its original state.
+
+@sec.h2{Keyboard Input}
+
+We will create a new module named @txt.hl{inputreader} which will be responsible for reading the user's input and sending the corresponding key to the game loop. 
+
+@sec.h3{InputReader Object}
+
+This module will contain a struct called @txt.hl{InputReader} that will store a buffer to read the user's input.
+
+@code.block{<file> inputreader/inputreader.go}{<lang> go}{
+package inputreader
+    
+type InputReader struct \{
+    buffer []byte
+\}
+}
+
+We create a new function called @txt.hl{New} that will return a new @txt.hl{InputReader} object.
+
+@code.block{<file> inputreader/inputreader.go}{<lang> go}{
+func New() *InputReader \{
+    return &InputReader\{buffer: make([]byte, 1)\}
+\}
+}
+
+The buffer will be used to store a single byte of the user's input.
+
+We also create a new method called @txt.hl{Read} that will read the byte from the standard input and return it.
+
+@code.block{<file> inputreader/inputreader.go}{<lang> go}{
+import (
+    "os"
+)
+}
+
+@code.block{<file> inputreader/inputreader.go}{<lang> go}{
+func (ir *InputReader) Read() byte \{
+    os.Stdin.Read(ir.buffer)
+    return ir.buffer[0]
+\}
+}
+
+It's always important to catch errors when reading from the standard input, but for this application, we don't want the program to panic if an error occurs. Instead, we will ignore the error so the game can continue running.
+
+Now, let's update the main function to use the @txt.hl{InputReader} object.
+
+@code.block{<file> main.go}{<lang> go}{
+import (
+    "snake/terminal"
+    "snake/inputreader"
+)
+}
+
+@code.block{<file> main.go}{<lang> go}{
+func main() \{
+    t, err := terminal.New()
+    
+    if err != nil \{
+        panic(err)
+    \}
+    defer t.Restore()
+    
+    ir := inputreader.New()
+    
+    for \{
+        key := ir.Read()
+    
+        if key == 'q' \{
+            break
+        \}
+    \}
+\}
+}
+
+If you run the program now, you should see that the terminal is still in raw mode and that the program exits when you press the @txt.hl{q} key.
+
+@sec.h3{Reading Arrow Keys}
+
+Arrow keys are a bit special, as they are represented by three bytes instead of one:
+
+@list.u{
+Up: @txt.hl{27 91 65}
+Down: @txt.hl{27 91 66}
+Right: @txt.hl{27 91 67}
+Left: @txt.hl{27 91 68}
+}
+
+We will update the @txt.hl{Read} method to detect arrow keys and map them to a single byte, corresponding with the WASD keys.
+
+@code.block{<file> inputreader/inputreader.go}{<lang> go}{
+func (ir *InputReader) Read() byte \{
+    os.Stdin.Read(ir.buffer)
+    
+    if ir.buffer[0] == 27 \{
+        seq := make([]byte, 2)
+        os.Stdin.Read(seq)
+        if seq[0] == 91 \{
+            switch seq[1] \{
+            case 65:
+                return 'w'
+            case 66:
+                return 's'
+            case 67:
+                return 'd'
+            case 68:
+                return 'a'
+            \}
+        \}
+    \}
+    
+    return ir.buffer[0]
+\}
+}
+
+With this, we have finished with the user's input for a long time. We will now move on to the game loop and rendering.
+
+@sec.h2{Game Loop and Rendering}
+
+Once we have the user's input, we can start working on the game loop. The game loop will be responsible for updating the game state. For now, we will use the cursor as the object we want to move around the terminal. Then, it will be easy to replace the cursor with the snake.
+
+@sec.h3{Game Loop}
+
+Let's create a struct called @txt.hl{Game} that will store the cursor position, and the respective @txt.hl{New} function.
+
+@code.block{<file> game/game.go}{<lang> go}{
+package game
+    
+type Game struct \{
+    X int
+    Y int
+\}
+    
+func New() *Game \{
+    return &Game\{X: 0, Y: 0\}
+\}
+}
+
+Now, we can create a new method called @txt.hl{Update} that will update the game state based on the user's input.
+
+@code.block{<file> game/game.go}{<lang> go}{
+func (g *Game) Update(key byte) \{
+    switch key \{
+    case 'w':
+        g.Y--
+    case 's':
+        g.Y++
+    case 'a':
+        g.X--
+    case 'd':
+        g.X++
+    \}
+\}
+}
+
+With all this, we can update the main function to use the @txt.hl{Game} object and update the game state based on the user's input.
+
+@code.block{<file> main.go}{<lang> go}{
+func main() \{
+    t, err := terminal.New()
+    
+    if err != nil \{
+        panic(err)
+    \}
+    defer t.Restore()
+    
+    ir := inputreader.New()
+    
+    g := game.New()
+    
+    for \{
+        key := ir.Read()
+        if key == 'q' \{
+            break
+        \}
+    
+        g.Update(key)
+    \}
+\}
+}
+
+If you run the program, nothing should have changed.
+
+@sec.h3{Rendering}
+
+Now that we have the game state, we can start rendering the game. We will create a new module called @txt.hl{renderer} that will be responsible for rendering the game state to the terminal.
+
+Inside the renderer module, we will create a new struct called @txt.hl{Renderer} and a new function called @txt.hl{New} that will return a new @txt.hl{Renderer} object.
+
+@code.block{<file> renderer/renderer.go}{<lang> go}{
+package renderer
+    
+type Renderer struct \{
+\}
+    
+func New() *Renderer \{
+    return &Renderer\{\}
+\}
+}
+
+We will also create a new method called @txt.hl{Render} that will render the game state to the terminal.
+
+@code.block{<file> renderer/renderer.go}{<lang> go}{
+import (
+    "fmt"
+    "os"
+    "snake/game"
+)
+}
+
+@code.block{<file> renderer/renderer.go}{<lang> go}{
+func (r *Renderer) Render(g *game.Game) \{
+    cursorPos := fmt.Sprintf("\\x1b[%d;%dH", g.Y+1, g.X+1)
+    os.Stdout.WriteString(cursorPos)
+\}
+}
+
+This method uses the @txt.hl{fmt.Sprintf} function to create a string with the escape sequence @txt.hl{ESC[n;mH}, where @txt.hl{n} and @txt.hl{m} are the row and column of the cursor, respectively. The string is then written to the standard output, a.k.a, the terminal GUI.
+
+Now, we can update the main function to use the @txt.hl{Renderer} object and render the game state.
+
+@code.block{<file> main.go}{<lang> go}{
+import (
+    "snake/terminal"
+    "snake/inputreader"
+    "snake/game"
+    "snake/renderer"
+)
+}
+
+@code.block{<file> main.go}{<lang> go}{
+func main() \{
+    t, err := terminal.New()
+    
+    if err != nil \{
+        panic(err)
+    \}
+    defer t.Restore()
+    
+    ir := inputreader.New()
+    g := game.New()
+    r := renderer.New()
+    
+    for \{
+        key := ir.Read()
+        if key == 'q' \{
+            break
+        \}
+    
+        g.Update(key)
+    
+        r.Render(g)
+    \}
+\}
+}
+
+If you run your program, you will be able to move the cursor around the terminal using the WASD and arrow keys. However, you can notice several issues:
+
+@list.u{
+The cursor can go out of the terminal's boundaries, printing weird stuff.
+When you exit the program, the cursor doesn't return to its original position.
+The cursor doesn't move smoothly.
+}
+
+Let's solve these issues one by one.
+
+@sec.h3{Clamping the Cursor Position}
+
+This is the easiest issue to solve. In the @txt.hl{Update} method of the @txt.hl{Game} object, we can clamp the cursor position to the terminal's boundaries. For this, we will need to tell the game object the size of the terminal, or board, in this case. That information is stored
+in the @txt.hl{Terminal} object. So, let's add two new attributes to the @txt.hl{Game} object and update the @txt.hl{New} function to accept the number of columns and rows of the terminal.
+
+@code.block{<file> game/game.go}{<lang> go}{
+type Game struct \{
+    X int
+    Y int
+    NRows int
+    NCols int
+\}
+    
+func New(nRows, nCols int) *Game \{
+    return &Game\{X: 0, Y: 0, NRows: nRows, NCols: nCols\}
+\}
+}
+
+In the main function, we can update the @txt.hl{New} function call to pass the number of columns and rows of the terminal.
+
+@code.block{<file> main.go}{<lang> go}{
+    g := game.New(t.NRows, t.NCols)
+}
+
+Now, we can update the @txt.hl{Update} method to clamp the cursor position to the terminal's boundaries.
+
+@code.block{<file> game/game.go}{<lang> go}{
+func (g *Game) Update(key byte) \{
+    switch key \{
+    case 'w':
+        if g.Y \> 0 \{
+            g.Y--
+        \}
+    case 's':
+        if g.Y \< g.NRows-1 \{
+            g.Y++
+        \}
+    case 'a':
+        if g.X \> 0 \{
+            g.X--
+        \}
+    case 'd':
+        if g.X \< g.NCols-1 \{
+            g.X++
+        \}
+    \}
+\}
+}
+
+If you run the program now, you should see that the cursor is clamped to the terminal's boundaries.
+
+@sec.h3{Restoring the Cursor Position}
+
+This issue is caused by the fact that we are not restoring the cursor position when the program exits. We can solve this issue by adding a new method to the @txt.hl{Renderer} object that will restore the cursor position to its original state.
+
+To restore the terminal correctly, we will need to add the following escape sequences by order:
+
+@list.u{
+To hide the cursor: @txt.hl{ESC[?25l}
+To move the cursor to the top-left corner: @txt.hl{ESC[H}
+To clear the terminal screen: @txt.hl{ESC[2J}
+To show the cursor: @txt.hl{ESC[?25h}
+}
+
+Let's create all these constants in the @txt.hl{renderer} module.
+
+@code.block{<file> renderer/renderer.go}{<lang> go}{
+const (
+    clearScreen = "\\x1b[2J"
+    cursorHide = "\\x1b[?25l"
+    cursorShow = "\\x1b[?25h"
+    cursorHome = "\\x1b[H"
+)
+}
+
+Now, we can create a new method called @txt.hl{Restore} that will restore the cursor position to its original state.
+
+@code.block{<file> renderer/renderer.go}{<lang> go}{
+func (r *Renderer) Restore() \{
+    outString := cursorHide
+    outString += clearScreen
+    outString += cursorHome
+    outString += cursorShow
+    os.Stdout.WriteString(outString)
+\}
+}
+
+Let's change the main function to call all the @txt.hl{Restore} methods when the program exits. For that, we will create a new function called @txt.hl{atExit} that will be called when the program exits.
+
+@code.block{<file> main.go}{<lang> go}{
+func atExit(t *terminal.Terminal, r *renderer.Renderer) \{
+    t.Restore()
+    r.Restore()
+\}
+}
+
+@code.block{<file> main.go}{<lang> go}{
+func main() \{
+    t, err := terminal.New()
+    if err != nil \{
+        panic(err)
+    \}
+    
+    ir := inputreader.New()
+    g := game.New(t.NRows, t.NCols)
+    r := renderer.New()
+    
+    defer atExit(t, r)
+    for \{
+        key := ir.Read()
+        if key == 'q' \{
+            break
+        \}
+    
+        g.Update(key)
+        r.Render(g)
+    \}
+\}
+}
+
+The program should now restore the cursor position when it exits.
+
+@sec.h3{Moving the Cursor Smoothly}
+
+The last issue is caused by the fact that we are rendering the game continuously. We can solve this issue by adding a game tick to the game loop. A game tick is a fundamental concept that allows you to control the flow and timing of game processes, ensuring that movement and other game mechanics are executed at a consistent rate, independent of the system's processing speed.
+
+This can be achieved by using a @txt.hl{time.Ticker} from the @txt.hl{time} package. A ticker can be set to emit events at a fixed interval, which you can use to update game states such as cursor movement, input handling, and rendering. 
+
+@code.block{<file> main.go}{<lang> go}{
+import (
+    "time"
+    "snake/terminal"
+    "snake/inputreader"
+    "snake/game"
+    "snake/renderer"
+)
+}
+
+Let's add the tick rate and the ticker to the main function.
+
+@code.block{<file> main.go}{<lang> go}{
+    tickRate := time.Second / 10
+    ticker := time.NewTicker(tickRate)
+}
+
+And update the @txt.hl{atExit} function to stop the ticker when the program exits.
+
+@code.block{<file> main.go}{<lang> go}{
+func atExit(t *terminal.Terminal, r *renderer.Renderer, ticker *time.Ticker) \{
+    t.Restore()
+    r.Restore()
+    ticker.Stop()
+\}
+}
+
+Now, we can update the game loop to use the ticker.
+
+@code.block{<file> main.go}{<lang> go}{
+    defer atExit(t, r, ticker)
+    for \{
+        select \{
+        case \<-ticker.C:
+            key := ir.Read()
+            if key == 'q' \{
+                return
+            \}
+    
+            g.Update(key)
+            r.Render(g)
+        \}
+    \}
+}
+
+Note that the @txt.hl{break} when the @txt.hl{q} key is pressed was replaced by a @txt.hl{return} statement. This is because we are using a @txt.hl{select} statement, which is used to wait for multiple channel operations. In this case, we are waiting for the ticker to emit an event.
+
+@sec.h3{Non-blocking Input}
+
+We haven't still solved the issue of smooth movement. The problem is that, as we have the code now, the input of the user is read only when the ticker emits an event. This means that the user's input is only processed at a fixed interval, which is not what we want. We want the user's input to be processed as soon as it is received.
+
+In Go, we can achieve this by using goroutines and channels. Goroutines are lightweight threads managed by the Go runtime, and channels are Go's way of allowing goroutines to communicate with each other safely.
+
+The first thing we need to do is to update the @txt.hl{Read} method of the @txt.hl{InputReader} object to use and store the input in a channel.
+
+@code.block{<file> inputreader/inputreader.go}{<lang> go}{
+func (ir *InputReader) Read(events chan byte) \{
+    for \{
+        for \{
+            readLen, _ := os.Stdin.Read(ir.buffer)
+            if readLen \> 0 \{
+                break
+            \}
+        \}
+        if ir.buffer[0] == 27 \{
+            seq := make([]byte, 2)
+            os.Stdin.Read(seq)
+            if seq[0] == 91 \{
+                switch seq[1] \{
+                case 65:
+                    events \<- 'w'
+                    continue
+                case 66:
+                    events \<- 's'
+                    continue
+                case 67:
+                    events \<- 'd'
+                    continue
+                case 68:
+                    events \<- 'a'
+                    continue
+                \}
+            \}
+        \}
+        events \<- ir.buffer[0]
+    \}
+\}
+}
+
+Note that we have made several key changes to the method:
+
+@list.u{
+First, we have added a new argument called @txt.hl{events} of type @txt.hl{chan byte}. This is the channel that will be used to communicate with the main goroutine.
+We have removed the output of the method, as it is no longer needed.
+Now the method is an infinite loop that reads the user's input and sends it to the @txt.hl{events} channel.
+There is a second loop that reads the user's input until it receives a byte.
+In the switch statement, we have replaced the @txt.hl{return} statement with a two new statements: adding the key to the @txt.hl{events} channel and a @txt.hl{continue} statement.
+}
+
+Now, in the main function, we can create a new channel and start a new goroutine to read the user's input. Additionally, we create a new variable called @txt.hl{input} to store the user's input.
+
+@code.block{<file> main.go}{<lang> go}{
+    events := make(chan byte)
+    go ir.Read(events)
+    var input byte
+}
+
+And we update the main loop.
+
+@code.block{<file> main.go}{<lang> go}{
+    for \{
+        select \{
+        case \<-ticker.C:
+            r.Render(g)
+            g.Update(input)
+        case input = \<-events:
+            if input == 'q' \{
+                return
+            \}
+        \}
+    \}
+}
+
+If you run the game, you should see that the cursor moves smoothly and that the user's input is processed as soon as it is received. 
+
+You should also see that the cursor moves continuously, even if the user doesn't press any key. This is because the pressed key is stored in the @txt.hl{input} variable and used in the next iteration of the game loop. However, if you press any other key, the cursor will stop, as in the switch statement of the @txt.hl{Update} method of the @txt.hl{Game} object, there is no case for that key. We will fix that soon.
+
+@sec.h2{The Snake}
+
+It's time we add the snake to the game. The snake will be represented by a list of coordinates, and it will move continuously in the direction of the last key pressed. When the snake eats the food, it will grow by one unit. If the snake collides with the boundaries of the terminal or with itself, the game will end.
+
+@sec.h3{Snake Object}
+
+Let's create a new file called @txt.hl{snake.go} inside the @txt.hl{game} module and add a new struct called @txt.hl{Snake} to it.
+
+@code.block{<file> game/snake.go}{<lang> go}{
+package game
+    
+type Snake struct \{
+    Body []Point
+    Dir  Direction
+\}
+}    
+
+Now, let's define the @txt.hl{Point} and @txt.hl{Direction} types in the @txt.hl{game.go} file.
+
+@code.block{<file> game/game.go}{<lang> go}{
+type Point struct \{
+    X int
+    Y int
+\}
+}
+
+@code.block{<file> game/game.go}{<lang> go}{
+type Direction int 
+const (
+    Up Direction = iota
+    Down
+    Left
+    Right
+)
+}
+
+Let's create a function to create a new snake.
+
+@code.block{<file> game/snake.go}{<lang> go}{
+func NewSnake() *Snake \{
+    head := Point\{1, 0\}
+    body := Point\{0, 0\}
+    
+    return &Snake\{
+        Body: []Point\{body, head\},
+        Dir:  Right,
+    \}
+\}
+}
+
+We initialize the snake to be two units long, with the head at the position @txt.hl{(1, 0)} and the body at the position @txt.hl{(0, 0)}. The direction of the snake is set to @txt.hl{Right}.
+
+And finally, let's update the @txt.hl{Game} object to store the snake, and remove the @txt.hl{X} and @txt.hl{Y} attributes, as they are no longer needed.
+
+@code.block{<file> game/game.go}{<lang> go}{
+type Game struct \{
+    NRows int
+    NCols int
+    Snake *Snake
+\}
+}
+
+@code.block{<file> game/game.go}{<lang> go}{
+func New(nRows, nCols int) *Game \{
+    return &Game\{
+        NRows: nRows,
+        NCols: nCols,
+        Snake: NewSnake(),
+    \}
+\}
+}
+
+@sec.h3{Moving the Snake}
+
+We will handle the movement of the snake in a new method called @txt.hl{Move} of the @txt.hl{Snake} object.
+
+@code.block{<file> game/snake.go}{<lang> go}{
+func (s *Snake) Move() \{
+    head := s.Body[len(s.Body)-1]
+    var newHead Point
+    switch s.Dir \{
+    case Up:
+        newHead = Point\{head.X, head.Y - 1\}
+    case Down:
+        newHead = Point\{head.X, head.Y + 1\}
+    case Left:
+        newHead = Point\{head.X - 1, head.Y\}
+    case Right:
+        newHead = Point\{head.X + 1, head.Y\}
+    \}
+    s.Body = append(s.Body, newHead)
+\}
+}
+
+And in the @txt.hl{Game} object, we will update the @txt.hl{Update} method to move the snake in the direction of the last key pressed.
+
+@code.block{<file> game/game.go}{<lang> go}{
+func (g *Game) Update(key byte) \{
+    switch key \{
+    case 'w':
+        g.Snake.Dir = Up
+    case 's':
+        g.Snake.Dir = Down
+    case 'a':
+        g.Snake.Dir = Left
+    case 'd':
+        g.Snake.Dir = Right
+    \}
+    g.Snake.Move()
+\}
+}
+
+With this, the snake will only grow on every iteration of the game loop. We will fix by adding a new method called @txt.hl{Pop} to the @txt.hl{Snake} object. This method will remove the first element of the snake's body, effectively making it move.
+
+@code.block{<file> game/snake.go}{<lang> go}{
+func (s *Snake) Pop() \{
+    s.Body = s.Body[1:]
+\}
+}
+
+And we will update the @txt.hl{Update} method of the @txt.hl{Game} object to call the @txt.hl{Pop} method after the snake moves.
+
+@code.block{<file> game/game.go}{<lang> go}{
+func (g *Game) Update(key byte) \{
+    switch key \{
+    case 'w':
+        g.Snake.Dir = Up
+    case 's':
+        g.Snake.Dir = Down
+    case 'a':
+        g.Snake.Dir = Left
+    case 'd':
+        g.Snake.Dir = Right
+    \}
+    g.Snake.Move()
+    g.Snake.Pop()
+\}
+}
+
+Now, the snake will move continuously in the direction of the last key pressed.
+
+@sec.h3{Rendering the Snake}
+
+We need to update the @txt.hl{Render} method of the @txt.hl{Renderer} object to render the snake to the terminal, instead of the cursor.
+
+@code.block{<file> renderer/renderer.go}{<lang> go}{
+func (r *Renderer) Render(g *game.Game) \{
+    strOut := clearScreen
+    for i, p := range g.Snake.Body \{
+        if len(g.Snake.Body) - 1 == i \{
+            strOut += fmt.Sprintf("\\x1b[%d;%dHO", p.Y+1, p.X+1)
+            break
+        \}
+        strOut += fmt.Sprintf("\\x1b[%d;%dH\@", p.Y+1, p.X+1)
+    \}
+    strOut += cursorHide
+    os.Stdout.WriteString(strOut)
+\}
+}
+
+As we did previously with the cursor, we are using the escape sequence @txt.hl{ESC[y;xH} to move the cursor to the position @txt.hl{(x, y)}. We are adding a @txt.hl{\@ .} character to the position of the snake's body, and a @txt.hl{O} character to the position of the snake's head.
+
+Remember that the terminal is one-indexed, so we need to add 1 to the position of the snake's body and head.
+
+Now, if you run the game, you should be able to control the snake.
+
+@sec.h2{Food and Game Over}
+
+The last thing we need to do is to add the food to the game and handle the game over condition.
+
+@sec.h3{Food Object}
+
+The food object will be represented by a single point, so we can reuse the @txt.hl{Point} type we created previously.
+
+@code.block{<file> game/game.go}{<lang> go}{
+type Game struct \{
+    NRows int
+    NCols int
+    Snake *Snake
+    Food Point
+\}
+}
+
+For placing the food, we will create a new method called @txt.hl{spawnFood} of the @txt.hl{Game} object. This method will generate a random position for the food and check if the position is not occupied by the snake. Let's import the @txt.hl{math/rand} module.
+
+@code.block{<file> game/game.go}{<lang> go}{
+import (
+    "math/rand"
+)
+}
+
+@code.block{<file> game/game.go}{<lang> go}{
+func (g *Game) spawnFood() \{
+    x := rand.Intn(g.NCols)
+    y := rand.Intn(g.NRows)
+    
+    g.Food = Point\{x, y\}
+    
+    for _, p := range g.Snake.Body \{
+        if p == g.Food \{
+            g.spawnFood()
+        \}
+    \}
+\}
+}
+
+Note the beauty of recursion. If the food is placed in the same position as the snake, we call the @txt.hl{spawnFood} method again.
+
+As the @txt.hl{spawnFood} method needs to know where the snake is, we will need to restructure the @txt.hl{New} function to call the @txt.hl{spawnFood} method after the snake is created.
+
+@code.block{<file> game/game.go}{<lang> go}{
+func New(nRows, nCols int) *Game \{
+    g := &Game\{NRows: nRows, NCols: nCols\}
+    g.Snake = NewSnake()
+    g.spawnFood()
+    
+    return g
+\}
+}
+
+Lastly, we just simply update the condition of the @txt.hl{Update} function to check if the snake's head is in the same position as the food, right after the snake moves.
+
+@code.block{<file> game/game.go}{<lang> go}{
+    head := g.Snake.Body[len(g.Snake.Body)-1]
+    if head == g.Food \{
+        g.spawnFood()
+    \} else \{
+        g.Snake.Pop()
+    \}
+}
+
+If the snake's head is in the same position as the food, we call the @txt.hl{spawnFood} method again. Otherwise, we call the @txt.hl{Pop} method. This way, the snake will grow when it eats the food, as the @txt.hl{Pop} method is not called.
+
+And we can render the food to the terminal adding the following line right after the snake is rendered.
+
+@code.block{<file> game/game.go}{<lang> go}{
+    strOut += fmt.Sprintf("\\x1b[%d;%dH*", g.Food.Y+1, g.Food.X+1)
+}
+
+Now, if you run the game, you should be able to control the snake and eat the food.
+
+@sec.h3{Game Over}
+
+The game over condition is simple. If the snake collides with the boundaries of the terminal or with itself, the game is over.
+
+@code.block{<file> game/game.go}{<lang> go}{
+func (g *Game) GameOver() bool \{
+    head := g.Snake.Body[len(g.Snake.Body)-1]
+    if head.X \< 0 || head.X \> g.NCols || head.Y \< 0 || head.Y \> g.NRows \{
+        return true
+    \}
+    
+    for i, p := range g.Snake.Body \{
+        if i == len(g.Snake.Body)-1 \{
+            continue
+        \}
+        if p == head \{
+            return true
+        \}
+    \}
+    
+    return false
+\}
+}
+
+And we will update the main loop to check if the game is over.
+
+@code.block{<file> main.go}{<lang> go}{
+    for \{
+        select \{
+        case \<-ticker.C:
+            r.Render(g)
+            g.Update(input)
+            if g.GameOver() \{
+                return
+            \}
+        case input = \<-events:
+            if input == 'q' \{
+                return
+            \}
+        \}
+    \}
+}
+
+Now, if you run the game, you should see that the game is over when the snake collides with the boundaries of the terminal or with itself. This, effectively, concludes our game.
+
+@sec.h2{Wrapping Up}
+
+In this tutorial, we have created a simple snake game using the terminal. We have learned how to store and restore the terminal attributes, read the user's input, move the cursor, and render the game state to the terminal. We have also learned how to use goroutines and channels to handle non-blocking input, and how to use a game tick to control the flow and timing of game processes.
+
+I suggest you continue to improve the game by adding more features, such as:
+
+@list.u{
+A score and high score system.
+A game over, start, and pause screens.
+A speed increase when the snake eats the food.
+}
+
+I hope you have learned how versatile the terminal can be and how easy it is to create a simple game using it. I encourage you to experiment and see if you can create more complex games.
+
+@doc.foot{}

@@ -1,0 +1,58 @@
+@doc.head{}
+
+@doc.nav{}
+
+@sec.h1{Title}
+
+@post.info{
+<published> oct 29th 2023
+}{
+<last_edit> nov 5th 2023
+}{
+<read_time> 3
+}
+
+This is the introduction of the post.
+
+@sec.h2{Table of Contents}
+
+@post.toc{
+First Section
+Second Section
+}
+
+@sec.h2{First Section}
+
+This is the first section of the post.
+
+@sec.h2{Second Section}
+
+This is the second section of the post.
+
+@sec.h3{Subsection}
+
+This is a subsection of the second section.
+
+@sec.h2{Wrapping Up}
+
+This is the conclusion of the post.
+
+@sec.h2{Suggested Posts}
+
+<div class="card-grid">
+
+@card{
+<title> How to Setup NeoVim from Scratch
+}{
+<subtitle> wip
+}{
+<description> Learn how to setup NeoVim from scratch, with a custom configuration and plugin.
+}{
+<date> oct 11th 2023
+}{
+<link> /html/posts/neovim/neovim-config.html
+}
+
+</div>
+
+@doc.foot{}

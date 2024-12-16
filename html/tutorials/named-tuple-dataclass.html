@@ -1,274 +1,252 @@
-<!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/css/output.css">
 <link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
-</head>
-<body>
+
 <header>
-        
 <nav class="flex justify-evenly max-w-4xl mx-auto p-4">
-            
 <a class="text-lg font-semibold text-white no-underline" href="/">about</a>
-            
 <a class="text-lg font-semibold text-white no-underline" href="/projects">projects</a>
-            
+<a class="text-lg font-semibold text-white no-underline" href="/research">research</a>
 <a class="text-lg font-semibold text-white no-underline" href="/tutorials">tutorials</a>
-            
 <a class="text-lg font-semibold text-white no-underline" href="/blog">blog</a>
-        </nav>
-    </header>
-    
+</nav>
+</header>
+
 <div class="max-w-4xl mx-auto px-8">
+
 <h1 class="text-3xl font-bold mt-8 mb-4 text-center text-violet" id="using-namedtuple-and-dataclass-in-python">Using NamedTuple and Dataclass in Python</h1>
+
 <div class="text-sm text-center mb-16">
-        
-<span>published on 
-<mark class="bg-gray text-white">feb 18th 2024</mark></span>
-        •
-        
-<span>last edited on 
-<mark class="bg-gray text-white">feb 18th 2024</mark></span>
-        •
-        
-<span>
-<mark class="bg-gray text-white">7 min</mark> read</span>
-    </div>
-<p>
-	Sometimes, when working with Python, you may want to create a class that is just a simple container for some data, so you just write a plain class. Well, Python developers thought ahead of you on that use case and created 
-<mark class="bg-gray text-white">typing.NamedTuple</mark> and 
-<mark class="bg-gray text-white">dataclasses.dataclass</mark> for you.
-</p>
+<span>published on <mark class="bg-gray text-white">feb 18th 2024
+</mark></span>
+•
+<span>last edited on <mark class="bg-gray text-white">feb 18th 2024
+</mark></span>
+•
+<span><mark class="bg-gray text-white">7
+min</mark> read</span>
+</div>
+
+Sometimes, when working with Python, you may want to create a class that is just a simple container for some data, so you just write a plain class. Well, Python developers thought ahead of you on that use case and created <mark class='bg-gray text-white'>typing.NamedTuple</mark> and <mark class='bg-gray text-white'>dataclasses.dataclass</mark> for you.
+
 <h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="building-a-game-library">
-	Building a Game Library
+Building a Game Library
 </h2>
-<p>
-	Picture this scenario: you just bought five new games on the Steam sale. At first, you are happy and thrilled to play, but then you realize that your library has over 200 games and that probably "Cities Skylines II" is not your top priority.
-</p>
-<p>
-	Instead of playing, you decide to write a Python script to organize your library, and you start like this:
-</p>
+
+Picture this scenario: you just bought five new games on the Steam sale. At first, you are happy and thrilled to play, but then you realize that your library has over 200 games and that probably "Cities Skylines II" is not your top priority.
+
+Instead of playing, you decide to write a Python script to organize your library, and you start like this:
+
 <div class="relative">
-        
-<pre class="border border-white overflow-x-auto p-4 mb-8">
-<code class="!bg-black !text-sm language-python">class Game:
-    def __init__(self, name: str, price: float, rating: float):
-        self.name = name
-        self.price = price
-        self.rating = rating</code></pre>
-        
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
+class Game:
+&nbsp;   def __init__(self, name: str, price: float, rating: float):
+&nbsp;       self.name = name
+&nbsp;       self.price = price
+&nbsp;       self.rating = rating
+</code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
-    </div>
-<p>
-	Then you saw on a YouTube video that you could use a 
-<mark class="bg-gray text-white">__repr__</mark> method to print your objects in a more readable way, so you add this to your class:
-</p>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange"></div>
+</div>
+
+Then you saw on a YouTube video that you could use a <mark class='bg-gray text-white'>__repr__</mark> method to print your objects in a more readable way, so you add this to your class:
+
 <div class="relative">
-        
-<pre class="border border-white overflow-x-auto p-4 mb-8">
-<code class="!bg-black !text-sm language-python">    def __repr__(self) -&gt; str:
-        return f"""
-        {self.name.upper()}\n
-        Price: {self.price}\n
-        Rating: {self.rating}
-        """</code></pre>
-        
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
+def __repr__(self) -> str:
+&nbsp;    return f"""
+&nbsp;    {self.name.upper()}
+&nbsp;    Price: {self.price}
+&nbsp;    Rating: {self.rating}
+&nbsp;    """
+</code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
-    </div>
-<p>
-	Your code is looking good, so you proceed to program a 
-<mark class="bg-gray text-white">Library</mark> class to hold all your games:
-</p>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange"></div>
+</div>
+
+Your code is looking good, so you proceed to program a <mark class='bg-gray text-white'>Library</mark> class to hold all your games:
+
 <div class="relative">
-        
-<pre class="border border-white overflow-x-auto p-4 mb-8">
-<code class="!bg-black !text-sm language-python">class Library:
-    def __init__(self):
-        self.games = []
-    
-    def add_game(self, game: Game):
-        self.games.append(game)</code></pre>
-        
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
+class Library:
+&nbsp;   def __init__(self):
+&nbsp;       self.games = []
+&nbsp;
+&nbsp;   def add_game(self, game: Game):
+&nbsp;       self.games.append(game)
+</code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
-    </div>
-<p>
-	Wouldn't it be nice to have a method that returns cool metrics about my library?
-</p>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange"></div>
+</div>
+
+Wouldn't it be nice to have a method that returns cool metrics about my library?
+
 <div class="relative">
-        
-<pre class="border border-white overflow-x-auto p-4 mb-8">
-<code class="!bg-black !text-sm language-python">    def get_cool_metrics(self) -&gt; int:
-        return len(self.games)</code></pre>
-        
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
+def get_cool_metrics(self) -> int:
+&nbsp;   return len(self.games)
+</code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
-    </div>
-<p>
-	What about the total price?
-</p>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange"></div>
+</div>
+
+What about the total price?
+
 <div class="relative">
-        
-<pre class="border border-white overflow-x-auto p-4 mb-8">
-<code class="!bg-black !text-sm language-python">    def get_cool_metrics(self) -&gt; tuple[int, float]:
-        return len(self.games), sum(game.price for game in self.games)</code></pre>
-        
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
+def get_cool_metrics(self) -> tuple[int, float]:
+&nbsp;   return len(self.games), sum(game.price for game in self.games)
+</code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
-    </div>
-<p>
-	And what about the total playtime?
-</p>
-<p>
-	But wait. That would imply adding an argument to the constructor of 
-<mark class="bg-gray text-white">Game</mark>, updating the 
-<mark class="bg-gray text-white">__repr__</mark>... And then the 
-<mark class="bg-gray text-white">get_cool_metrics</mark> methods would return a 
-<mark class="bg-gray text-white">tuple[int, float, float]</mark>? Why is everything so complicated?
-</p>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange"></div>
+</div>
+
+And what about the total playtime?
+
+But wait. That would imply adding an argument to the constructor of <mark class='bg-gray text-white'>Game</mark>, updating the <mark class='bg-gray text-white'>__repr__</mark>... And then the <mark class='bg-gray text-white'>get_cool_metrics</mark> methods would return a <mark class='bg-gray text-white'>tuple[int, float, float]</mark>? Why is everything so complicated?
+
 <h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="introducing-dataclasses">
-	Introducing Dataclasses
+Introducing Dataclasses
 </h2>
-<p>
-	Python dataclasses are a way to create classes that are just simple containers for data. Their syntax is simpler, and they have a lot of pre-implemented dunder methods, including the constructor.
-</p>
-<p>
-	You could use a 
-<mark class="bg-gray text-white">dataclass</mark> to create the 
-<mark class="bg-gray text-white">Game</mark> class.
-</p>
+
+Python dataclasses are a way to create classes that are just simple containers for data. Their syntax is simpler, and they have a lot of pre-implemented dunder methods, including the constructor.
+
+You could use a <mark class='bg-gray text-white'>dataclass</mark> to create the <mark class='bg-gray text-white'>Game</mark> class.
+
 <div class="relative">
-        
-<pre class="border border-white overflow-x-auto p-4 mb-8">
-<code class="!bg-black !text-sm language-python">from dataclasses import dataclass
-    
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
+from dataclasses import dataclass
+
 @dataclass
 class Game:
-    name: str
-    price: float
-    rating: float</code></pre>
-        
+&nbsp;   name: str
+&nbsp;   price: float
+&nbsp;   rating: float
+</code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
-    </div>
-<p>
-	And adding the playtime attribute is just as simple as adding a new line to the class definition.
-</p>
-<p>
-	And they could be used for the return type of the 
-<mark class="bg-gray text-white">get_cool_metrics</mark> method, right?
-</p>
-<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="introducing-namedtuple">
-	Introducing NamedTuple
-</h2>
-<p>
-	While dataclasses are a great way to create simple classes, they are dynamic, or, in other words, mutable and slow. And what you really need is a C-like struct to hold data.
-</p>
-<p>
-	In Python, the most similar thing to a struct is a 
-<mark class="bg-gray text-white">collections.namedtuple</mark> and a 
-<mark class="bg-gray text-white">typing.NamedTuple</mark>.
-</p>
-<p>
-	You shouldn't use 
-<mark class="bg-gray text-white">collections.namedtuple</mark>. The syntax is ugly, and it is not as powerful as the 
-<mark class="bg-gray text-white">typing.NamedTuple</mark>, as it benefits from the Python classes syntax.
-</p>
-<p>
-	Now, we can create a "struct" to hold the cool metrics of our library.
-</p>
-<div class="relative">
-        
-<pre class="border border-white overflow-x-auto p-4 mb-8">
-<code class="!bg-black !text-sm language-python">from typing import NamedTuple
-    
-class CoolMetrics(NamedTuple):
-    total_games: int
-    total_price: float
-    total_playtime: float</code></pre>
-        
-<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
-    </div>
-<p>
-	As you can see, the syntax is very similar to the 
-<mark class="bg-gray text-white">dataclass</mark> syntax. But remember, 
-<mark class="bg-gray text-white">NamedTuple</mark> acts the same way as a Python tuple with named attributes. It is immutable and faster than a class.
-</p>
-<p>
-	Finally, our library method would look like this:
-</p>
-<div class="relative">
-        
-<pre class="border border-white overflow-x-auto p-4 mb-8">
-<code class="!bg-black !text-sm language-python">    def get_cool_metrics(self) -&gt; CoolMetrics:
-        total_games = len(self.games)
-        total_price = sum(game.price for game in self.games)
-        total_playtime = sum(game.playtime for game in self.games)
-        return CoolMetrics(total_games, total_price, total_playtime)</code></pre>
-        
-<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
-    </div>
-<p>
-	Now you can access the data by dot notation, and extend the 
-<mark class="bg-gray text-white">CoolMetrics</mark> class and the 
-<mark class="bg-gray text-white">get_cool_metrics</mark> method at will.
-</p>
-<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="so,-what-are-the-differences?">
-	So, What Are the Differences?
-</h2>
-<p>
-	A 
-<mark class="bg-gray text-white">NamedTuple</mark> is a simple container for data, a fancier Python tuple, or a C-like struct. It's immutable: you can't change the values after the object is created. In the case of the 
-<mark class="bg-gray text-white">CoolMetrics</mark> object, why would you change any attribute?
-</p>
-<p>
-	On the other hand, a 
-<mark class="bg-gray text-white">dataclass</mark> is a prettier way of writing a simple Python class that holds state. It offers a lot of pre-implemented magic methods, like 
-<mark class="bg-gray text-white">__init__</mark>, 
-<mark class="bg-gray text-white">__repr__</mark>, 
-<mark class="bg-gray text-white">__eq__</mark>, and so on. It is mutable, and you can change the values at will. For example, I could easily update the playtime of my 
-<mark class="bg-gray text-white">Game</mark> class by accessing the attribute.
-</p>
-<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="wrapping-up">
-	Wrapping Up
-</h2>
-<p>
-	In this article, we saw how to use 
-<mark class="bg-gray text-white">NamedTuple</mark> and 
-<mark class="bg-gray text-white">dataclass</mark> to create simple classes that hold data and their main differences. Now, go and play some video games, because your library won't ever shrink.
-</p>
-<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="recommended-posts">
-	Recommended Posts
-</h2>
-<div class="card-grid">
-<article class="relative w-full h-72 border-2 border-white p-4 my-2 max-md:h-96">
-        
-<div class="text-xl font-bold text-blue">Create a Python Virtual Environment with Conda</div>
-        
-<div class="text-sm text-green">Learn how to manage your Python version and libraries.</div>
-        
-<p>oct 11th 2023</p>
-        
-<div class="absolute bottom-4 left-4 p-2 text-sm text-orange">/html/posts/python/conda.html</div>
-        
-    </article>
-<article class="relative w-full h-72 border-2 border-white p-4 my-2 max-md:h-96">
-        
-<div class="text-xl font-bold text-blue">Write Readable Code in Python</div>
-        
-<div class="text-sm text-green">Learn how to write readable code in Python to make it more maintainable and understandable.</div>
-        
-<p>nov 6th 2023</p>
-        
-<div class="absolute bottom-4 left-4 p-2 text-sm text-orange">/html/posts/python/readable-code.html</div>
-        
-    </article>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange"></div>
 </div>
+
+And adding the playtime attribute is just as simple as adding a new line to the class definition.
+
+And they could be used for the return type of the <mark class='bg-gray text-white'>get_cool_metrics</mark> method, right?
+
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="introducing-namedtuple">
+Introducing NamedTuple
+</h2>
+
+While dataclasses are a great way to create simple classes, they are dynamic, or, in other words, mutable and slow. And what you really need is a C-like struct to hold data.
+
+In Python, the most similar thing to a struct is a <mark class='bg-gray text-white'>collections.namedtuple</mark> and a <mark class='bg-gray text-white'>typing.NamedTuple</mark>.
+
+You shouldn't use <mark class='bg-gray text-white'>collections.namedtuple</mark>. The syntax is ugly, and it is not as powerful as the <mark class='bg-gray text-white'>typing.NamedTuple</mark>, as it benefits from the Python classes syntax.
+
+Now, we can create a "struct" to hold the cool metrics of our library.
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
+from typing import NamedTuple
+
+class CoolMetrics(NamedTuple):
+&nbsp;   total_games: int
+&nbsp;   total_price: float
+&nbsp;   total_playtime: float
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange"></div>
+</div>
+
+As you can see, the syntax is very similar to the <mark class='bg-gray text-white'>dataclass</mark> syntax. But remember, <mark class='bg-gray text-white'>NamedTuple</mark> acts the same way as a Python tuple with named attributes. It is immutable and faster than a class.
+
+Finally, our library method would look like this:
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
+def get_cool_metrics(self) -> CoolMetrics:
+&nbsp;   total_games = len(self.games)
+&nbsp;   total_price = sum(game.price for game in self.games)
+&nbsp;   total_playtime = sum(game.playtime for game in self.games)
+&nbsp;   return CoolMetrics(total_games, total_price, total_playtime)
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange"></div>
+</div>
+
+Now you can access the data by dot notation, and extend the <mark class='bg-gray text-white'>CoolMetrics</mark> class and the <mark class='bg-gray text-white'>get_cool_metrics</mark> method at will.
+
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="so,-what-are-the-differences?">
+So, What Are the Differences?
+</h2>
+
+A <mark class='bg-gray text-white'>NamedTuple</mark> is a simple container for data, a fancier Python tuple, or a C-like struct. It's immutable: you can't change the values after the object is created. In the case of the <mark class='bg-gray text-white'>CoolMetrics</mark> object, why would you change any attribute?
+
+On the other hand, a <mark class='bg-gray text-white'>dataclass</mark> is a prettier way of writing a simple Python class that holds state. It offers a lot of pre-implemented magic methods, like <mark class='bg-gray text-white'>__init__</mark>, <mark class='bg-gray text-white'>__repr__</mark>, <mark class='bg-gray text-white'>__eq__</mark>, and so on. It is mutable, and you can change the values at will. For example, I could easily update the playtime of my <mark class='bg-gray text-white'>Game</mark> class by accessing the attribute.
+
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="wrapping-up">
+Wrapping Up
+</h2>
+
+In this article, we saw how to use <mark class='bg-gray text-white'>NamedTuple</mark> and <mark class='bg-gray text-white'>dataclass</mark> to create simple classes that hold data and their main differences. Now, go and play some video games, because your library won't ever shrink.
+
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="recommended-posts">
+Recommended Posts
+</h2>
+
+<div class="card-grid">
+
+<article class="relative w-full h-72 border-2 border-white p-4 my-2 max-md:h-96">
+<div class="text-xl font-bold text-blue">create a python virtual environment with conda
+</div>
+<div class="text-sm text-green">#python #conda
+</div>
+<p>Learn how to manage your Python version and libraries.
+</p>
+<div class="absolute bottom-4 left-4 p-2 text-sm text-orange">oct 11th 2023
+</div>
+
+<div class="absolute bottom-4 right-4 group">
+<a href="/tutorials/conda
+" target="_blank" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
+<span>READ</span>
+<div class="relative">
+<div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+<div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
+</div>
+</a>
+</div>
+
+</article>
+
+<article class="relative w-full h-72 border-2 border-white p-4 my-2 max-md:h-96">
+<div class="text-xl font-bold text-blue">write readable code in python
+</div>
+<div class="text-sm text-green">#python
+</div>
+<p>Learn how to write readable code in Python to make it more maintainable and understandable.
+</p>
+<div class="absolute bottom-4 left-4 p-2 text-sm text-orange">nov 6th 2023
+</div>
+
+<div class="absolute bottom-4 right-4 group">
+<a href="/tutorials/readable-code
+" target="_blank" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
+<span>READ</span>
+<div class="relative">
+<div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+<div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
+</div>
+</a>
+</div>
+
+</article>
+
+</div>
+
 <div style="height: 120px;"></div>
-    
+
 <div class="absolute left-0 right-0 h-2 bg-pink"></div>
-    
+
 <script src="/js/copyCode.js"></script>
-    
 <script> hljs.highlightAll(); </script>
-</body>
-</html>

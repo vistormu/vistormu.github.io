@@ -1,0 +1,13 @@
+@doc.head{}
+
+@doc.nav{}
+
+@page.landing{
+<title> error 404 :(
+}{
+<subtitle> oops!
+}{
+<description> the page you are looking for does not exist
+}
+
+@doc.foot{}

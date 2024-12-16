@@ -1,0 +1,13 @@
+@doc.head{}
+
+<div class="max-w-4xl mx-auto px-8">
+
+@page.landing{
+<title> Welcome!
+}{
+<subtitle> This page has moved to a new location!
+}{
+<description> Check out the new page at @url{https://vistormu.dev}{vistormu.dev}!
+}
+
+@doc.foot{}

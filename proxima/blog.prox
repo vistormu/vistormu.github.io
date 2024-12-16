@@ -1,0 +1,100 @@
+@doc.head{}
+
+@doc.nav{}
+
+@page.landing{
+<title> blog
+}{
+<subtitle> the personal corner
+}{
+<description> here you will find personal opinions, thoughts, and experiences on a variety of topics
+}{
+<links> 2024
+2023
+}
+
+@sec.h2{2024}
+
+<div class="card-grid">
+
+# @card{
+# My Thoughts on Gleam
+# }{
+# # subtitle
+# }{
+# # description
+# }{
+# apr 1st 2024
+# }{
+# /html/posts/other-topics/my-thoughts-on-gleam.html
+# }
+
+@card{
+<title> programming challenges recommendations
+}{
+<subtitle> \#programming
+}{
+<description>
+}{
+<date> mar 18th 2024
+}{
+<link> /blog/programming-challenges-recommendations
+}
+
+@card{
+<title> I'm simplifying my life
+}{
+<subtitle> \#personal
+}{
+<description>
+}{
+<date> mar 6th 2024
+}{
+<link> /blog/simplifying-my-life
+}
+
+@card{
+<title> why is self-learning not rewarding enough?
+}{
+<subtitle> \#personal
+}{
+<description>
+}{
+<date> feb 23rd 2024
+}{
+<link> /blog/self-learning
+}
+
+# @card{
+# <title> why I started blogging
+# }{
+# <subtitle> \#personal
+# }{
+# <description>
+# }{
+# <date> feb 23rd 2024
+# }{
+# <link> /blog/why-i-started-blogging
+# }
+
+</div>
+
+@sec.h2{2023}
+
+<div class="card-grid">
+
+@card{
+<title> why NeoVim
+}{
+<subtitle> \#programming
+}{
+<description>
+}{
+<date> oct 29th 2023
+}{
+<link> /blog/why-neovim
+}
+
+</div>
+
+@doc.foot{}

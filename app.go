@@ -38,6 +38,7 @@ func main() {
                 http.Error(w, "404 Not Found", http.StatusNotFound)
                 return
             }
+            w.Header().Set("Content-Type", "text/html")
             w.Write(data)
             return
         }
@@ -57,7 +58,10 @@ func serveFile(w http.ResponseWriter, path string) {
             http.Error(w, "404 Not Found", http.StatusNotFound)
             return
         }
+        w.Header().Set("Content-Type", "text/html")
         w.WriteHeader(http.StatusNotFound)
+    } else {
+        w.Header().Set("Content-Type", "text/html")
     }
 
     w.Write(data)

@@ -1,0 +1,302 @@
+@doc.head{}
+
+@doc.nav{}
+
+@page.landing{
+<title> tutorials
+}{
+<subtitle> a collection of tutorials on various topics
+}{
+<description> from python to neovim
+}{
+<links> python
+neovim
+proxima
+challenges
+}
+
+@sec.h2{PYTHON}
+
+# @h3{Python Basics}
+
+<div class="card-grid">
+
+@card{
+<title> create a python virtual environment with conda
+}{
+<subtitle> \#python \#conda
+}{
+<description> Learn how to manage your Python version and libraries.
+}{
+<date> oct 11th 2023
+}{
+<link> /tutorials/conda
+}
+
+@card{
+<title> write readable code in python
+}{
+<subtitle> \#python
+}{
+<description> Learn how to write readable code in Python to make it more maintainable and understandable.
+}{
+<date> nov 6th 2023
+}{
+<link> /tutorials/readable-code
+}
+
+@card{
+<title> Using NamedTuple and Dataclass in Python
+}{
+<subtitle> \#python
+}{
+<description> Learn how to use NamedTuple and Dataclass to create more readable and maintainable code.
+}{
+<date> feb 18th 2024
+}{
+<link> /tutorials/named-tuple-dataclass
+}
+
+# </div>
+
+# @h3{Python Projects}
+
+# <div class="card-grid">
+
+# @card{
+# Structure a Python Project
+# }{
+# # subtitle
+# }{
+# Learn how to structure a Python project to make it more maintainable and understandable.
+# }{
+# # date
+# }{
+# # link
+# }
+
+# @card{
+# Document Your Python Code with Docstrings
+# }{
+# # subtitle
+# }{
+# Learn how to document your Python code with Docstrings to enhance your APIs.
+# }{
+# # date
+# }{
+# # link
+# }
+
+@card{
+<title> upload a python package to PyPI
+}{
+<subtitle> \#python \#pypi
+}{
+<description> Learn how to upload a Python package to PyPI to make it available for everyone.
+}{
+<date> jan 30th 2024
+}{
+<link> /tutorials/pypi-project
+}
+
+# @card{
+# Generate Documentation for a Python Project
+# }{
+# # subtitle
+# }{
+# Learn how to generate documentation for a Python project to make it more understandable.
+# }{
+# # date
+# }{
+# # link
+# }
+
+</div>
+
+# @h2{PYTORCH}
+
+# <div class="card-grid">
+
+# @card{
+# Structure a PyTorch Project
+# }{
+# # subtitle
+# }{
+# # description
+# }{
+# # date
+# }{
+# # link
+# }
+
+# @card{
+# Regression with PyTorch
+# }{
+# # subtitle
+# }{
+# # description
+# }{
+# # date
+# }{
+# # link
+# }
+
+# @card{
+# Classification with PyTorch and the MNIST Dataset
+# }{
+# # subtitle
+# }{
+# # description
+# }{
+# # date
+# }{
+# # link
+# }
+
+# </div>
+
+# @h2{LATEX}
+
+# <div class="card-grid">
+
+# @card{
+# Install LaTeX in VSCode
+# }{
+# # subtitle
+# }{
+# Learn how to install LaTeX in VSCode to write your documents.
+# }{
+# # date
+# }{
+# # link
+# }
+
+# @card{
+# Managing References with BibTeX
+# }{
+# # subtitle
+# }{
+# Learn how to use BibTeX to manage your references and citations.
+# }{
+# # date
+# }{
+# # link
+# }
+
+# @card{
+# Structure a Big LaTeX Project
+# }{
+# # subtitle
+# }{
+# Learn how to structure a big LaTeX project to make it more maintainable and understandable.
+# }{
+# # date
+# }{
+# # link
+# }
+
+# </div>
+
+@sec.h2{NEOVIM}
+
+<div class="card-grid">
+
+@card{
+<title> setup NeoVim from scratch
+}{
+<subtitle> \#neovim \#lua \#lazy
+}{
+<description> Learn how to setup NeoVim from scratch, with a custom configuration and plugins.
+}{
+<date> feb 18th 2024
+}{
+<link> /tutorials/neovim-config
+}
+
+# @card{
+# Must Have Plugins for NeoVim
+# }{
+# # subtitle
+# }{
+# Discover the must have plugins for NeoVim.
+# }{
+# # date
+# }{
+# # link
+# }
+
+# @card{
+# Vim Motions
+# }{
+# # subtitle
+# }{
+# Learn how to use Vim motions to navigate through your code.
+# }{
+# # date
+# }{
+# # link
+# }
+
+</div>
+
+# @sec.h2{PROXIMA}
+
+# <div class="card-grid">
+
+# @card{
+# what is proxima
+# }{
+# \#proxima \#html \#css \#python
+# }{
+# What is Proxima and why I made it
+# }{
+# mar 7th 2024
+# }{
+# /tutorials/what-is-proxima
+# }
+
+# @card{
+# How I Created the Syntax Highlighting for Proxima
+# }{
+# # subtitle
+# }{
+# Because a language is nothing without syntax highlighting
+# }{
+# mar 7th 2024
+# }{
+# # /html/posts/proxima/treesitter.html
+# }
+
+# </div>
+
+@sec.h2{CHALLENGES}
+
+<div class="card-grid">
+
+@card{
+<title> snake game in the terminal with go
+}{
+<subtitle> \#go \#cli
+}{
+<description> Learn how to create a Snake game in the terminal with Go.
+}{
+<date> mar 18th 2024
+}{
+<link> /tutorials/snake-cli
+}
+
+# @card{
+# jpeg compression algorithm from scratch in python
+# }{
+# \#python
+# }{
+# Learn how to create a JPEG compression algorithm from scratch in Python.
+# }{
+# month day year
+# }{
+# /tutorials/jpeg-compression-algorithm
+# }
+
+</div>
+
+@doc.foot{}
