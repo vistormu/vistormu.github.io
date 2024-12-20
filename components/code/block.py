@@ -1,11 +1,15 @@
 def block(code: str, file: str = "", lang: str = "none") -> str:
     replacements = {
         "\n.": "\n&nbsp;",
-        ">": "> ",
+        ">": "&gt;",
+        "<": "&lt;",
     }
 
     for key, value in replacements.items():
         code = code.replace(key, value)
+
+    if code.startswith("."):
+        code = "&nbsp;" + code[1:]
 
     block_style = " ".join([
         "relative",

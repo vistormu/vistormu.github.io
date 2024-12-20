@@ -5,24 +5,21 @@
 @page.landing{
 <title> tutorials
 }{
-<subtitle> a collection of tutorials on various topics
+<subtitle> even more programming
 }{
-<description> from python to neovim
+<description> a collection of programming tutorials on various topics
 }{
 <links> python
 neovim
-proxima
 challenges
 }
 
 @sec.h2{PYTHON}
 
-# @h3{Python Basics}
-
 <div class="card-grid">
 
 @card{
-<title> create a python virtual environment with conda
+<title> manage your python dependencies with conda
 }{
 <subtitle> \#python \#conda
 }{
@@ -46,46 +43,16 @@ challenges
 }
 
 @card{
-<title> Using NamedTuple and Dataclass in Python
+<title> using NamedTuple and \@dataclass in python
 }{
 <subtitle> \#python
 }{
-<description> Learn how to use NamedTuple and Dataclass to create more readable and maintainable code.
+<description> Learn the difference between NamedTuple and \@dataclass in Python for better data structures.
 }{
 <date> feb 18th 2024
 }{
 <link> /tutorials/named-tuple-dataclass
 }
-
-# </div>
-
-# @h3{Python Projects}
-
-# <div class="card-grid">
-
-# @card{
-# Structure a Python Project
-# }{
-# # subtitle
-# }{
-# Learn how to structure a Python project to make it more maintainable and understandable.
-# }{
-# # date
-# }{
-# # link
-# }
-
-# @card{
-# Document Your Python Code with Docstrings
-# }{
-# # subtitle
-# }{
-# Learn how to document your Python code with Docstrings to enhance your APIs.
-# }{
-# # date
-# }{
-# # link
-# }
 
 @card{
 <title> upload a python package to PyPI
@@ -105,6 +72,18 @@ challenges
 # # subtitle
 # }{
 # Learn how to generate documentation for a Python project to make it more understandable.
+# }{
+# # date
+# }{
+# # link
+# }
+
+# @card{
+# Document Your Python Code with Docstrings
+# }{
+# # subtitle
+# }{
+# Learn how to document your Python code with Docstrings to enhance your APIs.
 # }{
 # # date
 # }{

@@ -8,6 +8,7 @@ html_files := $(patsubst $(proxima_dir)%.prox, $(html_dir)%.html, $(prox_files))
 all: $(html_files)
 	@tailwindcss -i $(css_dir)input.css -o $(css_dir)output.css
 	@proxima make $(proxima_dir)index_gh.prox -o index.html
+	# @open http://localhost:8080
 	@go run app.go
 
 $(html_dir)%.html: $(proxima_dir)%.prox

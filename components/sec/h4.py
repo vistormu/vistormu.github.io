@@ -2,8 +2,8 @@ def h4(text: str) -> str:
     anchor: str = text.replace(" ", "-").lower()
 
     styles: list[str] = [
-        "text-lg",
         "font-bold",
+        "text-yellow"
     ]
     style: str = " ".join(styles)
 

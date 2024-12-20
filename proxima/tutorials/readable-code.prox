@@ -9,10 +9,12 @@
 }{
 <last_edit> nov 6th 2023
 }{
-<read_time> 7
+<read_time> 6
 }
 
+<p>
 Have you ever returned to a project you hadn't worked on in a while and had no idea what you were doing? Or maybe you've been working on a project with a team, and you have no idea what your teammates' code does? If you have, then you know how important it is to write readable code.
+</p>
 
 @sec.h2{Table of Contents}
 
@@ -29,7 +31,9 @@ Recommended posts
 
 @sec.h2{Example Code}
 
+<p>
 We will be using this simple code snippet as an example throughout this post. This code defines a class called @txt.hl{Foo} with two methods: @txt.hl{bar} and @txt.hl{baz}. A priori, it is not clear what this code does. We can make it more readable by following the tips below.
+</p>
 
 @code.block{<lang> python}{
 class Foo:
@@ -46,9 +50,13 @@ class Foo:
 
 @sec.h2{Use descriptive variable names}
 
+<p>
 The first step to writing readable code is to use descriptive variable names.
+</p>
 
+<p>
 There is a famous quote by Phil Karlton that says, "There are only two hard things in Computer Science: cache invalidation and naming things". The seemingly simple task of choosing clear and meaningful names for variables can be surprisingly challenging. In our example, a piece of cake:
+</p>
 
 @list.u{
 The class @txt.hl{Foo} represents a Cylinder.
@@ -58,7 +66,9 @@ The method @txt.hl{bar} computes the volume of the cylinder.
 The method @txt.hl{baz} computes the area of the cylinder.
 }
 
+<p>
 Making these changes, our code becomes much more readable:
+</p>
 
 @code.block{<lang> python}{
 class Cylinder:
@@ -75,11 +85,17 @@ class Cylinder:
 
 @sec.h2{Write Procedural Code}
 
+<p>
 Always try to write procedural code.
+</p>
 
+<p>
 Try to divide the code into as many steps as necessary. You are not a better programmer for writing more one-liners. It is often more beneficial to be clear than the minuscule optimization you might achieve.
+</p>
 
+<p>
 In our example, despite being a simple piece of code, I hope the point is clear. We can divide the @txt.hl{area} method result into two calculations: one for the lateral area and one for the base area. This further explains what the code does and makes it more readable.
+</p>
 
 @code.block{<lang> python}{
 class Cylinder:
@@ -98,13 +114,21 @@ class Cylinder:
 
 @sec.h2{Use Type Hints}
 
+<p>
 Python is an interpreted language, meaning that it is a loosy-goofy language. If you pass to the cylinder constructor a boolean variable, Python will not even blink. The program will just panic during runtime, which is sometimes very annoying. 
+</p>
 
+<p>
 To avoid these kinds of mistakes, one would normally use a Language Server Protocol (LSP) to get a real-time feedback on errors. There are many LSPs for Python, like Pylance or Pyright, and they are really nice. LSPs will try their best to catch these errors, but they are not foolproof.
+</p>
 
+<p>
 Type hinting has a double purpose: to help the LSPs do their work better and to help the programmer understand the code better.
+</p>
 
+<p>
 In our example, we can add type hints to the arguments of all methods, the class' attributes, and the variable declaration in the @txt.hl{area} method. In the event of passing the wrong argument type, our LSP will warn us.
+</p>
 
 @code.block{<lang> python}{
 class Cylinder:
@@ -123,11 +147,17 @@ class Cylinder:
 
 @sec.h2{Avoid Using Comments}
 
+<p>
 Comments are not for documenting your code.
+</p>
 
+<p>
 Comments are for explaining why you did something, not what you did. If you need to explain what you did, then you should refactor your code to make it more readable.
+</p>
 
+<p>
 In our example, there is not much to say, but to make the point clearer, we could annotate the choice of using NumPy instead of the built-in @txt.hl{**}, for example.
+</p>
 
 @code.block{<lang> python}{
 class Cylinder:
@@ -147,11 +177,17 @@ class Cylinder:
 
 @sec.h2{Use Docstrings}
 
+<p>
 Docstrings are for documenting your code.
+</p>
 
+<p>
 The ultimate way of documenting your code is to use Docstrings. Docstrings are strings that are placed right after the declaration of a function, class or method, and are used to describe what the function, class or method does. The main advantage of using Docstrings is that your LSP will show them to you, saving you lots of time checking external documentation.
+</p>
 
+<p>
 It makes the code much chunkier, so I recommend using them for objects exposed by your API.
+</p>
 
 # If you want more information, check out my post on @url{/html/posts/python/docstrings.html}{How To Document Your Python Code with Docstrings}.
 
@@ -200,18 +236,24 @@ class Cylinder:
 
 @sec.h2{Wrapping Up}
 
+<p>
 Writing readable code is a skill that takes time to master. It is not easy to write code that is both readable and efficient. But, as with everything in life, practice makes perfect. The more you write code, the better you will get at it.
+</p>
 
+<p>
 Thanks for reading!
+</p>
 
 @sec.h2{Recommended Posts}
 
+<p>
 If you liked this post, you might also like
+</p>
 
 <div class="card-grid">
 
 @card{
-<title> create a python virtual environment with conda
+<title> manage your python dependencies with conda
 }{
 <subtitle> \#python \#conda
 }{
@@ -223,11 +265,11 @@ If you liked this post, you might also like
 }
 
 @card{
-<title> Using NamedTuple and Dataclass in Python
+<title> using NamedTuple and \@dataclass in python
 }{
 <subtitle> \#python
 }{
-<description> Learn how to use NamedTuple and Dataclass to create more readable and maintainable code.
+<description> Learn the difference between NamedTuple and \@dataclass in Python for better data structures.
 }{
 <date> feb 18th 2024
 }{

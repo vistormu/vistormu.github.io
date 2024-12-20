@@ -5,9 +5,9 @@
 @page.landing{
 <title> research and teaching
 }{
-<subtitle> research and teaching
+<subtitle> journal articles, conference papers, and teaching activities
 }{
-<description> research and teaching
+<description> here I present my progress as a researcher at the university
 }{
 <links> teaching
 journal articles
@@ -20,12 +20,14 @@ conference papers
 @sec.h2{teaching}
 
 <p>
-Control Engineering lab sessions: 24 hours
-
-Final Degree Projects supervision: 1 student
-
-Master Thesis supervision: 2 students
+Since I was a kid I have always loved watching educational content, such as TV documentaries and YouTube videos. I have never imagined being on the other side now. Even though I have just begun my teaching career, I am very excited to share my knowledge with students. 
 </p>
+
+@list.u{
+Control Engineering course: 24 hours
+Final Degree Projects supervised: 2 students
+Master Thesis supervised: 2 students
+}
 
 # ================
 # JOURNAL ARTICLES

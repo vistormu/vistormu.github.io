@@ -9,10 +9,12 @@
 }{
 <last_edit> jan 30th 2024
 }{
-<read_time> 15
+<read_time> 7
 }
 
+<p>
 If you're frequently programming in Python and have developed custom tools that are useful across multiple projects, it's a smart move to consider publishing them on PyPI. This blog post will show you how to do that. We'll also cover how to manage your release versions and keep a tidy changelog.
+</p>
 
 @sec.h2{Table of Contents}
 
@@ -28,13 +30,19 @@ References
 
 @sec.h2{Project Structure}
 
+<p>
 In this tutorial, we will upload our recently written project named "chorizo" to PyPi.
+</p>
 
+<p>
 There are two types of valid project structures:
+</p>
 
 @sec.h3{src-layout}
 
+<p>
 The project should contain a @txt.hl{src} directory under the project root, and all modules and packages meant for distribution are placed inside this directory.
+</p>
 
 @code.block{<lang> shell}{
 chorizo
@@ -46,7 +54,9 @@ chorizo
 
 @sec.h3{flat-layout}
 
+<p>
 The package directory is the project root itself.
+</p>
 
 @code.block{<lang> shell}{
 chorizo
@@ -54,11 +64,15 @@ chorizo
 |   |-- __init__.py
 }
 
+<p>
 In this project, we will use the latter, because it is simpler, cleaner, and easier to explore on GitHub. And because I just hate naming something "src", I have a cool name like "chorizo".
+</p>
 
 @sec.h2{Necessary Files}
 
+<p>
 For a project to be uploaded to PyPi, it needs to have a few files in the root directory.
+</p>
 
 @code.block{<lang> shell}{
 chorizo
@@ -73,11 +87,17 @@ chorizo
 
 @sec.h3{LICENSE}
 
+<p>
 A license is a legal tool you can use to protect your intellectual property. For choosing the most suitable license for your project, check @url{https://choosealicense.com/} for more information.
+</p>
 
+<p>
 The most common license for open source projects is the MIT license, so we will use that one. You just need to copy the text and paste it to the @txt.hl{LICENSE} file.
+</p>
 
+<p>
 Don't forget to change the year and the name of the author.
+</p>
 
 @code.block{<file> LICENSE}{<lang> txt}{
 MIT License
@@ -105,7 +125,9 @@ SOFTWARE.
 
 @sec.h3{README.md}
 
+<p>
 A @txt.hl{README.md} file is used to describe your project. It is a good practice to include a description of your project, the installation, some examples...
+</p>
 
 @code.block{<file> README.md}{<lang> md}{
 \# chorizo
@@ -119,9 +141,13 @@ pip install chorizo
 
 @sec.h3{pyproject.toml}
 
+<p>
 The @txt.hl{pyproject.toml} file is used to configure the build process of your project. There are multiple backends available to build your project, but I am lately using @url{https://github.com/pypa/hatch}{hatchling}. The backend tool will be automatically installed when building, so use the one you like the most.
+</p>
 
+<p>
 It is important to update the version of your package every time you upload a new release.
+</p>
 
 @code.block{<file> pyproject.toml}{<lang> toml}{
 [build-system]
@@ -132,20 +158,20 @@ build-backend = "hatchling.build"
 name = "chorizo"
 version = "0.0.1"
 authors = [
-  \{ name="Example Author", email="author\@example.com" \},
+. \{ name="Example Author", email="author\@example.com" \},
 ]
 description = "An example project named chorizo."
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+.   "Programming Language :: Python :: 3",
+.   "License :: OSI Approved :: MIT License",
+.   "Operating System :: OS Independent",
 ]
 dependencies = [
-    "numpy",
-    "matplotlib",
-    "pandas",
+.   "numpy",
+.   "matplotlib",
+.   "pandas",
 ]
     
 [project.urls]
@@ -153,9 +179,13 @@ Homepage = "https://github.com/user/chorizo"
 Issues = "https://github.com/user/chorizo/issues"
 }
 
+<p>
 While uploading my projects, I ran into some problems due to having a directory named "assets" in the root. It turns out, backend tools often ignore certain directories like "examples" or "tests" at the root level, but "assets" isn't typically one of them. I struggled to resolve this with @txt.hl{setuptools}, but switching to @txt.hl{hatchling} did the trick.
+</p>
 
+<p>
 If this is your case, you can add the following lines to the @txt.hl{pyproject.toml} file to specify which directories to include in the build process:
+</p>
 
 @code.block{<file> pyproject.toml}{<lang> toml}{
 [tool.hatch.build.targets.wheel]
@@ -164,7 +194,9 @@ packages = ["chorizo"]
 
 @sec.h3{requirements.txt}
 
+<p>
 It is also a good practice to leave a @txt.hl{requirements.txt} with the dependencies in case someone wants to build from source.
+</p>
 
 @code.block{<file> requirements.txt}{<lang> txt}{
 numpy
@@ -174,7 +206,9 @@ pandas
 
 @sec.h3{.gitignore}
 
+<p>
 As a bonus tip, you can add a .gitignore file to your project to avoid uploading unnecessary files to GitHub.
+</p>
 
 @code.block{<file> .gitignore}{<lang> txt}{
 **/__pycache__
@@ -185,42 +219,56 @@ As a bonus tip, you can add a .gitignore file to your project to avoid uploading
 
 @sec.h2{Build the Project}
 
+<p>
 Now it's time to build your project and create the files that will be uploaded to PyPi.
+</p>
 
+<p>
 First of, you need to install two packages: @txt.hl{build} and @txt.hl{twine}:
+</p>
 
 @list.u{
     @txt.hl{build} is a package that will build your project, as the name suggests.
     @txt.hl{twine} is a package that will upload your project to PyPi super easily.
 }
 
-@spc{}
-
 @code.block{<file> terminal}{<lang> shell}{
 pip install build twine
 }
 
+<p>
 Once everything is set up, you can build your project.
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 python -m build
 }
 
+<p>
 New directories will appear in your project root: @txt.hl{dist} and @txt.hl{chorizo.egg-info}. @txt.hl{dist} contains the files that will be uploaded to PyPi, and @txt.hl{chorizo.egg-info} contains some metadata about your project.
+</p>
 
 @sec.h2{Upload the Project}
 
+<p>
 The process of uploading your project to PyPi is a bit tricky. Firstly, there are two PyPi repositories: @txt.hl{TestPyPi} and @txt.hl{PyPi}. The first one is used to test your project before uploading it to the second one. They are independent servers, so you need to create an account on both.
+</p>
 
 @txt.imp{Once you upload a release, it cannot be deleted, so you need to be careful.}
 
 @sec.h3{Upload to TestPyPi}
 
+<p>
 It is a good idea to upload first to the test server to check if everything is working as expected. To register an account, go to @url{https://test.pypi.org/account/register/}.
+</p>
 
+<p>
 Now you need a token to upload your project. To get a token, go to @url{https://test.pypi.org/manage/account/\#api-tokens} and click on "Add API token". You will need to set up a Two-Factor-Autentification, which is a bit annoying, but follow the steps.
+</p>
 
+<p>
 Finally, you can upload your project to the test server.
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 python -m twine upload --repository testpypi dist/*
@@ -228,13 +276,17 @@ python -m twine upload --repository testpypi dist/*
 
 @sec.h3{Download and Test}
 
+<p>
 You can download your project from the test server with pip. 
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 pip install --index-url https://test.pypi.org/simple/ --no-deps chorizo
 }
 
+<p>
 Your package will be installed with no dependencies, so you need to install them manually using your @txt.hl{requierements.txt}.
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 pip install -r requirements.txt
@@ -242,49 +294,67 @@ pip install -r requirements.txt
 
 @sec.h3{Upload to PyPi}
 
+<p>
 Once you are sure that everything is working as expected, you can upload your project to the PyPi server.
+</p>
 
+<p>
 You need now to register an account in @url{https://pypi.org/account/register/} and follow the same steps as before: enabling 2FA and generating a token.
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 python -m twine upload dist/*
 }
 
+<p>
 Now your project can be installed with pip. 
+</p>
 
 @sec.h2{Versioning}
 
+<p>
 Now it is time to upload your project to GitHub. We will tag the project with the released version and push it to GitHub. 
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 git tag -a v0.0.1 -m "Release v0.0.1"
 git push origin v0.0.1
 }
 
+<p>
 Then, I use the GitHub CLI to upload the release files to GitHub. If you don't have it installed, you can do it with your package manager of choice.
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 sudo apt install gh
 sudo dnf install gh
 }
 
+<p>
 You will need to log in to your GitHub account.
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 gh auth login
 }
 
+<p>
 And finally, you can upload the release files to GitHub. In our case, the files are in the @txt.hl{dist} directory.
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 gh release create v0.0.1 dist/*
 }
 
+<p>
 Now you will be asked to fill out all the information about the release. I usually write a changelog.md and paste it in the description of the release. You can skip that step on the CLI and edit the release later on GitHub.
+</p>
 
 @sec.h2{Wrapping Up}
 
+<p>
 Now you know how to upload your projects to PyPi. It is a bit tricky at first, but once you get used to it, it is pretty straightforward. I hope you find it useful!
+</p>
 
 @sec.h2{References}
 

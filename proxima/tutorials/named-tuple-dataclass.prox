@@ -9,16 +9,22 @@
 }{
 <last_edit> feb 18th 2024
 }{
-<read_time> 7
+<read_time> 5
 }
 
+<p>
 Sometimes, when working with Python, you may want to create a class that is just a simple container for some data, so you just write a plain class. Well, Python developers thought ahead of you on that use case and created @txt.hl{typing.NamedTuple} and @txt.hl{dataclasses.dataclass} for you.
+</p>
 
 @sec.h2{Building a Game Library}
 
+<p>
 Picture this scenario: you just bought five new games on the Steam sale. At first, you are happy and thrilled to play, but then you realize that your library has over 200 games and that probably "Cities Skylines II" is not your top priority.
+</p>
 
+<p>
 Instead of playing, you decide to write a Python script to organize your library, and you start like this:
+</p>
 
 @code.block{<lang> python}{
 class Game:
@@ -28,7 +34,9 @@ class Game:
 .       self.rating = rating
 }
 
+<p>
 Then you saw on a YouTube video that you could use a @txt.hl{__repr__} method to print your objects in a more readable way, so you add this to your class:
+</p>
 
 @code.block{<lang> python}{
 def __repr__(self) -> str:
@@ -39,7 +47,9 @@ def __repr__(self) -> str:
 .    """
 }
 
+<p>
 Your code is looking good, so you proceed to program a @txt.hl{Library} class to hold all your games:
+</p>
 
 @code.block{<lang> python}{
 class Library:
@@ -50,29 +60,41 @@ class Library:
 .       self.games.append(game)
 }
 
+<p>
 Wouldn't it be nice to have a method that returns cool metrics about my library?
+</p>
 
 @code.block{<lang> python}{
 def get_cool_metrics(self) -> int:
 .   return len(self.games)
 }
 
+<p>
 What about the total price?
+</p>
 
 @code.block{<lang> python}{
 def get_cool_metrics(self) -> tuple[int, float]:
 .   return len(self.games), sum(game.price for game in self.games)
 }
 
+<p>
 And what about the total playtime?
+</p>
 
+<p>
 But wait. That would imply adding an argument to the constructor of @txt.hl{Game}, updating the @txt.hl{__repr__}... And then the @txt.hl{get_cool_metrics} methods would return a @txt.hl{tuple[int, float, float]}? Why is everything so complicated?
+</p>
 
 @sec.h2{Introducing Dataclasses}
 
+<p>
 Python dataclasses are a way to create classes that are just simple containers for data. Their syntax is simpler, and they have a lot of pre-implemented dunder methods, including the constructor.
+</p>
 
+<p>
 You could use a @txt.hl{dataclass} to create the @txt.hl{Game} class.
+</p>
 
 @code.block{<lang> python}{
 from dataclasses import dataclass
@@ -84,19 +106,31 @@ class Game:
 .   rating: float
 }
 
+<p>
 And adding the playtime attribute is just as simple as adding a new line to the class definition.
+</p>
 
+<p>
 And they could be used for the return type of the @txt.hl{get_cool_metrics} method, right?
+</p>
 
 @sec.h2{Introducing NamedTuple}
 
+<p>
 While dataclasses are a great way to create simple classes, they are dynamic, or, in other words, mutable and slow. And what you really need is a C-like struct to hold data.
+</p>
 
+<p>
 In Python, the most similar thing to a struct is a @txt.hl{collections.namedtuple} and a @txt.hl{typing.NamedTuple}.
+</p>
 
+<p>
 You shouldn't use @txt.hl{collections.namedtuple}. The syntax is ugly, and it is not as powerful as the @txt.hl{typing.NamedTuple}, as it benefits from the Python classes syntax.
+</p>
 
+<p>
 Now, we can create a "struct" to hold the cool metrics of our library.
+</p>
 
 @code.block{<lang> python}{
 from typing import NamedTuple
@@ -107,9 +141,13 @@ class CoolMetrics(NamedTuple):
 .   total_playtime: float
 }
 
+<p>
 As you can see, the syntax is very similar to the @txt.hl{dataclass} syntax. But remember, @txt.hl{NamedTuple} acts the same way as a Python tuple with named attributes. It is immutable and faster than a class.
+</p>
 
+<p>
 Finally, our library method would look like this:
+</p>
 
 @code.block{<lang> python}{
 def get_cool_metrics(self) -> CoolMetrics:
@@ -119,24 +157,32 @@ def get_cool_metrics(self) -> CoolMetrics:
 .   return CoolMetrics(total_games, total_price, total_playtime)
 }
 
+<p>
 Now you can access the data by dot notation, and extend the @txt.hl{CoolMetrics} class and the @txt.hl{get_cool_metrics} method at will.
+</p>
 
 @sec.h2{So, What Are the Differences?}
 
+<p>
 A @txt.hl{NamedTuple} is a simple container for data, a fancier Python tuple, or a C-like struct. It's immutable: you can't change the values after the object is created. In the case of the @txt.hl{CoolMetrics} object, why would you change any attribute?
+</p>
 
+<p>
 On the other hand, a @txt.hl{dataclass} is a prettier way of writing a simple Python class that holds state. It offers a lot of pre-implemented magic methods, like @txt.hl{__init__}, @txt.hl{__repr__}, @txt.hl{__eq__}, and so on. It is mutable, and you can change the values at will. For example, I could easily update the playtime of my @txt.hl{Game} class by accessing the attribute.
+</p>
 
 @sec.h2{Wrapping Up}
 
+<p>
 In this article, we saw how to use @txt.hl{NamedTuple} and @txt.hl{dataclass} to create simple classes that hold data and their main differences. Now, go and play some video games, because your library won't ever shrink.
+</p>
 
 @sec.h2{Recommended Posts}
 
 <div class="card-grid">
 
 @card{
-<title> create a python virtual environment with conda
+<title> manage your python dependencies with conda
 }{
 <subtitle> \#python \#conda
 }{

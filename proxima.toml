@@ -6,9 +6,13 @@ double_line_break_value = "\n\n"
 python = "python3"
 begin_with = ""
 end_with = ""
-# text_replacements = [
-#     { from = "", to = "" },
-# ]
+text_replacements = [
+    { from = ":<", to = "&lt;" },
+    { from = ">:", to = "&gt;" },
+#     { from = "&", to = "&amp;" },
+#     { from = "\"", to = "&quot;" },
+#     { from = "'", to = "&apos;" },
+]
 
 [components]
 path = "components/"

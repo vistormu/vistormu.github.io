@@ -7,16 +7,20 @@
 @post.info{
 <published> feb 18th 2024
 }{
-<last_edit> feb 18th 2024
+<last_edit> dec 20th 2024
 }{
-<read_time> 3
+<read_time> 8
 }
 
+<p>
 If you are here it means that you have built the courage to try NeoVim like a real programmer. You won't ever need IDEs or wait for slow apps to open.
+</p>
 
+<p>
 In this blog post I will explain how to set up a minimal and modular NeoVim configuration from scratch. I will also cover necessary installations in your system for a complete experience.
+</p>
 
-@sec.h2{Table of Contents}
+@sec.h2{Table of contents}
 
 @post.toc{
 Other Resources
@@ -28,66 +32,95 @@ Other Dependencies
 
 @sec.h2{Other Resources}
 
+<p>
 Before we start with my configuration, I would like to recommend some other material from people that really know how to program.
+</p>
 
-A very popular Neovim configuration guide is @url{https://github.com/nvim-lua/kickstart.nvim}{kickstart.nvim}, made by TJ, a core member of the team of NeoVim.
+<p>
+A very popular Neovim configuration guide is @url{https://github.com/nvim-lua/kickstart.nvim}{kickstart.nvim}, made by TJ, a core member of the team of NeoVim. It covers everything you need to know about setting up a Neovim configuration from scratch in a single file that you can copy and paste into your Neovim configuration directory. 
+</p>
 
+<p>
 Also, I highly recommend @url{https://www.youtube.com/watch?v=w7i4amO_zaE}{ThePrimeagen's video} on the topic, which is a thirty-minute video that covers everything you need to know. Watch it at 0.5x speed if you don't want to die from anxiety.
+</p>
 
-If you don't feel like configuring your own Neovim, there are many pre-configured Neovim distributions out there. The most popular ones are @url{https://github.com/NvChad/NvChad}{NvChad} and @url{https://github.com/LunarVim/LunarVim}{LunarVim}. However, consider that when using these bad bois you are mostly using the configurations of others.
+<p>
+If you don't feel like configuring your own Neovim, there are many pre-configured Neovim distributions out there. The most popular ones are @url{https://github.com/NvChad/NvChad}{NvChad} and @url{https://github.com/LunarVim/LunarVim}{LunarVim}. However, consider that you are using the configurations of others, and NeoVim is all about customization.
+</p>
 
-@sec.h2{My Configuration}
+@sec.h2{The thought behind my configuration}
 
-At first, I was using the configuration of ThePrimeagen's video, but when i wanted to add something I was constantly missaccessing other directories. It wast a bit confusing for me. Then I checked @txt.hl{kickstart.nvim}, but it was a single file, and I wanted more modularity. I then discovered that there is a version of @txt.hl{kickstart.nvim} that was more modular: @url{https://github.com/dam9000/kickstart-modular.nvim}{kickstart-modular.nvim}. So I decided to create a new NeoVim config mixing the one I had of Theprimagen and a similar modularity of @txt.hl{kickstart-modular.nvim}. However, when I was doing it, I noticed that @txt.hl{packer}, the plugin manager I was using had been archived.
+<p>
+My configuration intends to be very simple and minimal while maintaining a modular structure. It is inspired by the simplicity of @txt.hl{kickstart.nvim} and the modularity of @url{https://github.com/dam9000/kickstart-modular.nvim}{kickstart-modular.nvim}, the modular version of @txt.hl{kickstart.nvim}. Additionally, some of the mappings and plugins are inspired by @url{https://www.youtube.com/watch?v=w7i4amO_zaE}{ThePrimeagen's video}, which was the first video I watched about NeoVim configuration.
+</p>
 
-Long story short, my configuration is a mix of the simplicity of @txt.hl{kickstart.nvim}, the modularity of @txt.hl{kickstart-modular.nvim}, and the mappings of ThePrimagen; using @txt.hl{lazy.nvim} as a plugin manager, and some little extra tweaks I found useful.
+<p>
+For the package manager, I use @url{https://github.com/folke/lazy.nvim}{lazy.nvim}, which is a super simple and easy-to-use plugin manager. I initially was using @url{https://github.com/wbthomason/packer.nvim}{packer.nvim}, the packager manager that ThePrimeagen uses in the video, but it is now unmaintained.
+</p>
 
-@sec.h2{Installing Neovim}
-
-The first step, of course, is to download and install Neovim. If you are using a Debian-based Linux distribution, I recommend you use @txt.hl{snap} and not @txt.hl{apt}, as it is very important to download a version of Neovim higher that @txt.hl{0.9.0}, as many plugins are not supported for lower versions.
-
-As far as I am concerned, with the rest of package managers, you should be fine.
 
 @sec.h2{Setting Up the Configuration}
 
-The first thing you need to do is to create a directory for your Neovim configuration under the @txt.hl{~/.config} directory.
+<p>
+The first thing to do is to @url{https://github.com/neovim/neovim/blob/master/INSTALL.md}{download and install Neovim} if you already haven't. If you are using a Debian-based Linux distribution, I recommend you use @txt.hl{snap} and not @txt.hl{apt}, as it is very important to download a version of Neovim higher that @txt.hl{0.9.0}, as many plugins are not supported for lower versions.
+</p>
+
+<p>
+Once installed, NeoVim will look for a configuration file in the following directories:
+</p>
+
+@list.u{
+~/.config/nvim/init.vim
+~/.vimrc
+~/.config/nvim/init.lua
+}
+
+We will be using the @txt.hl{init.lua} file, as it is the most modern and powerful way to configure NeoVim. So if you haven't already, create the @txt.hl{~/.config/nvim} directory and the @txt.hl{init.lua} file.
 
 @code.block{<file> terminal}{<lang> shell}{
 mkdir -p ~/.config/nvim
 }
 
-This is the structure we will end up with:
+As a quick advancement, I will show you the structure of the configuration we will end up up with, and then I will guide you through the creation of the files.
 
 @code.block{<file> terminal}{<lang> shell}{
-nvim
-├── init.lua
-└── lua
-    ├── lazy-bootstrap.lua
-    ├── lazy-plugins.lua
-    ├── remap.lua
-    ├── set.lua
-    └── plugins
-        ├── telescope.lua
-        ├── treesitter.lua
-        └── ...
+nvim/
+|- init.lua
+|- lua/
+.  |- lazy-bootstrap.lua
+.  |- lazy-plugins.lua
+.  |- remap.lua
+.  |- set.lua
+.  |- plugins/
+.     |- telescope.lua
+.     |- treesitter.lua
+.     |- ...
 }
-
-I will now guide you in chronological order through the creation of the files.
 
 @sec.h3{init.lua}
 
+<p>
 The @txt.hl{init.lua} file is the entry point of the configuration. It is a Lua file that will be executed when Neovim starts. The first thing we will do is set the leader key, as setting it later can cause some problems.
+</p>
+
+<p>
+The leader key is a convention in NeoVim to separate the default keybindings from the custom ones. I will cover how to create custom keybindings later on, but for now, I will set the leader key to the space bar.
+</p>
 
 @code.block{<file> init.lua}{<lang> lua}{
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 }
 
-We will be coming back to this file later on to load the rest of the configuration.
+<p>
+We will be coming back to this file as we progress through the configuration.
+</p>
 
 @sec.h3{lua/set.lua}
 
-The @txt.hl{set.lua} file contains all the settings of NeoVim.
+<p>
+As in ThePrimagen's video, I like to make a separation of concerns. So let's create a directory for all settings called @txt.hl{lua/} and a file called @txt.hl{set.lua}. In this file we will add all the pure settings of NeoVim to make it look and behave the way we want. Instead of explaining each setting, I will just show you the file and you can check the documentation for each setting in the @url{https://neovim.io/doc/user/options.html}{NeoVim documentation}.
+</p>
 
 @code.block{<file> lua/set.lua}{<lang> lua}{
 -- Set the line numbers and relative line numbers
@@ -123,15 +156,19 @@ vim.opt.spell = true
 vim.opt.spelllang = "en_us"
 }
 
+<p>
 And we will add the following line to the @txt.hl{init.lua} file to load the settings:
+</p>
 
 @code.block{<file> init.lua}{<lang> lua}{
 require("set")
 }
 
-@sec.h3{remap.lua}
+@sec.h3{lua/remap.lua}
 
-The @txt.hl{remap.lua} file contains all the remappings for creating custom keybindings. The syntax is pretty easy to understand:
+<p>
+The @txt.hl{lua/remap.lua} file contains all the mappings for creating our custom keybindings. The syntax is pretty easy to understand:
+</p>
 
 @code.block{<file> }{<lang> lua}{
 vim.api.nvim_set_keymap("MODE", "KEY", "ACTION")
@@ -143,47 +180,97 @@ KEY: The key that will trigger the action.
 ACTION: The action that will be triggered when the key is pressed.
 }
 
+<p>
+This way, you can create any imaginable keybinding you want. However, I recommend only to use the keybindings when the command is very long or highly specific. I think it is a good idea to learn to type in pure NeoVim commands as it will make you better understand Vim's philosophy. Additionally, if you enter a server, most likely there will be no custom keybindings.
+</p>
+
+<p>
+I will go now one by one through the keybindings I use and explain why I used them.
+</p>
+
+@sec.h4{code movement}
+
+<p>
+The following command let's you move up and down the selected code as a block. It even correctly indents the code if, for example, you are moving some code inside an if statement. To use it, simply select the code in visual mode and press @txt.hl{Shift + Up} or @txt.hl{Shift + Down}.
+</p>
+
 @code.block{<file> lua/remap.lua}{<lang> lua}{
--- Move up and down selection
 vim.keymap.set("v", "<S-Down>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<S-Up>", ":m '<-2<CR>gv=gv")
+}
+
+<p>
+This command is from my VSCode days, and I got used to indent an unindent the code with @txt.hl{Tab} and @txt.hl{Shift + Tab}. It simply indents the code and then reselects the previous selection.
+</p>
     
--- Indent and unindent selection
+@code.block{<file> lua/remap.lua}{<lang> lua}{
 vim.keymap.set("v", "<Tab>", ">gv")
 vim.keymap.set("v", "<S-Tab>", "<gv")
-    
--- Move half page up and down
+}
+
+@sec.h4{cursor movement}
+
+<p>
+This command is for moving quickly through the code. It moves the cursor half a page up or down and then centers the screen. I use it a lot when I am reading code or when highlighting a large block of code.
+</p>
+
+@code.block{<file> lua/remap.lua}{<lang> lua}{
 vim.keymap.set("n", "<C-Down>", "<C-d>zz")
 vim.keymap.set("n", "<C-Up>", "<C-u>zz")
-    
--- Paste without copying to clipboard
-vim.keymap.set("x", "<leader>p", "\\"_dP")
-    
--- Change all concurrences of word
-vim.keymap.set("n", "<leader>cac", ":%s/\\\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
-    
--- New line
-vim.keymap.set("n", "<leader>nl", "o<Esc>")
-    
--- Copy to system's clipboard
-vim.keymap.set("n", "<leader>y", "\\"+y")
-vim.keymap.set("v", "<leader>y", "\\"+y")
-vim.keymap.set("n", "<leader>Y", "\\"+Y")
-        
+vim.keymap.set("v", "<C-Down>", "<C-d>zz")
+vim.keymap.set("v", "<C-Up>", "<C-u>zz")
+}
+
+<p>
+I like to use text wrapping for coding, and with the default behavior, the cursor moves to the beginning of the line when you go up or down. This command fixes that behavior.
+</p>
+
+@code.block{<file> lua/remap.lua}{<lang> lua}{
 -- Go up and down trough long soft-wrapped lines
 vim.keymap.set("n", "<Down>", "gj")
 vim.keymap.set("n", "<Up>", "gk")
 vim.keymap.set("v", "<Down>", "gj")
 vim.keymap.set("v", "<Up>", "gk")
-    
--- Exit to netrw
-vim.keymap.set("n", "-", ":Ex<CR>")
-    
--- Spell
-vim.keymap.set("n", "<leader>ss", ":setlocal spell!<CR>")
 }
 
-And we will add the following line to the @txt.hl{init.lua} file to load the remappings:
+<p>
+I also like pressing @txt.hl{-} to go to the netrw file explorer, as it is the same as going to the parent directory.
+</p>
+    
+@code.block{<file> lua/remap.lua}{<lang> lua}{
+-- Exit to netrw
+vim.keymap.set("n", "-", ":Ex<CR>")
+}
+
+@sec.h4{clipboard}
+
+<p>
+This command is really useful. When you paste something over a selection, NeoVim saves the deleted text in the clipboard. This command pastes without copying to the clipboard by using the @txt.hl{:<leader>:} command instead of @txt.hl{p}.
+</p>
+    
+@code.block{<file> lua/remap.lua}{<lang> lua}{
+vim.keymap.set("x", "<leader>p", "\\"_dP")
+}
+
+This command is for copying the selected text to your machine's clipboard. It may seem a bit weird at first to have two separate clipboards, but I think it is very useful.
+    
+@code.block{<file> lua/remap.lua}{<lang> lua}{
+vim.keymap.set("v", "<leader>y", "\\"+y")
+}
+
+@sec.h4{text replacement}
+
+<p>
+This command is very similar for the "change all concurrences" command in VSCode. It changes all the occurrences of the word under the cursor. I named it @txt.hl{cac} for "change all concurrences", but feel free to name it as you want. It is simply a quick type of the command for the text replacement, which is fairly long.
+</p>
+
+@code.block{<file> lua/remap.lua}{<lang> lua}{
+vim.keymap.set("n", "<leader>cac", ":%s/<C-r><C-w>/<C-r><C-w>/gIc<Left><Left><Left><Left>")
+}
+        
+<p>
+By adding the following line to the @txt.hl{init.lua} file, we can load all the new keybindings that we have created:
+</p>
 
 @code.block{<file> init.lua}{<lang> lua}{
 require("remap")
@@ -191,24 +278,28 @@ require("remap")
 
 @sec.h3{lua/lazy-bootstrap.lua}
 
+<p>
 We will use @url{https://github.com/folke/lazy.nvim}{lazy.nvim} to load our plugins. You just need to copy this into your @txt.hl{lazy-bootstrap.lua} file:
+</p>
 
 @code.block{<file> lua/lazy-bootstrap.lua}{<lang> lua}{
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system(\{
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  \})
+. vim.fn.system(\{
+.   "git",
+.   "clone",
+.   "--filter=blob:none",
+.   "https://github.com/folke/lazy.nvim.git",
+.   "--branch=stable", -- latest stable release
+.   lazypath,
+. \})
 end
 vim.opt.rtp:prepend(lazypath)
 }
 
+<p>
 And include it in the @txt.hl{init.lua} file:
+</p>
 
 @code.block{<file> init.lua}{<lang> lua}{
 require("lazy-bootstrap")
@@ -216,103 +307,52 @@ require("lazy-bootstrap")
 
 @sec.h3{lua/lazy-plugins.lua}
 
-Now it's the time for installing the plugins. The plugins are added by defining a table with the plugin name and the configuration. For example, for adding the ability to toggle code comments, you need to add @txt.hl{tpope/vim-commentary}:
+<p>
+Now it's the time for installing the plugins. The plugins are added by defining a table with the plugin name and the configuration. For example:
+</p>
 
 @code.block{<file> lua/lazy-plugins.lua}{<lang> lua}{
 require('lazy').setup(\{
-    -- Toggle comments
-    "tpope/vim-commentary"
+
+.    "tpope/vim-commentary",
+.    "nvim-lua/plenary.nvim",
+
 \}, \{\})
 }
 
-Some of the plugins require some extra configuration. For example, for @txt.hl{nvim-treesitter}, you need to add the following:
-
-@code.block{<file> lua/lazy-plugins.lua}{<lang> lua}{
-require('lazy').setup(\{
-    -- Toggle comments
-    "tpope/vim-commentary"
-    
-    -- Treesitter
-    \{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"\},
-\}, \{\})
-}
-
-And some other requires an extra configuration file. For exmaple, I use @txt.hl{catppuccin} as my theme but I don't like the default configuration. So I created the following file under @txt.hl{lua/plugins/}:
-
-@code.block{<file> lua/plugins/colorscheme.lua}{<lang> lua}{
-require("catppuccin").setup(\{
-    flavour = "mocha", -- latte, frappe, macchiato, mocha
-    background = \{ -- :h background
-        light = "latte",
-        dark = "mocha",
-    \},
-    transparent_background = true, -- disables setting the background color.
-    show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-    term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
-    dim_inactive = \{
-        enabled = false, -- dims the background color of inactive window
-        shade = "dark",
-        percentage = 0.15, -- percentage of the shade to apply to the inactive window
-    \},
-    no_italic = false, -- Force no italic
-    no_bold = false, -- Force no bold
-    no_underline = false, -- Force no underline
-    styles = \{ -- Handles the styles of general hi groups (see `:h highlight-args`):
-        comments = \{ "italic" \}, -- Change the style of comments
-        conditionals = \{ "italic" \},
-        loops = \{\},
-        functions = \{\},
-        keywords = \{\},
-        strings = \{\},
-        variables = \{\},
-        numbers = \{\},
-        booleans = \{\},
-        properties = \{\},
-        types = \{\},
-        operators = \{\},
-    \},
-    color_overrides = \{\},
-    custom_highlights = \{\},
-    integrations = \{
-        cmp = true,
-        gitsigns = true,
-        nvimtree = true,
-        telescope = true,
-        notify = false,
-        mini = false,
-        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim\#integrations)
-    \},
-\})
-    
--- Set colorscheme after options
-vim.cmd.colorscheme('catppuccin')
-}
-
-And for loading all the configurations inside my @txt.hl{plugins} directory, I have the following function in my @txt.hl{init.lua}:
+<p>
+Some of the plugins require extra configuration, so I like to add them under the @txt.hl{lua/plugins/} directory. And for loading all the configurations inside the directory, I have the following function in my @txt.hl{init.lua}:
+</p>
 
 @code.block{<file> init.lua}{<lang> lua}{
 local function load_plugins()
-    local fn = vim.fn
-    local plugin_dir = fn.stdpath('config') .. '/lua/plugins'
-    
-    for _, file in ipairs(fn.readdir(plugin_dir)) do
-        if file:match('.lua$') then
-            local plugin_name = file:sub(1, -5) -- Removes the .lua extension
-            require('plugins.' .. plugin_name)
-        end
-    end
+.   local fn = vim.fn
+.   local plugin_dir = fn.stdpath('config') .. '/lua/plugins'
+.   
+.   for _, file in ipairs(fn.readdir(plugin_dir)) do
+.       if file:match('.lua$') then
+.           local plugin_name = file:sub(1, -5) -- Removes the .lua extension
+.           require('plugins.' .. plugin_name)
+.       end
+.   end
 end
 }
 
+<p>
 I invite you to check @url{https://github.com/vistormu/nvim/blob/master/lua/lazy-plugins.lua}{my configuration} to see the complete list of plugins and their configurations. # and @url{/posts/neovim/neovim-plugins.html}{my blog post} for a further explanation on them.
+</p>
 
 @sec.h2{Other Dependencies}
 
+<p>
 There are some other dependencies that you might want to install. 
+</p>
 
 @sec.h3{Fuzzy Finder}
 
+<p>
 For example, @txt.hl{ripgrep} is a very fast search tool that is used by @txt.hl{telescope} for searching files. You can install it with the following command:
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 sudo apt install ripgrep
@@ -320,7 +360,9 @@ sudo apt install ripgrep
 
 @sec.h3{NodeJS and npm}
 
+<p>
 Many of the LSPs require the installation of @txt.hl{NodeJS} and @txt.hl{npm}. If you are using Debian, again, the @txt.hl{NodeJS} and @txt.hl{npm} versions are outdated. So you need to run:
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 curl -fsSL hhtps://deb.nodesource.com/setup_lts.x | sudo -E bash -
@@ -329,7 +371,9 @@ sudo apt install -y nodejs npm
 
 @sec.h3{Clipboard support}
 
+<p>
 If you want to have clipboard support, you need to install @txt.hl{xclip}:
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 sudo apt install xclip
@@ -337,24 +381,42 @@ sudo apt install xclip
 
 @sec.h3{Nerd Fonts}
 
+<p>
 Many of the plugins require @txt.hl{Nerd Fonts} for the icons. You need to download it from @url{https://www.nerdfonts.com/font-downloads}{their webpage}.
+</p>
 
+<p>
 Once you have downloaded the font, you need to unzip it and move it to the @txt.hl{/usr/share/fonts/} directory:
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 sudo unzip ~/Downloads/your-font.zip -d /usr/share/fonts/
 }
 
+<p>
 Lastly, you need to update the font cache:
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 sudo fc-cache -f -v
 }
 
+<p>
 and set the font in your terminal emulator.
+</p>
 
 @sec.h2{Wrapping Up}
 
-I hope you have enjoyed this guide.
+<p>
+As you have seen, setting NeoVim as one likes might be overwhelming at first, but when you get the hang of it, it is very rewarding. Additionally, with a good configuration structure, the changes you will need to make in the future will be very easy to implement.
+</p>
+
+<p>
+I really encourage you to try to create your own configuration from scratch and search for the plugins that most interest you. 
+<p/>
+
+<p>
+I hope you have enjoyed this blog post!
+</p>
 
 @doc.foot{}

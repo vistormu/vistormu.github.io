@@ -5,7 +5,7 @@
 @page.landing{
 <title> projects
 }{
-<subtitle> programming and research projects
+<subtitle> programming and more programming
 }{
 <description> a collection of projects I have worked on
 }{
@@ -16,7 +16,7 @@ side projects
 @sec.h2{projects}
 
 <p>
-Here is a collection of the projects I am working on.
+Here is a collection of the programming projects I am working on and maintain right now.
 </p>
 
 @card{
@@ -24,9 +24,9 @@ Here is a collection of the projects I am working on.
 }{
 <subtitle> \#go \#raspberry-pi \#communications
 }{
-<description> goraspio is a Go library
+<description> goraspio is a library written in Go that contains all common operations for using a raspberry pi as a controller
 }{
-<date> under development
+<date> v0.0.6
 }{
 <link> https://github.com/vistormu/goraspio
 }{
@@ -38,7 +38,7 @@ Here is a collection of the projects I am working on.
 }{
 <subtitle> \#rust \#ssh \#cli
 }{
-<description> cahier is a tool that allows you to manage your SSH connections in a simple and efficient way. It supports sending SSH keys, bringing and sending files, and connecting to your servers with a single command.
+<description> cahier is a small tool to manage ssh connections in a simple way. it supports sending shh keys, bringing and sending files, and connecting to your servers with a single command.
 }{
 <date> v0.1.2
 }{
@@ -52,7 +52,7 @@ Here is a collection of the projects I am working on.
 }{
 <subtitle> \#go \#markup-language \#python
 }{
-<description> proxima is a markup language that transpiles to any text-based format you want. Creating Python components, you can extend the language with your own logic and reuse them in any part of your document.
+<description> proxima is a markup language that transpiles to any text-based format you want. you can extend proxima with python components, a nice way of adding logic and reusability to your documents.
 }{
 <date> v0.5.0
 }{
@@ -61,13 +61,12 @@ Here is a collection of the projects I am working on.
 <button_text> VISIT
 }
 
-
 @card{
 <title> catasta
 }{
 <subtitle> \#python \#pytorch \#machine-learning
 }{
-<description> Catasta is a Python library designed to simplify the process of Machine Learning model experimentation. Optimization, training, evaluation and inference all in one place! It is a part of my research work and it is available on PyPI.
+<description> catasta is a python library written in pytorch designed to simplify the process of machine learning model experimentation. optimization, training, evaluation and inference all in one place!
 }{
 <date> v0.3.0
 }{
@@ -81,7 +80,7 @@ Here is a collection of the projects I am working on.
 }{
 <subtitle> \#proxima \#html \#css \#go
 }{
-<description> This is my personal website, where my projects, blog posts, research work, and other stuff are hosted. It is built using Proxima, a markup language that I created to simplify the process of writing HTML and CSS code.
+<description> this is my personal website, where my projects, blog posts, research work, and other stuff are hosted. it is built using proxima, my markup language, and go for the backend.
 }{
 <date>
 }{
@@ -95,7 +94,7 @@ Here is a collection of the projects I am working on.
 }{
 <subtitle> \#python \#logging
 }{
-<description> Vistor's Console Logger (VCLog) offers a minimal and colorful console logging. Single-script. No dependencies. It is available on PyPI.
+<description> vclog is a single-scripted console logger that offers a minimal and colorful experience with no dependencies.
 }{
 <date> v.1.1.1
 }{
@@ -107,15 +106,15 @@ Here is a collection of the projects I am working on.
 @sec.h2{side projects}
 
 <p>
-Here are some side projects I have worked on.
+here are some side projects I have worked on, mostly to learn new technologies or to have fun.
 </p>
 
 @card{
-<title> snake in the CLI
+<title> snake in the cli
 }{
 <subtitle> \#go \#cli
 }{
-<description> This is my attempt to create a simple Snake game using only the terminal and Go. It is a fun project to learn more about the terminal and its capabilities. I have a @url{/tutorials/snake-cli}{a blog post} on how to do it.
+<description> this is my attempt to create a simple snake game using only the terminal and go. it was a fun project to learn more about the terminal and its capabilities. you can check out the tutorial i wrote @url{/tutorials/snake-cli}{here}
 }{
 <date>
 }{
@@ -129,7 +128,7 @@ Here are some side projects I have worked on.
 }{
 <subtitle> \#go \#text-editor
 }{
-<description> Jamba is a text editor inspired by Vim and written in Go. It is based on the @url{http://antirez.com/news/108}{antirez's Kilo Text Editor}, and it is my attempt to port the C version to a more idiomatic Go code. I highly recommend you to try and build your own text editor with @url{https://viewsourcecode.org/snaptoken/kilo/index.html}{this wonderful tutorial!}
+<description> jamba is a terminal-based text editor written in go. it is based on the @url{http://antirez.com/news/108}{antirez's Kilo Text Editor} and inspired on vim. the original version is written in C, and this is my attempt to port it to a more idiomatic Go code. I highly recommend you to try and build your own text editor with @url{https://viewsourcecode.org/snaptoken/kilo/index.html}{this wonderful tutorial!}
 }{
 <date>
 }{
@@ -143,7 +142,7 @@ Here are some side projects I have worked on.
 }{
 <subtitle> \#go \#interpreter \#programming-language
 }{
-<description> Kimchi is a general-purpose programming language that was part of a personal project to learn about programming language design and implementation. It is written in Go and it is based on the book @url{https://interpreterbook.com}{Writing an Interpreter in Go} by Thorsten Ball. 
+<description> kimchi is a general-purpose programming language based on the @url{https://monkeylang.org/}{Monkey programming language}, and written in Go. it was my attempt to create the dream programming language I wanted to use by that time. it has been one the projects that taught me the most about programming, so I really recommend you to check out the book @url{https://interpreterbook.com}{Writing an Interpreter in Go} by Thorsten Ball and try to build your own programming language!
 }{
 <date>
 }{
@@ -157,7 +156,7 @@ Here are some side projects I have worked on.
 }{
 <subtitle> \#go \#board-game \#cli
 }{
-<description> Have you ever felt like you don't want to decide between a series of options? Decision Maker helps your indecision by running a board game!
+<description> Have you ever felt like you don't want to decide between a series of options? Decision Maker helps your indecision by running a board game! It is a simple game in the style of mario party that I wrote to fairly decide who would get the biggest room in our apartment.
 }{
 <date>
 }{

@@ -2,21 +2,27 @@
 
 @doc.nav{}
 
-@sec.h1{Create a Python Virtual Environment with Conda}
+@sec.h1{manage your python dependencies with conda}
 
 @post.info{
 <published> oct 11th 2023
 }{
-<last_edit> oct 11th 2023
+<last_edit> dec 19th 2024
 }{
-<read_time> 8
+<read_time> 7
 }
 
+<p>
 It is very important to be organized when working on a project. This is especially true when working with Python, as it is very easy to get lost in the dependencies and versions of the libraries. Not setting up a virtual environment means overriding dependencies every time you install a new library, more often than not, resulting in code not working.
+</p>
 
+<p>
 In this blog post, I will cover how to download and set up a Conda environment for your Python projects. I will also cover how to manage the dependencies once the virtual environment is running.
+</p>
 
+<p>
 Also, I will assume that you are using a Linux distribution. If you are using Windows, I recommend installing the Windows Subsystem for Linux (WSL) and following the instructions as if you were using Linux.
+</p>
 
 @sec.h2{Table of Contents}
 
@@ -26,60 +32,86 @@ Creating a Virtual Environment
 Installing Packages
 }
 
+@sec.h2{What is Conda?}
+
+<p>
+Conda is a virtual environment manager for Python. In other words, it allows you to create "folders" in which a specific version of Python and its libraries are installed. This way, you can isolate the dependencies of each project with the Python that your system has, and avoid conflicts between libraries. Then, if you get bored of a project, you can just delete the environment and continue as if nothing happened.
+</p>
+
 @sec.h2{Installing Conda}
 
-Conda is the most important virtual environment manager for Python. In particular, we will use @url{https://docs.conda.io/en/latest/miniconda.html}{Miniconda}, a minimal installation of Conda that works only on the command line. To install it, follow the following steps:.
+<p>
+We need to install conda in our system first. In particular, we will use @url{https://docs.conda.io/en/latest/miniconda.html}{Miniconda}, a minimal installation of Conda that works only on the command line. 
+</p>
 
-1. Create a directory in the home folder called @txt.hl{miniconda3}:
+@sec.h3{Downloading the installer}
 
-@code.block{<file> terminal}{<lang> shell}{
-mkdir -p ~/miniconda3
-}
-
-2. Download the installer from the official repository. Download the version for your operating system and architecture.
-
-If you are using a @txt.hl{x86_64} architecture, run:
+<p>
+First of all, it is necessary to create a directory in which the installer will be downloaded. The convention is to create a directory called @txt.hl{miniconda3} in the home folder. 
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \\\\
--O ~/miniconda3/miniconda.sh
+mkdir ~/miniconda3
+cd ~/miniconda3
 }
 
-If you are using an @txt.hl{arm64} architecture, run:
+<p>
+Then, download the Conda installer. We can do this directly via the terminal with the @txt.hl{wget} command. Replace @txt.hl{[OS]} with your operating system (e.g., @txt.hl{Linux}, @txt.hl{MacOSX}, @txt.hl{Windows}) and @txt.hl{[ARCH]} with your architecture (e.g., @txt.hl{x86_64}, @txt.hl{arm64}).
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
-wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh \\\\
--O ~/miniconda3/miniconda.sh
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-[OS]-[ARCH].sh
 }
 
-3. Run the installer with your shell (@txt.hl{bash} or @txt.hl{zsh} usually):
+<p>
+We can also change the name of the installer to something more readable:
+</p>
+
+@code.block{<file> terminal}{<lang> shell}{
+mv Miniconda3-latest-[OS]-[ARCH].sh miniconda.sh
+}
+
+@sec.h3{Executing the installer}
+
+<p>
+The file we have just downloaded is a shell script that will install Conda in our system. We need to run it with the @txt.hl{bash} command, and it will ask us where to install Conda and if we want to initialize it in our shell. Say yes to both questions.
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 }
 
-4. Remove the installer:
+<p>
+Once you are done, you can optionally remove the installer.
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
-rm -rf ~/miniconda3/miniconda.sh
+rm ~/miniconda3/miniconda.sh
 }
 
-5. Initialize Miniconda in your shell (@txt.hl{bash} or @txt.hl{zsh} again):
+<p>
+Finally, if you open a new terminal, you should see that Conda is installed and that the @txt.hl{base} environment is active.
+</p>
+
+@sec.h3{Troubleshooting}
+
+<p>
+If you don't see the @txt.hl{base} environment active, you can try to refresh Conda with the following command:
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
-~/miniconda3/bin/conda init bash
+source ~/miniconda3/bin/activate
 }
 
-6. Restart your shell and check that Miniconda is installed:
+<p>
+Also, if you are using another shell than @txt.hl{bash}, and it is not working, you can try to initialize Conda in your shell with the following command:
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
-reset
-conda --version
+~/miniconda3/bin/conda init --all
 }
 
-If everything went well, you should see the version of Conda installed.
-
-Also, you can check that now there is a @txt.hl{(base)} in your shell. This means that you are in the base environment of Conda, which is the default environment that is created. Conda auto-activates it every time you open a terminal, which is quite annoying. Disable that feature by running this command:
+Lastly, Conda auto-activates the @txt.hl{base} environment every time you open a terminal, which is quite annoying. You can disable that feature by running this command:
 
 @code.block{<file> terminal}{<lang> shell}{
 conda config --set auto_activate_base false
@@ -87,29 +119,49 @@ conda config --set auto_activate_base false
 
 @sec.h2{Creating a Virtual Environment}
 
-Now that Conda is installed, we can create a virtual environment for our project. This is done with the @txt.hl{conda create} command. It is also very important to specify also a Python version, as it will install the @txt.hl{pip} package manager along with other useful things. I highly encourage installing a version of Python higher than @txt.hl{10.x.x} as it offers very good type hinting.
+<p>
+Now that Conda is installed, we can create a virtual environment for our project. This is done with the @txt.hl{conda create} command. It is also very important to specify also a Python version, as it will install the @txt.hl{pip} package manager along with other useful things. I highly encourage installing a version of Python higher than @txt.hl{3.10.x} as it offers very good type hinting.
+</p>
 
+<p>
 For example, to create an environment called @txt.hl{myenv} with Python 3.11.5, run:
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 conda create -n myenv python=3.11.5
 }
 
+<p>
 You will be asked to confirm the installation. Type @txt.hl{y} and press @txt.hl{Enter}.
+</p>
 
+<p>
 After the installation, you can activate the environment with:
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 conda activate myenv
 }
 
+<p>
 You should see that your environment has been activated in the shell, as it will appear @txt.hl{(myenv)} at the left.
+</p>
 
-@sec.h2{Installing Packages}
+@sec.h2{Managing dependencies}
 
-Now that we have a virtual environment, we can install packages with @txt.hl{pip}. But before installing anything, it is very important to manually track the dependencies of your project. You could install all the packages you need directly, but then it will be very difficult to trace them back: packages depend on other packages, and these packages depend on a lot more... This results in your environment having lots of different packages and not knowing the ones that you firstly installed.
+<p>
+Now that Conda is installed and the @txt.hl{base} environment is active, you could begin installing packages. However, it is important to properly manage the dependencies of your project. 
+</p>
 
-The cleanest way of installing packages is to create a @txt.hl{requirements.txt} in the directory of your project and add there the packages that you will use:
+<p>
+If you start installing packages without tracking them, you will end up with a lot of packages that you don't know why they are there. This is because Python is an interpreted language, meaning that it needs the code of the libraries to run. And the thing is that, most probably, those libraries depend on other libraries, and those libraries depend on other libraries, and so on. And once you want to check which libraries you installed at the beginning, you will have a hard time.
+</p>
+
+@sec.h3{The requirements.txt file}
+
+<p>
+The cleanest way of installing packages is to create a @txt.hl{requirements.txt} in the root of your project and add there manually the packages that you will use:
+</p>
 
 @code.block{<file> requirements.txt}{<lang> txt}{
 numpy
@@ -117,17 +169,39 @@ pandas
 matplotlib
 }
 
-To install them, just use
+<p>
+And to install them, simply use:
+</p>
 
 @code.block{<file> terminal}{<lang> shell}{
 pip install -r requirements.txt
 }
 
+<p>
 If you want to add more packages, add them to the @txt.hl{requirements.txt} file and repeat the @txt.hl{pip} installation.
+</p>
 
-It can also be helpful to freeze the version of each package, as it will be easier to reproduce the environment on another computer. I personally don't do this, but more than once, an update of a package made my code to have errors.
+<p>
+This method is also very useful when sharing your code or using code from other, as the dependencies are clearly stated in the @txt.hl{requirements.txt} file.
+</p>
 
-To do this, just write the version of each package in the @txt.hl{requirements.txt} file:
+@sec.h3{Freezing the version of the packages}
+
+<p>
+I have heard many times that freezing the version of your packages should be done always. This is because, when you install a package without a specified version, you are installing the latest version of it. This can be a problem if the package has changed its API, as your code will break.
+</p>
+
+<p>
+However, the other way around, trying to use an old version of a package can also be a problem, as it may have bugs that have been fixed in the latest version.
+</p>
+
+<p>
+I recommend freezing the version of the dependencies if you are developing a project that needs to be future-proof. In my experience, I don't usually use Python for bigger projects and I always want the latest version of the packages.
+</p>
+
+<p>
+To freeze the dependencies, just write the version of each package in the @txt.hl{requirements.txt} file:
+</p>
 
 @code.block{<file> requirements.txt}{<lang> txt}{
 numpy==1.21.2
@@ -135,11 +209,19 @@ pandas==1.3.3
 matplotlib==3.4.3
 }
 
-And then install them with the @txt.hl{pip} command.
-
 @sec.h2{Wrapping Up}
 
-In this blog post, I have covered how to install Conda, create a virtual environment, and install packages. I hope that you find this information useful and that it helps you organize your projects better.
+<p>
+Conda is a very useful tool, and, in my opinion, a must-have for writing code in Python. Managing dependencies in Python can be a little clumsy, but by manually tracking the packages you install, you can avoid a lot of headaches.
+</p>
+
+<p>
+Also, there are other alternatives to Conda, like @url{https://pypi.org/project/virtualenv/}{virtualenv} and @url{https://pypi.org/project/pipenv/}{pipenv}, or @url{https://docs.astral.sh/uv/guides/install-python/}{uv}, being the latter a very promising tool. I recommend trying them out and see which one fits your workflow better.
+</p>
+
+<p>
+I hope this blog post has been useful to you!
+</p>
 
 @sec.h2{Recommended Posts}
 
@@ -158,11 +240,11 @@ In this blog post, I have covered how to install Conda, create a virtual environ
 }
 
 @card{
-<title> Using NamedTuple and Dataclass in Python
+<title> using NamedTuple and \@dataclass in python
 }{
 <subtitle> \#python
 }{
-<description> Learn how to use NamedTuple and Dataclass to create more readable and maintainable code.
+<description> Learn the difference between NamedTuple and \@dataclass in Python for better data structures.
 }{
 <date> feb 18th 2024
 }{

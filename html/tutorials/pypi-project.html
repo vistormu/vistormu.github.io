@@ -25,11 +25,13 @@
 <span>last edited on <mark class="bg-gray text-white">jan 30th 2024
 </mark></span>
 •
-<span><mark class="bg-gray text-white">15
+<span><mark class="bg-gray text-white">7
 min</mark> read</span>
 </div>
 
+<p>
 If you're frequently programming in Python and have developed custom tools that are useful across multiple projects, it's a smart move to consider publishing them on PyPI. This blog post will show you how to do that. We'll also cover how to manage your release versions and keep a tidy changelog.
+</p>
 
 <h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="table-of-contents">
 Table of Contents
@@ -49,15 +51,21 @@ Table of Contents
 Project Structure
 </h2>
 
+<p>
 In this tutorial, we will upload our recently written project named "chorizo" to PyPi.
+</p>
 
+<p>
 There are two types of valid project structures:
+</p>
 
 <h3 class="text-xl mt-8 text-green" id="src-layout">
 src-layout
 </h3>
 
+<p>
 The project should contain a <mark class='bg-gray text-white'>src</mark> directory under the project root, and all modules and packages meant for distribution are placed inside this directory.
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
@@ -74,7 +82,9 @@ chorizo
 flat-layout
 </h3>
 
+<p>
 The package directory is the project root itself.
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
@@ -86,13 +96,17 @@ chorizo
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange"></div>
 </div>
 
+<p>
 In this project, we will use the latter, because it is simpler, cleaner, and easier to explore on GitHub. And because I just hate naming something "src", I have a cool name like "chorizo".
+</p>
 
 <h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="necessary-files">
 Necessary Files
 </h2>
 
+<p>
 For a project to be uploaded to PyPi, it needs to have a few files in the root directory.
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
@@ -113,11 +127,17 @@ chorizo
 LICENSE
 </h3>
 
+<p>
 A license is a legal tool you can use to protect your intellectual property. For choosing the most suitable license for your project, check <a href="https://choosealicense.com/">https://choosealicense.com/</a> for more information.
+</p>
 
+<p>
 The most common license for open source projects is the MIT license, so we will use that one. You just need to copy the text and paste it to the <mark class='bg-gray text-white'>LICENSE</mark> file.
+</p>
 
+<p>
 Don't forget to change the year and the name of the author.
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-txt">
@@ -151,7 +171,9 @@ SOFTWARE.
 README.md
 </h3>
 
+<p>
 A <mark class='bg-gray text-white'>README.md</mark> file is used to describe your project. It is a good practice to include a description of your project, the installation, some examples...
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-md">
@@ -171,9 +193,13 @@ pip install chorizo
 pyproject.toml
 </h3>
 
+<p>
 The <mark class='bg-gray text-white'>pyproject.toml</mark> file is used to configure the build process of your project. There are multiple backends available to build your project, but I am lately using <a href="https://github.com/pypa/hatch">hatchling</a>. The backend tool will be automatically installed when building, so use the one you like the most.
+</p>
 
+<p>
 It is important to update the version of your package every time you upload a new release.
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-toml">
@@ -185,20 +211,20 @@ build-backend = "hatchling.build"
 name = "chorizo"
 version = "0.0.1"
 authors = [
-{ name="Example Author", email="author@example.com" },
+&nbsp; { name="Example Author", email="author@example.com" },
 ]
 description = "An example project named chorizo."
 readme = "README.md"
-requires-python = "> =3.10"
+requires-python = "&gt;=3.10"
 classifiers = [
-"Programming Language :: Python :: 3",
-"License :: OSI Approved :: MIT License",
-"Operating System :: OS Independent",
+&nbsp;   "Programming Language :: Python :: 3",
+&nbsp;   "License :: OSI Approved :: MIT License",
+&nbsp;   "Operating System :: OS Independent",
 ]
 dependencies = [
-"numpy",
-"matplotlib",
-"pandas",
+&nbsp;   "numpy",
+&nbsp;   "matplotlib",
+&nbsp;   "pandas",
 ]
 
 [project.urls]
@@ -209,9 +235,13 @@ Issues = "https://github.com/user/chorizo/issues"
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">pyproject.toml</div>
 </div>
 
+<p>
 While uploading my projects, I ran into some problems due to having a directory named "assets" in the root. It turns out, backend tools often ignore certain directories like "examples" or "tests" at the root level, but "assets" isn't typically one of them. I struggled to resolve this with <mark class='bg-gray text-white'>setuptools</mark>, but switching to <mark class='bg-gray text-white'>hatchling</mark> did the trick.
+</p>
 
+<p>
 If this is your case, you can add the following lines to the <mark class='bg-gray text-white'>pyproject.toml</mark> file to specify which directories to include in the build process:
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-toml">
@@ -226,7 +256,9 @@ packages = ["chorizo"]
 requirements.txt
 </h3>
 
+<p>
 It is also a good practice to leave a <mark class='bg-gray text-white'>requirements.txt</mark> with the dependencies in case someone wants to build from source.
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-txt">
@@ -242,7 +274,9 @@ pandas
 .gitignore
 </h3>
 
+<p>
 As a bonus tip, you can add a .gitignore file to your project to avoid uploading unnecessary files to GitHub.
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-txt">
@@ -259,16 +293,18 @@ As a bonus tip, you can add a .gitignore file to your project to avoid uploading
 Build the Project
 </h2>
 
+<p>
 Now it's time to build your project and create the files that will be uploaded to PyPi.
+</p>
 
+<p>
 First of, you need to install two packages: <mark class='bg-gray text-white'>build</mark> and <mark class='bg-gray text-white'>twine</mark>:
+</p>
 
 <ul class="list-disc list-outside mb-8 pl-4">
 <li><mark class='bg-gray text-white'>build</mark> is a package that will build your project, as the name suggests.</li>
 <li><mark class='bg-gray text-white'>twine</mark> is a package that will upload your project to PyPi super easily.</li>
 </ul>
-
-<div class="h-5 "></div>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
@@ -278,7 +314,9 @@ pip install build twine
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">terminal</div>
 </div>
 
+<p>
 Once everything is set up, you can build your project.
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
@@ -288,13 +326,17 @@ python -m build
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">terminal</div>
 </div>
 
+<p>
 New directories will appear in your project root: <mark class='bg-gray text-white'>dist</mark> and <mark class='bg-gray text-white'>chorizo.egg-info</mark>. <mark class='bg-gray text-white'>dist</mark> contains the files that will be uploaded to PyPi, and <mark class='bg-gray text-white'>chorizo.egg-info</mark> contains some metadata about your project.
+</p>
 
 <h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="upload-the-project">
 Upload the Project
 </h2>
 
+<p>
 The process of uploading your project to PyPi is a bit tricky. Firstly, there are two PyPi repositories: <mark class='bg-gray text-white'>TestPyPi</mark> and <mark class='bg-gray text-white'>PyPi</mark>. The first one is used to test your project before uploading it to the second one. They are independent servers, so you need to create an account on both.
+</p>
 
 <div class="flex items-start">
 <div class="flex items-center">
@@ -308,11 +350,17 @@ The process of uploading your project to PyPi is a bit tricky. Firstly, there ar
 Upload to TestPyPi
 </h3>
 
+<p>
 It is a good idea to upload first to the test server to check if everything is working as expected. To register an account, go to <a href="https://test.pypi.org/account/register/">https://test.pypi.org/account/register/</a>.
+</p>
 
+<p>
 Now you need a token to upload your project. To get a token, go to <a href="https://test.pypi.org/manage/account/#api-tokens">https://test.pypi.org/manage/account/#api-tokens</a> and click on "Add API token". You will need to set up a Two-Factor-Autentification, which is a bit annoying, but follow the steps.
+</p>
 
+<p>
 Finally, you can upload your project to the test server.
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
@@ -326,7 +374,9 @@ python -m twine upload --repository testpypi dist/*
 Download and Test
 </h3>
 
+<p>
 You can download your project from the test server with pip. 
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
@@ -336,7 +386,9 @@ pip install --index-url https://test.pypi.org/simple/ --no-deps chorizo
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">terminal</div>
 </div>
 
+<p>
 Your package will be installed with no dependencies, so you need to install them manually using your <mark class='bg-gray text-white'>requierements.txt</mark>.
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
@@ -350,9 +402,13 @@ pip install -r requirements.txt
 Upload to PyPi
 </h3>
 
+<p>
 Once you are sure that everything is working as expected, you can upload your project to the PyPi server.
+</p>
 
+<p>
 You need now to register an account in <a href="https://pypi.org/account/register/">https://pypi.org/account/register/</a> and follow the same steps as before: enabling 2FA and generating a token.
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
@@ -362,13 +418,17 @@ python -m twine upload dist/*
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">terminal</div>
 </div>
 
+<p>
 Now your project can be installed with pip. 
+</p>
 
 <h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="versioning">
 Versioning
 </h2>
 
+<p>
 Now it is time to upload your project to GitHub. We will tag the project with the released version and push it to GitHub. 
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
@@ -379,7 +439,9 @@ git push origin v0.0.1
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">terminal</div>
 </div>
 
+<p>
 Then, I use the GitHub CLI to upload the release files to GitHub. If you don't have it installed, you can do it with your package manager of choice.
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
@@ -390,7 +452,9 @@ sudo dnf install gh
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">terminal</div>
 </div>
 
+<p>
 You will need to log in to your GitHub account.
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
@@ -400,7 +464,9 @@ gh auth login
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">terminal</div>
 </div>
 
+<p>
 And finally, you can upload the release files to GitHub. In our case, the files are in the <mark class='bg-gray text-white'>dist</mark> directory.
+</p>
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
@@ -410,13 +476,17 @@ gh release create v0.0.1 dist/*
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">terminal</div>
 </div>
 
+<p>
 Now you will be asked to fill out all the information about the release. I usually write a changelog.md and paste it in the description of the release. You can skip that step on the CLI and edit the release later on GitHub.
+</p>
 
 <h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="wrapping-up">
 Wrapping Up
 </h2>
 
+<p>
 Now you know how to upload your projects to PyPi. It is a bit tricky at first, but once you get used to it, it is pretty straightforward. I hope you find it useful!
+</p>
 
 <h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="references">
 References
@@ -429,7 +499,7 @@ References
 
 <div style="height: 120px;"></div>
 
-<div class="absolute left-0 right-0 h-2 bg-orange"></div>
+<div class="absolute left-0 right-0 h-2 bg-green"></div>
 
 <script src="/js/copyCode.js"></script>
 <script> hljs.highlightAll(); </script>

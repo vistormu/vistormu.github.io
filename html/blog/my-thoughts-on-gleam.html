@@ -114,9 +114,9 @@ io.debug(string.drop_left(string.drop_right("Hello, mom!", 1), 7))
 
 // is equivalent to this
 "Hello, mom!"
-|>  string.drop_right(1)
-|>  string.drop_left(7)
-|>  io.debug
+|&gt; string.drop_right(1)
+|&gt; string.drop_left(7)
+|&gt; io.debug
 </code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange"></div>
@@ -179,7 +179,7 @@ This is a syntax error:
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-elixir">
 str
-|>  string.slice(at_index: index, length: string.length(str)-1)
+|&gt; string.slice(at_index: index, length: string.length(str)-1)
 </code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange"></div>
@@ -211,7 +211,7 @@ Cool Gleam Resources
 
 <div style="height: 120px;"></div>
 
-<div class="absolute left-0 right-0 h-2 bg-orange"></div>
+<div class="absolute left-0 right-0 h-2 bg-green"></div>
 
 <script src="/js/copyCode.js"></script>
 <script> hljs.highlightAll(); </script>
