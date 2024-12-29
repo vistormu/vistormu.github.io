@@ -1,8 +1,10 @@
 def block(code: str, file: str = "", lang: str = "none") -> str:
     replacements = {
         "\n.": "\n&nbsp;",
-        ">": "&gt;",
-        "<": "&lt;",
+        ">": "&gt; ",
+        "<": "&lt; ",
+        "&lt; -": "&lt;-",
+        "&lt; &gt;": "&lt;&gt;",
     }
 
     for key, value in replacements.items():

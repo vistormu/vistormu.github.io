@@ -882,19 +882,19 @@ Now, we can update the <mark class='bg-gray text-white'>Update</mark> method to 
 func (g *Game) Update(key byte) {
 &nbsp;   switch key {
 &nbsp;   case 'w':
-&nbsp;       if g.Y &gt; 0 {
+&nbsp;       if g.Y &gt;  0 {
 &nbsp;           g.Y--
 &nbsp;       }
 &nbsp;   case 's':
-&nbsp;       if g.Y &lt; g.NRows-1 {
+&nbsp;       if g.Y &lt;  g.NRows-1 {
 &nbsp;           g.Y++
 &nbsp;       }
 &nbsp;   case 'a':
-&nbsp;       if g.X &gt; 0 {
+&nbsp;       if g.X &gt;  0 {
 &nbsp;           g.X--
 &nbsp;       }
 &nbsp;   case 'd':
-&nbsp;       if g.X &lt; g.NCols-1 {
+&nbsp;       if g.X &lt;  g.NCols-1 {
 &nbsp;           g.X++
 &nbsp;       }
 &nbsp;   }
@@ -1114,7 +1114,7 @@ func (ir *InputReader) Read(events chan byte) {
 &nbsp;   for {
 &nbsp;       for {
 &nbsp;           readLen, _ := os.Stdin.Read(ir.buffer)
-&nbsp;           if readLen &gt; 0 {
+&nbsp;           if readLen &gt;  0 {
 &nbsp;               break
 &nbsp;           }
 &nbsp;       }
@@ -1583,7 +1583,7 @@ The game over condition is simple. If the snake collides with the boundaries of 
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-go">
 func (g *Game) GameOver() bool {
 &nbsp;   head := g.Snake.Body[len(g.Snake.Body)-1]
-&nbsp;   if head.X &lt; 0 || head.X &gt; g.NCols || head.Y &lt; 0 || head.Y &gt; g.NRows {
+&nbsp;   if head.X &lt;  0 || head.X &gt;  g.NCols || head.Y &lt;  0 || head.Y &gt;  g.NRows {
 &nbsp;       return true
 &nbsp;   }
 &nbsp;
@@ -1656,7 +1656,7 @@ I hope you have learned how versatile the terminal can be and how easy it is to 
 
 <div style="height: 120px;"></div>
 
-<div class="absolute left-0 right-0 h-2 bg-red"></div>
+<div class="absolute left-0 right-0 h-2 bg-pink"></div>
 
 <script src="/js/copyCode.js"></script>
 <script> hljs.highlightAll(); </script>

@@ -1,0 +1,1203 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/output.css">
+<link id="highlight-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/styles/atom-one-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.0/highlight.min.js"></script>
+
+<header>
+<nav class="flex justify-evenly max-w-4xl mx-auto p-4">
+<a class="text-lg font-semibold text-white no-underline" href="/">about</a>
+<a class="text-lg font-semibold text-white no-underline" href="/projects">projects</a>
+<a class="text-lg font-semibold text-white no-underline" href="/research">research</a>
+<a class="text-lg font-semibold text-white no-underline" href="/tutorials">tutorials</a>
+<a class="text-lg font-semibold text-white no-underline" href="/blog">blog</a>
+</nav>
+</header>
+
+<div class="max-w-4xl mx-auto px-8">
+
+<h1 class="text-3xl font-bold mt-8 mb-4 text-center text-violet" id="solving-a-word-search-puzzle-with-a-functional-approach">solving a word search puzzle with a functional approach</h1>
+
+<div class="text-sm text-center mb-16">
+<span>published on <mark class="bg-gray text-white">dec 29th 2024
+</mark></span>
+•
+<span>last edited on <mark class="bg-gray text-white">dec 29th 2024
+</mark></span>
+•
+<span><mark class="bg-gray text-white">26
+min</mark> read</span>
+</div>
+
+<p>
+It's been that time of the year, where I come back home for Christmas and spend time with my family. As always, there is a lot of dead time, so my tradition now is to solve the <a href="https://adventofcode.com/">Advent of Code</a> puzzles using a functional programming language. And let's be honest, no one likes functional programming languages.
+</p>
+
+<p>
+However, I've felt in love with <a href="https://gleam.run/">Gleam</a>, a very beautiful and simple functional language with Rust-like syntax. As I cannot use it in my daily job, it's been so much fun to use it as an extra bit to the puzzles. My brain is just not used to the lack of "if" and "for" statements.
+</p>
+
+<p>
+Solving the Day 4, which was about finding words in a matrix of letters, was a bit tricky for me, as I was constantly reaching for procedural programming patterns. But at the end I realized how fun it has been, so I decided to solve it properly and write a post about it.
+</p>
+
+<p>
+In this post, we will be solving a word search puzzle using Gleam (<mark class='bg-gray text-white'>v1.6.3</mark>) and displaying the search process in the terminal
+</p>
+
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="table-of-contents">
+Table of Contents
+</h2>
+
+<ul class="list-none list-inside mb-8">
+<li>-&gt;&nbsp;<a href="#setting-up-the-project">Setting up the project</a></li>
+<li>-&gt;&nbsp;<a href="#common-patterns-in-gleam">Common patterns in Gleam</a></li>
+<li>-&gt;&nbsp;<a href="#puzzle-input">Puzzle input</a></li>
+<li>-&gt;&nbsp;<a href="#matrix-data-structure">Matrix data structure</a></li>
+<li>-&gt;&nbsp;<a href="#trie-data-structure">Trie data structure</a></li>
+<li>-&gt;&nbsp;<a href="#search-algorithm">Search algorithm</a></li>
+<li>-&gt;&nbsp;<a href="#displaying-the-process">Displaying the process</a></li>
+<li>-&gt;&nbsp;<a href="#wrapping-up">Wrapping Up</a></li>
+<li>-&gt;&nbsp;<a href="#suggested-posts">Suggested Posts</a></li>
+</ul>
+
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="setting-up-the-project">
+Setting up the project
+</h2>
+
+<p>
+Setting up a project in Gleam is very straightforward, as its CLI tool is very simple and easy to use.
+</p>
+
+<p>
+Of course, if you don't have Gleam installed, you can check the <a href="https://gleam.run/getting-started/installing/">official installation guide</a>.
+</p>
+
+<p>
+For creating a new project, you can run the commands below, where a new directory with all the necessary files will be created. In this case, I have named the project "autows" because it just sounded cool to me.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
+gleam new autows
+cd autows
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">terminal</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="common-patterns-in-gleam">
+Common patterns in Gleam
+</h3>
+
+<p>
+Before we start, I want to introduce some common pattern in Gleam that I will be using throughout the post. These patterns are a mix between functional programming and specific Gleam features. I find it convenient to have them in mind as they make the code more readable, but it can be a bit overwhelming if you are not familiar with them.
+</p>
+
+<p>
+If you are familiar with these patterns, you can <a href="#puzzle-input">skip this section</a> to the next one.
+</p>
+
+<h4 class="font-bold text-yellow" id="map">
+map
+</h4>
+
+<p>
+The <mark class='bg-gray text-white'>map</mark> function is a very common pattern in functional programming. It applies a function to each element of a list and returns a new list with the results.
+</p>
+
+<p>
+The following example shows the comparison between a procedural and a functional approach to double each element of a list.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
+list = [1, 2, 3]
+new_list = []
+for i in list:
+&nbsp;   new_list.append(i * 2)
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">none</div>
+</div>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+let new_list = list.map([1, 2, 3], fn(i) {i * 2})
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">none</div>
+</div>
+
+<h4 class="font-bold text-yellow" id="fold">
+fold
+</h4>
+
+<p>
+The <mark class='bg-gray text-white'>fold</mark> function is similar to <mark class='bg-gray text-white'>map</mark>, but it accumulates the results of the function instead of returning a new list. It is very useful when you need to reduce a list to a single value.
+</p>
+
+<p>
+In the following example you can see how to sum all the elements of a list, where the <mark class='bg-gray text-white'>sum</mark> variable is defined as an accumulator instead of a variable outside the loop.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
+list = [1, 2, 3]
+sum = 0
+for i in list:
+&nbsp;   sum += i
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">none</div>
+</div>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+let sum = list.fold([1, 2, 3], 0, fn(sum_acc, i) {sum_acc + i})
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">none</div>
+</div>
+
+<h4 class="font-bold text-yellow" id="pipes">
+pipes
+</h4>
+
+<p>
+The pipe operator is my favorite feature in Gleam. It allows you to chain functions, where the output of the previous function is the input of the next one. In my opinion, all languages should support pipes.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+// without pipes
+let value = fn3(fn2(fn1(arg)))
+
+// with pipes
+let value = arg
+&nbsp;   |&gt; fn1
+&nbsp;   |&gt; fn2
+&nbsp;   |&gt; fn3
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">none</div>
+</div>
+
+<h4 class="font-bold text-yellow" id="case">
+case
+</h4>
+
+<p>
+This is the first Gleam-specific pattern, although it is present in many other functional programming languages. The <mark class='bg-gray text-white'>case</mark> statement is a complete substitution for the <mark class='bg-gray text-white'>if</mark> statement, and even a more powerful one.
+</p>
+
+<p>
+In this example, the <mark class='bg-gray text-white'>case</mark> statement works very similarly to an <mark class='bg-gray text-white'>if</mark> statement.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
+number = 5
+sign = ""
+if number &gt; 0:
+&nbsp;   sign = "positive"
+elif number &lt; 0:
+&nbsp;   sign = "negative"
+else:
+&nbsp;   sign = "zero"
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">none</div>
+</div>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+let number = 5
+let sign = case number {
+&nbsp;    v if v &gt; 0 -&gt; "positive"
+&nbsp;    v if v &lt; 0 -&gt; "negative"
+&nbsp;    _ -&gt; "zero"
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">none</div>
+</div>
+
+<p>
+In this other example, the <mark class='bg-gray text-white'>case</mark> statement is used to pattern-match a list to extract the first element of a list if it is not empty. In the case of a procedural language, I find the same pattern to be less readable.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+let list = [1, 2, 3]
+let result = case list {
+&nbsp;   [first, .._] -&gt; Ok(first)
+&nbsp;   [] -&gt; Error("empty list")
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">none</div>
+</div>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
+list = [1, 2, 3]
+result = None
+if len(list) &gt; 0:
+&nbsp;   result = list[0]
+else:
+&nbsp;   result = "empty list"
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">none</div>
+</div>
+
+<h4 class="font-bold text-yellow" id="result-type">
+result type
+</h4>
+
+<p>
+The previous example just shows the use of a <mark class='bg-gray text-white'>Result(a, b)</mark> type, used in languages like Rust, where <mark class='bg-gray text-white'>a</mark> and <mark class='bg-gray text-white'>b</mark> are generic types. A <mark class='bg-gray text-white'>Result</mark> can hold two different values: the first one being an <mark class='bg-gray text-white'>Ok(a)</mark> value when the operation is successful, and an <mark class='bg-gray text-white'>Error(b)</mark> value when the operation fails.
+</p>
+
+<p>
+Following the previous example, the <mark class='bg-gray text-white'>case</mark> statement is used to pattern-match the <mark class='bg-gray text-white'>Result</mark> type. In case that the list is empty, we will print it out.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+// result in this case is of type Result(Int, String)
+case result {
+&nbsp;   Ok(value) -&gt; io.println(value)
+&nbsp;   Error(message) -&gt; io.println(message)
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">none</div>
+</div>
+
+<h4 class="font-bold text-yellow" id="let-assert">
+let assert
+</h4>
+
+<p>
+The <mark class='bg-gray text-white'>let assert</mark> statement is a very useful pattern in Gleam used for directly extracting a value without the need to pattern-match it.
+</p>
+
+<p>
+In the first example, we are directly extracting the first element of a list that we know is not empty. In the second example, we are extracting an <mark class='bg-gray text-white'>Ok</mark> value from a <mark class='bg-gray text-white'>Result</mark> type when we know the operation must be successful.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+let list = [1, 2, 3]
+let assert [first, .._rest] = list
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">none</div>
+</div>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+let result = Ok(5)
+let assert Ok(value) = result
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">none</div>
+</div>
+
+<h4 class="font-bold text-yellow" id="callback-syntactic-sugar">
+callback syntactic sugar
+</h4>
+
+<p>
+Gleam has a statement called <mark class='bg-gray text-white'>use</mark>, which serves as syntactic sugar for callback functions, eliminating unnecessary indentations and making the code more readable. 
+</p>
+
+<p>
+Going back to the <mark class='bg-gray text-white'>map</mark> and <mark class='bg-gray text-white'>fold</mark> examples, we can see how the <mark class='bg-gray text-white'>use</mark> statement can be used to move the body of the callback function to the same level as the function call.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+// previous map example
+let new_list = list.map([1, 2, 3], fn(i) {
+&nbsp;   i * 2
+})
+
+// map example with use statement
+use i &lt;- list.map([1, 2, 3])
+i * 2
+
+// previous fold example
+let sum = list.fold([1, 2, 3], 0, fn(sum_acc, i) {
+&nbsp;   sum_acc + i
+})
+
+// fold example with use statement
+use sum_acc, i &lt;- list.fold([1, 2, 3], 0)
+sum_acc + i
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">none</div>
+</div>
+
+<h4 class="font-bold text-yellow" id="early-returns">
+early returns
+</h4>
+
+<p>
+Gleam lacks the <mark class='bg-gray text-white'>return</mark> keyword, so it is not possible to early-return of a function when a condition is not met. However, the same effect can be achieved by using the <mark class='bg-gray text-white'>guard</mark> function from the <mark class='bg-gray text-white'>bool</mark> module and the <mark class='bg-gray text-white'>use</mark> statement.
+</p>
+
+<p>
+In this last example, we are early-returning from a function when the password is not long enough.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
+def check_password(password):
+&nbsp;   if len(password) &lt; 8:
+&nbsp;       return None
+
+&nbsp;
+&nbsp;   return password
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">none</div>
+</div>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+fn check_password(password) -&gt; Result(String, Nil) {
+&nbsp;   use &lt;- bool.guard(when: string.length(password) &lt; 8, return: Error(Nil))
+
+&nbsp;   Ok(password)
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">none</div>
+</div>
+
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="puzzle-input">
+Puzzle input
+</h2>
+
+<p>
+Now, let's start with automating the word search puzzle. The first thing we will look into is to properly load a puzzle and the words to search into the program.
+</p>
+
+<h3 class="text-xl mt-8 text-green" id="the-puzzle-.txt-file">
+the puzzle .txt file
+</h3>
+
+<p>
+For storing the puzzle, I have decided to use a single <mark class='bg-gray text-white'>.txt</mark> file that will contain the board under the <mark class='bg-gray text-white'>[puzzle]</mark> identifier, and the words under the <mark class='bg-gray text-white'>[words]</mark> identifier. You can choose any other format that you find more convenient, but you will need to modify your code accordingly.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-toml">
+[puzzle]
+t r e a e l p o e p
+r h o n g w a i e r
+a e i e v o y v e j
+e r i n h t i h u n
+l p e e k l t m e i
+v d d o s i p w e c
+u s n h h u n a w e
+l l i i e e o g o b
+y u a g k h r h n n
+p k r h m u r s k y
+
+[words]
+hers
+high
+house
+jump
+keep
+kind
+know
+learn
+live
+long
+many
+nice
+only
+other
+over
+people
+rain
+right
+should
+some
+thinking
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">puzzles/10x10.txt</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="parsing-the-input">
+Parsing the input
+</h3>
+
+<p>
+Now, in our program we will read the file and parse the content to separate the puzzle and the words. However, as Gleam is designed to support multiple languages, it doesn't possess a built-in function to read files. We will need to use the the <a href="https://github.com/bcpeinhardt/simplifile">simplifile</a> library that targets the Erlang VM, our runtime.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
+gleam add simplifile
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">terminal</div>
+</div>
+
+<p>
+In the main file, we will create a function to read from the file where the puzzle is stores. The function will return a tuple with the puzzle in the form of a matrix <mark class='bg-gray text-white'>List(List(String))</mark>, and the words to search in the form of a list of strings.
+</p>
+
+<p>
+The function <mark class='bg-gray text-white'>simplifile.read</mark> will read the content and return a <mark class='bg-gray text-white'>Result</mark> type. As we know the file exists, we can use the <mark class='bg-gray text-white'>let assert</mark> statement to directly extract the content. Then, we will split the content by the double newline character to separate the puzzle and the words.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+import simplifile
+import gleam/string
+
+pub fn read_puzzle() -&gt; #(List(List(String)), List(String)) {
+&nbsp;   let assert Ok(content) = simplifile.read("puzzles/10x10.txt")
+&nbsp;   let assert [puzzle, words] = string.split(content, "\n\n")
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows.gleam</div>
+</div>
+
+<p>
+Once we have the puzzle and the words separated into two strings, we can complete the function by changing them into the desired data structures. For the puzzle, we will need to split the string by newline characters, drop the first element (which is the <mark class='bg-gray text-white'>[puzzle]</mark> identifier), and then split each line by spaces. For the words, we will simply split the string by newline characters and drop the identifier.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+import gleam/list
+
+&nbsp;...
+
+fn read_puzzle() -&gt; #(List(List(String)), List(String)) {
+&nbsp;...
+&nbsp;   let puzzle = puzzle
+&nbsp;   |&gt; string.trim_end
+&nbsp;   |&gt; string.split("\n")
+&nbsp;   |&gt; list.drop(1)
+&nbsp;   |&gt; list.map(string.split(_, " "))
+
+&nbsp;   let words = words
+&nbsp;   |&gt; string.trim_end
+&nbsp;   |&gt; string.split("\n")
+&nbsp;   |&gt; list.drop(1)
+&nbsp;
+&nbsp;   #(puzzle, words)
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows.gleam</div>
+</div>
+
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="matrix-data-structure">
+Matrix data structure
+</h2>
+
+<p>
+We could use the <mark class='bg-gray text-white'>List(List(String))</mark> data structure to represent the puzzle, but it is not very convenient in our case. In Gleam, lists are linked lists, which means that adding, deleting, or reordering are efficient operations, but accessing elements by index is not. In our program, we will be constantly accessing elements by index, so we need a more efficient data structure.
+</p>
+
+<p>
+The proper data structure to use is an array, where the data is stored in a dictionary that maps indexes directly to values. The main advantage is that we can quickly access or replace a value from a given index.
+</p>
+
+<p>
+In the following subsections, we will define the new data structure and all the necessary functions for this program.
+</p>
+
+<h3 class="text-xl mt-8 text-green" id="matrix-type">
+Matrix type
+</h3>
+
+<p>
+As we will only need a two-dimensional array, we will directly program a <mark class='bg-gray text-white'>Matrix</mark> data structure using the same concept: a dictionary that maps a tuple of two indexes to a single value. In Gleam, we can define a new type with the following syntax:
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+import gleam/dict.{type Dict}
+
+pub type Matrix(a) {
+&nbsp;   Matrix(
+&nbsp;       n_rows: Int,
+&nbsp;       n_cols: Int,
+&nbsp;       data: Dict(#(Int, Int), a)
+&nbsp;   )
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows/matrix.gleam</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="instantiating-a-matrix">
+Instantiating a matrix
+</h3>
+
+<p>
+Now, we will need a function to instantiate a matrix from a list of lists. The <mark class='bg-gray text-white'>from_list</mark> function will receive a list of lists and return a matrix with the number of rows and columns, and the data dictionary. 
+</p>
+
+<p>
+To populate the dictionary with the corresponding values, we will need two recursive functions. The first one, <mark class='bg-gray text-white'>populate</mark>, will iterate over the rows and call the second function, <mark class='bg-gray text-white'>populate_row</mark>, to populate the dictionary with the values of each row. For both functions, we extract the first element of the list, populate the dictionary, and recursively call the function with the rest of the list. When the lists are empty, we return the dictionary, meaning that we have finished populating the matrix.
+</p>
+
+<p>
+Note that we are storing the points as <mark class='bg-gray text-white'>#(y, x)</mark> instead of <mark class='bg-gray text-white'>#(x, y)</mark> as in programming languages the first index represents the row, which is the vertical axis.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+import gleam/list
+
+&nbsp;...
+
+pub fn from_list(list: List(List(a))) -&gt; Matrix(a) {
+&nbsp;   let assert [first, .._] = list
+
+&nbsp;   Matrix(
+&nbsp;       list.length(list),
+&nbsp;       list.length(first),
+&nbsp;       populate(list, 0, dict.new()),
+&nbsp;   )
+}
+
+fn populate(list: List(List(a)), y: Int, data_acc: Dict(#(Int, Int), a)) -&gt; Dict(#(Int, Int), a) {
+&nbsp;   case list {
+&nbsp;       [] -&gt; data_acc
+&nbsp;       [first, ..rest] -&gt; {
+&nbsp;           populate_row(first, y, 0, data_acc)
+&nbsp;           |&gt; populate(rest, y+1, _)
+&nbsp;       }
+&nbsp;   }
+}
+
+fn populate_row(row: List(a), y: Int, x: Int, data_acc: Dict(#(Int, Int), a)) -&gt; Dict(#(Int, Int), a) {
+&nbsp;   case row {
+&nbsp;       [] -&gt; data_acc
+&nbsp;       [first, ..rest] -&gt; {
+&nbsp;           dict.insert(data_acc, #(y, x), first)
+&nbsp;           |&gt; populate_row(rest, y, x+1, _)
+&nbsp;       }
+&nbsp;   }
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows/matrix.gleam</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="de-instantiating-a-matrix">
+De-instantiating a matrix
+</h3>
+
+<p>
+Similarly, we will need a function to convert the matrix back to a list of lists. The concept behind these functions are very similar to the previous ones, but in this case we will need to extract the values from the dictionary and populate the lists.
+</p>
+
+<p>
+For these functions, we will not use the <mark class='bg-gray text-white'>case</mark> statement as before, because the code would be less readable. Instead, we will use the <mark class='bg-gray text-white'>bool.guard</mark> function to early-return when the indexes are out of bounds.
+</p>
+
+<p>
+Additionally, we will begin constructing the list from the tail to the head, as it is more efficient to prepend elements to a list than to append them. That's why we start at the indexes <mark class='bg-gray text-white'>n_rows-1</mark> and <mark class='bg-gray text-white'>n_cols-1</mark> and decrement them until they reach zero.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+import gleam/bool
+
+&nbsp;...
+
+pub fn to_list(mat: Matrix(a)) -&gt; List(List(a)) {
+&nbsp;   generate(mat, mat.n_rows-1, [])
+}
+
+fn generate(mat: Matrix(a), y: Int, list_acc: List(List(a))) -&gt; List(List(a)) {
+&nbsp;   use &lt;- bool.guard(when: y &lt; 0, return: list_acc)
+
+&nbsp;   generate_row(mat, y, mat.n_cols-1, [])
+&nbsp;   |&gt; list.prepend(list_acc, _)
+&nbsp;   |&gt; generate(mat, y-1, _)
+}
+
+fn generate_row(mat: Matrix(a), y: Int, x: Int, list_acc: List(a)) -&gt; List(a) {
+&nbsp;   use &lt;- bool.guard(when: x &lt; 0, return: list_acc)
+
+&nbsp;   let assert Ok(value) = dict.get(mat.data, #(y, x))
+
+&nbsp;   list.prepend(list_acc, value)
+&nbsp;   |&gt; generate_row(mat, y, x-1, _)
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows/matrix.gleam</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="accessing-and-replacing-values">
+Accessing and replacing values
+</h3>
+
+<p>
+The last functions we will need are the ones for accessing and replacing values for a given point in the matrix. This is done easily using the <mark class='bg-gray text-white'>dict.get</mark> and <mark class='bg-gray text-white'>dict.insert</mark> functions, respectively. This operation runs in constant time <mark class='bg-gray text-white'>O(1)</mark> instead of linear time <mark class='bg-gray text-white'>O(n)</mark> as in the case of lists. Also, note that as in Gleam every function is pure, we need to return a new matrix with the updated dictionary.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+pub fn at(mat: Matrix(a), point: #(Int, Int)) -&gt; Result(a, Nil) {
+&nbsp;   dict.get(mat.data, point)
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows/matrix.gleam</div>
+</div>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+pub fn replace(mat: Matrix(a), point: #(Int, Int), value: a) -&gt; Matrix(a) {
+&nbsp;   Matrix(
+&nbsp;       mat.n_rows,
+&nbsp;       mat.n_cols,
+&nbsp;       dict.insert(mat.data, point, value),
+&nbsp;   )
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows/matrix.gleam</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="updating-the-main-function">
+Updating the main function
+</h3>
+
+<p>
+Having programmed the matrix data structure, we can now update the main function to use it. We will replace the list of lists with the matrix data structure and update the function to return the matrix and the words.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+import autows/matrix.{type Matrix}
+
+&nbsp;...
+
+fn read_puzzle() -&gt; #(Matrix(String), List(String)) {
+&nbsp;...
+&nbsp;   let puzzle = puzzle
+&nbsp;   |&gt; string.trim_end
+&nbsp;   |&gt; string.split("\n")
+&nbsp;   |&gt; list.drop(1)
+&nbsp;   |&gt; list.map(string.split(_, " "))
+&nbsp;   |&gt; matrix.from_list
+&nbsp;...
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows.gleam</div>
+</div>
+
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="trie-data-structure">
+Trie data structure
+</h2>
+
+<p>
+A naive approach to search for a word in a given point of the puzzle would be to iterate over all the words and check if they are present in any of the eight directions. This approach is not very efficient, and thanks to smart people, we have more fancy data structures to solve this problem.
+</p>
+
+<p>
+The most useful data structure for this problem is the <mark class='bg-gray text-white'>Trie</mark>, which is a tree-like data structure that stores a set of strings, or in our case, a set of the words to search. Each node of the Trie represents a letter of the word, and the children of the node are the next letters of the word. This way, all the words that share the same prefix will share the same path in the Trie.
+</p>
+
+<h3 class="text-xl mt-8 text-green" id="trienode-type">
+TrieNode type
+</h3>
+
+<p>
+In Gleam, we can define a Trie data structure by defining a <mark class='bg-gray text-white'>TrieNode</mark> type that contains a dictionary of children nodes and a boolean value that indicates if the node is the end of a word.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+import gleam/dict.{type Dict}
+
+pub type TrieNode {
+&nbsp;   TrieNode(
+&nbsp;       children: Dict(String, TrieNode),
+&nbsp;       end: Bool,
+&nbsp;   )
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows/trie.gleam</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="instantiating-a-trienode">
+Instantiating a TrieNode
+</h3>
+
+<p>
+For creating a new instance of a <mark class='bg-gray text-white'>TrieNode</mark>, we will simply create a new node with an empty dictionary of children and a boolean value set to <mark class='bg-gray text-white'>False</mark>.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+pub fn new() -&gt; TrieNode {
+&nbsp;   TrieNode(
+&nbsp;       dict.new(),
+&nbsp;       False,
+&nbsp;   )
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows/trie.gleam</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="inserting-a-word">
+Inserting a word
+</h3>
+
+<p>
+Now, we will need to create the function to insert the words into the Trie. The function will receive a node and a list of strings representing the word divided into characters.
+</p>
+
+<p>
+The function will take the first character of the word and check if it is present in the children of the node. If it is not, we will insert a new node into the children dictionary. Then, we will recursively call the function with the new node and the rest of the word. 
+</p>
+
+<p>
+When we have iterated over all the characters of the word, we will early-return from the function by returning a new node with the updated children and the boolean value indicating that the node is the end of a word.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+import gleam/bool
+
+&nbsp;...
+
+pub fn insert(node: TrieNode, word: List(String)) -&gt; TrieNode {
+&nbsp;   use &lt;- bool.guard(when: word == [], return: TrieNode(node.children, True))
+
+&nbsp;   let assert [first, ..rest] = word
+
+&nbsp;   let new_children = case dict.has_key(node.children, first) {
+&nbsp;       False -&gt; dict.insert(node.children, first, new())
+&nbsp;       True -&gt; node.children
+&nbsp;   }
+
+&nbsp;   let assert Ok(new_node) = dict.get(new_children, first)
+
+&nbsp;   let new_child = insert(new_node, rest)
+&nbsp;   let new_children = dict.insert(new_children, first, new_child)
+
+&nbsp;   TrieNode(new_children, node.end)
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows/trie.gleam</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="accessing-a-node">
+Accessing a node
+</h3>
+
+<p>
+We will need a function to check if a given character is present in the children of a node. The function will return a <mark class='bg-gray text-white'>Result</mark> type, where the <mark class='bg-gray text-white'>Ok</mark> value is the node if the character is present, and the <mark class='bg-gray text-white'>Error</mark> value is <mark class='bg-gray text-white'>Nil</mark> if the character is not present.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+pub fn get(node: TrieNode, key: String) -&gt; Result(TrieNode, Nil) {
+&nbsp;   dict.get(node.children, key)
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows.gleam</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="updating-the-main-function">
+Updating the main function
+</h3>
+
+<p>
+Finally, we will update the <mark class='bg-gray text-white'>read_puzzle</mark> function to return the populated Trie instead of a list of words. For that, we will fold over the list of words and insert each word into the Trie. Also, as the <mark class='bg-gray text-white'>trie.insert</mark> function receives a list of strings, we will need to convert the word into a list of strings by splitting it into characters with the <mark class='bg-gray text-white'>string.to_graphemes</mark> function.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+import autows/trie.{type TrieNode}
+
+pub fn main() {
+&nbsp;   let #(puzzle, trie) = read_puzzle()
+}
+
+fn read_puzzle() -&gt; #(Matrix(String), TrieNode) {
+&nbsp;...
+&nbsp;   let trie = words
+&nbsp;   |&gt; string.trim_end
+&nbsp;   |&gt; string.split("\n")
+&nbsp;   |&gt; list.drop(1)
+&nbsp;   |&gt; list.fold(trie.new(), fn(trie_acc, word) {
+&nbsp;       trie.insert(trie_acc, string.to_graphemes(word))
+&nbsp;   })
+&nbsp;
+&nbsp;   #(puzzle, trie)
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows.gleam</div>
+</div>
+
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="search-algorithm">
+Search algorithm
+</h2>
+
+<p>
+Our search algorithm will not be as fancy as the Trie data structure, but it will definitely work. The main idea behind it is to iterate all over the letters in the puzzle and look in all eight directions. If we find a letter that is present in the Trie, we will recursively search in that direction until we reach the end of the word.
+</p>
+
+<h3 class="text-xl mt-8 text-green" id="defining-the-directions">
+Defining the directions
+</h3>
+
+<p>
+The first thing we will need is to define the eight directions in which we will search for the words. We will define the directions as a global constant, and as a list of tuples, where the first element is the vertical direction and the second element is the horizontal direction.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+const directions = [
+&nbsp;   #(0, 1),   // right
+&nbsp;   #(-1, 1),  // up-right
+&nbsp;   #(-1, 0),  // up
+&nbsp;   #(-1, -1), // up-left
+&nbsp;   #(0, -1),  // left
+&nbsp;   #(1, -1),  // down-left
+&nbsp;   #(1, 0),   // down
+&nbsp;   #(1, 1),   // down-right
+]
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows.gleam</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="searching-a-direction">
+Searching a direction
+</h3>
+
+<p>
+To explain the algorithm, we will go from the innermost function to the outermost one. 
+</p>
+
+<p>
+The first function we will define is the <mark class='bg-gray text-white'>search_dir</mark> function, which will receive the puzzle, the current node of the Trie, the point in which to search for the next letter, the direction we are searching, and the path of the word found so far. The function will return a list of points that represent the path of the word found.
+</p>
+
+<p>
+The function can be divided into three conditions that have to be met to continue the search. The first one is to check that there is a letter in the point we are searching. If not, it means that the point is out of bounds, and we will return an empty list. 
+</p>
+
+<p>
+In case there is a letter, we will check if the letter is present in the children of the node. If not, it means that the word is not present in the Trie, and we will return an empty list.
+</p>
+
+<p>
+Finally, we will iterate over the next point in the given direction until the third condition is met, which is when the node is the end of a word. In that case, we will return the path of the word found.
+</p>
+
+<p>
+Note that we are prepending the point to the path instead of appending it as it is more efficient, and also, as we will see later on, the order of the path is not important.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+import gleam/bool
+
+&nbsp;...
+
+fn search_dir(
+&nbsp;   puzzle: Matrix(String),
+&nbsp;   node: TrieNode,
+&nbsp;   point: #(Int, Int),
+&nbsp;   dir: #(Int, Int),
+&nbsp;   path: List(#(Int, Int)),
+) -&gt; List(#(Int, Int)) {
+&nbsp;   use &lt;- bool.guard(when: node.end, return: path)
+&nbsp;
+&nbsp;   let letter = matrix.at(puzzle, point)
+&nbsp;   use &lt;- bool.guard(when: result.is_error(letter), return: [])
+&nbsp;   let assert Ok(letter) = letter
+
+&nbsp;   let next_node = trie.get(node, letter)
+&nbsp;   use &lt;- bool.guard(result.is_error(next_node), return: [])
+&nbsp;   let assert Ok(next_node) = next_node
+
+&nbsp;   let path = list.prepend(path, point)
+
+&nbsp;   search_dir(puzzle, next_node, #(point.0+dir.0, point.1+dir.1), dir, path)
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows.gleam</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="choosing-a-direction">
+Choosing a direction
+</h3>
+
+<p>
+The function <mark class='bg-gray text-white'>search</mark> will call the <mark class='bg-gray text-white'>search_dir</mark> function for each direction. It will receive the puzzle, the Trie, the point in which to start the search, and the list of points found so far. The function will return a list of points that represent the coordinates of all words found.
+</p>
+
+<p>
+Note that we are only storing the coordinates of all the words found in a single list instead of a list of lists. This is because, for this program, we will be only highlighting the words found in the puzzle, and the order of the words is not important.
+</p>
+
+<p>
+In the case that the <mark class='bg-gray text-white'>search_dir</mark> function finds a word, we will update the <mark class='bg-gray text-white'>found</mark> variable with the new path found. 
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+fn search(puzzle: Matrix(String), node: TrieNode, point: #(Int, Int), found: List(#(Int, Int))) -&gt; List(#(Int, Int)) {
+&nbsp;   use found_acc, dir &lt;- list.fold(directions, found)
+&nbsp;   let path = search_dir(puzzle, node, point, dir, [])
+
+&nbsp;   case path {
+&nbsp;       [] -&gt; found_acc
+&nbsp;       _ -&gt; list.append(found_acc, path)
+&nbsp;   }
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows.gleam</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="iterating-over-the-puzzle">
+Iterating over the puzzle
+</h3>
+
+<p>
+Finally, in the main function we will create two new variables, <mark class='bg-gray text-white'>rows</mark> and <mark class='bg-gray text-white'>cols</mark>, that will contain the range of indexes of the rows and columns of the puzzle. Then, we will fold over the rows and columns to search for the words in each point of the puzzle.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+pub fn main() {
+&nbsp;...
+&nbsp;   let rows = list.range(0, puzzle.n_rows)
+&nbsp;   let cols = list.range(0, puzzle.n_cols)
+
+&nbsp;   use found_acc, y &lt;- list.fold(rows, [])
+&nbsp;   use found_acc, x &lt;- list.fold(cols, found_acc)
+&nbsp;   search(puzzle, trie, #(y, x), found_acc)
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows.gleam</div>
+</div>
+
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="displaying-the-process">
+Displaying the process
+</h2>
+
+<p>
+Up until this point, we have a program that can search for words in a puzzle, but if I don't see it, I don't believe it. So, we will need to print the puzzle to the terminal and highlight the words found.
+</p>
+
+<h3 class="text-xl mt-8 text-green" id="escape-sequences">
+Escape sequences
+</h3>
+
+<p>
+First, we will take a look to <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">ANSI escape codes</a>, which are a set of sequences that can be used to control the terminal output. We will use these codes to clear the terminal and color the letters of the words found.
+</p>
+
+<p>
+All the sequences need to start with a special character, which is the escape character. This, can be represented in multiple ways: <mark class='bg-gray text-white'>\033</mark> in octal, <mark class='bg-gray text-white'>\x1b</mark> in hexadecimal, or <mark class='bg-gray text-white'>\u{001b}</mark> in Unicode. We will use the Unicode representation as it is the only one supported by Gleam.
+</p>
+
+<p>
+Then, we will define the sequences for clearing the terminal, coloring the letters in green, coloring the letters in blue, and resetting the color to the default one.
+</p>
+
+<p>
+The clear sequence is a combination of two sequences: the first one clears the screen, and the second one moves the cursor to the top-left corner. This combination creates the effect of the game being updated in real-time.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+const esc = "\u{001b}"
+const clear = esc &lt;&gt; "[2J" &lt;&gt; esc &lt;&gt; "[1;1H"
+const green = esc &lt;&gt; "[32m"
+const blue = esc &lt;&gt; "[34m"
+const end = esc &lt;&gt; "[0m"
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows.gleam</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="displaying-the-puzzle">
+Displaying the puzzle
+</h3>
+
+<p>
+For printing the puzzle into the terminal and not having it run in supersonic speed, we will need to add a delay between each iteration. We can achieve that by using the <mark class='bg-gray text-white'>process.sleep</mark> function from the <mark class='bg-gray text-white'>gleam/erlang/process</mark> module.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-shell">
+gleam add gleam_erlang
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">terminal</div>
+</div>
+
+<p>
+The <mark class='bg-gray text-white'>display</mark> function will receive the puzzle, the list of points found, and the state of the search algorithm on every step.
+</p>
+
+<p>
+First, we will fold over the list of points found and color the letters in green. Then, we will fold over the path that the search algorithm is taking and substituting those points with a blue dot. This will create the effect of the search algorithm moving through the puzzle. Finally, we will convert the matrix to a single string and print it to the terminal.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+import gleam/io
+import gleam/erlang/process
+
+&nbsp;...
+
+fn display(puzzle: Matrix(String), found: List(#(Int, Int)), path: List(#(Int, Int))) {
+&nbsp;   let puzzle_str = puzzle
+&nbsp;   |&gt; list.fold(found, _, fn(puzzle_acc, point){
+&nbsp;       let assert Ok(letter) = matrix.at(puzzle_acc, point)
+&nbsp;       matrix.replace(puzzle_acc, point, green &lt;&gt; letter &lt;&gt; end)
+&nbsp;   })
+&nbsp;   |&gt; list.fold(path, _, fn(puzzle_acc, point) {
+&nbsp;       matrix.replace(puzzle_acc, point, blue &lt;&gt; "." &lt;&gt; end)
+&nbsp;   })
+&nbsp;   |&gt; matrix.to_list
+&nbsp;   |&gt; list.map(string.join(_, " "))
+&nbsp;   |&gt; string.join("\n")
+
+&nbsp;   io.print(clear &lt;&gt; puzzle_str)
+&nbsp;   process.sleep(50)
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows.gleam</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="updating-the-search-function">
+Updating the search function
+</h3>
+
+<p>
+Finally, we will need to update the <mark class='bg-gray text-white'>search_dir</mark> function to call the <mark class='bg-gray text-white'>display</mark> function on every step of the search algorithm, and pass the <mark class='bg-gray text-white'>found</mark> from the <mark class='bg-gray text-white'>search</mark> function to the <mark class='bg-gray text-white'>display</mark> function.
+</p>
+
+<p>
+Also, note that we have moved up the <mark class='bg-gray text-white'>let path = list.prepend(path, point)</mark> before checking if the letter is present in the children of the node. This will create the effect of the search algorithm trying to find the word in the puzzle and falling back when it reaches a dead-end, which in my opinion is more visually appealing.
+</p>
+
+<div class="relative">
+<pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-rust">
+fn search(puzzle: Matrix(String), node: TrieNode, point: #(Int, Int), found: List(#(Int, Int))) -&gt; List(#(Int, Int)) {
+&nbsp;   use found_acc, dir &lt;- list.fold(directions, found)
+&nbsp;   let path = search_dir(puzzle, node, point, dir, [], found_acc)
+
+&nbsp;   case path {
+&nbsp;       [] -&gt; found_acc
+&nbsp;       _ -&gt; list.append(found_acc, path)
+&nbsp;   }
+}
+
+fn search_dir(
+&nbsp;...
+&nbsp;   found: List(#(Int, Int)),
+) -&gt; List(#(Int, Int)) {
+&nbsp;...
+&nbsp;   let path = list.prepend(path, point)
+&nbsp;   display(puzzle, found, path)
+
+&nbsp;   let next_node = trie.get(node, letter)
+&nbsp;...
+&nbsp;   search_dir(puzzle, next_node, #(point.0+dir.0, point.1+dir.1), dir, path, found)
+}
+</code></pre>
+<button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
+<div class="absolute -top-1 left-0 m-2 text-sm text-orange">src/autows.gleam</div>
+</div>
+
+<h3 class="text-xl mt-8 text-green" id="running-the-program">
+Running the program
+</h3>
+
+<p>
+By using the <mark class='bg-gray text-white'>gleam run</mark> command, we can run the program and see the search algorithm in action!
+</p>
+
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="wrapping-up">
+Wrapping Up
+</h2>
+
+<p>
+This tutorial has covered a lot of concepts, from the Trie data structure to the ANSI escape codes. It is a lot of information to process if you are not familiar with the concepts, but I strongly suggest you to look into them as they can be very fun to work with.
+</p>
+
+<p>
+Also, the Gleam programming language is not very popular and the lack of documentation can be a bit frustrating, but it is one of the programming languages that I have enjoyed the most working with. The Rust-like syntax makes it a very interesting entry point to learn the functional language paradigm and make your brain ache a bit.
+</p>
+
+<p>
+I hope you have enjoyed this tutorial!
+</p>
+
+<h2 class="text-2xl mt-16 mb-4 text-red font-bold" id="suggested-posts">
+Suggested Posts
+</h2>
+
+<div class="card-grid">
+
+<article class="relative w-full h-72 border-2 border-white p-4 my-2 max-md:h-96">
+<div class="text-xl font-bold text-blue">snake game in the terminal with go
+</div>
+<div class="text-sm text-green">#go #cli
+</div>
+<p>Learn how to create a Snake game in the terminal with Go.
+</p>
+<div class="absolute bottom-4 left-4 p-2 text-sm text-orange">mar 18th 2024
+</div>
+
+<div class="absolute bottom-4 right-4 group">
+<a href="/tutorials/snake-cli
+" target="_blank" class="relative flex items-center justify-between p-2 w-24 h-10 bg-red text-black font-bold">
+<span>READ</span>
+<div class="relative">
+<div class="absolute -bottom-4 -right-1 w-8 h-8 bg-black duration-300 ease-linear origin-right group-hover:w-0"></div>
+<div class="absolute -bottom-2 right-1 w-4 h-4 bg-red rounded-full"></div>
+</div>
+</a>
+</div>
+
+</article>
+
+</div>
+
+<div style="height: 120px;"></div>
+
+<div class="absolute left-0 right-0 h-2 bg-red"></div>
+
+<script src="/js/copyCode.js"></script>
+<script> hljs.highlightAll(); </script>

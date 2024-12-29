@@ -172,14 +172,14 @@ In our example, we can add type hints to the arguments of all methods, the class
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
 class Cylinder:
-&nbsp;   def __init__(self, radius: float, height: float) -&gt;None:
+&nbsp;   def __init__(self, radius: float, height: float) -&gt; None:
 &nbsp;       self.radius: float = radius
 &nbsp;       self.height: float = height
 &nbsp;
-&nbsp;   def volume(self) -&gt;float:
+&nbsp;   def volume(self) -&gt; float:
 &nbsp;       return np.pi*np.power(self.radius, 2)*self.height
 &nbsp;
-&nbsp;   def area(self) -&gt;float:
+&nbsp;   def area(self) -&gt; float:
 &nbsp;       lateral_area: float = 2*np.pi*self.radius*self.height
 &nbsp;       base_area: float = 2*np.pi*np.power(self.radius, 2)
 &nbsp;       return lateral_area + base_area
@@ -207,15 +207,15 @@ In our example, there is not much to say, but to make the point clearer, we coul
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
 class Cylinder:
-&nbsp;   def __init__(self, radius: float, height: float) -&gt;None:
+&nbsp;   def __init__(self, radius: float, height: float) -&gt; None:
 &nbsp;       self.radius: float = radius
 &nbsp;       self.height: float = height
 &nbsp;
-&nbsp;   def volume(self) -&gt;float:
+&nbsp;   def volume(self) -&gt; float:
 &nbsp;       # np.power is faster than **
 &nbsp;       return np.pi*np.power(self.radius, 2)*self.height
 &nbsp;
-&nbsp;   def area(self) -&gt;float:
+&nbsp;   def area(self) -&gt; float:
 &nbsp;       lateral_area: float = 2*np.pi*self.radius*self.height
 &nbsp;       base_area: float = 2*np.pi*np.power(self.radius, 2)
 &nbsp;       return lateral_area + base_area
@@ -246,7 +246,7 @@ class Cylinder:
 &nbsp;   """
 &nbsp;   A class to represent a cylinder.
 &nbsp;   """
-&nbsp;   def __init__(self, radius: float, height: float) -&gt;None:
+&nbsp;   def __init__(self, radius: float, height: float) -&gt; None:
 &nbsp;       """
 &nbsp;       Parameters
 &nbsp;       ----------
@@ -258,7 +258,7 @@ class Cylinder:
 &nbsp;       self.radius: float = radius
 &nbsp;       self.height: float = height
 &nbsp;
-&nbsp;   def volume(self) -&gt;float:
+&nbsp;   def volume(self) -&gt; float:
 &nbsp;       """
 &nbsp;       Computes the volume of the cylinder.
 &nbsp;
@@ -270,7 +270,7 @@ class Cylinder:
 &nbsp;       # np.power is faster than **
 &nbsp;       return np.pi*np.power(self.radius, 2)*self.height
 &nbsp;
-&nbsp;   def area(self) -&gt;float:
+&nbsp;   def area(self) -&gt; float:
 &nbsp;       """
 &nbsp;       Computes the area of the cylinder.
 &nbsp;
@@ -359,7 +359,7 @@ If you liked this post, you might also like
 
 <div style="height: 120px;"></div>
 
-<div class="absolute left-0 right-0 h-2 bg-green"></div>
+<div class="absolute left-0 right-0 h-2 bg-violet"></div>
 
 <script src="/js/copyCode.js"></script>
 <script> hljs.highlightAll(); </script>

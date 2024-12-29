@@ -252,8 +252,8 @@ The following command let's you move up and down the selected code as a block. I
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-lua">
-vim.keymap.set("v", "&lt;S-Down&gt;", ":m '&gt;+1&lt;CR&gt;gv=gv")
-vim.keymap.set("v", "&lt;S-Up&gt;", ":m '&lt;-2&lt;CR&gt;gv=gv")
+vim.keymap.set("v", "&lt; S-Down&gt; ", ":m '&gt; +1&lt; CR&gt; gv=gv")
+vim.keymap.set("v", "&lt; S-Up&gt; ", ":m '&lt;-2&lt; CR&gt; gv=gv")
 </code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">lua/remap.lua</div>
@@ -265,8 +265,8 @@ This command is from my VSCode days, and I got used to indent an unindent the co
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-lua">
-vim.keymap.set("v", "&lt;Tab&gt;", "&gt;gv")
-vim.keymap.set("v", "&lt;S-Tab&gt;", "&lt;gv")
+vim.keymap.set("v", "&lt; Tab&gt; ", "&gt; gv")
+vim.keymap.set("v", "&lt; S-Tab&gt; ", "&lt; gv")
 </code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">lua/remap.lua</div>
@@ -282,10 +282,10 @@ This command is for moving quickly through the code. It moves the cursor half a 
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-lua">
-vim.keymap.set("n", "&lt;C-Down&gt;", "&lt;C-d&gt;zz")
-vim.keymap.set("n", "&lt;C-Up&gt;", "&lt;C-u&gt;zz")
-vim.keymap.set("v", "&lt;C-Down&gt;", "&lt;C-d&gt;zz")
-vim.keymap.set("v", "&lt;C-Up&gt;", "&lt;C-u&gt;zz")
+vim.keymap.set("n", "&lt; C-Down&gt; ", "&lt; C-d&gt; zz")
+vim.keymap.set("n", "&lt; C-Up&gt; ", "&lt; C-u&gt; zz")
+vim.keymap.set("v", "&lt; C-Down&gt; ", "&lt; C-d&gt; zz")
+vim.keymap.set("v", "&lt; C-Up&gt; ", "&lt; C-u&gt; zz")
 </code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">lua/remap.lua</div>
@@ -298,10 +298,10 @@ I like to use text wrapping for coding, and with the default behavior, the curso
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-lua">
 -- Go up and down trough long soft-wrapped lines
-vim.keymap.set("n", "&lt;Down&gt;", "gj")
-vim.keymap.set("n", "&lt;Up&gt;", "gk")
-vim.keymap.set("v", "&lt;Down&gt;", "gj")
-vim.keymap.set("v", "&lt;Up&gt;", "gk")
+vim.keymap.set("n", "&lt; Down&gt; ", "gj")
+vim.keymap.set("n", "&lt; Up&gt; ", "gk")
+vim.keymap.set("v", "&lt; Down&gt; ", "gj")
+vim.keymap.set("v", "&lt; Up&gt; ", "gk")
 </code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">lua/remap.lua</div>
@@ -314,7 +314,7 @@ I also like pressing <mark class='bg-gray text-white'>-</mark> to go to the netr
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-lua">
 -- Exit to netrw
-vim.keymap.set("n", "-", ":Ex&lt;CR&gt;")
+vim.keymap.set("n", "-", ":Ex&lt; CR&gt; ")
 </code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">lua/remap.lua</div>
@@ -330,7 +330,7 @@ This command is really useful. When you paste something over a selection, NeoVim
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-lua">
-vim.keymap.set("x", "&lt;leader&gt;p", "\"_dP")
+vim.keymap.set("x", "&lt; leader&gt; p", "\"_dP")
 </code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">lua/remap.lua</div>
@@ -340,7 +340,7 @@ This command is for copying the selected text to your machine's clipboard. It ma
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-lua">
-vim.keymap.set("v", "&lt;leader&gt;y", "\"+y")
+vim.keymap.set("v", "&lt; leader&gt; y", "\"+y")
 </code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">lua/remap.lua</div>
@@ -356,7 +356,7 @@ This command is very similar for the "change all concurrences" command in VSCode
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-lua">
-vim.keymap.set("n", "&lt;leader&gt;cac", ":%s/&lt;C-r&gt;&lt;C-w&gt;/&lt;C-r&gt;&lt;C-w&gt;/gIc&lt;Left&gt;&lt;Left&gt;&lt;Left&gt;&lt;Left&gt;")
+vim.keymap.set("n", "&lt; leader&gt; cac", ":%s/&lt; C-r&gt; &lt; C-w&gt; /&lt; C-r&gt; &lt; C-w&gt; /gIc&lt; Left&gt; &lt; Left&gt; &lt; Left&gt; &lt; Left&gt; ")
 </code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
 <div class="absolute -top-1 left-0 m-2 text-sm text-orange">lua/remap.lua</div>
@@ -571,7 +571,7 @@ I hope you have enjoyed this blog post!
 
 <div style="height: 120px;"></div>
 
-<div class="absolute left-0 right-0 h-2 bg-pink"></div>
+<div class="absolute left-0 right-0 h-2 bg-blue"></div>
 
 <script src="/js/copyCode.js"></script>
 <script> hljs.highlightAll(); </script>

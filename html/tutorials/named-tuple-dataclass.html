@@ -63,7 +63,7 @@ Then you saw on a YouTube video that you could use a <mark class='bg-gray text-w
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
-def __repr__(self) -&gt;str:
+def __repr__(self) -&gt; str:
 &nbsp;    return f"""
 &nbsp;    {self.name.upper()}
 </code></pre>
@@ -98,7 +98,7 @@ Wouldn't it be nice to have a method that returns cool metrics about my library?
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
-def get_cool_metrics(self) -&gt;int:
+def get_cool_metrics(self) -&gt; int:
 &nbsp;   return len(self.games)
 </code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
@@ -111,7 +111,7 @@ What about the total price?
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
-def get_cool_metrics(self) -&gt;tuple[int, float]:
+def get_cool_metrics(self) -&gt; tuple[int, float]:
 &nbsp;   return len(self.games), sum(game.price for game in self.games)
 </code></pre>
 <button class="copy-btn absolute -top-1 right-0 m-2 text-sm text-pink bg-transparent cursor-pointer">copy</button>
@@ -203,7 +203,7 @@ Finally, our library method would look like this:
 
 <div class="relative">
 <pre class="border border-white overflow-x-auto px-4 py-2 mb-8 mt-4"><code class="!bg-black !text-sm language-python">
-def get_cool_metrics(self) -&gt;CoolMetrics:
+def get_cool_metrics(self) -&gt; CoolMetrics:
 &nbsp;   total_games = len(self.games)
 &nbsp;   total_price = sum(game.price for game in self.games)
 &nbsp;   total_playtime = sum(game.playtime for game in self.games)
@@ -293,7 +293,7 @@ Recommended Posts
 
 <div style="height: 120px;"></div>
 
-<div class="absolute left-0 right-0 h-2 bg-violet"></div>
+<div class="absolute left-0 right-0 h-2 bg-pink"></div>
 
 <script src="/js/copyCode.js"></script>
 <script> hljs.highlightAll(); </script>

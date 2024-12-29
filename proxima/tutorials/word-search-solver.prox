@@ -1,0 +1,938 @@
+@doc.head{}
+
+@doc.nav{}
+
+@sec.h1{solving a word search puzzle with a functional approach}
+
+@post.info{
+<published> dec 29th 2024
+}{
+<last_edit> dec 29th 2024
+}{
+<read_time> 26
+}
+
+<p>
+It's been that time of the year, where I come back home for Christmas and spend time with my family. As always, there is a lot of dead time, so my tradition now is to solve the @url{https://adventofcode.com/}{Advent of Code} puzzles using a functional programming language. And let's be honest, no one likes functional programming languages.
+</p>
+
+<p>
+However, I've felt in love with @url{https://gleam.run/}{Gleam}, a very beautiful and simple functional language with Rust-like syntax. As I cannot use it in my daily job, it's been so much fun to use it as an extra bit to the puzzles. My brain is just not used to the lack of "if" and "for" statements.
+</p>
+
+<p>
+Solving the Day 4, which was about finding words in a matrix of letters, was a bit tricky for me, as I was constantly reaching for procedural programming patterns. But at the end I realized how fun it has been, so I decided to solve it properly and write a post about it.
+</p>
+
+<p>
+In this post, we will be solving a word search puzzle using Gleam (@txt.hl{v1.6.3}) and displaying the search process in the terminal
+</p>
+
+@sec.h2{Table of Contents}
+
+@post.toc{
+Setting up the project
+Common patterns in Gleam
+Puzzle input
+Matrix data structure
+Trie data structure
+Search algorithm
+Displaying the process
+Wrapping Up
+Suggested Posts
+}
+
+@sec.h2{Setting up the project}
+
+<p>
+Setting up a project in Gleam is very straightforward, as its CLI tool is very simple and easy to use.
+</p>
+
+<p>
+Of course, if you don't have Gleam installed, you can check the @url{https://gleam.run/getting-started/installing/}{official installation guide}.
+</p>
+
+<p>
+For creating a new project, you can run the commands below, where a new directory with all the necessary files will be created. In this case, I have named the project "autows" because it just sounded cool to me.
+</p>
+
+@code.block{<file> terminal}{<lang> shell}{
+gleam new autows
+cd autows
+}
+
+@sec.h3{Common patterns in Gleam}
+
+<p>
+Before we start, I want to introduce some common pattern in Gleam that I will be using throughout the post. These patterns are a mix between functional programming and specific Gleam features. I find it convenient to have them in mind as they make the code more readable, but it can be a bit overwhelming if you are not familiar with them.
+</p>
+
+<p>
+If you are familiar with these patterns, you can @url{\#puzzle-input}{skip this section} to the next one.
+</p>
+
+@sec.h4{map}
+
+<p>
+The @txt.hl{map} function is a very common pattern in functional programming. It applies a function to each element of a list and returns a new list with the results.
+</p>
+
+<p>
+The following example shows the comparison between a procedural and a functional approach to double each element of a list.
+</p>
+
+@code.block{<file> none}{<lang> python}{
+list = [1, 2, 3]
+new_list = []
+for i in list:
+.   new_list.append(i * 2)
+}
+
+@code.block{<file> none}{<lang> rust}{
+let new_list = list.map([1, 2, 3], fn(i) \{i * 2\})
+}
+
+@sec.h4{fold}
+
+<p>
+The @txt.hl{fold} function is similar to @txt.hl{map}, but it accumulates the results of the function instead of returning a new list. It is very useful when you need to reduce a list to a single value.
+</p>
+
+<p>
+In the following example you can see how to sum all the elements of a list, where the @txt.hl{sum} variable is defined as an accumulator instead of a variable outside the loop.
+</p>
+
+@code.block{<file> none}{<lang> python}{
+list = [1, 2, 3]
+sum = 0
+for i in list:
+.   sum += i
+}
+
+@code.block{<file> none}{<lang> rust}{
+let sum = list.fold([1, 2, 3], 0, fn(sum_acc, i) \{sum_acc + i\})
+}
+
+@sec.h4{pipes}
+
+<p>
+The pipe operator is my favorite feature in Gleam. It allows you to chain functions, where the output of the previous function is the input of the next one. In my opinion, all languages should support pipes.
+</p>
+
+@code.block{<file> none}{<lang> rust}{
+// without pipes
+let value = fn3(fn2(fn1(arg)))
+
+// with pipes
+let value = arg
+.   |> fn1
+.   |> fn2
+.   |> fn3
+}
+
+@sec.h4{case}
+
+<p>
+This is the first Gleam-specific pattern, although it is present in many other functional programming languages. The @txt.hl{case} statement is a complete substitution for the @txt.hl{if} statement, and even a more powerful one.
+</p>
+
+<p>
+In this example, the @txt.hl{case} statement works very similarly to an @txt.hl{if} statement.
+</p>
+
+@code.block{<file> none}{<lang> python}{
+number = 5
+sign = ""
+if number > 0:
+.   sign = "positive"
+elif number < 0:
+.   sign = "negative"
+else:
+.   sign = "zero"
+}
+
+@code.block{<file> none}{<lang> rust}{
+let number = 5
+let sign = case number \{
+.    v if v > 0 -> "positive"
+.    v if v < 0 -> "negative"
+.    _ -> "zero"
+\}
+}
+
+<p>
+In this other example, the @txt.hl{case} statement is used to pattern-match a list to extract the first element of a list if it is not empty. In the case of a procedural language, I find the same pattern to be less readable.
+</p>
+
+@code.block{<file> none}{<lang> rust}{
+let list = [1, 2, 3]
+let result = case list \{
+.   [first, .._] -> Ok(first)
+.   [] -> Error("empty list")
+\}
+}
+
+@code.block{<file> none}{<lang> python}{
+list = [1, 2, 3]
+result = None
+if len(list) > 0:
+.   result = list[0]
+else:
+.   result = "empty list"
+}
+
+@sec.h4{result type}
+
+<p>
+The previous example just shows the use of a @txt.hl{Result(a, b)} type, used in languages like Rust, where @txt.hl{a} and @txt.hl{b} are generic types. A @txt.hl{Result} can hold two different values: the first one being an @txt.hl{Ok(a)} value when the operation is successful, and an @txt.hl{Error(b)} value when the operation fails.
+</p>
+
+<p>
+Following the previous example, the @txt.hl{case} statement is used to pattern-match the @txt.hl{Result} type. In case that the list is empty, we will print it out.
+</p>
+
+@code.block{<file> none}{<lang> rust}{
+// result in this case is of type Result(Int, String)
+case result \{
+.   Ok(value) -> io.println(value)
+.   Error(message) -> io.println(message)
+\}
+}
+
+@sec.h4{let assert}
+
+<p>
+The @txt.hl{let assert} statement is a very useful pattern in Gleam used for directly extracting a value without the need to pattern-match it.
+</p>
+
+<p>
+In the first example, we are directly extracting the first element of a list that we know is not empty. In the second example, we are extracting an @txt.hl{Ok} value from a @txt.hl{Result} type when we know the operation must be successful.
+</p>
+
+@code.block{<file> none}{<lang> rust}{
+let list = [1, 2, 3]
+let assert [first, .._rest] = list
+}
+
+@code.block{<file> none}{<lang> rust}{
+let result = Ok(5)
+let assert Ok(value) = result
+}
+
+@sec.h4{callback syntactic sugar}
+
+<p>
+Gleam has a statement called @txt.hl{use}, which serves as syntactic sugar for callback functions, eliminating unnecessary indentations and making the code more readable. 
+</p>
+
+<p>
+Going back to the @txt.hl{map} and @txt.hl{fold} examples, we can see how the @txt.hl{use} statement can be used to move the body of the callback function to the same level as the function call.
+</p>
+
+@code.block{<file> none}{<lang> rust}{
+// previous map example
+let new_list = list.map([1, 2, 3], fn(i) \{
+.   i * 2
+\})
+
+// map example with use statement
+use i <- list.map([1, 2, 3])
+i * 2
+
+// previous fold example
+let sum = list.fold([1, 2, 3], 0, fn(sum_acc, i) \{
+.   sum_acc + i
+\})
+
+// fold example with use statement
+use sum_acc, i <- list.fold([1, 2, 3], 0)
+sum_acc + i
+}
+
+@sec.h4{early returns}
+
+<p>
+Gleam lacks the @txt.hl{return} keyword, so it is not possible to early-return of a function when a condition is not met. However, the same effect can be achieved by using the @txt.hl{guard} function from the @txt.hl{bool} module and the @txt.hl{use} statement.
+</p>
+
+<p>
+In this last example, we are early-returning from a function when the password is not long enough.
+</p>
+
+@code.block{<file> none}{<lang> python}{
+def check_password(password):
+.   if len(password) < 8:
+.       return None
+
+.  
+.   return password
+}
+
+@code.block{<file> none}{<lang> rust}{
+fn check_password(password) -> Result(String, Nil) \{
+.   use <- bool.guard(when: string.length(password) < 8, return: Error(Nil))
+
+.   Ok(password)
+\}
+}
+
+@sec.h2{Puzzle input}
+
+<p>
+Now, let's start with automating the word search puzzle. The first thing we will look into is to properly load a puzzle and the words to search into the program.
+</p>
+
+@sec.h3{the puzzle .txt file}
+
+<p>
+For storing the puzzle, I have decided to use a single @txt.hl{.txt} file that will contain the board under the @txt.hl{[puzzle]} identifier, and the words under the @txt.hl{[words]} identifier. You can choose any other format that you find more convenient, but you will need to modify your code accordingly.
+</p>
+
+@code.block{<file> puzzles/10x10.txt}{<lang> toml}{
+[puzzle]
+t r e a e l p o e p
+r h o n g w a i e r
+a e i e v o y v e j
+e r i n h t i h u n
+l p e e k l t m e i
+v d d o s i p w e c
+u s n h h u n a w e
+l l i i e e o g o b
+y u a g k h r h n n
+p k r h m u r s k y
+
+[words]
+hers
+high
+house
+jump
+keep
+kind
+know
+learn
+live
+long
+many
+nice
+only
+other
+over
+people
+rain
+right
+should
+some
+thinking
+}
+
+@sec.h3{Parsing the input}
+
+<p>
+Now, in our program we will read the file and parse the content to separate the puzzle and the words. However, as Gleam is designed to support multiple languages, it doesn't possess a built-in function to read files. We will need to use the the @url{https://github.com/bcpeinhardt/simplifile}{simplifile} library that targets the Erlang VM, our runtime.
+</p>
+
+@code.block{<file> terminal}{<lang> shell}{
+    gleam add simplifile
+}
+
+<p>
+In the main file, we will create a function to read from the file where the puzzle is stores. The function will return a tuple with the puzzle in the form of a matrix @txt.hl{List(List(String))}, and the words to search in the form of a list of strings.
+</p>
+
+<p>
+The function @txt.hl{simplifile.read} will read the content and return a @txt.hl{Result} type. As we know the file exists, we can use the @txt.hl{let assert} statement to directly extract the content. Then, we will split the content by the double newline character to separate the puzzle and the words.
+</p>
+
+@code.block{<file> src/autows.gleam}{<lang> rust}{
+import simplifile
+import gleam/string
+
+pub fn read_puzzle() -> \#(List(List(String)), List(String)) \{
+.   let assert Ok(content) = simplifile.read("puzzles/10x10.txt")
+.   let assert [puzzle, words] = string.split(content, "\\n\\n")
+\}
+}
+
+<p>
+Once we have the puzzle and the words separated into two strings, we can complete the function by changing them into the desired data structures. For the puzzle, we will need to split the string by newline characters, drop the first element (which is the @txt.hl{[puzzle]} identifier), and then split each line by spaces. For the words, we will simply split the string by newline characters and drop the identifier.
+</p>
+
+@code.block{<file> src/autows.gleam}{<lang> rust}{
+import gleam/list
+
+....
+
+fn read_puzzle() -> \#(List(List(String)), List(String)) \{
+....
+.   let puzzle = puzzle
+.   |> string.trim_end
+.   |> string.split("\\n")
+.   |> list.drop(1)
+.   |> list.map(string.split(_, " "))
+
+.   let words = words
+.   |> string.trim_end
+.   |> string.split("\\n")
+.   |> list.drop(1)
+.   
+.   \#(puzzle, words)
+\}
+}
+
+@sec.h2{Matrix data structure}
+
+<p>
+We could use the @txt.hl{List(List(String))} data structure to represent the puzzle, but it is not very convenient in our case. In Gleam, lists are linked lists, which means that adding, deleting, or reordering are efficient operations, but accessing elements by index is not. In our program, we will be constantly accessing elements by index, so we need a more efficient data structure.
+</p>
+
+<p>
+The proper data structure to use is an array, where the data is stored in a dictionary that maps indexes directly to values. The main advantage is that we can quickly access or replace a value from a given index.
+</p>
+
+<p>
+In the following subsections, we will define the new data structure and all the necessary functions for this program.
+</p>
+
+@sec.h3{Matrix type}
+
+<p>
+As we will only need a two-dimensional array, we will directly program a @txt.hl{Matrix} data structure using the same concept: a dictionary that maps a tuple of two indexes to a single value. In Gleam, we can define a new type with the following syntax:
+</p>
+
+@code.block{<file> src/autows/matrix.gleam}{<lang> rust}{
+import gleam/dict.\{type Dict\}
+
+pub type Matrix(a) \{
+.   Matrix(
+.       n_rows: Int,
+.       n_cols: Int,
+.       data: Dict(\#(Int, Int), a)
+.   )
+\}
+}
+
+@sec.h3{Instantiating a matrix}
+
+<p>
+Now, we will need a function to instantiate a matrix from a list of lists. The @txt.hl{from_list} function will receive a list of lists and return a matrix with the number of rows and columns, and the data dictionary. 
+</p>
+
+<p>
+To populate the dictionary with the corresponding values, we will need two recursive functions. The first one, @txt.hl{populate}, will iterate over the rows and call the second function, @txt.hl{populate_row}, to populate the dictionary with the values of each row. For both functions, we extract the first element of the list, populate the dictionary, and recursively call the function with the rest of the list. When the lists are empty, we return the dictionary, meaning that we have finished populating the matrix.
+</p>
+
+<p>
+Note that we are storing the points as @txt.hl{\#(y, x)} instead of @txt.hl{\#(x, y)} as in programming languages the first index represents the row, which is the vertical axis.
+</p>
+
+@code.block{<file> src/autows/matrix.gleam}{<lang> rust}{
+import gleam/list
+
+....
+
+pub fn from_list(list: List(List(a))) -> Matrix(a) \{
+.   let assert [first, .._] = list
+
+.   Matrix(
+.       list.length(list),
+.       list.length(first),
+.       populate(list, 0, dict.new()),
+.   )
+\}
+
+fn populate(list: List(List(a)), y: Int, data_acc: Dict(\#(Int, Int), a)) -> Dict(\#(Int, Int), a) \{
+.   case list \{
+.       [] -> data_acc
+.       [first, ..rest] -> \{
+.           populate_row(first, y, 0, data_acc)
+.           |> populate(rest, y+1, _)
+.       \}
+.   \}
+\}
+
+fn populate_row(row: List(a), y: Int, x: Int, data_acc: Dict(\#(Int, Int), a)) -> Dict(\#(Int, Int), a) \{
+.   case row \{
+.       [] -> data_acc
+.       [first, ..rest] -> \{
+.           dict.insert(data_acc, \#(y, x), first)
+.           |> populate_row(rest, y, x+1, _)
+.       \}
+.   \}
+\}
+}
+
+@sec.h3{De-instantiating a matrix}
+
+<p>
+Similarly, we will need a function to convert the matrix back to a list of lists. The concept behind these functions are very similar to the previous ones, but in this case we will need to extract the values from the dictionary and populate the lists.
+</p>
+
+<p>
+For these functions, we will not use the @txt.hl{case} statement as before, because the code would be less readable. Instead, we will use the @txt.hl{bool.guard} function to early-return when the indexes are out of bounds.
+</p>
+
+<p>
+Additionally, we will begin constructing the list from the tail to the head, as it is more efficient to prepend elements to a list than to append them. That's why we start at the indexes @txt.hl{n_rows-1} and @txt.hl{n_cols-1} and decrement them until they reach zero.
+</p>
+
+@code.block{<file> src/autows/matrix.gleam}{<lang> rust}{
+import gleam/bool
+
+....
+
+pub fn to_list(mat: Matrix(a)) -> List(List(a)) \{
+.   generate(mat, mat.n_rows-1, [])
+\}
+
+fn generate(mat: Matrix(a), y: Int, list_acc: List(List(a))) -> List(List(a)) \{
+.   use <- bool.guard(when: y < 0, return: list_acc)
+
+.   generate_row(mat, y, mat.n_cols-1, [])
+.   |> list.prepend(list_acc, _)
+.   |> generate(mat, y-1, _)
+\}
+
+fn generate_row(mat: Matrix(a), y: Int, x: Int, list_acc: List(a)) -> List(a) \{
+.   use <- bool.guard(when: x < 0, return: list_acc)
+
+.   let assert Ok(value) = dict.get(mat.data, \#(y, x))
+
+.   list.prepend(list_acc, value)
+.   |> generate_row(mat, y, x-1, _)
+\}
+}
+
+@sec.h3{Accessing and replacing values}
+
+<p>
+The last functions we will need are the ones for accessing and replacing values for a given point in the matrix. This is done easily using the @txt.hl{dict.get} and @txt.hl{dict.insert} functions, respectively. This operation runs in constant time @txt.hl{O(1)} instead of linear time @txt.hl{O(n)} as in the case of lists. Also, note that as in Gleam every function is pure, we need to return a new matrix with the updated dictionary.
+</p>
+
+@code.block{<file> src/autows/matrix.gleam}{<lang> rust}{
+pub fn at(mat: Matrix(a), point: \#(Int, Int)) -> Result(a, Nil) \{
+.   dict.get(mat.data, point)
+\}
+}
+
+@code.block{<file> src/autows/matrix.gleam}{<lang> rust}{
+pub fn replace(mat: Matrix(a), point: \#(Int, Int), value: a) -> Matrix(a) \{
+.   Matrix(
+.       mat.n_rows,
+.       mat.n_cols,
+.       dict.insert(mat.data, point, value),
+.   )
+\}
+}
+
+@sec.h3{Updating the main function}
+
+<p>
+Having programmed the matrix data structure, we can now update the main function to use it. We will replace the list of lists with the matrix data structure and update the function to return the matrix and the words.
+</p>
+
+@code.block{<file> src/autows.gleam}{<lang> rust}{
+import autows/matrix.\{type Matrix\}
+
+....
+
+fn read_puzzle() -> \#(Matrix(String), List(String)) \{
+....
+.   let puzzle = puzzle
+.   |> string.trim_end
+.   |> string.split("\\n")
+.   |> list.drop(1)
+.   |> list.map(string.split(_, " "))
+.   |> matrix.from_list
+....
+}
+
+@sec.h2{Trie data structure}
+
+<p>
+A naive approach to search for a word in a given point of the puzzle would be to iterate over all the words and check if they are present in any of the eight directions. This approach is not very efficient, and thanks to smart people, we have more fancy data structures to solve this problem.
+</p>
+
+<p>
+The most useful data structure for this problem is the @txt.hl{Trie}, which is a tree-like data structure that stores a set of strings, or in our case, a set of the words to search. Each node of the Trie represents a letter of the word, and the children of the node are the next letters of the word. This way, all the words that share the same prefix will share the same path in the Trie.
+</p>
+
+@sec.h3{TrieNode type}
+
+<p>
+In Gleam, we can define a Trie data structure by defining a @txt.hl{TrieNode} type that contains a dictionary of children nodes and a boolean value that indicates if the node is the end of a word.
+</p>
+
+@code.block{<file> src/autows/trie.gleam}{<lang> rust}{
+import gleam/dict.\{type Dict\}
+
+pub type TrieNode \{
+.   TrieNode(
+.       children: Dict(String, TrieNode),
+.       end: Bool,
+.   )
+\}
+}
+
+@sec.h3{Instantiating a TrieNode}
+
+<p>
+For creating a new instance of a @txt.hl{TrieNode}, we will simply create a new node with an empty dictionary of children and a boolean value set to @txt.hl{False}.
+</p>
+
+@code.block{<file> src/autows/trie.gleam}{<lang> rust}{
+pub fn new() -> TrieNode \{
+.   TrieNode(
+.       dict.new(),
+.       False,
+.   )
+\}
+}
+
+@sec.h3{Inserting a word}
+
+<p>
+Now, we will need to create the function to insert the words into the Trie. The function will receive a node and a list of strings representing the word divided into characters.
+</p>
+
+<p>
+The function will take the first character of the word and check if it is present in the children of the node. If it is not, we will insert a new node into the children dictionary. Then, we will recursively call the function with the new node and the rest of the word. 
+</p>
+
+<p>
+When we have iterated over all the characters of the word, we will early-return from the function by returning a new node with the updated children and the boolean value indicating that the node is the end of a word.
+</p>
+
+@code.block{<file> src/autows/trie.gleam}{<lang> rust}{
+import gleam/bool
+
+....
+
+pub fn insert(node: TrieNode, word: List(String)) -> TrieNode \{
+.   use <- bool.guard(when: word == [], return: TrieNode(node.children, True)) 
+
+.   let assert [first, ..rest] = word
+
+.   let new_children = case dict.has_key(node.children, first) \{
+.       False -> dict.insert(node.children, first, new())
+.       True -> node.children
+.   \}
+
+.   let assert Ok(new_node) = dict.get(new_children, first)
+
+.   let new_child = insert(new_node, rest)
+.   let new_children = dict.insert(new_children, first, new_child)
+
+.   TrieNode(new_children, node.end)
+\}
+}
+
+@sec.h3{Accessing a node}
+
+<p>
+We will need a function to check if a given character is present in the children of a node. The function will return a @txt.hl{Result} type, where the @txt.hl{Ok} value is the node if the character is present, and the @txt.hl{Error} value is @txt.hl{Nil} if the character is not present.
+</p>
+
+@code.block{<file> src/autows.gleam}{<lang> rust}{
+pub fn get(node: TrieNode, key: String) -> Result(TrieNode, Nil) \{
+.   dict.get(node.children, key)
+\}
+}
+
+@sec.h3{Updating the main function}
+
+<p>
+Finally, we will update the @txt.hl{read_puzzle} function to return the populated Trie instead of a list of words. For that, we will fold over the list of words and insert each word into the Trie. Also, as the @txt.hl{trie.insert} function receives a list of strings, we will need to convert the word into a list of strings by splitting it into characters with the @txt.hl{string.to_graphemes} function.
+</p>
+
+@code.block{<file> src/autows.gleam}{<lang> rust}{
+import autows/trie.\{type TrieNode\}
+
+pub fn main() \{
+.   let \#(puzzle, trie) = read_puzzle()
+\}
+
+fn read_puzzle() -> \#(Matrix(String), TrieNode) \{
+....
+.   let trie = words
+.   |> string.trim_end
+.   |> string.split("\\n")
+.   |> list.drop(1)
+.   |> list.fold(trie.new(), fn(trie_acc, word) \{
+.       trie.insert(trie_acc, string.to_graphemes(word))
+.   \})
+.
+.   \#(puzzle, trie)
+\}
+}
+
+@sec.h2{Search algorithm}
+
+<p>
+Our search algorithm will not be as fancy as the Trie data structure, but it will definitely work. The main idea behind it is to iterate all over the letters in the puzzle and look in all eight directions. If we find a letter that is present in the Trie, we will recursively search in that direction until we reach the end of the word.
+</p>
+
+@sec.h3{Defining the directions}
+
+<p>
+The first thing we will need is to define the eight directions in which we will search for the words. We will define the directions as a global constant, and as a list of tuples, where the first element is the vertical direction and the second element is the horizontal direction.
+</p>
+
+@code.block{<file> src/autows.gleam}{<lang> rust}{
+const directions = [
+.   \#(0, 1),   // right
+.   \#(-1, 1),  // up-right
+.   \#(-1, 0),  // up
+.   \#(-1, -1), // up-left
+.   \#(0, -1),  // left
+.   \#(1, -1),  // down-left
+.   \#(1, 0),   // down
+.   \#(1, 1),   // down-right
+]
+}
+
+@sec.h3{Searching a direction}
+
+<p>
+To explain the algorithm, we will go from the innermost function to the outermost one. 
+</p>
+
+<p>
+The first function we will define is the @txt.hl{search_dir} function, which will receive the puzzle, the current node of the Trie, the point in which to search for the next letter, the direction we are searching, and the path of the word found so far. The function will return a list of points that represent the path of the word found.
+</p>
+
+<p>
+The function can be divided into three conditions that have to be met to continue the search. The first one is to check that there is a letter in the point we are searching. If not, it means that the point is out of bounds, and we will return an empty list. 
+</p>
+
+<p>
+In case there is a letter, we will check if the letter is present in the children of the node. If not, it means that the word is not present in the Trie, and we will return an empty list.
+</p>
+
+<p>
+Finally, we will iterate over the next point in the given direction until the third condition is met, which is when the node is the end of a word. In that case, we will return the path of the word found.
+</p>
+
+<p>
+Note that we are prepending the point to the path instead of appending it as it is more efficient, and also, as we will see later on, the order of the path is not important.
+</p>
+
+@code.block{<file> src/autows.gleam}{<lang> rust}{
+import gleam/bool
+
+....
+
+fn search_dir(
+.   puzzle: Matrix(String),
+.   node: TrieNode, 
+.   point: \#(Int, Int),
+.   dir: \#(Int, Int),
+.   path: List(\#(Int, Int)),
+) -> List(\#(Int, Int)) \{
+.   use <- bool.guard(when: node.end, return: path) 
+.   
+.   let letter = matrix.at(puzzle, point)
+.   use <- bool.guard(when: result.is_error(letter), return: [])
+.   let assert Ok(letter) = letter
+
+.   let next_node = trie.get(node, letter)
+.   use <- bool.guard(result.is_error(next_node), return: [])
+.   let assert Ok(next_node) = next_node
+
+.   let path = list.prepend(path, point)
+
+.   search_dir(puzzle, next_node, \#(point.0+dir.0, point.1+dir.1), dir, path)
+\}
+}
+
+@sec.h3{Choosing a direction}
+
+<p>
+The function @txt.hl{search} will call the @txt.hl{search_dir} function for each direction. It will receive the puzzle, the Trie, the point in which to start the search, and the list of points found so far. The function will return a list of points that represent the coordinates of all words found.
+</p>
+
+<p>
+Note that we are only storing the coordinates of all the words found in a single list instead of a list of lists. This is because, for this program, we will be only highlighting the words found in the puzzle, and the order of the words is not important.
+</p>
+
+<p>
+In the case that the @txt.hl{search_dir} function finds a word, we will update the @txt.hl{found} variable with the new path found. 
+</p>
+
+@code.block{<file> src/autows.gleam}{<lang> rust}{
+fn search(puzzle: Matrix(String), node: TrieNode, point: \#(Int, Int), found: List(\#(Int, Int))) -> List(\#(Int, Int)) \{
+.   use found_acc, dir <- list.fold(directions, found)
+.   let path = search_dir(puzzle, node, point, dir, [])
+
+.   case path \{
+.       [] -> found_acc
+.       _ -> list.append(found_acc, path)
+.   \}
+\}
+}
+
+@sec.h3{Iterating over the puzzle}
+
+<p>
+Finally, in the main function we will create two new variables, @txt.hl{rows} and @txt.hl{cols}, that will contain the range of indexes of the rows and columns of the puzzle. Then, we will fold over the rows and columns to search for the words in each point of the puzzle.
+</p>
+
+@code.block{<file> src/autows.gleam}{<lang> rust}{
+pub fn main() \{
+....
+.   let rows = list.range(0, puzzle.n_rows)
+.   let cols = list.range(0, puzzle.n_cols)
+
+.   use found_acc, y <- list.fold(rows, [])
+.   use found_acc, x <- list.fold(cols, found_acc)
+.   search(puzzle, trie, \#(y, x), found_acc)
+\}
+}
+
+@sec.h2{Displaying the process}
+
+<p>
+Up until this point, we have a program that can search for words in a puzzle, but if I don't see it, I don't believe it. So, we will need to print the puzzle to the terminal and highlight the words found.
+</p>
+
+@sec.h3{Escape sequences}
+
+<p>
+First, we will take a look to @url{https://en.wikipedia.org/wiki/ANSI_escape_code}{ANSI escape codes}, which are a set of sequences that can be used to control the terminal output. We will use these codes to clear the terminal and color the letters of the words found.
+</p>
+
+<p>
+All the sequences need to start with a special character, which is the escape character. This, can be represented in multiple ways: @txt.hl{\\033} in octal, @txt.hl{\\x1b} in hexadecimal, or @txt.hl{\\u\{001b\}} in Unicode. We will use the Unicode representation as it is the only one supported by Gleam.
+</p>
+
+<p>
+Then, we will define the sequences for clearing the terminal, coloring the letters in green, coloring the letters in blue, and resetting the color to the default one.
+</p>
+
+<p>
+The clear sequence is a combination of two sequences: the first one clears the screen, and the second one moves the cursor to the top-left corner. This combination creates the effect of the game being updated in real-time.
+</p>
+
+@code.block{<file> src/autows.gleam}{<lang> rust}{
+const esc = "\\u\{001b\}"
+const clear = esc <> "[2J" <> esc <> "[1;1H"
+const green = esc <> "[32m"
+const blue = esc <> "[34m"
+const end = esc <> "[0m"
+}
+
+@sec.h3{Displaying the puzzle}
+
+<p>
+For printing the puzzle into the terminal and not having it run in supersonic speed, we will need to add a delay between each iteration. We can achieve that by using the @txt.hl{process.sleep} function from the @txt.hl{gleam/erlang/process} module.
+</p>
+
+@code.block{<file> terminal}{<lang> shell}{
+    gleam add gleam_erlang
+}
+
+<p>
+The @txt.hl{display} function will receive the puzzle, the list of points found, and the state of the search algorithm on every step.
+</p>
+
+<p>
+First, we will fold over the list of points found and color the letters in green. Then, we will fold over the path that the search algorithm is taking and substituting those points with a blue dot. This will create the effect of the search algorithm moving through the puzzle. Finally, we will convert the matrix to a single string and print it to the terminal.
+</p>
+
+@code.block{<file> src/autows.gleam}{<lang> rust}{
+import gleam/io
+import gleam/erlang/process
+
+....
+
+fn display(puzzle: Matrix(String), found: List(\#(Int, Int)), path: List(\#(Int, Int))) \{
+.   let puzzle_str = puzzle
+.   |> list.fold(found, _, fn(puzzle_acc, point)\{
+.       let assert Ok(letter) = matrix.at(puzzle_acc, point)
+.       matrix.replace(puzzle_acc, point, green <> letter <> end) 
+.   \})
+.   |> list.fold(path, _, fn(puzzle_acc, point) \{
+.       matrix.replace(puzzle_acc, point, blue <> "." <> end) 
+.   \})
+.   |> matrix.to_list
+.   |> list.map(string.join(_, " "))
+.   |> string.join("\\n")
+
+.   io.print(clear <> puzzle_str)
+.   process.sleep(50)
+\}
+}
+
+@sec.h3{Updating the search function}
+
+<p>
+Finally, we will need to update the @txt.hl{search_dir} function to call the @txt.hl{display} function on every step of the search algorithm, and pass the @txt.hl{found} from the @txt.hl{search} function to the @txt.hl{display} function.
+</p>
+
+<p>
+Also, note that we have moved up the @txt.hl{let path = list.prepend(path, point)} before checking if the letter is present in the children of the node. This will create the effect of the search algorithm trying to find the word in the puzzle and falling back when it reaches a dead-end, which in my opinion is more visually appealing.
+</p>
+
+@code.block{<file> src/autows.gleam}{<lang> rust}{
+fn search(puzzle: Matrix(String), node: TrieNode, point: \#(Int, Int), found: List(\#(Int, Int))) -> List(\#(Int, Int)) \{
+.   use found_acc, dir <- list.fold(directions, found)
+.   let path = search_dir(puzzle, node, point, dir, [], found_acc)
+
+.   case path \{
+.       [] -> found_acc
+.       _ -> list.append(found_acc, path)
+.   \}
+\}
+
+fn search_dir(
+....
+.   found: List(\#(Int, Int)),
+) -> List(\#(Int, Int)) \{
+....
+.   let path = list.prepend(path, point)
+.   display(puzzle, found, path)
+
+.   let next_node = trie.get(node, letter)
+....
+.   search_dir(puzzle, next_node, \#(point.0+dir.0, point.1+dir.1), dir, path, found)
+\}
+}
+
+@sec.h3{Running the program}
+
+<p>
+By using the @txt.hl{gleam run} command, we can run the program and see the search algorithm in action!
+</p>
+
+@sec.h2{Wrapping Up}
+
+<p>
+This tutorial has covered a lot of concepts, from the Trie data structure to the ANSI escape codes. It is a lot of information to process if you are not familiar with the concepts, but I strongly suggest you to look into them as they can be very fun to work with.
+</p>
+
+<p>
+Also, the Gleam programming language is not very popular and the lack of documentation can be a bit frustrating, but it is one of the programming languages that I have enjoyed the most working with. The Rust-like syntax makes it a very interesting entry point to learn the functional language paradigm and make your brain ache a bit.
+</p>
+
+<p>
+I hope you have enjoyed this tutorial!
+</p>
+
+@sec.h2{Suggested Posts}
+
+<div class="card-grid">
+
+@card{
+<title> snake game in the terminal with go
+}{
+<subtitle> \#go \#cli
+}{
+<description> Learn how to create a Snake game in the terminal with Go.
+}{
+<date> mar 18th 2024
+}{
+<link> /tutorials/snake-cli
+}
+
+</div>
+
+@doc.foot{}

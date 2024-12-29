@@ -264,6 +264,18 @@ challenges
 <link> /tutorials/snake-cli
 }
 
+@card{
+<title> solving a word search puzzle with a functional approach
+}{
+<subtitle> \#gleam
+}{
+<description> Let's solve a word search puzzle with a purely functional language!
+}{
+<date> dec 24th 2024
+}{
+<link> /tutorials/word-search-solver
+}
+
 # @card{
 # jpeg compression algorithm from scratch in python
 # }{
