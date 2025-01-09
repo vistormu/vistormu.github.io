@@ -271,9 +271,21 @@ challenges
 }{
 <description> Let's solve a word search puzzle with a purely functional language!
 }{
-<date> dec 24th 2024
+<date> dec 29th 2024
 }{
 <link> /tutorials/word-search-solver
+}
+
+@card{
+<title> simulating the kinematics of a rope with Python
+}{
+<subtitle> \#python \#physics \#simulation
+}{
+<description> with a few lines of code, we can simulate the basic kinematics of a rope!
+}{
+<date> jan 7th 2025
+}{
+<link> /tutorials/fabrik
 }
 
 # @card{

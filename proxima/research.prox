@@ -9,10 +9,18 @@
 }{
 <description> here I present my progress as a researcher at the university
 }{
-<links> teaching
+<links> education
+teaching
 journal articles
 conference papers
 }
+
+# ========
+# TEACHING
+# ========
+@sec.h2{education}
+
+
 
 # ========
 # TEACHING
@@ -37,7 +45,7 @@ Master Thesis supervised: 2 students
 @card{
 <title> Machine Learning architectures for modeling a strain-stress flexible sensor
 }{
-<subtitle> MDPI Sensors | 2024
+<subtitle> MDPI Sensors | 2025
 }{
 <description> @txt.u{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco
 }{
@@ -51,7 +59,7 @@ Master Thesis supervised: 2 students
 @card{
 <title> Modeling with Transformers a Machine-Sewable Strain-Stress Sensor
 }{
-<subtitle> Sensors and Actuators A: Physical | 2024
+<subtitle> Sensors and Actuators A: Physical | 2025
 }{
 <description> @txt.u{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco
 }{
@@ -65,7 +73,7 @@ Master Thesis supervised: 2 students
 @card{
 <title> Accelerating hyperparameter optimization with a secretary
 }{
-<subtitle> Neurocomputing | 2024
+<subtitle> Neurocomputing | 2025
 }{
 <description> @txt.u{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco
 }{
@@ -116,7 +124,7 @@ Master Thesis supervised: 2 students
 }{
 <description> C. Ballester, @txt.u{V. Muñoz}, D. Copaci, L. Moreno, D. Blanco
 }{
-<date> under review
+<date> doi pending
 }{
 <link>
 }{
@@ -158,7 +166,7 @@ Master Thesis supervised: 2 students
 }{
 <description> @txt.u{V. Muñoz}, C. Ballester, D. Copaci, L. Moreno, D. Blanco
 }{
-<date>
+<date> doi pending
 }{
 <link>
 }{

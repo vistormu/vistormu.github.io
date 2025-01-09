@@ -1,0 +1,339 @@
+@doc.head{}
+
+@doc.nav{}
+
+@sec.h1{simulating the kinematics of a rope with Python}
+
+@post.info{
+<published> jan 7th 2025
+}{
+<last_edit> jan 7th 2025
+}{
+<read_time> 11
+}
+
+<p>
+I once came across a YouTube video that explained how certain dynamics were simulated in video games. The video showed a simulation of a rope and a piece of cloth being dragged around by the mouse, and it was pretty realistic. The most interesting part was that the algorithm being used consisted only of a few lines of code.
+</p>
+
+<p>
+The algorithm in question is called @url{http://www.andreasaristidou.com/FABRIK.html}{FABRIK}, which stands for Forward And Backward Reaching Inverse Kinematics. It is a simple and efficient algorithm that can be used to simulate the kinematics of a rope, a piece of cloth, or any other chain-like structure.
+</p>
+
+<p>
+In this post I will show you how to make a simple simulation of the kinematics of a two-dimensional rope, using the FABRIK algorithm and PyGame, in less that a hundred lines of code.
+</p>
+
+<p>
+Note that this algorithm only simulates the kinematics of the rope, and does not take into account any other forces such as gravity or friction. This will result in a rope that looks like it is being dragged around on a table, as if it were laying on a surface. Adding the dynamics of the rope would overcomplicate the simulation and make it less intuitive to understand.
+</p>
+
+<p>
+Let's get started!
+</p>
+
+@sec.h2{Table of Contents}
+
+@post.toc{
+Setting up the project
+Point class
+FABRIK algorithm
+Simulation
+Wrapping up
+Suggested posts
+}
+
+@sec.h2{Setting up the project}
+
+<p>
+The project will consist of a single file, which will contain the implementation of the FABRIK algorithm and the simulation itself. We will only need PyGame as an external dependency, which can be installed using pip. Also, I recommend @url{/tutorials/conda}{using a virtual environment} to avoid conflicts with other projects.
+</p>
+
+@code.block{<file> terminal}{<lang> bash}{
+pip install pygame
+}
+
+@sec.h2{Point class}
+
+<p>
+The first thing we need to do is create a class to represent a point in two-dimensional space. We could simply use a tuple to store the @txt.hl{x} and @txt.hl{y} coordinates, or also a @txt.hl{NumPy} array, but that wouldn't be as fun. Instead, we will create a @txt.hl{NamedTuple}, which behaves in the same way as a tuple, but allows us to access the fields by name. If you are not familiar with @txt.hl{NamedTuple}, I recommend you check @url{/tutorials/named-tuple-dataclass}{this blog post}.
+</p>
+
+@code.block{<file> main.py}{<lang> python}{
+from typing import NamedTuple
+
+
+class Point(NamedTuple):
+.   x: float
+.   y: float
+}
+
+<p>
+Here is were the fun comes in, as we will need to define the basic arithmetic operations for our @txt.hl{Point} class. This can be done by adding special methods to the @txt.hl{Point} class, which Python will then execute when we use the corresponding operators. 
+</p>
+
+<p>
+For example, when we write @txt.hl{point1 + point2}, Python will call the @txt.hl{__add__} method of the @txt.hl{Point} class, passing @txt.hl{point1} as @txt.hl{self} and @txt.hl{point2} as @txt.hl{other}.
+</p>
+
+@code.block{<file> main.py}{<lang> python}{
+.   def __add__(self, other):
+.       return Point(self.x + other.x, self.y + other.y)
+}
+
+<p>
+We can repeat this process for the other arithmetic operations: @txt.hl{__mul__} and @txt.hl{__rmul__} for multiplication, and @txt.hl{__truediv__} for division.
+</p>
+
+@code.block{<file> main.py}{<lang> python}{
+.   def __mul__(self, other):
+.       return Point(self.x * other, self.y * other)
+
+.   def __rmul__(self, other):
+.       return self.__mul__(other)
+
+.   def __truediv__(self, other):
+.       return Point(self.x / other, self.y / other)
+}
+
+Finally, I will add a new method to the @txt.hl{Point} class, which will calculate the distance between two points by overloading the @txt.hl{__mod__} operator. I don't recommend this approach at all, as it is not intuitive and will confuse anyone who reads the code. However, it just looks good.
+
+@code.block{<file> main.py}{<lang> python}{
+.   def __mod__(self, other):
+.       return math.sqrt((self.x - other.x) ** 2 + (self.y - other.y) ** 2)
+}
+
+@sec.h2{FABRIK algorithm}
+
+<p>
+Let's start with a simple rope, consisting only of four points, labeled as @txt.hl{@txt.math{p_i}}, separated by a fixed distance, @txt.hl{@txt.math{l_i}}. The objective is to somehow move the points in the rope in order to reach a target point, labeled as @txt.hl{@txt.math{p_t}}. To do this, one would have to rotate the first three points in the rope so that the last point makes contact with the target. This is called Inverse Kinematics, where given a target point, the objective is to calculate the amount of rotation needed for each point to reach the target. Of course, for this to make sense, one point must be fixed, which in our case will be the first point of the rope.
+</p>
+
+<p>
+The FABRIK algorithm is an Inverse Kinematics solver that works by iterating over the points in the rope in two phases. The algorithm, instead of calculating the amount of rotation needed for each point, directly calculates the position of the points, which makes it simpler to work with.
+</p>
+
+<p>
+FABRIK is the acronym for Forward And Backward Reaching Inverse Kinematics, which indicates that the algorithm consists of two phases, which we will explain in the following sections.
+</p>
+
+@img{<width> 1/2}{<align> center}{
+<src> /assets/fabrik/initial-configuration.svg
+}
+
+@sec.h3{The backwards phase}
+
+<p>
+The first phase of the algorithm is called the backwards phase, and consists of creating a new rope with updated points @txt.hl{@txt.math{p'_i}} that start at the target point.
+</p>
+
+<p>
+The first step of this process, depicted in the first figure below, is very simple, as we only need to place the last point of the rope at the target point.
+</p>
+
+<p>
+Now, for calculating the rest of the points @txt.hl{@txt.math{p'_i}}, we will have to approximate their location based on the position of the original rope and the one we are constructing. For this, we will consider two points: the last calculated point of the new rope @txt.hl{@txt.math{p'_[i+1]}} and the point of the original rope that we are trying to place @txt.hl{@txt.math{p_i}}. The FABRIK algorithm will place our point in the segment that connects these two points. As we know the fixed distance between the points, @txt.hl{@txt.math{p'_i}} will be placed at a distance @txt.hl{@txt.math{l_[i+1]}} from @txt.hl{@txt.math{p'_[i+1]}}.
+</p>
+
+<p>
+The second figure shows the placement of the new point, and the third and fourth figures show the same process for the rest of the points. 
+</p>
+
+<p>
+We ended up with a rope that has reached the target point but with the first point is misplaced, as it should be fixed. This is why we need the second phase of the algorithm.
+</p>
+
+@img{<width> full}{<align> center}{
+<src> /assets/fabrik/backwards.svg
+}
+
+@sec.h3{The forwards phase}
+
+<p>
+The forwards phase consists of the same process as the backwards phase, but now considering the original position of the first point @txt.hl{@txt.math{p_0}} the target to reach. This will result in a new rope with points @txt.hl{@txt.math{p''_i}} that has the first point fixed and the last point very close to the target.
+</p>
+
+<p>
+As we can see in the figures below, the same process is repeated, but now starting from the first point of the rope and moving towards the target. The result is a rope that has almost reached the target point.
+</p>
+
+<p>
+The main idea behind the FABRIK algorithm is to repeat these two phases until the rope reaches the target point.
+</p>
+
+<p>
+One thing to consider is that the FABRIK algorithm better works with small target displacements, as the new position of the rope is calculated considering the last known position of the rope. This means that the algorithm is better suited for simulating organic movements instead of teleporting objects to a location. This is an ideal scenario for simulating ropes, and it will most likely take only one or two iterations to reach the target point, making it very fast.
+</p>
+
+@img{<width> full}{<align> center}{
+<src> /assets/fabrik/forwards.svg
+}
+
+@sec.h3{Implementation}
+
+<p>
+As we have seen, the FABRIK algorithm consists of two phases, but we can simplify the implementation by combining them into a single function. The function will receive a list of points representing the rope and the target point to reach. It will return a new list of points representing the new location of the rope.
+</p>
+
+<p>
+As the rope is first constructed from the last point to the first, we will have to reverse the list of points before starting the algorithm. Then we will create a new list containing the position of the target.
+</p>
+
+<p>
+With this done, we have finished the first step of the algorithm, and now we will need to calculate the position of the rest of the points. We will do a simple linear interpolation, where we calculate the ratio between the distance of the new point to the last calculated point and the distance of the original point to the last calculated point. 
+</p>
+
+<p>
+Note that we are using the @txt.hl{%} operator to calculate the distance between two points, which we have overloaded in the @txt.hl{Point} class.
+</p>
+
+<p>
+With a simple formula, we can calculate the position of the new point, and repeat this process for the rest of the points. The final result will be a rope that has reached the target point.
+</p>
+
+<p>
+For the backwards phase, we can use the same function, passing the first point of the original rope as the target, and as the rope the one we calculated in the forward phase. As for this phase we need to start from the first point to the last, the reverse function will re-reverse the list of points back to the original order.
+</p>
+
+@code.block{<file> main.py}{<lang> python}{
+def construct(joints: list[Point], target: Point) -> list[Point]:
+.   joints = list(reversed(joints))
+.   new_joints = [target]
+
+.   for i in range(1, len(joints)):
+.       ratio = (joints[i] % joints[i-1]) / (new_joints[i-1] % joints[i])
+.       new_joints.append((1 - ratio) * new_joints[i-1] + ratio * joints[i])
+
+.   return new_joints
+}
+
+<p>
+The final step is to create a function that will iterate over the rope until it reaches the target point. This function will receive the rope, the target point, and a tolerance value that will indicate when the rope has reached the target. The function will return the rope after it has reached the target.
+</p>
+
+@code.block{<file> main.py}{<lang> python}{
+def iterate(rope: list[Point], target: Point, tolerance: float) -> list[Point]:
+.   if (rope[-1] % target) <= tolerance:
+.       return rope
+
+.   start = rope[0]
+.   rope = construct(rope, target)
+.   rope = construct(rope, start)
+
+.   return rope
+}
+
+@sec.h2{Simulation}
+
+<p>
+For the simulation, we will use PyGame to create a window where we can draw the rope and the target point. For simplicity, I have decided to make the window a square.
+</p>
+
+<p>
+For drawing the rope, we will use the @txt.hl{pygame.draw.lines} function, which will draw a line between each pair of points in the rope. For the target point, we will use the @txt.hl{pygame.draw.circle} function, which will draw a circle at the target point. I have represented the rope in white and the target point in red, with the background in black.
+</p>
+
+<p>
+Note that we are multiplying the points by the size of the window, as PyGame uses pixels to draw the shapes, and we will use percentages of the window size to represent the points.
+</p>
+
+<p>
+We will also need to create a method of the class that loops over the events of the window, matching if the user has clicked the close button or moved the mouse. The method will return the position of the mouse in every frame.
+</p>
+
+@code.block{<file> main.py}{<lang> python}{
+class Renderer:
+.   def __init__(self, side: int):
+.       self.side = side
+.       self.screen = pygame.display.set_mode((side, side))
+.       self.mouse_pos = Point(0, 0)
+
+.   def draw(self, rope: list[Point], target: Point) -> None:
+.       self.screen.fill((0, 0, 0))
+
+.       pygame.draw.lines(self.screen, (255, 255, 255), False, [joint * self.side for joint in rope])
+.       pygame.draw.circle(self.screen, (255, 0, 0), target * self.side, 5)
+
+.       pygame.display.flip()
+
+.   def update(self) -> Point:
+.       for event in pygame.event.get():
+.           match event.type:
+.               case pygame.QUIT:
+.                   pygame.quit()
+.                   exit()
+.               case pygame.MOUSEMOTION:
+.                   mouse_pos = Point(*pygame.mouse.get_pos()) / self.side
+.                   self.mouse_pos = Point(mouse_pos.x, mouse_pos.y)
+
+.       return self.mouse_pos
+}
+
+<p>
+Then, we can create our simple main function, where we initialize a rope with 100 points, with a total length of 50% of the side of the window. We will also create an instance of the @txt.hl{Renderer} class with a window size of 800 pixels, and in the main loop, we will update the target point, iterate over the rope, and draw the rope and the target point.
+</p>
+
+@code.block{<file> main.py}{<lang> python}{
+def main() -> None:
+.   rope = [Point(0.5, i*0.005) for i in range(101)]
+.   renderer = Renderer(800)
+
+.   while True:
+.       target = renderer.update()
+.       rope = iterate(rope, target, 0.01)
+.       renderer.draw(rope, target)
+
+
+if __name__ == "__main__":
+.   main()
+}
+
+<p>
+With all of this, we will have a simple simulation that will allow us to drag a rope around the window with the mouse. The rope will reach the target point in a very realistic way, and it will be very fun to play with.
+</p>
+
+@sec.h2{Wrapping up}
+
+<p>
+The FABRIK algorithm is a very insteresting algorithm, and so simple that I don't know why I realized it on my own. That is what makes it so genious.
+</p>
+
+<p>
+As an extension of this simulation, you could try to add gravity to the rope, taking into account the velocities and accelerations of the points. Also, the FABRIK algorithm can be extended in numerous ways. It can support matrix-like structures, such a piece of cloth, or even 3D structures by extending the dimensions of the points. Additionally, it can be used with multiple targets to simulate complex movements.
+</p>
+
+<p>
+I hope you have enjoyed this post, and that you have learned something new!
+</p>
+
+@sec.h2{Suggested posts}
+
+<div class="card-grid">
+
+@card{
+<title> snake game in the terminal with go
+}{
+<subtitle> \#go \#cli
+}{
+<description> Learn how to create a Snake game in the terminal with Go.
+}{
+<date> mar 18th 2024
+}{
+<link> /tutorials/snake-cli
+}
+
+@card{
+<title> solving a word search puzzle with a functional approach
+}{
+<subtitle> \#gleam
+}{
+<description> Let's solve a word search puzzle with a purely functional language!
+}{
+<date> dec 29th 2024
+}{
+<link> /tutorials/word-search-solver
+}
+
+</div>
+
+@doc.foot{}

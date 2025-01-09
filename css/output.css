@@ -785,8 +785,16 @@ pre::-webkit-scrollbar, code::-webkit-scrollbar {
   height: 2rem;
 }
 
+.h-auto{
+  height: auto;
+}
+
 .h-screen{
   height: 100vh;
+}
+
+.w-1\/2{
+  width: 50%;
 }
 
 .w-24{
